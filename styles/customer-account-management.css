@@ -1,0 +1,47 @@
+/* Định dạng các thẻ chung cho cả giao diện */
+:root {
+  font-family: "Be Vietnam Pro";
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+a:link {
+  list-style-type: none;
+  padding: 0px;
+  color: #888;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+p {
+  margin: 0px;
+}
+
+/*---------------------------------- HEADER -----------------------------------*/
+@media screen and (max-width: 500px) {
+  .sign-up-header {
+    padding: 40px 20px;
+  }
+}
+
+/*----------------------------------- BODY -----------------------------------*/
+
+/*----------------------------------- FOOTER -----------------------------------*/
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 500px) {
+  .footer {
+    display: flex;
+    padding: 20px 20px 40px;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #888;
+    background: #fafbfc;
+  }
+}

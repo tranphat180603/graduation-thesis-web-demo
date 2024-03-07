@@ -95,6 +95,12 @@ p {
   align-items: center;
   gap: 12px;
   flex: 1 0 0;
+  color: #97a09d;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
   border: none;
   outline: none;
 }

@@ -95,7 +95,7 @@
   </head>
   <body>
     <!-- HEADER -->
-    <?php include "../header/admin/managerial-header.php"; ?>
+    <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
     <div class="court-type-body">
       <div class="court-type-body-content">

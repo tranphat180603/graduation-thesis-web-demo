@@ -192,14 +192,19 @@ form {
 
 .sign-up-name-input:hover,
 .sign-up-name-input:focus,
+.sign-up-name-input:focus-within,
 .sign-up-phone-input:hover,
 .sign-up-phone-input:focus,
+.sign-up-phone-input:focus-within,
 .sign-up-email-input:hover,
 .sign-up-email-input:focus,
+.sign-up-email-input:focus-within,
 .sign-up-acc-name-input:hover,
 .sign-up-acc-name-input:focus,
+.sign-up-acc-name-input:focus-within,
 .sign-up-pass-input:hover,
-.sign-up-pass-input:focus {
+.sign-up-pass-input:focus,
+.sign-up-pass-input:focus-within {
   outline: 1px solid #285d8f;
 }
 

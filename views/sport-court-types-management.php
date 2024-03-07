@@ -101,7 +101,6 @@
       <div class="court-type-body-content">
         <div class="court-type-top">
           <p>Danh sách loại sân</p>
-          <img src="../image/sport-court-types-management-img/filter.svg" alt="Filter">
         </div>
         <div class="search">
           <img src="../image/sport-court-types-management-img/search.svg" alt="search-icon">

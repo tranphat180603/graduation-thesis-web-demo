@@ -97,7 +97,29 @@
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
-    <!-- code phần body -->
+    <div class="order-body">
+      <div class="order-body-content">
+        <div class="order-top">
+          <p>Danh sách đơn đặt sân</p>
+          <img src="../image/sport-court-orders-management-img/filter.svg" alt="Filter">
+        </div>
+        <div class="search">
+          <img src="../image/sport-court-orders-management-img/search.svg" alt="search-icon">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Tìm kiếm đơn đặt sân"
+            required
+          />        
+        </div>
+        <div class="order-body-nav">
+          <div id="navigation"></div>
+          <div id="action"></div>
+        </div>
+        <div id="order-data-table"></div>
+      </div>
+    </div>    
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>

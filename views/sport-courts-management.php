@@ -93,7 +93,29 @@
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
-    <!-- code phần body -->
+    <div class="court-body">
+      <div class="court-body-content">
+        <div class="court-top">
+          <p>Danh sách sân</p>
+          <img src="../image/sport-courts-management-img/filter.svg" alt="Filter">
+        </div>
+        <div class="search">
+          <img src="../image/sport-courts-management-img/search.svg" alt="search-icon">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Tìm kiếm sân"
+            required
+          />        
+        </div>
+        <div class="court-body-nav">
+          <div id="navigation"></div>
+          <div id="action"></div>
+        </div>
+        <div id="court-data-table"></div>
+      </div>
+    </div>    
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>

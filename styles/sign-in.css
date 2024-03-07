@@ -176,8 +176,10 @@ form {
 
 .sign-in-name-input:hover,
 .sign-in-name-input:focus,
+.sign-in-name-input:focus-within,
 .sign-in-pass-input:hover,
-.sign-in-pass-input:focus {
+.sign-in-pass-input:focus,
+.sign-in-pass-input:focus-within {
   outline: 1px solid #285d8f;
 }
 

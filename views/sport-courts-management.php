@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
-    <link rel="stylesheet" type="text/css" href="../styles/sports-courts-management.css" />
-    <script type="text/javascript" src="../scripts/sports-courts-management.js" language="javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/sport-courts-management.css" />
+    <script type="text/javascript" src="../scripts/sport-courts-management.js" language="javascript"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

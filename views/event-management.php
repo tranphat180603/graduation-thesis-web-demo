@@ -93,7 +93,29 @@
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
-    <!-- code phần body -->
+    <div class="event-body">
+      <div class="event-body-content">
+        <div class="event-top">
+          <p>Danh sách sự kiện</p>
+          <img src="../image/event-management-img/filter.svg" alt="Filter">
+        </div>
+        <div class="search">
+          <img src="../image/event-management-img/search.svg" alt="search-icon">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Tìm kiếm sự kiện"
+            required
+          />        
+        </div>
+        <div class="event-body-nav">
+          <div id="navigation"></div>
+          <div id="action"></div>
+        </div>
+        <div id="event-data-table"></div>
+      </div>
+    </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>

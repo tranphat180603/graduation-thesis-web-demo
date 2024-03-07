@@ -98,6 +98,29 @@
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
     <!-- code phần body -->
+    <div class="schedule-body">
+      <div class="schedule-body-content">
+        <div class="schedule-top">
+          <p>Danh sách lịch sân</p>
+          <img src="../image/sport-court-schedules-management-img/filter.svg" alt="Filter">
+        </div>
+        <div class="search">
+          <img src="../image/sport-court-schedules-management-img/search.svg" alt="search-icon">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Tìm kiếm lịch sân"
+            required
+          />        
+        </div>
+        <div class="schedule-body-nav">
+          <div id="navigation"></div>
+          <div id="action"></div>
+        </div>
+        <div id="schedule-data-table"></div>
+      </div>
+    </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>

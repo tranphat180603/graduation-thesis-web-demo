@@ -93,7 +93,29 @@
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
-    <!-- code phần body -->
+    <div class="service-body">
+      <div class="service-body-content">
+        <div class="service-top">
+          <p>Danh sách dịch vụ</p>
+          <img src="../image/service-management-img/filter.svg" alt="Filter">
+        </div>
+        <div class="search">
+          <img src="../image/service-management-img/search.svg" alt="search-icon">
+          <input
+            type="text"
+            id="search-input"
+            name="search-input"
+            placeholder="Tìm kiếm dịch vụ"
+            required
+          />        
+        </div>
+        <div class="service-body-nav">
+          <div id="navigation"></div>
+          <div id="action"></div>
+        </div>
+        <div id="service-data-table"></div>
+      </div>
+    </div>    
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>

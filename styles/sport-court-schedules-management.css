@@ -75,13 +75,19 @@ p {
 /* Định dạng ô nhập liệu tìm kiếm */
 .search {
   display: flex;
-  padding: 16px;
+  padding: 0px 16px;
   align-items: center;
   gap: 8px;
   align-self: stretch;
   border-radius: 8px;
   border: 1px solid #eaeaea;
   background: #fafbfc;
+}
+
+.search img:hover {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
 }
 
 .search:hover,
@@ -93,6 +99,7 @@ p {
 #search-input {
   display: flex;
   align-items: center;
+  padding: 16px 0px;
   gap: 12px;
   flex: 1 0 0;
   color: #97a09d;

@@ -90,8 +90,11 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
+    <!-- HEADER -->
     <?php include "../header/customer-payment-header.php"; ?>
+    <!-- BODY -->
     <!-- code phần body -->
+    <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>
 </html>

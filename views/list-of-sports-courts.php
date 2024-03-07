@@ -90,12 +90,15 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
+    <!-- HEADER -->
     <?php 
       //phần này có tới 3 loại header cho 3 đối tượng lận
       //nên ai làm cái này thì tìm hiểu cách viết code switch 
       //case để láy đường dẫn đến header cho đúng nhen 
     ?>
+    <!-- BODY -->
     <!-- code phần body -->
+    <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
   </body>
 </html>

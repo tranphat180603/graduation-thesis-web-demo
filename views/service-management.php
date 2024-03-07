@@ -97,7 +97,6 @@
       <div class="service-body-content">
         <div class="service-top">
           <p>Danh sách dịch vụ</p>
-          <img src="../image/service-management-img/filter.svg" alt="Filter">
         </div>
         <div class="search">
           <img src="../image/service-management-img/search.svg" alt="search-icon">

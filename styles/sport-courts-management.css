@@ -72,12 +72,6 @@ p {
   line-height: 28px;
 }
 
-.court-top img:hover {
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: #dee4e2;
-}
-
 /* Định dạng ô nhập liệu tìm kiếm */
 .search {
   display: flex;

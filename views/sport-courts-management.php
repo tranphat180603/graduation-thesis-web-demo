@@ -97,7 +97,6 @@
       <div class="court-body-content">
         <div class="court-top">
           <p>Danh sách sân</p>
-          <img src="../image/sport-courts-management-img/filter.svg" alt="Filter">
         </div>
         <div class="search">
           <img src="../image/sport-courts-management-img/search.svg" alt="search-icon">

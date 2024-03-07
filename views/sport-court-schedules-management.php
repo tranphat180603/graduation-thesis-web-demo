@@ -97,7 +97,6 @@
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->
-    <!-- code phần body -->
     <div class="schedule-body">
       <div class="schedule-body-content">
         <div class="schedule-top">

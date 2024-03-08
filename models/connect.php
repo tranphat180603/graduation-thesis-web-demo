@@ -13,14 +13,14 @@
     }
 
     // Định nghĩa phương thức ExecuteDataQuery để thực hiện truy vấn trả về dữ liệu
-    function ExecuteDataQuery ($link, $q) {
-        $result = mysqli_query($link, $q);
+    function ExecuteDataQuery ($link, $query) {
+        $result = mysqli_query($link, $query);
         return $result;
     }
 
     // Định nghĩa phương thức ExecuteNonDataQuery để thực hiện truy vấn không trả về dữ liệu
-    function ExecuteNonDataQuery ($link, $q) {
-        $result = mysqli_query($link, $q);
+    function ExecuteNonDataQuery ($link, $query) {
+        $result = mysqli_query($link, $query);
         return $result;
     }
 
@@ -29,8 +29,8 @@
         try {
             mysqli_close($link);
             mysqli_free_result($result);
-        } catch (TypeError $e) {
-            echo "Error: " . $e->getMessage();
+        } catch (TypeError $error) {
+            echo "Error: " . $error->getMessage();
         }
     }
 ?>

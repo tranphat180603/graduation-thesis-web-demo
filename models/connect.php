@@ -1,7 +1,7 @@
 <?php
     require_once "config.php";
 
-    function makeConnection(&$link) {
+    function MakeConnection(&$link) {
         $link = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
         if (!$link) {

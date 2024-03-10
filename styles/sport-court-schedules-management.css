@@ -25,25 +25,39 @@ p {
   margin: 0px;
 }
 
+/* Định dạng cho thanh cuộn ngang và dọc */
 /* width */
-#schedule-body-menu ul::-webkit-scrollbar {
+table::-webkit-scrollbar,
+#court-schedule-data-table::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* height */
+#schedule-body-menu ul::-webkit-scrollbar,
+#court-schedule-data-table::-webkit-scrollbar {
   height: 5px;
 }
 
 /* Track */
-#schedule-body-menu ul::-webkit-scrollbar-track {
+#schedule-body-menu ul::-webkit-scrollbar-track,
+table::-webkit-scrollbar-track,
+#court-schedule-data-table::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
 /* Handle */
-#schedule-body-menu ul::-webkit-scrollbar-thumb {
+#schedule-body-menu ul::-webkit-scrollbar-thumb,
+table::-webkit-scrollbar-thumb,
+#court-schedule-data-table::-webkit-scrollbar-thumb {
   background: #d4d4d4;
   border-radius: 4px;
 }
 
 /* Handle on hover */
-#schedule-body-menu ul::-webkit-scrollbar-thumb:hover {
+#schedule-body-menu ul::-webkit-scrollbar-thumb:hover,
+table::-webkit-scrollbar-thumb:hover,
+#court-schedule-data-table::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
   border-radius: 4px;
 }
@@ -115,7 +129,7 @@ p {
   align-self: stretch;
   border-radius: 8px;
   border: 1px solid #eaeaea;
-  background: #fafbfc;
+  background-color: #fafbfc;
 }
 
 #search img:hover {
@@ -242,6 +256,67 @@ p {
 }
 
 /* Định dạng bảng dữ liệu */
+#court-schedule-data-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  height: 450px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+table {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+table td,
+table th {
+  display: flex;
+  padding: 16px 10px;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.checkbox {
+  width: 32px;
+  padding: 16px 8px;
+  gap: 10px;
+}
+
+table th {
+  flex: 1 0 0;
+  color: #141716;
+  font-family: "Be Vietnam Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+table td {
+  display: flex;
+  height: 24px;
+  flex: 1 0 0;
+  overflow: hidden;
+  color: #141716;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Be Vietnam Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 900px */
 @media screen and (max-width: 900px) {

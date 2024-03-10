@@ -101,7 +101,7 @@
       <div class="schedule-body-content">
         <div class="schedule-top">
           <p>Danh sách lịch sân</p>
-          <a href="?action=filter">
+          <a href="?option=filter">
             <img src="../image/sport-court-schedules-management-img/filter.svg" alt="Filter">
           </a>
         </div>
@@ -123,7 +123,7 @@
             ?>
           </ul>
           <form id="action" action="../controllers/court-schedule-management.php" method="post" enctype="multipart/form-data">
-            <a id="insert" href="?option=view_insert_court_type">
+            <a id="insert" href="?option=view_insert_court_schedule">
               <img src="../image/sport-court-schedules-management-img/insert.svg" alt="insert icon">
               <p>Thêm</p>
             </a>
@@ -131,17 +131,19 @@
               <img src="../image/sport-court-schedules-management-img/update.svg" alt="update icon">
               <p>Sửa</p>
             </a>
-            <a id="delete" href="?option=delete_court_type">
+            <a id="delete" href="?option=delete_court_schedule">
               <img src="../image/sport-court-schedules-management-img/delete.svg" alt="delete icon">
               <p>Xóa</p>
             </a>
           </form>
         </div>
-        <div id="schedule-data-table">
-          <?php 
-            include_once "../models/court-schedule-model.php"; 
-            //view_court_schedule();
-          ?>
+        <div id="court-schedule-data-table">
+          <table>
+            <?php 
+              include_once "../models/court-schedule-model.php"; 
+              view_court_schedule();
+            ?>
+          </table>
         </div>
       </div>
     </div>

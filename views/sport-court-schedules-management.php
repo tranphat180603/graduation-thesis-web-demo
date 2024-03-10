@@ -101,9 +101,11 @@
       <div class="schedule-body-content">
         <div class="schedule-top">
           <p>Danh sách lịch sân</p>
-          <img src="../image/sport-court-schedules-management-img/filter.svg" alt="Filter">
+          <a href="?action=filter">
+            <img src="../image/sport-court-schedules-management-img/filter.svg" alt="Filter">
+          </a>
         </div>
-        <div class="search">
+        <form id="search" action="../controllers/court-schedule-controller.php?option=search_court_schedule" method="post" enctype="multipart/form-data">
           <img src="../image/sport-court-schedules-management-img/search.svg" alt="search-icon">
           <input
             type="text"
@@ -112,12 +114,35 @@
             placeholder="Tìm kiếm lịch sân"
             required
           />        
+        </form>
+        <div id="schedule-body-menu">
+          <ul>
+            <?php 
+              include_once "../models/court-type-model.php"; 
+              view_court_type_name_schedule();
+            ?>
+          </ul>
+          <form id="action" action="../controllers/court-schedule-management.php" method="post" enctype="multipart/form-data">
+            <a id="insert" href="?option=view_insert_court_type">
+              <img src="../image/sport-court-schedules-management-img/insert.svg" alt="insert icon">
+              <p>Thêm</p>
+            </a>
+            <a id="update" href="?option=view_update_court_schedule">
+              <img src="../image/sport-court-schedules-management-img/update.svg" alt="update icon">
+              <p>Sửa</p>
+            </a>
+            <a id="delete" href="?option=delete_court_type">
+              <img src="../image/sport-court-schedules-management-img/delete.svg" alt="delete icon">
+              <p>Xóa</p>
+            </a>
+          </form>
         </div>
-        <div class="schedule-body-nav">
-          <div id="navigation"></div>
-          <div id="action"></div>
+        <div id="schedule-data-table">
+          <?php 
+            include_once "../models/court-schedule-model.php"; 
+            //view_court_schedule();
+          ?>
         </div>
-        <div id="schedule-data-table"></div>
       </div>
     </div>
     <!-- FOOTER -->

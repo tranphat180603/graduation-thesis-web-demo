@@ -9,8 +9,9 @@ ul {
   padding: 0px;
 }
 
-a:link {
+a {
   list-style-type: none;
+  margin: 0px;
   padding: 0px;
   color: #888;
   font-size: 16px;
@@ -22,6 +23,29 @@ a:link {
 
 p {
   margin: 0px;
+}
+
+/* width */
+#schedule-body-menu ul::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+#schedule-body-menu ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Handle */
+#schedule-body-menu ul::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+#schedule-body-menu ul::-webkit-scrollbar-thumb:hover {
+  background: #9c9c9c;
+  border-radius: 4px;
 }
 
 /*---------------------------------- HEADER -----------------------------------*/
@@ -78,8 +102,12 @@ p {
   background-color: #dee4e2;
 }
 
+.schedule-top a {
+  height: 28px;
+}
+
 /* Định dạng ô nhập liệu tìm kiếm */
-.search {
+#search {
   display: flex;
   padding: 0px 16px;
   align-items: center;
@@ -90,15 +118,15 @@ p {
   background: #fafbfc;
 }
 
-.search img:hover {
+#search img:hover {
   cursor: pointer;
   width: 25px;
   height: 25px;
 }
 
-.search:hover,
-.search:focus,
-.search:focus-within {
+#search:hover,
+#search:focus,
+#search:focus-within {
   outline: 1px solid #97a09d;
 }
 
@@ -139,8 +167,117 @@ p {
 }
 
 /* Định dạng thanh điều hướng */
+#schedule-body-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  row-gap: 15px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+#schedule-body-menu ul {
+  display: flex;
+  align-items: flex-start;
+  max-width: 900px;
+  overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
+  margin: 0px;
+  padding: 0px;
+  align-self: stretch;
+  gap: 36px;
+  white-space: nowrap;
+  padding-bottom: 8px;
+}
+
+/* Định dạng 3 nút thao tác */
+#action {
+  display: flex;
+  width: 275px;
+  height: 39px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#action p {
+  color: #fafbfc;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#insert {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #f0bd0a;
+}
+
+#update {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #27ae60;
+}
+
+#delete {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #d00000;
+}
 
 /* Định dạng bảng dữ liệu */
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 900px */
+@media screen and (max-width: 900px) {
+  #schedule-body-menu ul {
+    max-width: 646px;
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 750px */
+@media screen and (max-width: 750px) {
+  #schedule-body-menu ul {
+    max-width: 500px;
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
+@media screen and (max-width: 600px) {
+  #schedule-body-menu ul {
+    max-width: 400px;
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 500px) {
+  .schedule-body {
+    padding: 30px 20px;
+  }
+
+  .schedule-body-content {
+    padding: 24px 14px;
+  }
+
+  #schedule-body-menu ul {
+    max-width: 292px;
+  }
+}
 
 /*----------------------------------- FOOTER -----------------------------------*/
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */

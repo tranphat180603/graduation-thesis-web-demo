@@ -537,7 +537,7 @@ CREATE TABLE `court_schedule` (
 INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court_schedule_start_time`, `court_schedule_end_time`, `court_schedule_time_frame`, `court_schedule_state`, `created_on_date`, `last_modified_date`, `court_id`, `account_id`) VALUES
 (1, '2024-03-18', '15:00:00', '17:00:00', '15:00-16:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (2, '2024-03-18', '15:00:00', '17:00:00', '15:00-16:30', 'Hết hạn', '2024-02-18', NULL, 1, 1),
-(3, '2024-03-18', '15:00:00', '17:00:00', '15:00-17:00', 'Hoàn thành', '2024-02-18', NULL, 1, 1),
+(3, '2024-03-18', '15:00:00', '17:00:00', '15:00-17:00', 'Đã đặt', '2024-02-18', NULL, 1, 1),
 (4, '2024-03-18', '15:00:00', '17:00:00', '15:30-16:30', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (5, '2024-03-18', '15:00:00', '17:00:00', '15:30-17:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (6, '2024-03-18', '15:00:00', '17:00:00', '16:00-17:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),

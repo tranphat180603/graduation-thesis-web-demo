@@ -258,39 +258,32 @@ table::-webkit-scrollbar-thumb:hover,
 /* Định dạng bảng dữ liệu */
 #court-schedule-data-table {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   align-self: stretch;
   height: 450px;
-  padding-right: 8px;
-  padding-bottom: 8px;
-  width: 100%;
-  border-collapse: collapse;
   overflow-x: scroll;
   overflow-y: scroll;
+  align-items: flex-start;
+  margin: 0px;
+  padding: 0px;
 }
 
 table {
+  position: relative;
   padding: 0px;
+  padding-right: 8px;
+  padding-bottom: 8px;
   margin: 0px;
   width: 100%;
-  height: 100%;
 }
 
 table td,
 table th {
   display: flex;
-  padding: 16px 10px;
+  width: 100%;
+  padding: 19px 10px;
   align-items: center;
-  gap: 10px;
   flex: 1 0 0;
   border-bottom: 1px solid #eaeaea;
-}
-
-.checkbox {
-  width: 32px;
-  padding: 16px 8px;
-  gap: 10px;
 }
 
 table th {
@@ -310,7 +303,6 @@ table td {
   overflow: hidden;
   color: #141716;
   text-overflow: ellipsis;
-  white-space: nowrap;
   font-family: "Be Vietnam Pro";
   font-size: 16px;
   font-style: normal;

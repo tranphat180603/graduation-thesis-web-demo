@@ -15,9 +15,9 @@
         $all = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule");
 
         while ($row = mysqli_fetch_row($all)) {
-            echo "<li id='li-all' style='display: flex; align-items: center; margin: 0px; padding: 0px; padding-bottom: 5px'>
-            <a id='a-all' style='color: #C2C2C2; font-size: 16px; font-style: normal; font-weight: 500; 
-            line-height: 24px;' href='?court_type_id=all'>Tất cả&nbsp;(".$row[0].")</a></li>";
+            echo "<li id='li-court-type-all' style='display: flex; align-items: center; margin: 0px; padding: 0px; padding-bottom: 5px'>
+            <a id='a-court-type-all' style='color: #C2C2C2; font-size: 16px; font-style: normal; font-weight: 500; 
+            line-height: 24px;' href='?court_type_id=all'>Tất cả&nbsp;(<span>".$row[0]."</span>)</a></li>";
         }
 
         //Kết nối và lấy dữ liệu tên loại sân từ database
@@ -39,7 +39,7 @@
                                             AND court.court_type_id = ".$row1['court_type_id'].""); 
             while ($row2 = mysqli_fetch_row($number)) {
                 echo "
-                    &nbsp;(".$row2[0].")</a>
+                    &nbsp;(<span>".$row2[0]."</span>)</a>
                 ";
             }
 

@@ -2,9 +2,7 @@ const search = document.querySelector(".search input"),
   table_rows = document.querySelectorAll("tbody tr"),
   table_headings = document.querySelectorAll("thead th");
 
-// 1. Searching for specific data of HTML table
-search.addEventListener("input", searchTable);
-
+// 1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
   table_rows.forEach((row, i) => {
     let table_data = row.textContent.toLowerCase(),
@@ -19,3 +17,61 @@ function searchTable() {
       i % 2 == 0 ? "transparent" : "#0000000b";
   });
 }
+
+//2. Thay đổi tổng số lịch sân trên thanh điều hướng khi dữ liệu thay đổi
+function changeNavNumber() {
+  var search_result = document.querySelectorAll("tbody tr:not(.hide)");
+  var table_Length = search_result.length;
+
+  console.log(table_Length);
+
+  // Lấy URL hiện tại
+  var currentURL = new URL(window.location.href);
+
+  if (currentURL) {
+    // Tạo một đối tượng URLSearchParams từ URL
+    var params = new URLSearchParams(currentURL.search);
+  }
+
+  // Kiểm tra xem tham số "court_type_id" có tồn tại trong URL không
+  if (params.has("court_type_id")) {
+    // Lấy giá trị của tham số "court_type_id"
+    var courtType = params.get("court_type_id");
+
+    // Kiểm tra giá trị của tham số
+    if (courtType == "all") {
+      var number = document.querySelector("#li-court-type-all span");
+      number.textContent = table_Length;
+    } else {
+      // Lấy thẻ div bọc ul có id là schedule-body-menu
+      var scheduleBodyMenu = document.getElementById("schedule-body-menu");
+      // Lấy tất cả các thẻ li trong thẻ ul
+      var liElements = scheduleBodyMenu.querySelectorAll("ul li");
+      // Đếm số lượng thẻ li
+      var liCount = liElements.length;
+
+      var navItemCount = liCount + 1;
+
+      console.log(navItemCount);
+
+      for (var i = 1; i <= navItemCount; i++) {
+        if (courtType == i.toString()) {
+          var number = document.querySelector("#li-court-type-" + i + " span");
+          number.textContent = table_Length;
+          break; // Thoát khỏi vòng lặp sau khi tìm thấy giá trị
+        }
+      }
+    }
+  } else {
+    // Thực hiện các thao tác khi tham số không tồn tại
+    console.log("Lỗi không nhận được params");
+  }
+}
+
+//3. Hàm tìm kiếm và thay đổi tổng số lịch sân
+function searchAndChangeNavNumber() {
+  searchTable();
+  setTimeout(changeNavNumber, 1000);
+}
+
+search.addEventListener("input", searchAndChangeNavNumber);

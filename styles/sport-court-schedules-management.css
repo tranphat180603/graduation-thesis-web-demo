@@ -313,27 +313,23 @@ tbody tr.hide {
 }
 
 tbody tr td,
+tbody tr td input[type="checkbox"],
 tbody tr td p,
 tbody tr td a {
   transition: 0.2s ease-in-out;
 }
 
-tbody tr.hide td,
-tbody tr.hide td p,
-tbody tr.hide td a p {
-  padding: 0;
-  font: 0 / 0 "Be Vietnam Pro";
-  transition: 0.2s ease-in-out 0.5s;
-  /* display: none; */
+@keyframes slideOutRight {
+  0% {
+  }
+  100% {
+    transition: 0.2s ease-in-out 0.5s;
+    display: none;
+  }
 }
 
-tbody tr.hide td a img,
-tbody tr.hide td input,
-tbody tr.hide td a,
-tbody tr.hide td p {
-  width: 0;
-  height: 0;
-  transition: 0.2s ease-in-out 0.5s;
+tbody tr.hide td {
+  animation: slideOutRight 1s forwards;
 }
 
 /* *********************** */
@@ -418,27 +414,6 @@ tbody tr td {
   transition: 0.2s ease-in-out;
 }
 
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 900px */
-@media screen and (max-width: 900px) {
-  #schedule-body-menu ul {
-    max-width: 646px;
-  }
-}
-
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 750px */
-@media screen and (max-width: 750px) {
-  #schedule-body-menu ul {
-    max-width: 500px;
-  }
-}
-
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
-@media screen and (max-width: 600px) {
-  #schedule-body-menu ul {
-    max-width: 400px;
-  }
-}
-
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
   .schedule-body {
@@ -447,10 +422,6 @@ tbody tr td {
 
   .schedule-body-content {
     padding: 24px 14px;
-  }
-
-  #schedule-body-menu ul {
-    max-width: 292px;
   }
 }
 

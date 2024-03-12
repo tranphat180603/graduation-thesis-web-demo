@@ -6,11 +6,11 @@
             echo "
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
-                        var liElement = document.getElementById('li-all');
+                        var liElement = document.getElementById('li-court-type-all');
                         liElement.style.borderBottom = '2px solid #285D8F';
 
 
-                        var aElement = document.getElementById('a-all')
+                        var aElement = document.getElementById('a-court-type-all')
                         aElement.style.color = '#285D8F';
                         aElement.style.fontSize = '16px';
                         aElement.style.fontStyle = 'normal';
@@ -46,14 +46,14 @@
         ";
     }
 
-    //Hàm hiển thị dữ liệu của bảng lịch sân
+    //Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
     function view_court_schedule() {
         //Tạo kết nối đến database
         $link = "";
         MakeConnection($link);
 
-        //Kết nối và lấy dữ liệu từ cơ sở dữ liệu
-        $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
+        //Lấy dữ liệu của biến $_GET['court_type_id']
+        $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : 'all'; // Mặc định court_type_id = 'all'
 
         //Tạo bảng dữ liệu
         echo "<thead>";
@@ -76,7 +76,21 @@
 
         echo "<tbody>";
 
-        while ($row = mysqli_fetch_assoc($result)) {
+        // Thực hiện truy vấn dựa vào court_type_id
+        if ($courtType == "all") {
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
+            $resultToUse = $result;
+        } else {
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
+            $result2 = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court WHERE court_schedule.court_id = court.court_id AND court.court_type_id = " . $courtType);
+            if (mysqli_num_rows($result2) > 0) { // Kiếm tra nếu result2 có dữ liệu
+            $resultToUse = $result2;
+            } else {
+            $resultToUse = $result; // Trả về tất cả dữ liệu nếu như không match
+            }
+        }
+
+        while ($row = mysqli_fetch_assoc($resultToUse)) {
             echo "<tr>";
 
             echo "<td><input id='court_schedule_id_".$row['court_schedule_id']."' type='checkbox' name='court_schedule_id_".$row['court_schedule_id']."'></td>";

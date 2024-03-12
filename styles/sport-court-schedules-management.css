@@ -9,7 +9,9 @@ ul {
   padding: 0px;
 }
 
-a {
+a:link,
+a:visited,
+a:focus {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
@@ -27,37 +29,33 @@ p {
 
 /* Định dạng cho thanh cuộn ngang và dọc */
 /* width */
-table::-webkit-scrollbar,
-#court-schedule-data-table::-webkit-scrollbar {
+.court-schedule-table::-webkit-scrollbar {
   width: 5px;
 }
 
 /* height */
 #schedule-body-menu ul::-webkit-scrollbar,
-#court-schedule-data-table::-webkit-scrollbar {
+.court-schedule-table::-webkit-scrollbar {
   height: 5px;
 }
 
 /* Track */
 #schedule-body-menu ul::-webkit-scrollbar-track,
-table::-webkit-scrollbar-track,
-#court-schedule-data-table::-webkit-scrollbar-track {
+.court-schedule-table::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
 /* Handle */
 #schedule-body-menu ul::-webkit-scrollbar-thumb,
-table::-webkit-scrollbar-thumb,
-#court-schedule-data-table::-webkit-scrollbar-thumb {
+.court-schedule-table::-webkit-scrollbar-thumb {
   background: #d4d4d4;
   border-radius: 4px;
 }
 
 /* Handle on hover */
 #schedule-body-menu ul::-webkit-scrollbar-thumb:hover,
-table::-webkit-scrollbar-thumb:hover,
-#court-schedule-data-table::-webkit-scrollbar-thumb:hover {
+.court-schedule-table::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
   border-radius: 4px;
 }
@@ -92,6 +90,7 @@ table::-webkit-scrollbar-thumb:hover,
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .schedule-top {
@@ -121,7 +120,7 @@ table::-webkit-scrollbar-thumb:hover,
 }
 
 /* Định dạng ô nhập liệu tìm kiếm */
-#search {
+.search {
   display: flex;
   padding: 0px 16px;
   align-items: center;
@@ -132,15 +131,15 @@ table::-webkit-scrollbar-thumb:hover,
   background-color: #fafbfc;
 }
 
-#search img:hover {
+.search img:hover {
   cursor: pointer;
   width: 25px;
   height: 25px;
 }
 
-#search:hover,
-#search:focus,
-#search:focus-within {
+.search:hover,
+.search:focus,
+.search:focus-within {
   outline: 1px solid #97a09d;
 }
 
@@ -158,6 +157,7 @@ table::-webkit-scrollbar-thumb:hover,
   line-height: 20px;
   border: none;
   outline: none;
+  background-color: #fafbfc;
 }
 
 #search-input::placeholder,
@@ -255,59 +255,167 @@ table::-webkit-scrollbar-thumb:hover,
   background: #d00000;
 }
 
-/* Định dạng bảng dữ liệu */
-#court-schedule-data-table {
-  display: flex;
-  align-self: stretch;
-  height: 450px;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  align-items: flex-start;
-  margin: 0px;
-  padding: 0px;
-}
-
-table {
+/* -----------------------------Định dạng bảng dữ liệu---------------------------------- */
+.court-schedule-table {
   position: relative;
+  width: 100%;
+  max-height: 450px;
+  margin: 0px;
   padding: 0px;
   padding-right: 8px;
   padding-bottom: 8px;
-  margin: 0px;
+  overflow: scroll;
+}
+
+table {
   width: 100%;
 }
 
-table td,
-table th {
-  display: flex;
-  width: 100%;
-  padding: 19px 10px;
-  align-items: center;
-  flex: 1 0 0;
-  border-bottom: 1px solid #eaeaea;
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 0.9rem;
+  text-align: left;
 }
 
-table th {
-  flex: 1 0 0;
-  color: #141716;
-  font-family: "Be Vietnam Pro";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
+thead tr {
+  border-radius: 4px 4px 0px 0px;
 }
 
-table td {
-  display: flex;
-  height: 24px;
-  flex: 1 0 0;
-  overflow: hidden;
-  color: #141716;
-  text-overflow: ellipsis;
-  font-family: "Be Vietnam Pro";
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  text-transform: capitalize;
+  background: #d1d1d1;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr:hover {
+  background-color: rgba(199, 194, 194, 0.4) !important;
+}
+
+/* Định dạng search data */
+tbody tr {
+  --delay: 0.1s;
+  transition: 0.5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td a {
+  transition: 0.2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p,
+tbody tr.hide td a p {
+  padding: 0;
+  font: 0 / 0 "Be Vietnam Pro";
+  transition: 0.2s ease-in-out 0.5s;
+  /* display: none; */
+}
+
+tbody tr.hide td a img,
+tbody tr.hide td input,
+tbody tr.hide td a,
+tbody tr.hide td p {
+  width: 0;
+  height: 0;
+  transition: 0.2s ease-in-out 0.5s;
+}
+
+/* *********************** */
+
+.status {
+  padding: 0.6rem 0;
+  border-radius: 6px;
+  background: #dee4e2;
+  text-align: center;
+  vertical-align: middle;
+
+  color: #7f8283;
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.haveNotBooked {
+  background: #dee4e2;
+  color: #7f8283;
+}
+
+.haveBooked {
+  background: #d3fff2;
+  color: #339db5;
+}
+
+.expired {
+  background: #fcd7e2;
+  color: #e7527e;
+}
+
+thead th span.icon-arrow {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1.4px solid transparent;
+
+  text-align: center;
+  font-size: 1rem;
+
+  margin-left: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow {
+  border: 1.4px solid #007ebd;
+}
+
+thead th:hover {
+  color: #007ebd;
+}
+
+thead th.active span.icon-arrow {
+  background-color: #007ebd;
+  color: #fff;
+}
+
+thead th.asc span.icon-arrow {
+  transform: rotate(180deg);
+}
+
+thead th.active,
+tbody td.active {
+  color: #007ebd;
+}
+/* ------------------------------------------------------------------------------------- */
+/* Định dạng hiệu ứng */
+tbody tr {
+  --delay: 0.1s;
+  transition: 0.5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr td {
+  transition: 0.2s ease-in-out;
 }
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 900px */

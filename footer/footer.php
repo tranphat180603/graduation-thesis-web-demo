@@ -144,20 +144,6 @@
         color: #bebebe;
       }
 
-      .footer-service-link li a:visited,
-      .footer-about-us-link li a:visited,
-      .facebook a:visited,
-      .email a:visited {
-        color: #415051;
-      }
-
-      .footer-service-link li a:active,
-      .footer-about-us-link li a:active,
-      .facebook a:active,
-      .email a:active {
-        color: #4e858d;
-      }
-
       .footer-about-us {
         display: flex;
         min-width: 118px;

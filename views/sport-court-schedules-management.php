@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
     <link rel="stylesheet" type="text/css" href="../styles/sport-court-schedules-management.css" />
-    <script
-      type="text/javascript"
-      src="../scripts/sport-court-schedules-management.js"
-      language="javascript"
-    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -105,16 +100,16 @@
             <img src="../image/sport-court-schedules-management-img/filter.svg" alt="Filter">
           </a>
         </div>
-        <form id="search" action="../controllers/court-schedule-controller.php?option=search_court_schedule" method="post" enctype="multipart/form-data">
+        <div class="search">
           <img src="../image/sport-court-schedules-management-img/search.svg" alt="search-icon">
           <input
-            type="text"
+            type="search"
             id="search-input"
             name="search-input"
             placeholder="Tìm kiếm lịch sân"
             required
           />        
-        </form>
+        </div>
         <div id="schedule-body-menu">
           <ul>
             <?php 
@@ -137,7 +132,7 @@
             </a>
           </form>
         </div>
-        <div id="court-schedule-data-table">
+        <div class="court-schedule-table">
           <table>
             <?php 
               include_once "../models/court-schedule-model.php"; 
@@ -149,5 +144,10 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
+    <script
+      type="text/javascript"
+      src="../scripts/sport-court-schedules-management.js"
+      language="javascript"
+    ></script>
   </body>
 </html>

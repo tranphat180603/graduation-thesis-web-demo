@@ -1162,6 +1162,8 @@ INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `ser
 CREATE TABLE `sport_hub_event` (
   `event_id` int(11) NOT NULL,
   `event_name` varchar(1000) NOT NULL,
+  `event_start_date` date NOT NULL,
+  `event_end_date` date NOT NULL,
   `event_description` varchar(2000) NOT NULL,
   `event_image` varchar(100) NOT NULL,
   `event_preferential_rate` int(11) DEFAULT NULL,

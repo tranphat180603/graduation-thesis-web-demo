@@ -2,15 +2,15 @@
     //Thay đổi CSS của thẻ li được chọn
     if (isset($_GET['court_type_id'])) {
         $courtType = $_GET['court_type_id'];
-        if ($courtType == 'all') {
+        if ($courtType == '0') {
             echo "
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
-                        var liElement = document.getElementById('li-court-type-all');
+                        var liElement = document.getElementById('li-court-type-0');
                         liElement.style.borderBottom = '2px solid #285D8F';
 
 
-                        var aElement = document.getElementById('a-court-type-all')
+                        var aElement = document.getElementById('a-court-type-0')
                         aElement.style.color = '#285D8F';
                         aElement.style.fontSize = '16px';
                         aElement.style.fontStyle = 'normal';
@@ -40,7 +40,7 @@
         echo "
             <script>
                 var url = new URL(window.location.href);
-                url.searchParams.set('court_type_id', 'all');
+                url.searchParams.set('court_type_id', '0');
                 window.location.href = url.href;
             </script>
         ";
@@ -60,7 +60,7 @@
 
         echo "<tr>";
         
-        echo "<th><input id='checkAll' type='checkbox' name='all'></th>";
+        echo "<th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrl(this)'></th>";
         echo "<th>Mã lịch sân<span class='icon-arrow'>&UpArrow;</span></th>";
         echo "<th>Mã sân<span class='icon-arrow'>&UpArrow;</span></th>";
         echo "<th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>";
@@ -93,7 +93,7 @@
         while ($row = mysqli_fetch_assoc($resultToUse)) {
             echo "<tr>";
 
-            echo "<td><input id='court_schedule_id_".$row['court_schedule_id']."' type='checkbox' name='court_schedule_id_".$row['court_schedule_id']."'></td>";
+            echo "<td><input type='checkbox' name='court_schedule_id_".$row['court_schedule_id']."' id='court_schedule_id_".$row['court_schedule_id']."' onclick='updateUrl(this)'></td>";
             echo "<td>".$row['court_schedule_id']."</td>";
             echo "<td>".$row['court_id']."</td>";
             echo "<td>".$row['court_schedule_date']."</td>";
@@ -129,4 +129,6 @@
         ReleaseMemory($link, $result);
     }
 ?>
+
+
 

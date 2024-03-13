@@ -38,8 +38,8 @@ function changeNavNumber() {
     var courtType = params.get("court_type_id");
 
     // Kiểm tra giá trị của tham số
-    if (courtType == "all") {
-      var number = document.querySelector("#li-court-type-all span");
+    if (courtType == "0") {
+      var number = document.querySelector("#li-court-type-0 span");
       number.textContent = table_Length;
     } else {
       // Lấy thẻ div bọc ul có id là schedule-body-menu
@@ -131,3 +131,27 @@ table_headings.forEach((head, i) => {
     sortTable(i, sort_asc);
   };
 });
+
+//5. Hàm xử lý sự kiện click của checkbox
+function updateUrl(checkbox) {
+  var checkedIds = [];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+  checkboxes.forEach(function (cb) {
+    checkedIds.push(cb.getAttribute("name").split("_")[3]);
+  });
+
+  var urlParams = new URLSearchParams(window.location.search);
+  urlParams.set("court_schedule_id", checkedIds.join(","));
+
+  // Kiểm tra xem nếu không có checkbox nào được chọn, loại bỏ biến 'court_schedule_id' khỏi URL
+  if (checkedIds.length === 0) {
+    urlParams.delete("court_schedule_id");
+  }
+
+  window.history.replaceState(
+    {},
+    "",
+    `${window.location.pathname}?${urlParams}`
+  );
+}

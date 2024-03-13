@@ -70,7 +70,7 @@ function changeNavNumber() {
 //3. Hàm tìm kiếm và thay đổi tổng số lịch sân
 function searchAndChangeNavNumber() {
   searchTable();
-  setTimeout(changeNavNumber, 1000);
+  setTimeout(changeNavNumber, 500);
 }
 
 search.addEventListener("input", searchAndChangeNavNumber);
@@ -85,10 +85,10 @@ function sortTable(column, sort_asc) {
     .sort((a, b) => {
       // Lấy giá trị của first_row
       let first_row = a
-        .querySelectorAll("td:not(input[type='checkbox'])")
+        .querySelectorAll("td:not(:has(input[type='checkbox']))")
         [column].textContent.toLowerCase();
       let second_row = b
-        .querySelectorAll("td:not(input[type='checkbox'])")
+        .querySelectorAll("td:not(:has(input[type='checkbox']))")
         [column].textContent.toLowerCase();
 
       // Kiểm tra xem first_row có phải là một số không
@@ -98,12 +98,12 @@ function sortTable(column, sort_asc) {
       }
 
       return sort_asc
-        ? first_row > second_row
-          ? 1
-          : -1
-        : first_row > second_row
-        ? -1
-        : 1;
+        ? first_row < second_row
+          ? -1
+          : 1
+        : first_row < second_row
+        ? 1
+        : -1;
     })
     .map((sorted_row) =>
       document.querySelector("tbody").appendChild(sorted_row)
@@ -117,11 +117,11 @@ table_headings.forEach((head, i) => {
     head.classList.add("active");
 
     document
-      .querySelectorAll("td:not(input[type='checkbox'])")
+      .querySelectorAll("td:not(:has(input[type='checkbox']))")
       .forEach((td) => td.classList.remove("active"));
     table_rows.forEach((row) => {
       row
-        .querySelectorAll("td:not(input[type='checkbox'])")
+        .querySelectorAll("td:not(:has(input[type='checkbox']))")
         [i].classList.add("active");
     });
 

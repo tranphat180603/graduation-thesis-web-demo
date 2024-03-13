@@ -301,6 +301,13 @@ tbody tr:hover {
   background-color: rgba(199, 194, 194, 0.4) !important;
 }
 
+tbody td {
+  max-width: 50px; /* Giới hạn chiều rộng tối đa của ô */
+  overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
+  text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
+  white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
+}
+
 /* Định dạng search data */
 tbody tr {
   --delay: 0.1s;

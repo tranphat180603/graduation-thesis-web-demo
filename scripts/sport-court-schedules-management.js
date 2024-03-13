@@ -1,6 +1,5 @@
 const search = document.querySelector(".search input"),
-  table_rows = document.querySelectorAll("tbody tr"),
-  table_headings = document.querySelectorAll("thead th");
+  table_rows = document.querySelectorAll("tbody tr");
 
 // 1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
@@ -75,3 +74,60 @@ function searchAndChangeNavNumber() {
 }
 
 search.addEventListener("input", searchAndChangeNavNumber);
+
+// 4. Sắp xếp dữ liệu của bảng HTML
+const table_headings = document.querySelectorAll(
+  "thead th:not(:has(input[type='checkbox']))" // Loại bỏ các thẻ <th> chứa checkbox
+);
+
+function sortTable(column, sort_asc) {
+  [...table_rows]
+    .sort((a, b) => {
+      // Lấy giá trị của first_row
+      let first_row = a
+        .querySelectorAll("td:not(input[type='checkbox'])")
+        [column].textContent.toLowerCase();
+      let second_row = b
+        .querySelectorAll("td:not(input[type='checkbox'])")
+        [column].textContent.toLowerCase();
+
+      // Kiểm tra xem first_row có phải là một số không
+      if (!isNaN(parseFloat(first_row)) && isFinite(first_row)) {
+        first_row = parseFloat(first_row);
+        second_row = parseFloat(second_row);
+      }
+
+      return sort_asc
+        ? first_row > second_row
+          ? 1
+          : -1
+        : first_row > second_row
+        ? -1
+        : 1;
+    })
+    .map((sorted_row) =>
+      document.querySelector("tbody").appendChild(sorted_row)
+    );
+}
+
+table_headings.forEach((head, i) => {
+  let sort_asc = true;
+  head.onclick = () => {
+    table_headings.forEach((head) => head.classList.remove("active"));
+    head.classList.add("active");
+
+    document
+      .querySelectorAll("td:not(input[type='checkbox'])")
+      .forEach((td) => td.classList.remove("active"));
+    table_rows.forEach((row) => {
+      row
+        .querySelectorAll("td:not(input[type='checkbox'])")
+        [i].classList.add("active");
+    });
+
+    head.classList.toggle("asc", sort_asc);
+    sort_asc = head.classList.contains("asc") ? false : true;
+
+    sortTable(i, sort_asc);
+  };
+});

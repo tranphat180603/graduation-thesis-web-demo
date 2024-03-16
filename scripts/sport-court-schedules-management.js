@@ -22,8 +22,6 @@ function changeNavNumber() {
   var search_result = document.querySelectorAll("tbody tr:not(.hide)");
   var table_Length = search_result.length;
 
-  console.log(table_Length);
-
   // Lấy URL hiện tại
   var currentURL = new URL(window.location.href);
 
@@ -50,8 +48,6 @@ function changeNavNumber() {
       var liCount = liElements.length;
 
       var navItemCount = liCount + 1;
-
-      console.log(navItemCount);
 
       for (var i = 1; i <= navItemCount; i++) {
         if (courtType == i.toString()) {
@@ -132,7 +128,7 @@ table_headings.forEach((head, i) => {
   };
 });
 
-//5. Hàm xử lý sự kiện click của checkbox
+//5. Hàm cập nhật url khi tick vào checkbox trong bảng HTML
 function updateUrl(checkbox) {
   var checkedIds = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -154,4 +150,73 @@ function updateUrl(checkbox) {
     "",
     `${window.location.pathname}?${urlParams}`
   );
+}
+
+//6. Hàm xử lý sự kiện click của checkbox có court_schedule_id = 0
+function tickCheckbox() {
+  // Lấy URL hiện tại
+  var currentURL = new URL(window.location.href);
+
+  if (currentURL) {
+    // Tạo một đối tượng URLSearchParams từ URL
+    var params = new URLSearchParams(currentURL.search);
+  }
+
+  // Kiểm tra xem tham số "court_schedule_id" có tồn tại trong URL không
+  if (params.has("court_schedule_id")) {
+    // Lấy giá trị của biến 'court_schedule_id'
+    var courtScheduleStr = params.get("court_schedule_id");
+
+    // Tách chuỗi thành mảng
+    var courtScheduleArr = courtScheduleStr.split(",");
+
+    var search_result = document.querySelectorAll("tbody tr:not(.hide)");
+    var table_Length = search_result.length;
+
+    // Kiểm tra giá trị của mảng và cập nhật trạng thái của checkbox tương ứng
+    for (var i = 0; i < courtScheduleArr.length; i++) {
+      if (courtScheduleArr[i] == "0") {
+        // Vòng lặp để cập nhật trạng thái của checkbox
+        for (var i = 1; i <= table_Length; i++) {
+          var checkbox = document.getElementById("court_schedule_id_" + i);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
+        }
+      } else {
+        // Vòng lặp để cập nhật trạng thái của checkbox
+        for (var i = 1; i <= table_Length; i++) {
+          var checkbox = document.getElementById("court_schedule_id_" + i);
+          if (checkbox) {
+            checkbox.checked = false;
+          }
+        }
+      }
+    }
+    // Kiểm tra xem nếu không có checkbox nào được chọn, loại bỏ biến 'court_schedule_id' khỏi URL
+    var checkedIds = [];
+    var checkboxes = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+
+    checkboxes.forEach(function (cb) {
+      checkedIds.push(cb.getAttribute("name").split("_")[3]);
+    });
+
+    if (checkedIds.length === 0) {
+      urlParams.delete("court_schedule_id");
+    }
+
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?${urlParams}`
+    );
+  }
+}
+
+//7. Hàm xử lý sự kiện click cho tất cả checkbox trong bảng HTML
+function updateUrlAndCBState() {
+  updateUrl();
+  setTimeout(tickCheckbox, 100);
 }

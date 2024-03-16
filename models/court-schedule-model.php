@@ -1,4 +1,71 @@
 <?php
+    require_once "../models/connect.php";
+
+    class court_schedule {
+        private $court_schedule_id;
+        private $court_schedule_date;
+        private $court_schedule_start_time;
+        private $court_schedule_end_time;
+        private $court_schedule_time_frame;
+        private $court_schedule_state;
+        private $created_on_date;
+        private $last_modified_date;
+        private $court_id;
+        private $account_id;
+
+        public function getCourtScheduleId() { return $this->court_schedule_id };
+        public function getCourtScheduleDate() { return $this->court_schedule_date };
+        public function getCourtScheduleStartTime() { return $this->court_schedule_start_time };
+        public function getCourtScheduleEndTime() { return $this->court_schedule_end_time };
+        public function getCourtScheduleTimeFrame() { return $this->court_schedule_time_frame };
+        public function getCourtScheduleState() { return $this->court_schedule_state };
+        public function getCreatedOnDate() { return $this->created_on_date };
+        public function getLastModifiedDate() { return $this->last_modified_date };
+        public function getCourtId() { return $this->court_id };
+        public function getAccountId() { return $this->account_id };
+
+        public function setCourtScheduleId($court_schedule_id) { $this->court_schedule_id = $court_schedule_id };
+        public function setCourtScheduleDate($court_schedule_date) { $this->court_schedule_date = $court_schedule_date };
+        public function setCourtScheduleStartTime($court_schedule_start_time) { $this->court_schedule_start_time = $court_schedule_start_time };
+        public function setCourtScheduleEndTime($court_schedule_end_time) { $this->court_schedule_end_time = $court_schedule_end_time };
+        public function setCourtScheduleTimeFrame($court_schedule_time_frame) { $this->court_schedule_time_frame = $court_schedule_time_frame };
+        public function setCourtScheduleState($court_schedule_state) { $this->court_schedule_state = $court_schedule_state };
+        public function setCreatedOnDate($created_on_date) { $this->created_on_date = $created_on_date };
+        public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date };
+        public function setCourtId($court_id) { $this->court_id = $court_id };
+        public function setAccountId($account_id) { $this->account_id = $account_id }; 
+
+        public function _constructor() {
+            $this->court_schedule_id = 0;
+            $this->court_schedule_date = "3000/12/30";
+            $this->court_schedule_start_time = "00:00:00";
+            $this->court_schedule_end_time = "00:00:00";
+            $this->court_schedule_time_frame = "00:00:00-00:00:00";
+            $this->court_schedule_state = "None";
+            $this->created_on_date = "3000/12/30";
+            $this->last_modified_date = "3000/12/30";
+            $this->court_id = 0;
+            $this->account_id = 0;
+        }
+        
+        public function _constructor($court_schedule_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_time_frame, $court_schedule_state, $created_on_date, $last_modified_date, $cart_id, $account_id) {
+            $this->court_schedule_id = $court_schedule_id;
+            $this->court_schedule_date = $court_schedule_date;
+            $this->court_schedule_start_time = $court_schedule_start_time;
+            $this->court_schedule_end_time = $court_schedule_end_time;
+            $this->court_schedule_time_frame = $court_schedule_time_frame;
+            $this->court_schedule_state = $court_schedule_state;
+            $this->created_on_date = $created_on_date;
+            $this->last_modified_date = $last_modified_date;
+            $this->court_id = $court_id;
+            $this->account_id = $account_id;
+        }
+    }
+?>
+
+
+<!-- Đoạn code dưới đây tui chưa chuyển thành MVC, mng code thì xóa phần dưới đi để tạo hàm không bị lỗi nha -->
+<?php
     //Thay đổi CSS của thẻ li được chọn
     if (isset($_GET['court_type_id'])) {
         $courtType = $_GET['court_type_id'];
@@ -8,7 +75,6 @@
                     document.addEventListener('DOMContentLoaded', function() {
                         var liElement = document.getElementById('li-court-type-0');
                         liElement.style.borderBottom = '2px solid #285D8F';
-
 
                         var aElement = document.getElementById('a-court-type-0')
                         aElement.style.color = '#285D8F';
@@ -60,7 +126,7 @@
 
         echo "<tr>";
         
-        echo "<th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrl(this)'></th>";
+        echo "<th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrlAndCBState(this)'></th>";
         echo "<th>Mã lịch sân<span class='icon-arrow'>&UpArrow;</span></th>";
         echo "<th>Mã sân<span class='icon-arrow'>&UpArrow;</span></th>";
         echo "<th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>";
@@ -129,6 +195,3 @@
         ReleaseMemory($link, $result);
     }
 ?>
-
-
-

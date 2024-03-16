@@ -1,7 +1,50 @@
 <?php
-    require_once "connect.php";
+    require_once "../models/connect.php";
+
+    class court_type {
+        private $court_type_id;
+        private $court_type_name;
+        private $court_type_icon;
+        private $created_on_date;
+        private $last_modified_date;
+        private $account_id;
+
+        public function getCourtTypeId() { return $this->court_type_id };
+        public function getCourtTypeName() { return $this->court_type_name };
+        public function getCourtTypeIcon() { return $this->court_type_icon };
+        public function getCreatedOnDate() { return $this->created_on_date };
+        public function getLastModifiedDate() { return $this->last_modified_date };
+        public function getAccountId() { return $this->account_id };
+
+        public function setCourtTypeId($court_type_id) { $this->court_type_id = $court_type_id };
+        public function setCourtTypeName($court_type_name) { $this->court_type_name = $court_type_name };
+        public function setCourtTypeIcon($court_type_icon) { $this->court_type_icon = $court_type_icon };
+        public function setCreatedOnDate($created_on_date) { $this->created_on_date = $created_on_date };
+        public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date };
+        public function setAccountId($account_id) { $this->account_id = $account_id };
+
+        public function _constructor() {
+            $this->court_type_id = 0;
+            $this->court_type_name = "None";
+            $this->court_type_icon = "None";
+            $this->created_on_date = "3000/12/30";
+            $this->last_modified_date = "3000/12/30";
+            $this->account_id = 0;
+        }
+
+        public function _constructor($court_type_id, $court_type_name, $court_type_icon, $created_on_date, $last_modified_date, $account_id) {
+            $this->court_type_id = $court_type_id;
+            $this->court_type_name = $court_type_name;
+            $this->court_type_icon = $court_type_icon;
+            $this->created_on_date = $created_on_date;
+            $this->last_modified_date = $last_modified_date;
+            $this->account_id = $account_id;
+        }
+    }
 ?>
 
+
+<!-- Đoạn code dưới đây tui chưa chuyển thành MVC, mng code thì xóa phần dưới đi để tạo hàm không bị lỗi nha -->
 <?php 
     $defaultCourtTypeId = 1;
 

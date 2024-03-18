@@ -11,25 +11,25 @@
         private $court_type_id;
         private $account_id;
 
-        public function getServiceId() { return $this->service_id };
-        public function getServiceName() { return $this->service_name };
-        public function getServiceDescription() { return $this->service_description };
-        public function getServicePrice() { return $this->service_price };
-        public function getServiceUnit() { return $this->service_unit };
-        public function getCreatedOnDate() { return $this->created_on_date };
-        public function getLastModifiedDate() { return $this->last_modified_date };    
-        public function getCourtTypeId() { return $this->court_type_id };
-        public function getAccountId() { return $this->account_id };
+        public function getServiceId() { return $this->service_id; };
+        public function getServiceName() { return $this->service_name; };
+        public function getServiceDescription() { return $this->service_description; };
+        public function getServicePrice() { return $this->service_price; };
+        public function getServiceUnit() { return $this->service_unit; };
+        public function getCreatedOnDate() { return $this->created_on_date; };
+        public function getLastModifiedDate() { return $this->last_modified_date; };    
+        public function getCourtTypeId() { return $this->court_type_id; };
+        public function getAccountId() { return $this->account_id; };
 
-        public function setServiceId() { $this->service_id = $service_id };
-        public function setServiceName() { $this->service_name = $service_name };
-        public function setServiceDescription() { $this->service_description = $service_description };
-        public function setServicePrice() { $this->service_price = $service_price };
-        public function setServiceUnit() { $this->service_unit = $service_unit };
-        public function setCreatedOnDate() { $this->created_on_date = $created_on_date };
-        public function setLastModifiedDate() { $this->last_modified_date = $last_modified_date };
-        public function setCourtTypeId() { $this->court_type_id = $court_type_id };
-        public function setAccountId() { $this->account_id = $account_id };
+        public function setServiceId() { $this->service_id = $service_id; };
+        public function setServiceName() { $this->service_name = $service_name; };
+        public function setServiceDescription() { $this->service_description = $service_description; };
+        public function setServicePrice() { $this->service_price = $service_price; };
+        public function setServiceUnit() { $this->service_unit = $service_unit; };
+        public function setCreatedOnDate() { $this->created_on_date = $created_on_date; };
+        public function setLastModifiedDate() { $this->last_modified_date = $last_modified_date; };
+        public function setCourtTypeId() { $this->court_type_id = $court_type_id; };
+        public function setAccountId() { $this->account_id = $account_id; };
 
         public function __construct() { 
             $this->service_id = 0;

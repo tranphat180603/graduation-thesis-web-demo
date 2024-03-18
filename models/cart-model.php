@@ -29,7 +29,7 @@
         public function setCartTotalDeposit($cart_total_deposit) { $this->cart_total_deposit = $cart_total_deposit; }
         public function setAccountId($account_id) { $this->account_id = $account_id; }
 
-        public function __construct($cart_id, $event_id, $cart_service_amount, $cart_rental_amount, $cart_discount_amount, $cart_total_payment, $cart_total_deposit, $account_id) {
+        public function __construct($cart_id = 0, $event_id = 0, $cart_service_amount = 0, $cart_rental_amount = 0, $cart_discount_amount = 0, $cart_total_payment = 0, $cart_total_deposit = 0, $account_id = 0) {
             $this->cart_id = $cart_id;
             $this->event_id = $event_id;
             $this->cart_service_amount = $cart_service_amount;

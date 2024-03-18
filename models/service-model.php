@@ -31,7 +31,7 @@
         public function setCourtTypeId() { $this->court_type_id = $court_type_id; }
         public function setAccountId() { $this->account_id = $account_id; }
 
-        public function __construct($service_id, $service_name, $service_description, $service_price, $service_unit, $created_on_date, $last_modified_date, $court_type_id, $account_id) {
+        public function __construct($service_id = 0, $service_name = "", $service_description = "", $service_price = "", $service_unit = "", $created_on_date = "", $last_modified_date = "", $court_type_id = 0, $account_id = 0) {
             $this->service_id = $service_id;
             $this->service_name = $service_name;
             $this->service_description = $service_description;

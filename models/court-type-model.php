@@ -23,7 +23,7 @@
         public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date; }
         public function setAccountId($account_id) { $this->account_id = $account_id; }
 
-        public function __construct($court_type_id, $court_type_name, $court_type_icon, $created_on_date, $last_modified_date, $account_id) {
+        public function __construct($court_type_id = 0, $court_type_name = "", $court_type_icon = "", $created_on_date = "", $last_modified_date = "", $account_id = 0) {
             $this->court_type_id = $court_type_id;
             $this->court_type_name = $court_type_name;
             $this->court_type_icon = $court_type_icon;

@@ -41,7 +41,7 @@
         public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date; }
         public function setAccountId($account_id) { $this->account_id = $account_id; }
         
-        public function __construct($event_id, $event_name, $event_start_date, $event_end_date, $event_description, $event_image, $event_preferential_rate, $event_preferential_item, $event_state, $created_on_date, $last_modified_date, $account_id) {
+        public function __construct($event_id = 0, $event_name = "", $event_start_date = "", $event_end_date = "", $event_description = "", $event_image = "", $event_preferential_rate = "", $event_preferential_item = "", $event_state = "", $created_on_date = "", $last_modified_date = "", $account_id = 0) {
             $this->event_id = $event_id;
             $this->event_name = $event_name;
             $this->event_start_date = $event_start_date;

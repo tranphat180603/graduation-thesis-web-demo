@@ -53,7 +53,7 @@
         public function getCanceledOnDate($canceled_on_date) { $this->canceled_on_date = $canceled_on_date; }
         public function getRefundedOnDate($refunded_on_date) { $this->refunded_on_date = $refunded_on_date; }
 
-        public function __construct($court_order_id, $court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $order_state, $customer_account_id, $admin_account_id, $order_cancel_reason, $order_cancel_party_account_id, $ordered_on_date, $canceled_on_date, $refunded_on_date) {
+        public function __construct($court_order_id = 0, $court_schedule_id = 0, $event_id = 0, $total_service_amount = 0, $total_rental_amount = 0, $total_discount_amount = 0, $order_total_payment = 0, $order_total_deposit = 0, $order_state = "", $customer_account_id = 0, $admin_account_id = 0, $order_cancel_reason = "", $order_cancel_party_account_id = 0, $ordered_on_date = "", $canceled_on_date = "", $refunded_on_date = "") {
             $this->court_order_id = $court_order_id;
             $this->court_schedule_id = $court_schedule_id;
             $this->event_id = $event_id;

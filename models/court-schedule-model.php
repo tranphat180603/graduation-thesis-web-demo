@@ -35,7 +35,7 @@
         public function setCourtId($court_id) { $this->court_id = $court_id; }
         public function setAccountId($account_id) { $this->account_id = $account_id; }
         
-        public function __constructor($court_schedule_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_time_frame, $court_schedule_state, $created_on_date, $last_modified_date, $cart_id, $account_id) {
+        public function __constructor($court_schedule_id = 0, $court_schedule_date = "", $court_schedule_start_time = "", $court_schedule_end_time = "", $court_schedule_time_frame = "", $court_schedule_state = "", $created_on_date = "", $last_modified_date = "", $cart_id = 0, $account_id = 0) {
             $this->court_schedule_id = $court_schedule_id;
             $this->court_schedule_date = $court_schedule_date;
             $this->court_schedule_start_time = $court_schedule_start_time;

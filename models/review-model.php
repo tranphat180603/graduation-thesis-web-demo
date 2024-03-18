@@ -23,7 +23,7 @@
         public function setCourtScheduleId($court_schedule_id) { $this->court_schedule_id = $court_schedule_id; }
         public function setAccountId($account_id) { $this->account_id = $account_id; }
         
-        public function __construct($review_id, $review_star_rate, $review_content, $created_on_date, $court_schedule_id, $account_id) {
+        public function __construct($review_id = 0, $review_star_rate = 0, $review_content = "", $created_on_date = "", $court_schedule_id = 0, $account_id = 0) {
             $this->review_id = $review_id;
             $this->review_star_rate = $review_star_rate;
             $this->review_content = $review_content;

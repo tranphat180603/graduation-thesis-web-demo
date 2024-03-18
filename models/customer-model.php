@@ -26,7 +26,7 @@
         public function setCustomerDateOfBirth($customer_date_of_birth) { return $this->customer_date_of_birth = $customer_date_of_birth; };
         public function setCreatedOnDate($created_on_date) { return $this->created_on_date = $created_on_date; };
 
-        public function _construct() {
+        public function __construct() {
             $this->customer_id = 0;
             $this->customer_fullname = "None";
             $this->customer_email_address = "None";
@@ -36,7 +36,7 @@
             $this->created_on_date = "3000/12/30";
         }
 
-        public function _construct($customer_id, $customer_fullname, $customer_email_address, $customer_phone_number, $customer_gender, $customer_date_of_birth, $created_on_date) {
+        public function __construct($customer_id, $customer_fullname, $customer_email_address, $customer_phone_number, $customer_gender, $customer_date_of_birth, $created_on_date) {
             $this->customer_id = $customer_id;
             $this->customer_fullname = $customer_fullname;
             $this->customer_email_address = $customer_email_address;

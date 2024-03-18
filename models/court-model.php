@@ -23,7 +23,7 @@
         public function setCourtTypeId($court_type_id) { $this->court_type_id = $court_type_id; };
         public function setAccountId($account_id) { $this->account_id = $account_id; };
 
-        public function _construct() {
+        public function __construct() {
             $this->court_id = 0;
             $this->court_name = "None";
             $this->created_on_date = "3000/12/30";
@@ -32,7 +32,7 @@
             $this->account_id = 0;
         }
 
-        public function _construct($court_id, $court_name, $created_on_date, $last_modified_date, $court_type_id, $account_id) {
+        public function __construct($court_id, $court_name, $created_on_date, $last_modified_date, $court_type_id, $account_id) {
             $this->court_id = $court_id;
             $this->court_name = $court_name;
             $this->created_on_date = $created_on_date;

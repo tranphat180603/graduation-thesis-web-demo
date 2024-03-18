@@ -8,9 +8,8 @@
             $this->court_type = new court_type();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court_type để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        public function view_all_court_type() {
+            return $result = $this->court_type->view_all_court_type();
         }
     }
 ?>

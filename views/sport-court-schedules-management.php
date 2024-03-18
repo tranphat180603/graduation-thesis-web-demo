@@ -51,17 +51,28 @@
         <div id="schedule-body-menu">
           <ul>
             <?php 
-              // include_once "../models/court-type-model.php"; 
-              // view_court_type_name_schedule();
-
               require_once "../controllers/court-schedule-controller.php"; 
+
               $court_schedule_controller = new Court_Schedule_Controller();
-              $all_court = $court_schedule_controller->view_all_court_schedule_ctrl();
+              $total_court_schedule = $court_schedule_controller->view_all();
               echo "
                 <li class='li-court-type' id='li-court-type-0'>
-                  <a id='a-court-type-0' href='?court_type_id=0'>Tất cả&nbsp;(<span>".$all_court[0]."</span>)</a>
+                  <a id='a-court-type-0' href='?court_type_id=0'>Tất cả&nbsp;(<span>".$total_court_schedule[0]."</span>)</a>
                 </li>
               ";
+
+              require_once "../controllers/court-type-controller.php"; 
+
+              $court_type_controller = new Court_Type_Controller();
+              $court_types = $court_type_controller->view_all_court_type();
+              
+              foreach($court_types as $court_type) {
+                echo "
+                  <li class='li-court-type' id='li-court-type-".$court_type->getCourtTypeId()."'>
+                      <a id='a-court-type-".$court_type->getCourtTypeId()."' href='?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."</a>
+                  </li>
+                ";
+              }
             ?>
           </ul>
           <form id="action" action="../controllers/court-schedule-management.php" method="post" enctype="multipart/form-data">

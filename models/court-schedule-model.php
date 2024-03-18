@@ -48,16 +48,21 @@
             $this->account_id = $account_id;
         }
 
-        //Hàm hiển thị tất cả lịch sân và tổng số lượng lịch sân
-        function view_all_court_schedule() {
+        //Hàm hiển thị tổng số lượng lịch sân
+        function view_all() {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
-            //Kết nối và lấy dữ liệu tất cả lịch sân từ database
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
             $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule");
 
-            return $row = mysqli_fetch_row($result);
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
         }
     }
 ?>
@@ -149,9 +154,9 @@
             $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
             $result2 = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court WHERE court_schedule.court_id = court.court_id AND court.court_type_id = " . $courtType);
             if (mysqli_num_rows($result2) > 0) { // Kiếm tra nếu result2 có dữ liệu
-            $resultToUse = $result2;
+                $resultToUse = $result2;
             } else {
-            $resultToUse = $result; // Trả về tất cả dữ liệu nếu như không match
+                $resultToUse = $result; // Trả về tất cả dữ liệu nếu như không match
             }
         }
 

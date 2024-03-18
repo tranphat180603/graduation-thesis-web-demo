@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/review.php";
+    require_once "../models/review-model.php";
 
     class Review {
         public $review;

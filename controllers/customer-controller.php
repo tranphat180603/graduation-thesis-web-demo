@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/customer.php";
+    require_once "../models/customer-model.php";
 
     class Customer {
         public $customer;

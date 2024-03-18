@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/account.php";
+    require_once "../models/account-model.php";
 
     class Account {
         public $account;

@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/service.php";
+    require_once "../models/service-model.php";
 
     class Service {
         public $service;

@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/cart.php";
+    require_once "../models/cart-model.php";
 
     class Cart {
         public $cart;

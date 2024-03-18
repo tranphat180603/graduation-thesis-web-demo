@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/court_type.php";
+    require_once "../models/court-type-model.php";
 
     class Court_type {
         public $court_type;

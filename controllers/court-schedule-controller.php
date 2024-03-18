@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/court_schedule.php";
+    require_once "../models/court-schedule-model.php";
 
     class Court_schedule {
         public $court_schedule;
@@ -8,9 +8,8 @@
             $this->court_schedule = new court_schedule();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court_schedule để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        public function view_all_court_schedule_ctrl() {
+            $all_court = $this->court_schedule->view_all_court_schedule();
         }
     }
 ?>

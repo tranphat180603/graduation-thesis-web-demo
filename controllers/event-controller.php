@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/event.php";
+    require_once "../models/event-model.php";
 
     class Event {
         public $event;

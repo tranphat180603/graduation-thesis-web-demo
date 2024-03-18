@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/comment.php";
+    require_once "../models/comment-model.php";
 
     class Comment {
         public $comment;

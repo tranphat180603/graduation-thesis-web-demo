@@ -69,7 +69,13 @@
               foreach($court_types as $court_type) {
                 echo "
                   <li class='li-court-type' id='li-court-type-".$court_type->getCourtTypeId()."'>
-                      <a id='a-court-type-".$court_type->getCourtTypeId()."' href='?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."</a>
+                      <a id='a-court-type-".$court_type->getCourtTypeId()."' href='?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
+                ";
+                
+                $court_schedule_amount = $court_schedule_controller->view_court_schedule_by_court_type($court_type->getCourtTypeId());
+                echo "
+                      &nbsp;(<span>".$court_schedule_amount[0]."</span>)
+                    </a>
                   </li>
                 ";
               }
@@ -92,16 +98,64 @@
         </div>
         <div class="court-schedule-table">
           <table>
-            <?php 
-              include_once "../models/court-schedule-model.php"; 
-              view_court_schedule();
-            ?>
+            <thead> 
+              <tr>
+                <th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrlAndCBState(this)'></th>
+                <th>Mã lịch sân<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Mã sân<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Giờ bắt đầu<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Giờ kết thúc<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Khung giờ<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Trạng thái<span class='icon-arrow'>&UpArrow;</span></th>
+                <th>Thao tác<span class='icon-arrow'>&UpArrow;</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php 
+                require_once "../controllers/court-schedule-controller.php"; 
+
+                $court_schedule_controller = new Court_Schedule_Controller();
+                $court_schedules = $court_schedule_controller->view_court_schedule();
+
+                foreach($court_schedules as $court_schedule) {
+                  echo "<tr>";
+
+                  echo "<td><input type='checkbox' name='court_schedule_id_".$court_schedule->getCourtScheduleId()."' id='court_schedule_id_".$court_schedule->getCourtScheduleId()."' onclick='updateUrl(this)'></td>";
+                  echo "<td>".$court_schedule->getCourtScheduleId()."</td>";
+                  echo "<td>".$court_schedule->getCourtId()."</td>";
+                  echo "<td>".$court_schedule->getCourtScheduleDate()."</td>";
+                  echo "<td>".substr($court_schedule->getCourtScheduleStartTime(), 0, 5)."</td>";
+                  echo "<td>".substr($court_schedule->getCourtScheduleEndTime(), 0, 5)."</td>";
+                  echo "<td>".$court_schedule->getCourtScheduleTimeFrame()."</td>";
+
+                  if ($court_schedule->getCourtScheduleState() == "Chưa đặt") {
+                      echo "<td><p class='status haveNotBooked'>".$court_schedule->getCourtScheduleState()."</p></td>";
+                  } else if ($court_schedule->getCourtScheduleState() == "Đã đặt") {
+                      echo "<td><p class='status haveBooked'>".$court_schedule->getCourtScheduleState()."</p></td>";
+                  } else if ($court_schedule->getCourtScheduleState() == "Hết hạn") {
+                      echo "<td><p class='status expired'>".$court_schedule->getCourtScheduleState()."</p></td>";
+                  }
+
+                  echo "
+                      <td class='btn-view'>
+                          <a href='?option=view_court_schedule_detail&court_schedule_id=".$court_schedule->getCourtScheduleId()."'>
+                              <img src='../image/sport-court-schedules-management-img/eye.svg' alt='eye icon'>
+                              <p>Xem</p>
+                          </a>
+                      </td>
+                  ";
+
+                  echo "</tr>";
+                }
+              ?>
+            </tbody>
           </table>
         </div>
       </div>
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
-    <script type="text/javascript" src="scripts/sport-court-schedules-management.js" language="javascript"></script>
+    <script type="text/javascript" src="../scripts/sport-court-schedules-management.js" language="javascript"></script>
   </body>
 </html>

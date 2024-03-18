@@ -13,40 +13,27 @@
         private $court_id;
         private $account_id;
 
-        public function getCourtScheduleId() { return $this->court_schedule_id; };
-        public function getCourtScheduleDate() { return $this->court_schedule_date; };
-        public function getCourtScheduleStartTime() { return $this->court_schedule_start_time; };
-        public function getCourtScheduleEndTime() { return $this->court_schedule_end_time; };
-        public function getCourtScheduleTimeFrame() { return $this->court_schedule_time_frame; };
-        public function getCourtScheduleState() { return $this->court_schedule_state; };
-        public function getCreatedOnDate() { return $this->created_on_date; };
-        public function getLastModifiedDate() { return $this->last_modified_date; };
-        public function getCourtId() { return $this->court_id; };
-        public function getAccountId() { return $this->account_id; };
+        public function getCourtScheduleId() { return $this->court_schedule_id; }
+        public function getCourtScheduleDate() { return $this->court_schedule_date; }
+        public function getCourtScheduleStartTime() { return $this->court_schedule_start_time; }
+        public function getCourtScheduleEndTime() { return $this->court_schedule_end_time; }
+        public function getCourtScheduleTimeFrame() { return $this->court_schedule_time_frame; }
+        public function getCourtScheduleState() { return $this->court_schedule_state; }
+        public function getCreatedOnDate() { return $this->created_on_date; }
+        public function getLastModifiedDate() { return $this->last_modified_date; }
+        public function getCourtId() { return $this->court_id; }
+        public function getAccountId() { return $this->account_id; }
 
-        public function setCourtScheduleId($court_schedule_id) { $this->court_schedule_id = $court_schedule_id; };
-        public function setCourtScheduleDate($court_schedule_date) { $this->court_schedule_date = $court_schedule_date; };
-        public function setCourtScheduleStartTime($court_schedule_start_time) { $this->court_schedule_start_time = $court_schedule_start_time; };
-        public function setCourtScheduleEndTime($court_schedule_end_time) { $this->court_schedule_end_time = $court_schedule_end_time; };
-        public function setCourtScheduleTimeFrame($court_schedule_time_frame) { $this->court_schedule_time_frame = $court_schedule_time_frame; };
-        public function setCourtScheduleState($court_schedule_state) { $this->court_schedule_state = $court_schedule_state; };
-        public function setCreatedOnDate($created_on_date) { $this->created_on_date = $created_on_date; };
-        public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date; };
-        public function setCourtId($court_id) { $this->court_id = $court_id; };
-        public function setAccountId($account_id) { $this->account_id = $account_id; }; 
-
-        public function __constructor() {
-            $this->court_schedule_id = 0;
-            $this->court_schedule_date = "3000/12/30";
-            $this->court_schedule_start_time = "00:00:00";
-            $this->court_schedule_end_time = "00:00:00";
-            $this->court_schedule_time_frame = "00:00:00-00:00:00";
-            $this->court_schedule_state = "None";
-            $this->created_on_date = "3000/12/30";
-            $this->last_modified_date = "3000/12/30";
-            $this->court_id = 0;
-            $this->account_id = 0;
-        }
+        public function setCourtScheduleId($court_schedule_id) { $this->court_schedule_id = $court_schedule_id; }
+        public function setCourtScheduleDate($court_schedule_date) { $this->court_schedule_date = $court_schedule_date; }
+        public function setCourtScheduleStartTime($court_schedule_start_time) { $this->court_schedule_start_time = $court_schedule_start_time; }
+        public function setCourtScheduleEndTime($court_schedule_end_time) { $this->court_schedule_end_time = $court_schedule_end_time; }
+        public function setCourtScheduleTimeFrame($court_schedule_time_frame) { $this->court_schedule_time_frame = $court_schedule_time_frame; }
+        public function setCourtScheduleState($court_schedule_state) { $this->court_schedule_state = $court_schedule_state; }
+        public function setCreatedOnDate($created_on_date) { $this->created_on_date = $created_on_date; }
+        public function setLastModifiedDate($last_modified_date) { $this->last_modified_date = $last_modified_date; }
+        public function setCourtId($court_id) { $this->court_id = $court_id; }
+        public function setAccountId($account_id) { $this->account_id = $account_id; }
         
         public function __constructor($court_schedule_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_time_frame, $court_schedule_state, $created_on_date, $last_modified_date, $cart_id, $account_id) {
             $this->court_schedule_id = $court_schedule_id;

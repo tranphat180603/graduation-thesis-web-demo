@@ -1,7 +1,7 @@
 <?php
     require_once "../models/court-schedule-model.php";
 
-    class Court_schedule {
+    class Court_Schedule_Controller {
         public $court_schedule;
 
         public function __construct() {
@@ -9,7 +9,7 @@
         }
 
         public function view_all_court_schedule_ctrl() {
-            $all_court = $this->court_schedule->view_all_court_schedule();
+            return $all_court = $this->court_schedule->view_all_court_schedule();
         }
     }
 ?>

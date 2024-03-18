@@ -1,7 +1,7 @@
 <?php
     require_once "../models/comment-model.php";
 
-    class Comment {
+    class Comment_Controller {
         public $comment;
 
         public function __construct() {

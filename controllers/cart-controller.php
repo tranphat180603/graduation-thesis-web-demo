@@ -1,7 +1,7 @@
 <?php
     require_once "../models/cart-model.php";
 
-    class Cart {
+    class Cart_Controller {
         public $cart;
 
         public function __construct() {

@@ -1,7 +1,7 @@
 <?php
     require_once "../models/account-model.php";
 
-    class Account {
+    class Account_Controller {
         public $account;
 
         public function __construct() {

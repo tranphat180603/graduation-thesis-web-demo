@@ -1,7 +1,7 @@
 <?php
     require_once "../models/court-order-model.php";
 
-    class Court_order {
+    class Court_Order_Controller {
         public $account;
 
         public function __construct() {

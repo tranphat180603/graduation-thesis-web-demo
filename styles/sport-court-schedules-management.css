@@ -204,6 +204,22 @@ p {
   padding-bottom: 8px;
 }
 
+.li-court-type {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 5px;
+}
+
+.li-court-type a {
+  color: #c2c2c2;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
 /* Định dạng 3 nút thao tác */
 #action {
   display: flex;

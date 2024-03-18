@@ -51,8 +51,17 @@
         <div id="schedule-body-menu">
           <ul>
             <?php 
-              include_once "../models/court-type-model.php"; 
-              view_court_type_name_schedule();
+              // include_once "../models/court-type-model.php"; 
+              // view_court_type_name_schedule();
+
+              require_once "../controllers/court-schedule-controller.php"; 
+              $court_schedule_controller = new Court_Schedule_Controller();
+              $all_court = $court_schedule_controller->view_all_court_schedule_ctrl();
+              echo "
+                <li class='li-court-type' id='li-court-type-0'>
+                  <a id='a-court-type-0' href='?court_type_id=0'>Tất cả&nbsp;(<span>".$all_court[0]."</span>)</a>
+                </li>
+              ";
             ?>
           </ul>
           <form id="action" action="../controllers/court-schedule-management.php" method="post" enctype="multipart/form-data">

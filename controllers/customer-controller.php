@@ -1,7 +1,7 @@
 <?php
     require_once "../models/customer-model.php";
 
-    class Customer {
+    class Customer_Controller {
         public $customer;
 
         public function __construct() {

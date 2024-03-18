@@ -47,6 +47,18 @@
             $this->court_id = $court_id;
             $this->account_id = $account_id;
         }
+
+        //Hàm hiển thị tất cả lịch sân và tổng số lượng lịch sân
+        function view_all_court_schedule() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tất cả lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule");
+
+            return $row = mysqli_fetch_row($result);
+        }
     }
 ?>
 

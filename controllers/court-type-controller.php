@@ -1,7 +1,7 @@
 <?php
     require_once "../models/court-type-model.php";
 
-    class Court_type {
+    class Court_Type_Controller {
         public $court_type;
 
         public function __construct() {

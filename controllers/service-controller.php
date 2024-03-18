@@ -1,7 +1,7 @@
 <?php
     require_once "../models/service-model.php";
 
-    class Service {
+    class Service_Controller {
         public $service;
 
         public function __construct() {

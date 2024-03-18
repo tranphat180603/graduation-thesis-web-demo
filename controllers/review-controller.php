@@ -1,7 +1,7 @@
 <?php
     require_once "../models/review-model.php";
 
-    class Review {
+    class Review_Controller {
         public $review;
 
         public function __construct() {

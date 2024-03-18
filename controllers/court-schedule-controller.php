@@ -4,7 +4,7 @@
     class Court_schedule {
         public $court_schedule;
 
-        public function _construct() {
+        public function __construct() {
             $this->court_schedule = new court_schedule();
         }
 

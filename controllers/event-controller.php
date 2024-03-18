@@ -4,7 +4,7 @@
     class Event {
         public $event;
 
-        public function _construct() {
+        public function __construct() {
             $this->event = new event();
         }
 

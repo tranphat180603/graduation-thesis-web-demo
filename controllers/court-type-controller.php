@@ -4,7 +4,7 @@
     class Court_type {
         public $court_type;
 
-        public function _construct() {
+        public function __construct() {
             $this->court_type = new court_type();
         }
 

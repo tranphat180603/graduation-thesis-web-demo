@@ -4,7 +4,7 @@
     class Account {
         public $account;
 
-        public function _construct() {
+        public function __construct() {
             $this->account = new account();
         }
 

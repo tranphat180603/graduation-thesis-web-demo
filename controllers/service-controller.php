@@ -4,7 +4,7 @@
     class Service {
         public $service;
 
-        public function _construct() {
+        public function __construct() {
             $this->service = new service();
         }
 

@@ -4,7 +4,7 @@
     class Court_order {
         public $account;
 
-        public function _construct() {
+        public function __construct() {
             $this->court_order = new court_order();
         }
 

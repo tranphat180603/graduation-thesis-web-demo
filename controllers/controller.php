@@ -4,7 +4,7 @@
     class Controller {
         public $model;
 
-        public function _construct() {
+        public function __construct() {
             $this->model = new Model();
         }
 

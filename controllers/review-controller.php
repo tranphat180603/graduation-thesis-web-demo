@@ -4,7 +4,7 @@
     class Review {
         public $review;
 
-        public function _construct() {
+        public function __construct() {
             $this->review = new review();
         }
 

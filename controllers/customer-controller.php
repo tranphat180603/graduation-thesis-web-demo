@@ -4,7 +4,7 @@
     class Customer {
         public $customer;
 
-        public function _construct() {
+        public function __construct() {
             $this->customer = new customer();
         }
 

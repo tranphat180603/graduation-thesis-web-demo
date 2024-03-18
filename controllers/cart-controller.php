@@ -4,7 +4,7 @@
     class Cart {
         public $cart;
 
-        public function _construct() {
+        public function __construct() {
             $this->cart = new cart();
         }
 

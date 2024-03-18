@@ -4,7 +4,7 @@
     class Court {
         public $court;
 
-        public function _construct() {
+        public function __construct() {
             $this->court = new court();
         }
 

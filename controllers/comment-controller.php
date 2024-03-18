@@ -4,7 +4,7 @@
     class Comment {
         public $comment;
 
-        public function _construct() {
+        public function __construct() {
             $this->comment = new comment();
         }
 

@@ -76,6 +76,7 @@
                                             court_schedule.court_id = court.court_id AND 
                                             court.court_type_id = court_type.court_type_id
                                             AND court.court_type_id = ".$court_type_id.""); 
+
             $row = mysqli_fetch_row($result);
             
             //Giải phóng bộ nhớ
@@ -85,7 +86,7 @@
         }
 
         //Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
-        function view_court_schedule($courtType) {
+        public function view_court_schedule($courtType) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
@@ -108,6 +109,20 @@
             ReleaseMemory($link, $result);
 
             return $data;
+        }
+
+        //Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
+        public function update_court_schedule_state($currentDate) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' WHERE court_schedule_date < '$currentDate' AND court_schedule_state = 'Chưa đặt'");
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $result;
         }
     }
 ?>

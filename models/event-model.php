@@ -15,18 +15,18 @@
         private $last_modified_date;
         private $account_id;
 
-        public function getEventId () { return $this->event_id; }
-        public function getEventName () { return $this->event_name; }
-        public function getEventStartDate () { return $this->event_start_date; }
-        public function getEventEndDate () { return $this->event_end_date; }
-        public function getEventDescription () { return $this->event_description; }
-        public function getEventImage () { return $this->event_image; }
-        public function getEventPreferentialRate () { return $this->event_preferential_rate; }
-        public function getEventPreferentialItem () { return $this->event_preferential_item; }
-        public function getEventState () { return $this->event_state; }
-        public function getCreatedOnDate () { return $this->created_on_date; }
-        public function getLastModifiedDate () { return $this->last_modified_date; }
-        public function getAccountId () { return $this->account_id; }
+        public function getEventId() { return $this->event_id; }
+        public function getEventName() { return $this->event_name; }
+        public function getEventStartDate() { return $this->event_start_date; }
+        public function getEventEndDate() { return $this->event_end_date; }
+        public function getEventDescription() { return $this->event_description; }
+        public function getEventImage() { return $this->event_image; }
+        public function getEventPreferentialRate() { return $this->event_preferential_rate; }
+        public function getEventPreferentialItem() { return $this->event_preferential_item; }
+        public function getEventState() { return $this->event_state; }
+        public function getCreatedOnDate() { return $this->created_on_date; }
+        public function getLastModifiedDate() { return $this->last_modified_date; }
+        public function getAccountId() { return $this->account_id; }
 
         public function setEventId($event_id) { $this->event_id = $event_id; }
         public function setEventName($event_name) { $this->event_name = $event_name; }

@@ -176,6 +176,31 @@ function tickCheckbox() {
     // Kiểm tra giá trị của mảng và cập nhật trạng thái của checkbox tương ứng
     for (var i = 0; i < courtScheduleArr.length; i++) {
       if (courtScheduleArr[i] == "0") {
+        // Lấy URL hiện tại
+        var currentURL = new URL(window.location.href);
+
+        if (currentURL) {
+          // Tạo một đối tượng URLSearchParams từ URL
+          var params2 = new URLSearchParams(currentURL.search);
+        }
+
+        // Kiểm tra xem tham số "court_schedule_id" có tồn tại trong URL không
+        if (params2.has("court_schedule_id")) {
+          var newCourtScheduleIdParam = "";
+
+          // Cập nhật URL với tham số court_schedule_id mới
+          var newUrl =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            window.location.pathname +
+            "?court_schedule_id=" +
+            newCourtScheduleIdParam;
+
+          // Cập nhật URL trong trường hợp lịch sử trình duyệt không được hỗ trợ
+          window.history.replaceState({ path: newUrl }, "", newUrl);
+        }
+
         // Vòng lặp để cập nhật trạng thái của checkbox
         for (var i = 1; i <= table_Length; i++) {
           var checkbox = document.getElementById("court_schedule_id_" + i);
@@ -191,6 +216,23 @@ function tickCheckbox() {
             checkbox.checked = false;
           }
         }
+
+        //Thực hiện xóa tham số court_schedule_id khỏi url khi check box all không được tick
+        // Lấy URL hiện tại
+        var currentURL = new URL(window.location.href);
+
+        if (currentURL) {
+          // Tạo một đối tượng URLSearchParams từ URL
+          var params2 = new URLSearchParams(currentURL.search);
+        }
+
+        params2.delete("court_schedule_id");
+
+        window.history.replaceState(
+          {},
+          "",
+          `${window.location.pathname}?${params2}`
+        );
       }
     }
     // Kiểm tra xem nếu không có checkbox nào được chọn, loại bỏ biến 'court_schedule_id' khỏi URL
@@ -220,3 +262,32 @@ function updateUrlAndCBState() {
   updateUrl();
   setTimeout(tickCheckbox, 100);
 }
+
+//8. Hàm cập nhật trạng thái lịch sân tự động sau mỗi 12 tiếng
+// Hàm để gọi PHP và truyền biến vào
+function callPHPFunction(currentDate) {
+  // Gọi Ajax để gọi hàm PHP và truyền biến vào
+  $.ajax({
+    url: "court-schedule-controller.php", // Đường dẫn đến tập tin PHP của bạn
+    type: "POST",
+    data: { currentDate: currentDate },
+    success: function (response) {
+      console.log("Success:", response);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+    },
+  });
+}
+
+// Hàm chạy sau mỗi 12 tiếng
+function runEvery12Hours() {
+  // Tạo biến để lưu ngày hiện tại
+  var currentDate = new Date().toISOString().slice(0, 10); // Lấy ngày hiện tại và định dạng thành 'YYYY-MM-DD'
+
+  // Gọi hàm để gọi PHP và truyền biến vào
+  callPHPFunction(currentDate);
+}
+
+// Thực thi hàm runEvery12Hours() sau mỗi 12 tiếng
+setInterval(runEvery12Hours, 12 * 60 * 60 * 1000); // 12 tiếng * 60 phút * 60 giây * 1000 milliseconds

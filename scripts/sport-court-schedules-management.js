@@ -176,31 +176,6 @@ function tickCheckbox() {
     // Kiểm tra giá trị của mảng và cập nhật trạng thái của checkbox tương ứng
     for (var i = 0; i < courtScheduleArr.length; i++) {
       if (courtScheduleArr[i] == "0") {
-        // Lấy URL hiện tại
-        var currentURL = new URL(window.location.href);
-
-        if (currentURL) {
-          // Tạo một đối tượng URLSearchParams từ URL
-          var params2 = new URLSearchParams(currentURL.search);
-        }
-
-        // Kiểm tra xem tham số "court_schedule_id" có tồn tại trong URL không
-        if (params2.has("court_schedule_id")) {
-          var newCourtScheduleIdParam = "";
-
-          // Cập nhật URL với tham số court_schedule_id mới
-          var newUrl =
-            window.location.protocol +
-            "//" +
-            window.location.host +
-            window.location.pathname +
-            "?court_schedule_id=" +
-            newCourtScheduleIdParam;
-
-          // Cập nhật URL trong trường hợp lịch sử trình duyệt không được hỗ trợ
-          window.history.replaceState({ path: newUrl }, "", newUrl);
-        }
-
         // Vòng lặp để cập nhật trạng thái của checkbox
         for (var i = 1; i <= table_Length; i++) {
           var checkbox = document.getElementById("court_schedule_id_" + i);

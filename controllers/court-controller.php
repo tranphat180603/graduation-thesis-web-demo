@@ -8,9 +8,8 @@
             $this->court = new court();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        public function view_all_court() {
+            return $result = $this->court->view_all_court();
         }
     }
 ?>

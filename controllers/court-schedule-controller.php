@@ -22,9 +22,15 @@
             return $result = $this->court_schedule->view_court_schedule($courtType);
         }
 
-        public static function update_court_schedule_state($currentDate) {
-            return $result =  $this->court_schedule->update_court_schedule_state($currentDate);
+        public function update_court_schedule_state($currentDate) {
+            return $result = $this->court_schedule->update_court_schedule_state($currentDate);
         } 
+
+        public function view_specific_court_schedule() {
+            $court_schedule_id = isset($_GET['court_schedule_id']) ? $_GET['court_schedule_id'] : ''; 
+
+            return $result = $this->court_schedule->view_specific_court_schedule($court_schedule_id);
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn
@@ -75,6 +81,7 @@
 
     if (isset($_POST['currentDate'])) {
         $currentDate = $_POST['currentDate']; // Nhận giá trị từ JavaScript
-        Court_Schedule_Controller::update_court_schedule_state($currentDate); // Gọi phương thức tĩnh của class và truyền biến vào
+        $court_schedule_controller = new Court_Schedule_Controller();
+        $court_schedule_controller->update_court_schedule_state($currentDate);
     }
 ?>

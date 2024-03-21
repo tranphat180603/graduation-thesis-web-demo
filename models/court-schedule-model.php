@@ -124,5 +124,30 @@
 
             return $result;
         }
+
+        //Hàm lấy dữ liệu một lịch sân cụ thể
+        public function view_specific_court_schedule($court_schedule_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule WHERE court_schedule_id = " . $court_schedule_id);
+
+            $row = mysqli_fetch_row($result);
+
+            // $data = array();
+
+            // while ($rows = mysqli_fetch_assoc($result)) {
+            //     $court_schedule = new court_schedule($rows["court_schedule_id"], $rows["court_schedule_date"], $rows["court_schedule_start_time"], $rows["court_schedule_end_time"], $rows["court_schedule_time_frame"], $rows["court_schedule_state"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_id"], $rows["account_id"]);
+            //     array_push($data, $court_schedule);
+            // }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            // return $data;
+
+            return $row;
+        }
     }
 ?>

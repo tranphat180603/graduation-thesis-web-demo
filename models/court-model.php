@@ -31,5 +31,26 @@
             $this->court_type_id = $court_type_id;
             $this->account_id = $account_id;
         }
+
+        //Hàm lấy dữ liệu tất cả sân
+        public function view_all_court() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM court");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court = new court($rows["court_id"], $rows["court_name"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_type_id"], $rows["account_id"]);
+                array_push($data, $court);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

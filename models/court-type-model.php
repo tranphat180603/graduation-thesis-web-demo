@@ -32,7 +32,7 @@
             $this->account_id = $account_id;
         }
 
-        //Hàm hiển thị tất cả loại sân
+        //1. Hàm hiển thị tất cả loại sân
         public function view_all_court_type() {
             //Tạo kết nối đến database
             $link = "";

@@ -705,6 +705,11 @@ tbody tr.hide td {
   color: #e7527e;
 }
 
+.deleted {
+  background: #f0efc6;
+  color: #acaa3d;
+}
+
 /* Định dạng sorting */
 
 thead th span.icon-arrow {
@@ -801,7 +806,7 @@ body {
   right: calc(100% / 2 - 300px);
   z-index: 10;
 
-  /* display: none; */
+  display: none;
 }
 
 /* FORM HEADER */
@@ -1100,14 +1105,4 @@ body {
 .button-group input[type="submit"]:hover {
   cursor: pointer;
   background-color: rgb(67, 162, 251);
-}
-
-.button-group input[type="submit"]:before {
-  content: "";
-  position: absolute;
-  /* left: 10px; */
-  /* top: 50%; */
-  background-image: url("../image/sport-court-schedules-management-img/save.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
 }

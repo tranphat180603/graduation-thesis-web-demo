@@ -7,7 +7,8 @@
         public function __construct() {
             $this->court_type = new court_type();
         }
-
+        
+        //1. Hàm hiển thị tất cả loại sân
         public function view_all_court_type() {
             return $result = $this->court_type->view_all_court_type();
         }

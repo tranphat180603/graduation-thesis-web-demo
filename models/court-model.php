@@ -32,7 +32,7 @@
             $this->account_id = $account_id;
         }
 
-        //Hàm lấy dữ liệu tất cả sân
+        //1. Hàm lấy dữ liệu tất cả sân
         public function view_all_court() {
             //Tạo kết nối đến database
             $link = "";

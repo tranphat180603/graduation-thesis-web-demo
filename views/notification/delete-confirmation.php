@@ -1,18 +1,28 @@
-      <!-- Warning -->
-      <div class="warning-container">
+      <!-- Delete Confirmation -->
+      <div class="delete-confirm-container">
         <div class="main-content">
-          <img src="../image/sport-court-schedules-management-img/delete-confirm.svg" alt="warning icon">
+          <img src="../image/sport-court-schedules-management-img/delete-confirm.svg" alt="delete confirm icon">
           <div class="content">
-            <p id="warning-question">Bạn muốn thực hiện thao tác trên ... này?</p>
-            <p id="warning-explanation">warning content</p>
+            <p id="delete-confirm-question">Bạn thật sự muốn xóa ... này?</p>
+            <p id="delete-confirm-explanation">... này sẽ biến mất trên website của người dùng nếu bạn xoá nó.</p>
           </div>
         </div>
         <div class="action">
-          <a id="war-act-ok" href="./sport-court-schedules-management.php?court_type_id=0">OK</a>
+          <a id="del-con-act-no" href="./sport-court-schedules-management.php?court_type_id=0">Không</a>
+          <a 
+            id="del-con-act-yes" 
+            href="<?php 
+                    if(isset($_GET['court_schedule_id'])) {
+                      $court_schedule_id = urlencode($_GET['court_schedule_id']);
+                      echo "?option=delete_court_schedule&court_schedule_id=" . $court_schedule_id;
+                    }
+                  ?>
+            ">Có
+          </a>
         </div>
       </div>
       <style>
-        .warning-container {
+        .delete-confirm-container {
           display: flex;
           width: 416px;
           padding: 32px 32px 24px 32px;
@@ -31,14 +41,14 @@
             0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 9px 28px 8px rgba(0, 0, 0, 0.05);
         }
 
-        .warning-container .main-content {
+        .delete-confirm-container .main-content {
           display: flex;
           align-items: flex-start;
           gap: 16px;
           align-self: stretch;
         }
 
-        #warning-question {
+        #delete-confirm-question {
           align-self: stretch;
           color: rgba(0, 0, 0, 0.85);
           font-size: 15.5px;
@@ -47,7 +57,7 @@
           line-height: 24px;
         }
 
-        #warning-explanation {
+        #delete-confirm-explanation {
           align-self: stretch;
           color: rgba(0, 0, 0, 0.85);
           font-size: 14px;
@@ -56,7 +66,7 @@
           line-height: 22px;
         }
 
-        .warning-container .action {
+        .delete-confirm-container .action {
           display: flex;
           justify-content: flex-end;
           align-items: flex-start;
@@ -64,7 +74,7 @@
           align-self: stretch;
         }
 
-        #war-act-ok {
+        #del-con-act-no {
           display: flex;
           padding: 4px 15px;
           justify-content: center;
@@ -83,7 +93,30 @@
           line-height: 22px;
         }
 
-        #war-act-ok:hover {
+        #del-con-act-no:hover {
           background: #e3e3e3;
+        }
+
+        #del-con-act-yes {
+          display: flex;
+          padding: 4px 15px;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          border-radius: 2px;
+          border: 1px solid #d00000;
+          background: #d00000;
+          box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+
+          color: #fff;
+          text-align: center;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 22px;
+        }
+
+        #del-con-act-yes:hover {
+          background: #ab0505;
         }
       </style>

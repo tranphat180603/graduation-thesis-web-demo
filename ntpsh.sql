@@ -44,15 +44,15 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`, `customer_id`) VALUES
-(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1', 'klhttNTP_151103', NULL, '2024-02-18', NULL),
-(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2', 'DuyenNguyen_22122003', NULL, '2024-02-18', 1),
-(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3', 'DuyenTran_06112003', NULL, '2024-02-18', 2),
-(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4', 'HaoTruong_28052003', NULL, '2024-02-18', 3),
-(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5', 'HoangNguyen_15112003', NULL, '2024-02-18', 4),
-(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6', 'NgocPham_03102003', NULL, '2024-02-18', 5),
-(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7', 'PhatTran_18062003', NULL, '2024-02-18', 6),
-(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8', 'ThuyLe_02112003', NULL, '2024-02-18', 7),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9', 'TienTruong_30072003', NULL, '2024-02-18', 8);
+(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.jpg', 'klhttNTP_151103', NULL, '2024-02-18', NULL),
+(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.jpg', 'DuyenNguyen_22122003', NULL, '2024-02-18', 1),
+(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.jpg', 'DuyenTran_06112003', NULL, '2024-02-18', 2),
+(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.jpg', 'HaoTruong_28052003', NULL, '2024-02-18', 3),
+(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.jpg', 'HoangNguyen_15112003', NULL, '2024-02-18', 4),
+(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.jpg', 'NgocPham_03102003', NULL, '2024-02-18', 5),
+(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.jpg', 'PhatTran_18062003', NULL, '2024-02-18', 6),
+(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.jpg', 'ThuyLe_02112003', NULL, '2024-02-18', 7),
+(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.jpg', 'TienTruong_30072003', NULL, '2024-02-18', 8);
 
 -- --------------------------------------------------------
 
@@ -322,57 +322,57 @@ CREATE TABLE `court_image` (
 --
 
 INSERT INTO `court_image` (`court_image_id`, `court_image`, `court_id`) VALUES
-(1, '../upload/sport-courts-management/court-1-1', 1),
-(2, '../upload/sport-courts-management/court-1-2', 1),
-(3, '../upload/sport-courts-management/court-1-3', 1),
-(4, '../upload/sport-courts-management/court-2-1', 2),
-(5, '../upload/sport-courts-management/court-2-2', 2),
-(6, '../upload/sport-courts-management/court-2-3', 2),
-(7, '../upload/sport-courts-management/court-3-1', 3),
-(8, '../upload/sport-courts-management/court-3-2', 3),
-(9, '../upload/sport-courts-management/court-3-3', 3),
-(10, '../upload/sport-courts-management/court-4-1', 4),
-(11, '../upload/sport-courts-management/court-4-2', 4),
-(12, '../upload/sport-courts-management/court-4-3', 4),
-(13, '../upload/sport-courts-management/court-5-1', 5),
-(14, '../upload/sport-courts-management/court-5-2', 5),
-(15, '../upload/sport-courts-management/court-5-3', 5),
-(16, '../upload/sport-courts-management/court-6-1', 6),
-(17, '../upload/sport-courts-management/court-6-2', 6),
-(18, '../upload/sport-courts-management/court-6-3', 6),
-(19, '../upload/sport-courts-management/court-7-1', 7),
-(20, '../upload/sport-courts-management/court-7-2', 7),
-(21, '../upload/sport-courts-management/court-7-3', 7),
-(22, '../upload/sport-courts-management/court-8-1', 8),
-(23, '../upload/sport-courts-management/court-8-2', 8),
-(24, '../upload/sport-courts-management/court-8-3', 8),
-(25, '../upload/sport-courts-management/court-9-1', 9),
-(26, '../upload/sport-courts-management/court-9-2', 9),
-(27, '../upload/sport-courts-management/court-9-3', 9),
-(28, '../upload/sport-courts-management/court-10-1', 10),
-(29, '../upload/sport-courts-management/court-10-2', 10),
-(30, '../upload/sport-courts-management/court-10-3', 10),
-(31, '../upload/sport-courts-management/court-11-1', 11),
-(32, '../upload/sport-courts-management/court-11-2', 11),
-(33, '../upload/sport-courts-management/court-11-3', 11),
-(34, '../upload/sport-courts-management/court-12-1', 12),
-(35, '../upload/sport-courts-management/court-12-2', 12),
-(36, '../upload/sport-courts-management/court-12-3', 12),
-(37, '../upload/sport-courts-management/court-13-1', 13),
-(38, '../upload/sport-courts-management/court-13-2', 13),
-(39, '../upload/sport-courts-management/court-13-3', 13),
-(40, '../upload/sport-courts-management/court-14-1', 14),
-(41, '../upload/sport-courts-management/court-14-2', 14),
-(42, '../upload/sport-courts-management/court-14-3', 14),
-(43, '../upload/sport-courts-management/court-15-1', 15),
-(44, '../upload/sport-courts-management/court-15-2', 15),
-(45, '../upload/sport-courts-management/court-15-3', 15),
-(46, '../upload/sport-courts-management/court-16-1', 16),
-(47, '../upload/sport-courts-management/court-16-2', 16),
-(48, '../upload/sport-courts-management/court-16-3', 16),
-(49, '../upload/sport-courts-management/court-17-1', 17),
-(50, '../upload/sport-courts-management/court-17-2', 17),
-(51, '../upload/sport-courts-management/court-17-3', 17);
+(1, '../upload/sport-courts-management/court-1-1.jpg', 1),
+(2, '../upload/sport-courts-management/court-1-2.jpg', 1),
+(3, '../upload/sport-courts-management/court-1-3.jpg', 1),
+(4, '../upload/sport-courts-management/court-2-1.jpg', 2),
+(5, '../upload/sport-courts-management/court-2-2.jpg', 2),
+(6, '../upload/sport-courts-management/court-2-3.jpg', 2),
+(7, '../upload/sport-courts-management/court-3-1.jpg', 3),
+(8, '../upload/sport-courts-management/court-3-2.jpg', 3),
+(9, '../upload/sport-courts-management/court-3-3.jpg', 3),
+(10, '../upload/sport-courts-management/court-4-1.jpg', 4),
+(11, '../upload/sport-courts-management/court-4-2.jpg', 4),
+(12, '../upload/sport-courts-management/court-4-3.jpg', 4),
+(13, '../upload/sport-courts-management/court-5-1.jpg', 5),
+(14, '../upload/sport-courts-management/court-5-2.jpg', 5),
+(15, '../upload/sport-courts-management/court-5-3.jpg', 5),
+(16, '../upload/sport-courts-management/court-6-1.jpg', 6),
+(17, '../upload/sport-courts-management/court-6-2.jpg', 6),
+(18, '../upload/sport-courts-management/court-6-3.jpg', 6),
+(19, '../upload/sport-courts-management/court-7-1.jpg', 7),
+(20, '../upload/sport-courts-management/court-7-2.jpg', 7),
+(21, '../upload/sport-courts-management/court-7-3.jpg', 7),
+(22, '../upload/sport-courts-management/court-8-1.jpg', 8),
+(23, '../upload/sport-courts-management/court-8-2.jpg', 8),
+(24, '../upload/sport-courts-management/court-8-3.jpg', 8),
+(25, '../upload/sport-courts-management/court-9-1.jpg', 9),
+(26, '../upload/sport-courts-management/court-9-2.jpg', 9),
+(27, '../upload/sport-courts-management/court-9-3.jpg', 9),
+(28, '../upload/sport-courts-management/court-10-1.jpg', 10),
+(29, '../upload/sport-courts-management/court-10-2.jpg', 10),
+(30, '../upload/sport-courts-management/court-10-3.jpg', 10),
+(31, '../upload/sport-courts-management/court-11-1.jpg', 11),
+(32, '../upload/sport-courts-management/court-11-2.jpg', 11),
+(33, '../upload/sport-courts-management/court-11-3.jpg', 11),
+(34, '../upload/sport-courts-management/court-12-1.jpg', 12),
+(35, '../upload/sport-courts-management/court-12-2.jpg', 12),
+(36, '../upload/sport-courts-management/court-12-3.jpg', 12),
+(37, '../upload/sport-courts-management/court-13-1.jpg', 13),
+(38, '../upload/sport-courts-management/court-13-2.jpg', 13),
+(39, '../upload/sport-courts-management/court-13-3.jpg', 13),
+(40, '../upload/sport-courts-management/court-14-1.jpg', 14),
+(41, '../upload/sport-courts-management/court-14-2.jpg', 14),
+(42, '../upload/sport-courts-management/court-14-3.jpg', 14),
+(43, '../upload/sport-courts-management/court-15-1.jpg', 15),
+(44, '../upload/sport-courts-management/court-15-2.jpg', 15),
+(45, '../upload/sport-courts-management/court-15-3.jpg', 15),
+(46, '../upload/sport-courts-management/court-16-1.jpg', 16),
+(47, '../upload/sport-courts-management/court-16-2.jpg', 16),
+(48, '../upload/sport-courts-management/court-16-3.jpg', 16),
+(49, '../upload/sport-courts-management/court-17-1.jpg', 17),
+(50, '../upload/sport-courts-management/court-17-2.jpg', 17),
+(51, '../upload/sport-courts-management/court-17-3.jpg', 17);
 
 -- --------------------------------------------------------
 
@@ -389,6 +389,7 @@ CREATE TABLE `court_order` (
   `total_discount_amount` float(10,0) NOT NULL,
   `order_total_payment` float(10,0) NOT NULL,
   `order_total_deposit` float(10,0) NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
   `order_state` varchar(20) NOT NULL,
   `customer_account_id` int(11) NOT NULL,
   `admin_account_id` int(11) NOT NULL,
@@ -397,41 +398,41 @@ CREATE TABLE `court_order` (
   `ordered_on_date` date NOT NULL,
   `canceled_on_date` date DEFAULT NULL,
   `refunded_on_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci; 
 
 --
 -- Dumping data for table `court_order`
 --
 
 INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `total_service_amount`, `total_rental_amount`, `total_discount_amount`, `order_total_payment`, `order_total_deposit`, `order_state`, `customer_account_id`, `admin_account_id`, `order_cancel_reason`, `order_cancel_party_account_id`, `ordered_on_date`, `canceled_on_date`, `refunded_on_date`) VALUES
-(1, 147, 2, 350000, 420000, 77000, 693000, 138600, 'Hoàn thành', 2, 1, NULL, NULL, '2024-03-20', NULL, NULL),
-(2, 144, NULL, 100000, 150000, 0, 250000, 50000, 'Chờ thanh toán', 2, 1, NULL, NULL, '2024-04-03', NULL, NULL),
-(3, 139, NULL, 0, 360000, 0, 360000, 72000, 'Chờ hoàn tiền', 2, 1, 'Sân này đang được bảo trì, sữa chữa', 1, '2024-03-30', '2024-03-31', NULL),
-(4, 5, 2, 0, 200000, 20000, 180000, 36000, 'Đã hủy', 2, 1, 'Tôi không còn nhu cầu đặt sân nữa', 2, '2024-03-14', '2024-03-16', NULL),
-(5, 22, 3, 150000, 240000, 58500, 331500, 66300, 'Đã hủy', 2, 1, 'Khách hàng không đến nhận sân', 1, '2024-03-31', '2024-04-04', NULL),
-(6, 166, NULL, 0, 300000, 0, 300000, 60000, 'Hoàn thành', 3, 1, NULL, NULL, '2024-03-25', NULL, NULL),
-(7, 124, 2, 0, 150000, 15000, 135000, 27000, 'Hoàn thành', 3, 1, NULL, NULL, '2024-04-01', NULL, NULL),
-(8, 185, 2, 160000, 150000, 15000, 295000, 59000, 'Chờ thanh toán', 3, 1, NULL, NULL, '2024-04-15', NULL, NULL),
-(9, 3, 2, 0, 400000, 40000, 360000, 72000, 'Hoàn thành', 4, 1, NULL, NULL, '2024-03-17', NULL, NULL),
-(10, 9, NULL, 150000, 240000, 0, 390000, 78000, 'Đã hủy', 4, 1, 'Tôi không còn nhu cầu đặt sân nữa', 4, '2024-03-25', '2024-03-27', NULL),
-(11, 201, 3, 690000, 250000, 141000, 799000, 159800, 'Chờ nhận sân', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
-(12, 202, 2, 0, 250000, 25000, 225000, 45000, 'Chờ thanh toán', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
-(13, 211, 2, 0, 250000, 25000, 225000, 45000, 'Chờ thanh toán', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
-(14, 216, NULL, 200000, 250000, 0, 450000, 90000, 'Chờ nhận sân', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
-(15, 11, 2, 350000, 360000, 71000, 639000, 127800, 'Hoàn thành', 6, 1, NULL, NULL, '2024-03-30', NULL, NULL),
-(16, 91, NULL, 160000, 320000, 0, 480000, 96000, 'Chờ hoàn tiền', 6, 1, 'Sân này đang được bảo trì, sữa chữa', 1, '2024-03-10', '2024-03-13', NULL),
-(17, 73, 2, 150000, 900000, 105000, 1045000, 209000, 'Hoàn thành', 7, 1, NULL, NULL, '2024-03-30', NULL, NULL),
-(18, 40, 2, 400000, 440000, 84000, 756000, 151200, 'Chờ thanh toán', 7, 1, NULL, NULL, '2024-04-02', NULL, NULL),
-(19, 49, 2, 0, 320000, 32000, 288000, 57600, 'Hoàn thành', 7, 1, NULL, NULL, '2024-03-25', NULL, NULL),
-(20, 55, NULL, 0, 225000, 0, 225000, 45000, 'Đã hủy', 7, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-30', '2024-03-31', NULL),
-(21, 64, 2, 150000, 300000, 45000, 405000, 81000, 'Hoàn thành', 7, 1, NULL, NULL, '2024-04-01', NULL, NULL),
-(22, 111, NULL, 100000, 360000, 0, 460000, 92000, 'Hoàn thành', 8, 1, NULL, NULL, '2024-03-03', NULL, NULL),
-(23, 112, 2, 150000, 400000, 55000, 495000, 99000, 'Đã huỷ', 8, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-10', '2024-03-13', NULL),
-(24, 85, NULL, 400000, 600000, 0, 1000000, 200000, 'Hoàn thành', 8, 1, NULL, NULL, '2024-04-01', NULL, NULL),
-(25, 29, NULL, 100000, 225000, 0, 325000, 65000, 'Đã hủy', 8, 1, 'Tôi muốn thay đổi lịch sân', 7, '2024-03-17', '2024-03-18', NULL),
-(26, 160, 2, 150000, 150000, 30000, 270000, 54000, 'Hoàn thành', 9, 1, NULL, NULL, '2024-03-30', NULL, NULL),
-(27, 117, NULL, 0, 400000, 0, 400000, 80000, 'Đã hủy', 9, 1, 'Tôi muốn thay đổi lịch sân', 8, '2024-03-12', '2024-03-13', NULL),
-(28, 196, NULL, 0, 120000, 0, 120000, 24000, 'Chờ nhận sân', 9, 1, NULL, NULL, '2024-04-12', NULL, NULL);
+(1, 147, 2, 350000, 420000, 77000, 693000, 138600, 'Chuyển khoản ngân hàng', 'Hoàn thành', 2, 1, NULL, NULL, '2024-03-20', NULL, NULL),
+(2, 144, NULL, 100000, 150000, 0, 250000, 50000, 'Ví điện tử momo', 'Chờ thanh toán', 2, 1, NULL, NULL, '2024-04-03', NULL, NULL),
+(3, 139, NULL, 0, 360000, 0, 360000, 72000, 'Chuyển khoản ngân hàng', 'Chờ hoàn tiền', 2, 1, 'Sân này đang được bảo trì, sữa chữa', 1, '2024-03-30', '2024-03-31', NULL),
+(4, 5, 2, 0, 200000, 20000, 180000, 36000, 'Chuyển khoản ngân hàng', 'Đã hủy', 2, 1, 'Tôi không còn nhu cầu đặt sân nữa', 2, '2024-03-14', '2024-03-16', NULL),
+(5, 22, 3, 150000, 240000, 58500, 331500, 66300, 'Ví điện tử momo', 'Đã hủy', 2, 1, 'Khách hàng không đến nhận sân', 1, '2024-03-31', '2024-04-04', NULL),
+(6, 166, NULL, 0, 300000, 0, 300000, 60000, 'Ví điện tử momo', 'Hoàn thành', 3, 1, NULL, NULL, '2024-03-25', NULL, NULL),
+(7, 124, 2, 0, 150000, 15000, 135000, 27000, 'Ví điện tử momo', 'Hoàn thành', 3, 1, NULL, NULL, '2024-04-01', NULL, NULL),
+(8, 185, 2, 160000, 150000, 15000, 295000, 59000, 'Chuyển khoản ngân hàng', 'Chờ thanh toán', 3, 1, NULL, NULL, '2024-04-15', NULL, NULL),
+(9, 3, 2, 0, 400000, 40000, 360000, 72000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 4, 1, NULL, NULL, '2024-03-17', NULL, NULL),
+(10, 9, NULL, 150000, 240000, 0, 390000, 78000, 'Ví điện tử momo', 'Đã hủy', 4, 1, 'Tôi không còn nhu cầu đặt sân nữa', 4, '2024-03-25', '2024-03-27', NULL),
+(11, 201, 3, 690000, 250000, 141000, 799000, 159800, 'Ví điện tử momo', 'Chờ nhận sân', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
+(12, 202, 2, 0, 250000, 25000, 225000, 45000, 'Ví điện tử momo', 'Chờ thanh toán', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
+(13, 211, 2, 0, 250000, 25000, 225000, 45000, 'Chuyển khoản ngân hàng', 'Chờ thanh toán', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
+(14, 216, NULL, 200000, 250000, 0, 450000, 90000, 'Ví điện tử momo', 'Chờ nhận sân', 5, 1, NULL, NULL, '2024-08-04', NULL, NULL),
+(15, 11, 2, 350000, 360000, 71000, 639000, 127800, 'Chuyển khoản ngân hàng', 'Hoàn thành', 6, 1, NULL, NULL, '2024-03-30', NULL, NULL),
+(16, 91, NULL, 160000, 320000, 0, 480000, 96000, 'Chuyển khoản ngân hàng', 'Chờ hoàn tiền', 6, 1, 'Sân này đang được bảo trì, sữa chữa', 1, '2024-03-10', '2024-03-13', NULL),
+(17, 73, 2, 150000, 900000, 105000, 1045000, 209000, 'Ví điện tử momo', 'Hoàn thành', 7, 1, NULL, NULL, '2024-03-30', NULL, NULL),
+(18, 40, 2, 400000, 440000, 84000, 756000, 151200, 'Ví điện tử momo', 'Chờ thanh toán', 7, 1, NULL, NULL, '2024-04-02', NULL, NULL),
+(19, 49, 2, 0, 320000, 32000, 288000, 57600, 'Ví điện tử momo', 'Hoàn thành', 7, 1, NULL, NULL, '2024-03-25', NULL, NULL),
+(20, 55, NULL, 0, 225000, 0, 225000, 45000, 'Ví điện tử momo', 'Đã hủy', 7, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-30', '2024-03-31', NULL),
+(21, 64, 2, 150000, 300000, 45000, 405000, 81000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 7, 1, NULL, NULL, '2024-04-01', NULL, NULL),
+(22, 111, NULL, 100000, 360000, 0, 460000, 92000, 'Ví điện tử momo', 'Hoàn thành', 8, 1, NULL, NULL, '2024-03-03', NULL, NULL),
+(23, 112, 2, 150000, 400000, 55000, 495000, 99000, 'Ví điện tử momo', 'Đã huỷ', 8, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-10', '2024-03-13', NULL),
+(24, 85, NULL, 400000, 600000, 0, 1000000, 200000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 8, 1, NULL, NULL, '2024-04-01', NULL, NULL),
+(25, 29, NULL, 100000, 225000, 0, 325000, 65000, 'Ví điện tử momo', 'Đã hủy', 8, 1, 'Tôi muốn thay đổi lịch sân', 7, '2024-03-17', '2024-03-18', NULL),
+(26, 160, 2, 150000, 150000, 30000, 270000, 54000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 9, 1, NULL, NULL, '2024-03-30', NULL, NULL),
+(27, 117, NULL, 0, 400000, 0, 400000, 80000, 'Ví điện tử momo', 'Đã hủy', 9, 1, 'Tôi muốn thay đổi lịch sân', 8, '2024-03-12', '2024-03-13', NULL),
+(28, 196, NULL, 0, 120000, 0, 120000, 24000, 'Chuyển khoản ngân hàng', 'Chờ nhận sân', 9, 1, NULL, NULL, '2024-04-12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -940,11 +941,11 @@ CREATE TABLE `court_type` (
 --
 
 INSERT INTO `court_type` (`court_type_id`, `court_type_name`, `court_type_icon`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1', '2024-02-18', NULL, 1),
-(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2', '2024-02-18', NULL, 1),
-(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3', '2024-02-18', NULL, 1),
-(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4', '2024-02-18', NULL, 1),
-(5, 'Tennis', '../upload/sport-court-types-management/court-type-5', '2024-02-18', NULL, 1);
+(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.jpg', '2024-02-18', NULL, 1),
+(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.jpg', '2024-02-18', NULL, 1),
+(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.jpg', '2024-02-18', NULL, 1),
+(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4.jpg', '2024-02-18', NULL, 1),
+(5, 'Tennis', '../upload/sport-court-types-management/court-type-5.jpg', '2024-02-18', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1179,12 +1180,12 @@ CREATE TABLE `sport_hub_event` (
 --
 
 INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `event_end_date`, `event_description`, `event_image`, `event_preferential_rate`, `event_preferential_item`, `event_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
+(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1.jpg', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2.jpg', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3.jpg', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4.jpg', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.jpg', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.jpg', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
 
 --
 -- Indexes for dumped tables

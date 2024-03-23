@@ -4,7 +4,9 @@ const search = document.querySelector(".search input"),
   table_rows = document.querySelectorAll("tbody tr"),
   cb_have_not_booked = document.getElementById("cb-have-not-booked"),
   cb_have_booked = document.getElementById("cb-have-booked"),
-  cb_expired = document.getElementById("cb-expired");
+  cb_expired = document.getElementById("cb-expired"),
+  start_date_input = document.getElementById("start-date"),
+  end_date_input = document.getElementById("end-date");
 
 // 1.1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
@@ -24,8 +26,17 @@ function searchTable() {
 
 //1.2. Lọc dữ liệu trong bảng HTML
 function filterTable() {
+  const start_date = start_date_input.value.replace(/-/g, ""),
+    end_date = end_date_input.value.replace(/-/g, "");
+
   table_rows.forEach((row, i) => {
     var court_schedule_states = [];
+
+    // const date = row[i][2].textContent.replace(/-/g, "");
+
+    const date_cell = row.querySelectorAll("td")[2]; // Chọn ô thứ 3 (chỉ mục 2 trong mảng) chứa ngày
+
+    const date = date_cell.textContent.replace(/-/g, ""); // Lấy ngày và loại bỏ dấu '-'
 
     if (cb_have_not_booked.checked) {
       court_schedule_states.push(cb_have_not_booked.value);
@@ -41,28 +52,55 @@ function filterTable() {
 
     let table_data = row.textContent.toLowerCase();
 
-    var $court_schedule_states_length = court_schedule_states.length;
+    var court_schedule_states_length = court_schedule_states.length;
 
-    if ($court_schedule_states_length == 0) {
-      row.classList.toggle("hide", false);
-    } else if ($court_schedule_states_length == 1) {
-      row.classList.toggle(
-        "hide",
-        table_data.indexOf(court_schedule_states[0]) < 0
-      );
-    } else if ($court_schedule_states_length == 2) {
-      row.classList.toggle(
-        "hide",
-        table_data.indexOf(court_schedule_states[0]) < 0 &&
-          table_data.indexOf(court_schedule_states[1]) < 0
-      );
-    } else if ($court_schedule_states_length == 3) {
-      row.classList.toggle(
-        "hide",
-        table_data.indexOf(court_schedule_states[0]) < 0 &&
-          table_data.indexOf(court_schedule_states[1]) < 0 &&
-          table_data.indexOf(court_schedule_states[2]) < 0
-      );
+    if (start_date == "" || end_date == "") {
+      if (court_schedule_states_length == 0) {
+        row.classList.toggle("hide", false);
+      } else if (court_schedule_states_length == 1) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0
+        );
+      } else if (court_schedule_states_length == 2) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0 &&
+            table_data.indexOf(court_schedule_states[1]) < 0
+        );
+      } else if (court_schedule_states_length == 3) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0 &&
+            table_data.indexOf(court_schedule_states[1]) < 0 &&
+            table_data.indexOf(court_schedule_states[2]) < 0
+        );
+      }
+    } else {
+      if (court_schedule_states_length == 0) {
+        row.classList.toggle("hide", date < start_date || date > end_date);
+      } else if (court_schedule_states_length == 1) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0 &&
+            (date < start_date || date > end_date)
+        );
+      } else if (court_schedule_states_length == 2) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0 &&
+            table_data.indexOf(court_schedule_states[1]) < 0 &&
+            (date < start_date || date > end_date)
+        );
+      } else if (court_schedule_states_length == 3) {
+        row.classList.toggle(
+          "hide",
+          table_data.indexOf(court_schedule_states[0]) < 0 &&
+            table_data.indexOf(court_schedule_states[1]) < 0 &&
+            table_data.indexOf(court_schedule_states[2]) < 0 &&
+            (date < start_date || date > end_date)
+        );
+      }
     }
 
     row.style.setProperty("--delay", i / 25 + "s");
@@ -137,6 +175,9 @@ reset.addEventListener("click", function () {
   cb_have_not_booked.checked = false;
   cb_have_booked.checked = false;
   cb_expired.checked = false;
+
+  start_date_input.value = "";
+  end_date_input.value = "";
 
   table_rows.forEach((row, i) => {
     row.classList.toggle("hide", false);

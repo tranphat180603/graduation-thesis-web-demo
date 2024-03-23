@@ -236,7 +236,7 @@ p {
   display: flex;
   align-items: center;
   align-content: center;
-  gap: 20px 52px;
+  gap: 20px 70px;
   align-self: stretch;
   flex-wrap: wrap;
   position: relative;
@@ -249,8 +249,21 @@ p {
   font-weight: 300;
   line-height: 16px;
   position: absolute;
-  left: 128px;
-  bottom: 3px;
+  left: 185px;
+  bottom: 15px;
+}
+
+.filter-schedule-date input[type="date"] {
+  font-family: "Be Vietnam Pro";
+  border: none;
+  outline: none;
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  gap: 28px;
+  border-radius: 4px;
+  border: 0.5px solid #f0f0f0;
+  background: #fafafa;
 }
 
 #filter-schedule-date-options .date {
@@ -777,7 +790,7 @@ input[type="checkbox"]:hover {
   }
 }
 
-/*----------------------------------- FORM VIEW -----------------------------------*/
+/*----------------------------------- ĐỊNH DANG FORM -----------------------------------*/
 body {
   position: relative;
 }
@@ -882,37 +895,6 @@ body {
   align-self: stretch;
 }
 
-/* #demo {
-  display: flex;
-  color: #c0c0c0;
-  min-width: 150px;
-  padding: 5px 12px;
-  align-items: center;
-  gap: 8px;
-  flex: 1 0 0;
-
-  align-self: stretch;
-  border-radius: 4px;
-  outline: 0.75px solid #c0c0c0;
-  outline: auto;
-  padding-right: 16px;
-
-  font-size: 14px;
-  font-style: normal;
-  font-family: "Be Vietnam Pro";
-  font-weight: 400;
-  line-height: 22px;
-  border-radius: 4px;
-  background: #fff;
-  border: none;
-
-  resize: none;
-  overflow-y: hidden;
-  white-space: normal;
-  overflow-wrap: break-word;
-  height: auto;
-} */
-
 .form-row .input {
   display: flex;
   color: #c0c0c0;
@@ -961,24 +943,11 @@ body {
   line-height: 22px;
 }
 
-.form-row input[type="date"] {
-  -webkit-appearance: none; /* Removes default chrome and safari styling */
-  -moz-appearance: none; /* Removes default style Firefox */
-  appearance: none; /* Removes default styling */
-  background: url("../image/sport-court-schedules-management-img/calendar.svg")
-    no-repeat right 10px center / 16px 16px;
-  padding-right: 30px; /* Make room for the icon */
-  padding-left: 10px; /* Optional: for some space on the left side */
-}
-
 #form-view .form-row .input {
   pointer-events: none;
 }
 
-#court_id,
-#court_schedule_start_time,
-#court_schedule_end_time,
-#court_schedule_state {
+.form-row select {
   display: flex;
   flex: 1 0 0;
   font-size: 14px;
@@ -987,7 +956,7 @@ body {
   line-height: 22px;
   align-self: stretch;
   border-radius: 4px;
-  background: #fff;
+  background-color: #fff;
   border: none;
   outline: none;
   overflow-y: scroll;
@@ -1000,28 +969,19 @@ body {
   line-height: 22px;
 }
 
+.form-row select option {
+  background-color: #edf5fc;
+}
+
 .form-row input[type="date"] {
-  display: flex;
-  color: #c0c0c0;
-  min-width: 150px;
-  padding: 5px 12px;
-  align-items: center;
-  gap: 8px;
-  flex: 1 0 0;
-
-  align-self: stretch;
-  justify-content: space-between;
-  border-radius: 4px;
-  border: 0.75px solid #c0c0c0;
-  outline: auto;
-  background: #fff;
-  padding-right: 16px;
-
+  width: 100%;
   font-family: "Be Vietnam Pro";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+  border: none;
+  outline: none;
 }
 
 /* FORM FOOTER */

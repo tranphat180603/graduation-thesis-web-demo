@@ -243,7 +243,9 @@
           <p class="form-body-title">Thời gian</p>
           <div class="form-row">
             <p>Ngày nhận sân :</p>
+            <div class="input">
               <input type='date' name='court_schedule_date' placeholder='Chọn ngày nhận sân' required>
+            </div>
           </div>
           <div class="form-row">
             <p>Giờ bắt đầu :</p>
@@ -347,7 +349,7 @@
           <div class="form-row">
             <p>Tên sân :</p>
             <div class="input">
-              <select id='court_id' name='court_id'>
+              <select name='court_id'>
                 <option value='0'>Chọn tên sân</option>
                 <?php
                   $courts = $court_controller->view_all_court();
@@ -369,14 +371,16 @@
           <p class="form-body-title">Thời gian</p>
           <div class="form-row">
             <p>Ngày nhận sân :</p>
-            <?php
-              echo "<input type='date' name='court_schedule_date' placeholder='Chọn ngày nhận sân' required value='".$specific_court_schedule[1]."'>";
-            ?>
+            <div class="input">
+              <?php
+                echo "<input type='date' name='court_schedule_date' placeholder='Chọn ngày nhận sân' required value='".$specific_court_schedule[1]."'>";
+              ?>
+            </div>
           </div>
           <div class="form-row">
             <p>Giờ bắt đầu :</p>
             <div class="input">
-              <select id='court_schedule_start_time' name='court_schedule_start_time'>
+              <select name='court_schedule_start_time'>
                 <option value='0'>Chọn giờ bắt đầu</option>
                 <?php
                   for($hour = 0; $hour <= 24; $hour++) {
@@ -398,7 +402,7 @@
           <div class="form-row">
             <p>Giờ kết thúc :</p>
             <div class="input">
-              <select id='court_schedule_end_time' name='court_schedule_end_time'>
+              <select name='court_schedule_end_time'>
                 <option value='0'>Chọn giờ kết thúc</option>
                 <?php
                   for($hour = 0; $hour <= 24; $hour++) {
@@ -430,7 +434,7 @@
           <div class="form-row">
             <p>Trạng thái :</p>
             <div class="input">
-              <select id='court_schedule_state' name='court_schedule_state'>
+              <select name='court_schedule_state'>
                 <option value='Chọn trạng thái'>Chọn trạng thái</option>
                 <option value='Chưa đặt' <?php if($specific_court_schedule[5] == "Chưa đặt") { echo "selected"; } ?>>Chưa đặt</option>
                 <option value='Đã đặt' <?php if($specific_court_schedule[5] == "Đã đặt") { echo "selected"; } ?>>Đã đặt</option>
@@ -510,9 +514,11 @@
           <p class="form-body-title">Thời gian</p>
           <div class="form-row">
             <p>Ngày nhận sân :</p>
-            <?php
-              echo "<input type='date' name='court_schedule_date'  style='pointer-events: none;' placeholder='Chọn ngày nhận sân' required value='".$specific_court_schedule[1]."'>";
-            ?>
+            <div class="input">
+              <?php
+                echo "<input type='date' name='court_schedule_date'  style='pointer-events: none;' placeholder='Chọn ngày nhận sân' required value='".$specific_court_schedule[1]."'>";
+              ?>
+            </div>
           </div>
           <div class="form-row">
             <p>Giờ bắt đầu :</p>
@@ -615,7 +621,14 @@
           </script>
         "; 
 
-        if($_option == "view_court_schedule_detail") {
+        if($_option == "view_insert_court_schedule") { //Không hiển thị được form insert này
+          echo "
+            <script>
+              var formInsert = document.getElementById('form-insert');
+              formInsert.style.display = 'flex';
+            </script>
+          "; 
+        } else if($_option == "view_court_schedule_detail") {
           echo "
             <script>
               var formView = document.getElementById('form-view');
@@ -645,13 +658,6 @@
               ";       
             }
           }
-        } else if($_option == "view_insert_court_schedule") {
-          echo "
-            <script>
-              var formInsert = document.getElementById('form-insert');
-              formInsert.style.display = 'flex';
-            </script>
-          ";       
         } else if($_option == "confirm_delete_court_schedule") {
           if(isset($_GET['court_schedule_state'])) {
             $court_schedule_state = $_GET['court_schedule_state'];
@@ -678,7 +684,7 @@
                 </script>
               ";
             }
-          }
+          } 
         } else if($_option == "court_schedule_exit") {
           echo "
             <script>
@@ -696,8 +702,11 @@
             </script>
           "; 
         }
-      } 
+      }
+    ?>
 
+    <?php
+      //Không chạy được đoạn code sau
       if(isset($_GET['notification'])) {
         $_notification = $_GET['notification'];
 

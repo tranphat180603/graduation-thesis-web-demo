@@ -1,13 +1,70 @@
 const search = document.querySelector(".search input"),
-  table_rows = document.querySelectorAll("tbody tr");
+  filter = document.getElementById("btn-filter-confirm"),
+  reset = document.getElementById("btn-filter-reset"),
+  table_rows = document.querySelectorAll("tbody tr"),
+  cb_have_not_booked = document.getElementById("cb-have-not-booked"),
+  cb_have_booked = document.getElementById("cb-have-booked"),
+  cb_expired = document.getElementById("cb-expired");
 
-// 1. Tìm kiếm dữ liệu trong bảng HTML
+// 1.1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
   table_rows.forEach((row, i) => {
     let table_data = row.textContent.toLowerCase(),
       search_data = search.value.toLowerCase();
 
     row.classList.toggle("hide", table_data.indexOf(search_data) < 0);
+    row.style.setProperty("--delay", i / 25 + "s");
+  });
+
+  document.querySelectorAll("tbody tr:not(.hide)").forEach((visible_row, i) => {
+    visible_row.style.backgroundColor =
+      i % 2 == 0 ? "transparent" : "#0000000b";
+  });
+}
+
+//1.2. Lọc dữ liệu trong bảng HTML
+function filterTable() {
+  table_rows.forEach((row, i) => {
+    var court_schedule_states = [];
+
+    if (cb_have_not_booked.checked) {
+      court_schedule_states.push(cb_have_not_booked.value);
+    }
+
+    if (cb_have_booked.checked) {
+      court_schedule_states.push(cb_have_booked.value);
+    }
+
+    if (cb_expired.checked) {
+      court_schedule_states.push(cb_expired.value);
+    }
+
+    let table_data = row.textContent.toLowerCase();
+
+    var $court_schedule_states_length = court_schedule_states.length;
+
+    if ($court_schedule_states_length == 0) {
+      row.classList.toggle("hide", false);
+    } else if ($court_schedule_states_length == 1) {
+      row.classList.toggle(
+        "hide",
+        table_data.indexOf(court_schedule_states[0]) < 0
+      );
+    } else if ($court_schedule_states_length == 2) {
+      row.classList.toggle(
+        "hide",
+        table_data.indexOf(court_schedule_states[0]) < 0 &&
+          table_data.indexOf(court_schedule_states[1]) < 0
+      );
+    } else if ($court_schedule_states_length == 3) {
+      row.classList.toggle(
+        "hide",
+        table_data.indexOf(court_schedule_states[0]) < 0 &&
+          table_data.indexOf(court_schedule_states[1]) < 0 &&
+          table_data.indexOf(court_schedule_states[2]) < 0
+      );
+    }
+
     row.style.setProperty("--delay", i / 25 + "s");
   });
 
@@ -63,13 +120,36 @@ function changeNavNumber() {
   }
 }
 
-//3. Hàm tìm kiếm và thay đổi tổng số lịch sân
-function searchAndChangeNavNumber() {
+//3.1. Hàm tìm kiếm và thay đổi tổng số lịch sân
+search.addEventListener("input", function () {
   searchTable();
   setTimeout(changeNavNumber, 500);
-}
+});
 
-search.addEventListener("input", searchAndChangeNavNumber);
+//3.2. Hàm lọc và thay đổi tổng số lịch sân
+filter.addEventListener("click", function () {
+  filterTable();
+  setTimeout(changeNavNumber, 500);
+});
+
+//3.3. Hàm xử lý sự kiện cho nút đặt lại trong filter
+reset.addEventListener("click", function () {
+  cb_have_not_booked.checked = false;
+  cb_have_booked.checked = false;
+  cb_expired.checked = false;
+
+  table_rows.forEach((row, i) => {
+    row.classList.toggle("hide", false);
+    row.style.setProperty("--delay", i / 25 + "s");
+  });
+
+  document.querySelectorAll("tbody tr:not(.hide)").forEach((visible_row, i) => {
+    visible_row.style.backgroundColor =
+      i % 2 == 0 ? "transparent" : "#0000000b";
+  });
+
+  setTimeout(changeNavNumber, 500);
+});
 
 // 4. Sắp xếp dữ liệu của bảng HTML
 const table_headings = document.querySelectorAll(

@@ -53,15 +53,15 @@
                   <p>Trạng thái lịch sân</p>
                   <div id="filter-schedule-state-options">
                     <div id="have-not-booked">
-                      <input type="checkbox" name="cb-have-not-booked" id="cb-have-not-booked">
+                      <input type="checkbox" name="cb-have-not-booked" id="cb-have-not-booked" value="chưa đặt">
                       <p id="p-have-not-booked">Chưa đặt</p>
                     </div>
                     <div id="have-booked">
-                      <input type="checkbox" name="cb-have-booked" id="cb-have-booked">
+                      <input type="checkbox" name="cb-have-booked" id="cb-have-booked" value="đã đặt">
                       <p id="p-have-booked">Đã đặt</p>
                     </div>
                     <div id="expired">
-                      <input type="checkbox" name="cb-expired" id="cb-expired">
+                      <input type="checkbox" name="cb-expired" id="cb-expired" value="hết hạn">
                       <p id="p-expired">Hết hạn</p>
                     </div>
                   </div>
@@ -83,10 +83,10 @@
                 </div>
                 <hr>
                 <div class="filter-action">
-                  <a id="btn-filter-reset" href="?filter-action=reset">Đặt lại</a>
+                  <a id="btn-filter-reset" href="#">Đặt lại</a>
                   <div class="right-part">
-                    <a id="btn-filter-cancel" href="?filter-action=cancel">Hủy</a>
-                    <a id="btn-filter-confirm" href="?filter-action=confirm">Xác nhận</a>
+                    <a id="btn-filter-cancel" href="./sport-court-schedules-management.php?court_type_id=0">Hủy</a>
+                    <a id="btn-filter-confirm" href="#">Xác nhận</a>
                   </div>
                 </div>
               </div>

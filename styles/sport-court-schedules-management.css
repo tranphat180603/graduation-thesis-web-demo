@@ -113,12 +113,6 @@ p {
   line-height: 28px;
 }
 
-/* .schedule-top img:hover {
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: #dee4e2;
-} */
-
 .schedule-top a {
   height: 28px;
 }
@@ -592,6 +586,7 @@ p {
   padding-right: 8px;
   padding-bottom: 8px;
   overflow: scroll;
+  min-height: 450px;
 }
 
 table {
@@ -781,12 +776,7 @@ input[type="checkbox"]:hover {
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
   .footer {
-    display: flex;
     padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #888;
-    background: #fafbfc;
   }
 }
 
@@ -961,12 +951,7 @@ body {
   outline: none;
   overflow-y: scroll;
   max-height: 30px;
-
   font-family: "Be Vietnam Pro";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
 }
 
 .form-row select option {
@@ -1065,4 +1050,74 @@ body {
 .button-group input[type="submit"]:hover {
   cursor: pointer;
   background-color: rgb(67, 162, 251);
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 700px */
+@media screen and (max-width: 900px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 597px;
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 650px */
+@media screen and (max-width: 650px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 450px;
+    top: 30px;
+    right: calc(100% / 2 - 225px);
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 500px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 380px;
+    top: 30px;
+    right: calc(100% / 2 - 190px);
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
+@media screen and (max-width: 400px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 320px;
+    top: 30px;
+    right: calc(100% / 2 - 160px);
+  }
+
+  .form-header p {
+    font-size: 16px;
+  }
+
+  .form-body .form-body-title {
+    font-size: 14px;
+  }
+
+  .form-row p {
+    font-size: 12px;
+  }
+
+  .form-row .input input[type="text"] {
+    font-size: 12px;
+  }
+
+  .form-row .input input[type="text"]::placeholder {
+    font-size: 12px;
+  }
+
+  .form-row select {
+    font-size: 12px;
+  }
+
+  .form-row input[type="date"] {
+    font-size: 12px;
+  }
 }

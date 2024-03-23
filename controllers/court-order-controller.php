@@ -8,9 +8,9 @@
             $this->court_order = new court_order();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court_order để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm hiển thị tổng số lượng đơn đặt sân theo trạng thái của đơn đặt sân
+        public function view_court_order_by_court_order_state($order_state) {
+            return $result = $this->court_order->view_court_order_by_court_order_state($order_state);
         }
     }
 ?>

@@ -71,5 +71,22 @@
             $this->canceled_on_date = $canceled_on_date;
             $this->refunded_on_date = $refunded_on_date;
         }
+
+        //1. Hàm hiển thị tổng số lượng đơn đặt sân theo trạng thái đơn đặt sân
+        public function view_court_order_by_court_order_state($order_state) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng đơn đặt sân từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_order WHERE order_state = '".$order_state."'"); 
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
     }
 ?>

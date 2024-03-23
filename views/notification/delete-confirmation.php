@@ -119,4 +119,31 @@
         #del-con-act-yes:hover {
           background: #ab0505;
         }
+
+        /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
+        @media screen and (max-width: 600px) {
+          .delete-confirm-container {
+            width: 300px;
+            top: 100px;
+            right: calc(100% / 2 - 180px);
+          }
+        }
+
+        /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+        @media screen and (max-width: 500px) {
+          .delete-confirm-container {
+            width: 270px;
+            top: 50px;
+            right: calc(100% / 2 - 170px);
+          }
+        }
+
+        /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
+        @media screen and (max-width: 400px) {
+          .delete-confirm-container {
+            width: 240px;
+            top: 50px;
+            right: calc(100% / 2 - 155px);
+          }
+        }
       </style>

@@ -121,4 +121,31 @@
       #court-schedule-button:hover {
         background: #1d476f;
       }
+
+      /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
+      @media screen and (max-width: 600px) {
+        .action-successful {
+          width: 320px;
+          top: 100px;
+          right: calc(100% / 2 - 190px);
+        }
+      }
+
+      /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+      @media screen and (max-width: 500px) {
+        .action-successful {
+          width: 290px;
+          top: 50px;
+          right: calc(100% / 2 - 180px);
+        }
+      }
+
+      /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
+      @media screen and (max-width: 400px) {
+        .action-successful {
+          width: 260px;
+          top: 50px;
+          right: calc(100% / 2 - 165px);
+        }
+      }
     </style>

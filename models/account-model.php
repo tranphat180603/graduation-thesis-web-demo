@@ -32,7 +32,7 @@
         public function setCreatedOnDate($created_on_date) { $this->created_on_date = $created_on_date; }
         public function setCustomerId($customer_id) { $this->customer_id = $customer_id; }
 
-        public function __construct($account_id = 0, $account_type = "", $account_sign_up_name = "", $account_name = "", $account_avatar = "", $account_password = "", $created_on_date = "", $customer_id = 0) {
+        public function __construct($account_id = 0, $account_type = "", $account_sign_up_name = "", $account_name = "", $account_avatar = "", $account_password = "", $customer_account_hash_password = "", $created_on_date = "", $customer_id = 0) {
             $this->account_id = $account_id;
             $this->account_type = $account_type;
             $this->account_sign_up_name = $account_sign_up_name;

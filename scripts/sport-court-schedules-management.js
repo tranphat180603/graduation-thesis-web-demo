@@ -24,10 +24,22 @@ function searchTable() {
   });
 }
 
+//Hàm chuyển đổi ngày từ định dạng DMY sang YMD
+function formatDateToYMD(dateString) {
+  const [day, month, year] = dateString.split("/");
+  return `${year}-${month}-${day}`;
+}
+
 //1.2. Lọc dữ liệu trong bảng HTML
 function filterTable() {
-  const start_date = start_date_input.value.replace(/-/g, ""),
-    end_date = end_date_input.value.replace(/-/g, "");
+  const start_date_input_formatted = formatDateToYMD(start_date_input.value),
+    end_date_input_formatted = formatDateToYMD(end_date_input.value);
+
+  const start_date = start_date_input_formatted.replace(/-/g, ""),
+    end_date = end_date_input_formatted.replace(/-/g, "");
+
+  const start_date_object = new Date(start_date),
+    end_date_object = new Date(end_date);
 
   table_rows.forEach((row, i) => {
     var court_schedule_states = [];
@@ -37,6 +49,8 @@ function filterTable() {
     const date_cell = row.querySelectorAll("td")[2]; // Chọn ô thứ 3 (chỉ mục 2 trong mảng) chứa ngày
 
     const date = date_cell.textContent.replace(/-/g, ""); // Lấy ngày và loại bỏ dấu '-'
+
+    const date_object = new Date(date);
 
     if (cb_have_not_booked.checked) {
       court_schedule_states.push(cb_have_not_booked.value);
@@ -78,27 +92,33 @@ function filterTable() {
       }
     } else {
       if (court_schedule_states_length == 0) {
-        row.classList.toggle("hide", date < start_date || date > end_date);
+        row.classList.toggle(
+          "hide",
+          date_object < start_date_object || date_object > end_date_object
+        );
       } else if (court_schedule_states_length == 1) {
         row.classList.toggle(
           "hide",
-          table_data.indexOf(court_schedule_states[0]) < 0 &&
-            (date < start_date || date > end_date)
+          table_data.indexOf(court_schedule_states[0]) < 0 ||
+            date_object < start_date_object ||
+            date_object > end_date_object
         );
       } else if (court_schedule_states_length == 2) {
         row.classList.toggle(
           "hide",
-          table_data.indexOf(court_schedule_states[0]) < 0 &&
-            table_data.indexOf(court_schedule_states[1]) < 0 &&
-            (date < start_date || date > end_date)
+          (table_data.indexOf(court_schedule_states[0]) < 0 &&
+            table_data.indexOf(court_schedule_states[1]) < 0) ||
+            date_object < start_date_object ||
+            date_object > end_date_object
         );
       } else if (court_schedule_states_length == 3) {
         row.classList.toggle(
           "hide",
-          table_data.indexOf(court_schedule_states[0]) < 0 &&
+          (table_data.indexOf(court_schedule_states[0]) < 0 &&
             table_data.indexOf(court_schedule_states[1]) < 0 &&
-            table_data.indexOf(court_schedule_states[2]) < 0 &&
-            (date < start_date || date > end_date)
+            table_data.indexOf(court_schedule_states[2]) < 0) ||
+            date_object < start_date_object ||
+            date_object > end_date_object
         );
       }
     }

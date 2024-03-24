@@ -8,7 +8,7 @@ const search = document.querySelector(".search input"),
   start_date_input = document.getElementById("start-date"),
   end_date_input = document.getElementById("end-date");
 
-// 1.1. Tìm kiếm dữ liệu trong bảng HTML
+// 1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
   table_rows.forEach((row, i) => {
     let table_data = row.textContent.toLowerCase(),
@@ -24,13 +24,13 @@ function searchTable() {
   });
 }
 
-//Hàm chuyển đổi ngày từ định dạng DMY sang YMD
+//2. Hàm chuyển đổi ngày từ định dạng DMY sang YMD
 function formatDateToYMD(dateString) {
   const [day, month, year] = dateString.split("/");
   return `${year}-${month}-${day}`;
 }
 
-//1.2. Lọc dữ liệu trong bảng HTML
+//3. Lọc dữ liệu trong bảng HTML
 function filterTable() {
   const start_date_input_formatted = formatDateToYMD(start_date_input.value),
     end_date_input_formatted = formatDateToYMD(end_date_input.value);
@@ -132,10 +132,10 @@ function filterTable() {
   });
 }
 
-//2. Thay đổi tổng số lịch sân trên thanh điều hướng khi dữ liệu thay đổi
+//4. Thay đổi tổng số lịch sân trên thanh điều hướng khi dữ liệu thay đổi
 function changeNavNumber() {
   var search_result = document.querySelectorAll("tbody tr:not(.hide)");
-  var table_Length = search_result.length;
+  var table_length = search_result.length;
 
   // Lấy URL hiện tại
   var currentURL = new URL(window.location.href);
@@ -150,26 +150,20 @@ function changeNavNumber() {
     // Lấy giá trị của tham số "court_type_id"
     var courtType = params.get("court_type_id");
 
-    // Kiểm tra giá trị của tham số
-    if (courtType == "0") {
-      var number = document.querySelector("#li-court-type-0 span");
-      number.textContent = table_Length;
-    } else {
-      // Lấy thẻ div bọc ul có id là schedule-body-menu
-      var scheduleBodyMenu = document.getElementById("schedule-body-menu");
-      // Lấy tất cả các thẻ li trong thẻ ul
-      var liElements = scheduleBodyMenu.querySelectorAll("ul li");
-      // Đếm số lượng thẻ li
-      var liCount = liElements.length;
+    // Lấy thẻ div bọc ul có id là schedule-body-menu
+    var scheduleBodyMenu = document.getElementById("schedule-body-menu");
+    // Lấy tất cả các thẻ li trong thẻ ul
+    var liElements = scheduleBodyMenu.querySelectorAll("ul li");
+    // Đếm số lượng thẻ li
+    var liCount = liElements.length;
 
-      var navItemCount = liCount + 1;
+    var navItemCount = liCount + 1;
 
-      for (var i = 1; i <= navItemCount; i++) {
-        if (courtType == i.toString()) {
-          var number = document.querySelector("#li-court-type-" + i + " span");
-          number.textContent = table_Length;
-          break; // Thoát khỏi vòng lặp sau khi tìm thấy giá trị
-        }
+    for (var i = 0; i <= navItemCount; i++) {
+      if (courtType == i.toString()) {
+        var number = document.querySelector("#li-court-type-" + i + " span");
+        number.textContent = table_length;
+        break; // Thoát khỏi vòng lặp sau khi tìm thấy giá trị
       }
     }
   } else {
@@ -178,19 +172,19 @@ function changeNavNumber() {
   }
 }
 
-//3.1. Hàm tìm kiếm và thay đổi tổng số lịch sân
+//5. Hàm tìm kiếm và thay đổi tổng số lịch sân
 search.addEventListener("input", function () {
   searchTable();
   setTimeout(changeNavNumber, 500);
 });
 
-//3.2. Hàm lọc và thay đổi tổng số lịch sân
+//6. Hàm lọc và thay đổi tổng số lịch sân
 filter.addEventListener("click", function () {
   filterTable();
   setTimeout(changeNavNumber, 500);
 });
 
-//3.3. Hàm xử lý sự kiện cho nút đặt lại trong filter
+//7. Hàm xử lý sự kiện cho nút đặt lại trong filter
 reset.addEventListener("click", function () {
   cb_have_not_booked.checked = false;
   cb_have_booked.checked = false;
@@ -212,7 +206,7 @@ reset.addEventListener("click", function () {
   setTimeout(changeNavNumber, 500);
 });
 
-// 4. Sắp xếp dữ liệu của bảng HTML
+//8. Sắp xếp dữ liệu của bảng HTML
 const table_headings = document.querySelectorAll(
   "thead th:not(:has(input[type='checkbox']))" // Loại bỏ các thẻ <th> chứa checkbox
 );
@@ -269,7 +263,7 @@ table_headings.forEach((head, i) => {
   };
 });
 
-//5. Hàm cập nhật url khi tick vào checkbox trong bảng HTML
+//9. Hàm cập nhật url khi tick vào checkbox trong bảng HTML
 function updateUrl(checkbox) {
   var checkedIds = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -293,7 +287,7 @@ function updateUrl(checkbox) {
   );
 }
 
-//6. Hàm xử lý sự kiện click của checkbox có court_schedule_id = 0
+//10. Hàm xử lý sự kiện click của checkbox có court_schedule_id = 0
 function tickCheckbox() {
   // Lấy URL hiện tại
   var currentURL = new URL(window.location.href);
@@ -373,13 +367,13 @@ function tickCheckbox() {
   }
 }
 
-//7. Hàm xử lý sự kiện click cho tất cả checkbox trong bảng HTML
+//11. Hàm xử lý sự kiện click cho tất cả checkbox trong bảng HTML
 function updateUrlAndCBState() {
   updateUrl();
   setTimeout(tickCheckbox, 100);
 }
 
-//8. Hàm cập nhật trạng thái lịch sân tự động sau mỗi 12 tiếng
+//12. Hàm cập nhật trạng thái lịch sân tự động sau mỗi 12 tiếng
 // Hàm để gọi PHP và truyền biến vào
 function callPHPFunction(currentDate) {
   // Gọi Ajax để gọi hàm PHP và truyền biến vào

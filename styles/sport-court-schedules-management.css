@@ -580,7 +580,7 @@ p {
 .court-schedule-table {
   position: relative;
   width: 100%;
-  max-height: 450px;
+  height: 450px;
   margin: 0px;
   padding: 0px;
   padding-right: 8px;
@@ -624,7 +624,7 @@ tbody tr:hover {
 }
 
 tbody td {
-  max-width: 50px; /* Giới hạn chiều rộng tối đa của ô */
+  max-width: 200px;
   overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
   text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
   white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
@@ -808,7 +808,11 @@ body {
   top: 30px;
   right: calc(100% / 2 - 300px);
   z-index: 10;
+}
 
+#form-view,
+#form-edit,
+#form-insert {
   display: none;
 }
 

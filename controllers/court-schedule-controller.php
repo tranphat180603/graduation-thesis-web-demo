@@ -8,36 +8,41 @@
             $this->court_schedule = new court_schedule();
         }
 
-        //1. Hàm hiển thị tổng số lượng lịch sân
+        //1. Hàm hiển thị tất cả loại sân
+        public function view_all_court_schedule() {
+            return $result = $this->court_schedule->view_all_court_schedule();
+        }
+
+        //2. Hàm hiển thị tổng số lượng lịch sân
         public function view_all() {
             return $result = $this->court_schedule->view_all();
         }
 
-        //2. Hàm hiển thị tổng số lượng lịch sân theo loại sân
+        //3. Hàm hiển thị tổng số lượng lịch sân theo loại sân
         public function view_court_schedule_by_court_type($court_type_id) {
             return $result = $this->court_schedule->view_court_schedule_by_court_type($court_type_id);
         }
 
-        //3. Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
+        //4. Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
         public function view_court_schedule() {
             //Lấy dữ liệu của biến $_GET['court_type_id']
             $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
             return $result = $this->court_schedule->view_court_schedule($courtType);
         }
 
-        //4. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
+        //5. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
         public function update_court_schedule_state($currentDate) {
             return $result = $this->court_schedule->update_court_schedule_state($currentDate);
         } 
 
-        //5. Hàm lấy dữ liệu một lịch sân cụ thể
+        //6. Hàm lấy dữ liệu một lịch sân cụ thể
         public function view_specific_court_schedule() {
             $court_schedule_id = isset($_GET['court_schedule_id']) ? $_GET['court_schedule_id'] : ''; 
 
             return $result = $this->court_schedule->view_specific_court_schedule($court_schedule_id);
         }
 
-        //6. Hàm thêm lịch sân mới
+        //7. Hàm thêm lịch sân mới
         public function insert_court_schedule() {
             if(isset($_POST['court_id'], $_POST['court_schedule_date'], $_POST['court_schedule_start_time'], $_POST['court_schedule_end_time'], $_POST['court_schedule_state'])) {
                 //Lấy thông tin của các trường trong form
@@ -80,7 +85,9 @@
                 print_r($court_schedule_time_frames);
 
                 foreach ($court_schedule_time_frames as $court_schedule_time_frame) {
-                    $result = $this->court_schedule->insert_court_schedule($court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_time_frame, $court_schedule_state, $created_on_date, $court_id, $account_id);
+                    $result = $this->court_schedule->insert_court_schedule($court_schedule_date, $court_schedule_start_time, 
+                                                                            $court_schedule_end_time, $court_schedule_time_frame, 
+                                                                            $court_schedule_state, $created_on_date, $court_id, $account_id);
                     
                     // Kiểm tra kết quả insert
                     if (!$result) {
@@ -100,7 +107,7 @@
             }
         }
 
-        //7. Hàm cập nhật lịch sân 
+        //8. Hàm cập nhật lịch sân 
         public function update_court_schedule() {
             if(isset($_POST['court_schedule_id'], $_POST['court_schedule_state'])) {
                 //Lấy thông tin của các trường trong form
@@ -120,18 +127,22 @@
             }
         }
 
-        //8. Hàm xóa lịch sân 
-        public function delete_court_schedule($court_schedule_id) {
-            $result = $this->court_schedule->delete_court_schedule($court_schedule_id);
+        //9. Hàm xóa lịch sân 
+        public function delete_court_schedule() {
+            if(isset($_GET['court_schedule_id'])) {
+                $court_schedule_id = $_GET['court_schedule_id'];
+                
+                $result = $this->court_schedule->delete_court_schedule($court_schedule_id);
 
-            // Kiểm tra giá trị của biến $result
-            if ($result) {
-                // echo 'The court schedule has been deleted successfully';
-                header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_successful");    
-            } else {
-                // echo 'The court schedule has been deleted fail';
-                header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_fail");
-            }   
+                // Kiểm tra giá trị của biến $result
+                if ($result) {
+                    // echo 'The court schedule has been deleted successfully';
+                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_successful");   
+                } else {
+                    // echo 'The court schedule has been deleted fail';
+                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_fail");
+                }   
+            }
         }
     }
 
@@ -147,51 +158,101 @@
                 $court_schedule_controller->update_court_schedule();
             break;
             case "delete_court_schedule": 
-                if(isset($_GET['court_schedule_id'])) {
-                    $court_schedule_id = $_GET['court_schedule_id'];
-                    $court_schedule_controller = new Court_Schedule_Controller();
-                    $court_schedule_controller->delete_court_schedule($court_schedule_id);
-                }
+                $court_schedule_controller = new Court_Schedule_Controller();
+                $court_schedule_controller->delete_court_schedule();
             break;
         }
     }   
 
+    if(isset($_GET['notification'])) {
+        $_notification = $_GET['notification'];
+
+        echo "
+          <script>
+            var opacityFrame = document.getElementById('opacity-wrapper');
+            opacityFrame.style.opacity = '0.2';
+          </script>
+        "; 
+
+        if($_notification == "insert_successful") {
+          include "./notification/action-successful.php";
+          echo "
+            <script>
+              var message = document.getElementById('action-successful-message');
+              message.textContent ='Bạn đã thêm lịch sân thành công';
+            </script>
+          ";
+        } else if($_notification == "insert_fail") {
+          include "./notification/warning.php"; 
+          echo "
+            <script>
+              var warningQuestion = document.getElementById('warning-question');
+              warningQuestion.textContent ='Bạn đã thực hiện thac tác thêm lịch sân!';
+              
+              var warningExplanation = document.getElementById('warning-explanation');
+              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được thêm thành công';
+            </script>
+          ";
+        } else if($_notification == "update_successful") {
+          include "./notification/action-successful.php";
+          echo "
+            <script>
+              var message = document.getElementById('action-successful-message');
+              message.textContent ='Bạn đã sửa lịch sân thành công';
+            </script>
+          ";
+        } else if($_notification == "update_fail") {
+          include "./notification/warning.php";
+          echo "
+            <script>
+              var warningQuestion = document.getElementById('warning-question');
+              warningQuestion.textContent ='Bạn đã thực hiện thac tác sửa lịch sân!';
+              
+              var warningExplanation = document.getElementById('warning-explanation');
+              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được sửa thành công';
+            </script>
+          ";
+        } else if($_notification == "delete_successful") {
+          include "./notification/action-successful.php";
+          echo "
+            <script>
+              var message = document.getElementById('action-successful-message');
+              message.textContent ='Bạn đã xóa lịch sân thành công';
+            </script>
+          ";
+        } else if($_notification == "delete_fail") {
+          include "./notification/warning.php";
+          echo "
+          <script>
+              var warningQuestion = document.getElementById('warning-question');
+              warningQuestion.textContent ='Bạn đã thực hiện thac tác xóa lịch sân!';
+              
+              var warningExplanation = document.getElementById('warning-explanation');
+              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được xóa thành công';
+            </script>
+          ";
+        }
+    }
+
     //Thay đổi CSS của thẻ li đang được chọn
     if (isset($_GET['court_type_id'])) {
         $courtType = $_GET['court_type_id'];
-        if ($courtType == '0') {
-            echo "
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var liElement = document.getElementById('li-court-type-0');
-                        liElement.style.borderBottom = '2px solid #285D8F';
+      
+        echo "
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var liElement = document.getElementById('li-court-type-".$courtType."');
+                    liElement.style.borderBottom = '2px solid #285D8F';
 
-                        var aElement = document.getElementById('a-court-type-0')
-                        aElement.style.color = '#285D8F';
-                        aElement.style.fontSize = '16px';
-                        aElement.style.fontStyle = 'normal';
-                        aElement.style.fontWeight = '500';
-                        aElement.style.lineHeight = '24px';
-                    });
-                </script>
-            ";  
-        } else {
-            echo "
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var liElement = document.getElementById('li-court-type-".$courtType."');
-                        liElement.style.borderBottom = '2px solid #285D8F';
-
-                        var aElement = document.getElementById('a-court-type-".$courtType."')
-                        aElement.style.color = '#285D8F';
-                        aElement.style.fontSize = '16px';
-                        aElement.style.fontStyle = 'normal';
-                        aElement.style.fontWeight = '500';
-                        aElement.style.lineHeight = '24px';
-                    });
-                </script>
-            ";
-        }
+                    var aElement = document.getElementById('a-court-type-".$courtType."')
+                    aElement.style.color = '#285D8F';
+                    aElement.style.fontSize = '16px';
+                    aElement.style.fontStyle = 'normal';
+                    aElement.style.fontWeight = '500';
+                    aElement.style.lineHeight = '24px';
+                });
+            </script>
+        ";
     } else {
         echo "
             <script>

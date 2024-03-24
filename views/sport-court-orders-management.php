@@ -120,6 +120,15 @@
           </div>
           <div id="court-order-body-menu">
             <ul>
+              <li class='li-court-order-state' id='li-court-order-state-0'>
+                <a id='a-court-order-state-0' href='?court_order_state_id=0'>Tất cả
+                  <?php
+                    $court_order_amount = $court_order_controller->view_all_court_order();
+
+                    echo "&nbsp;(<span>".$court_order_amount[0]."</span>)";
+                  ?>
+                </a>
+              </li>
               <li class='li-court-order-state' id='li-court-order-state-1'>
                 <a id='a-court-order-state-1' href='?court_order_state_id=1'>Chờ thanh toán
                   <?php
@@ -172,31 +181,137 @@
               </li>
             </ul>
           </div>
-          <div class="court-schedule-table">
+          <div class="court-order-table">
             <table>
               <thead> 
                 <tr>
-                  <th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrlAndCBState(this)'></th>
-                  <th>Mã lịch sân<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th>Mã sân<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Mã đơn đặt sân<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th style="max-width: 200px;">Tên sân<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Loại sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th>Giờ bắt đầu<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th>Giờ kết thúc<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Khung giờ<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th>Trạng thái<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Tổng thanh toán<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Tổng tiền cọc<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Số điện thoại<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Phương thức thanh toán<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Người đặt<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Thao tác<span class='icon-arrow'>&UpArrow;</span></th>
                 </tr>
               </thead>
               <tbody>
                 <?php 
+                  $court_orders = $court_order_controller->view_court_order();
+                  $court_schedules = $court_schedule_controller->view_all_court_schedule();
+                  $courts = $court_controller->view_all_court();
+                  $court_types = $court_type_controller->view_all_court_type();
+                  $accounts = $account_controller->view_all_account();
+                  $customers = $customer_controller->view_all_customer();
+
+                  foreach ($court_orders as $court_order) {
+                    echo "<tr>";
+                    echo "<td>".$court_order->getCourtOrderId()."</td>";
+
+                    echo "<td>";
+                    foreach ($court_schedules as $court_schedule) {
+                      if ($court_schedule->getCourtScheduleId() == $court_order->getCourtScheduleId()) {
+                        foreach ($courts as $court) {
+                          if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                            echo $court->getCourtName();
+                          }
+                        }
+                      }
+                    }
+                    echo "</td>";
+
+                    echo "<td>";
+                    foreach ($court_schedules as $court_schedule) {
+                      if ($court_schedule->getCourtScheduleId() == $court_order->getCourtScheduleId()) {
+                        foreach ($courts as $court) {
+                          if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                            foreach ($court_types as $court_type) {
+                              if ($court_type->getCourtTypeId() == $court->getCourtTypeId()) {
+                                echo $court_type->getCourtTypeName();
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    echo "</td>";
+
+                    echo "<td>";
+                    foreach ($court_schedules as $court_schedule) {
+                      if ($court_schedule->getCourtScheduleId() == $court_order->getCourtScheduleId()) {
+                            echo $court_schedule->getCourtScheduleDate();
+                      }
+                    }
+                    echo "</td>";
+
+                    echo "<td>";
+                    foreach ($court_schedules as $court_schedule) {
+                      if ($court_schedule->getCourtScheduleId() == $court_order->getCourtScheduleId()) {
+                            echo $court_schedule->getCourtScheduleTimeFrame();
+                      }
+                    }
+                    echo "</td>";
+
+                    echo "<td>".number_format($court_order->getOrderTotalPayment(), 0, ',', '.')."</td>";
+                    echo "<td>".number_format($court_order->getOrderTotalDeposit(), 0, ',', '.')."</td>";
+
+                    echo "<td>";
+                    foreach ($accounts as $account) {
+                      if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
+                        foreach ($customers as $customer) {
+                          if ($customer->getCustomerId() == $account->getCustomerId()) {
+                            echo $customer->getCustomerPhoneNumber();
+                          }
+                        }
+                      }
+                    }
+                    echo "</td>";
+
+                    echo "<td>".$court_order->getPaymentMethod()."</td>";
+
+                    echo "<td class='btn-view'>
+                            <a href='?option=view_court_order_detail_state_";
+
+                    if ($court_order->getOrderState() == "Chờ thanh toán") {
+                      echo "payment'>";
+                    } else if ($court_order->getOrderState() == "Chờ nhận sân") {
+                      echo "receive'>";
+                    } else if ($court_order->getOrderState() == "Hoàn thành") {
+                      echo "complete'>";
+                    } else if ($court_order->getOrderState() == "Đã hủy") {
+                      echo "canceled'>";
+                    } else if ($court_order->getOrderState() == "Chờ hoàn tiền") {
+                      echo "refunded'>";
+                    }
+                    
+                    echo "<img src='../image/sport-court-orders-management-img/eye.svg' alt='eye icon'>
+                            <p>Xem</p>
+                        </a>
+                      </td>
+                    ";
+
+                    echo "</tr>";
+                  }
+
+
                   $court_schedules = $court_schedule_controller->view_court_schedule();
 
                   foreach($court_schedules as $court_schedule) {
                     echo "<tr>";
 
-                    echo "<td><input type='checkbox' name='court_schedule_id_".$court_schedule->getCourtScheduleId()."' id='court_schedule_id_".$court_schedule->getCourtScheduleId()."' onclick='updateUrl(this)'></td>";
                     echo "<td>".$court_schedule->getCourtScheduleId()."</td>";
-                    echo "<td>".$court_schedule->getCourtId()."</td>";
+
+                    echo "<td>";
+                    foreach($courts as $court) {
+                      if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                        echo $court->getCourtName();
+                      }
+                    }
+                    echo "</td>";                    
+
                     echo "<td>".$court_schedule->getCourtScheduleDate()."</td>";
                     echo "<td>".substr($court_schedule->getCourtScheduleStartTime(), 0, 5)."</td>";
                     echo "<td>".substr($court_schedule->getCourtScheduleEndTime(), 0, 5)."</td>";

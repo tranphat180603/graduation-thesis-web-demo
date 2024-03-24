@@ -8,9 +8,9 @@
             $this->customer = new customer();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng customer để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm hiển thị tất cả khách hàng
+        public function view_all_customer() {
+            return $result = $this->customer->view_all_customer();
         }
     }
 ?>

@@ -43,5 +43,28 @@
             $this->created_on_date = $created_on_date;
             $this->customer_id = $customer_id;
         }
+
+        //1. Hàm hiển thị tất cả tài khoản
+        public function view_all_account() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tất cả tài khoản từ database
+            $result = ExecuteDataQuery($link, "SELECT * FROM account");
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $account = new account($rows["account_id"], $rows["account_type"], $rows["account_sign_up_name"], 
+                                $rows["account_name"], $rows["account_avatar"], $rows["account_password"], 
+                                $rows["customer_account_hash_password"], $rows["created_on_date"], $rows["customer_id"]);
+                array_push($data, $account);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

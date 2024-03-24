@@ -143,14 +143,14 @@
                 <p>Xóa</p>
               </a>
               </div>
-          </div>
-          <div class="court-schedule-table">
+            </div>
+            <div class="court-schedule-table">
             <table>
               <thead> 
                 <tr>
                   <th><input type='checkbox' name='court_schedule_id_0' id='court_schedule_id_0' onclick='updateUrlAndCBState(this)'></th>
                   <th>Mã lịch sân<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th>Mã sân<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th style="max-width: 200px;">Tên sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Giờ bắt đầu<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Giờ kết thúc<span class='icon-arrow'>&UpArrow;</span></th>
@@ -162,13 +162,22 @@
               <tbody>
                 <?php 
                   $court_schedules = $court_schedule_controller->view_court_schedule();
+                  $courts = $court_controller->view_all_court();
 
                   foreach($court_schedules as $court_schedule) {
                     echo "<tr>";
 
                     echo "<td><input type='checkbox' name='court_schedule_id_".$court_schedule->getCourtScheduleId()."' id='court_schedule_id_".$court_schedule->getCourtScheduleId()."' onclick='updateUrl(this)'></td>";
                     echo "<td>".$court_schedule->getCourtScheduleId()."</td>";
-                    echo "<td>".$court_schedule->getCourtId()."</td>";
+
+                    echo "<td>";
+                    foreach($courts as $court) {
+                      if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                        echo $court->getCourtName();
+                      }
+                    }
+                    echo "</td>";
+
                     echo "<td>".$court_schedule->getCourtScheduleDate()."</td>";
                     echo "<td>".substr($court_schedule->getCourtScheduleStartTime(), 0, 5)."</td>";
                     echo "<td>".substr($court_schedule->getCourtScheduleEndTime(), 0, 5)."</td>";
@@ -185,12 +194,12 @@
                     }
 
                     echo "
-                        <td class='btn-view'>
-                            <a href='?option=view_court_schedule_detail&court_schedule_id=".$court_schedule->getCourtScheduleId()."&court_schedule_state=".$court_schedule->getCourtScheduleState()."'>
-                                <img src='../image/sport-court-schedules-management-img/eye.svg' alt='eye icon'>
-                                <p>Xem</p>
-                            </a>
-                        </td>
+                      <td class='btn-view'>
+                          <a href='?option=view_court_schedule_detail&court_schedule_id=".$court_schedule->getCourtScheduleId()."&court_schedule_state=".$court_schedule->getCourtScheduleState()."'>
+                            <img src='../image/sport-court-schedules-management-img/eye.svg' alt='eye icon'>
+                            <p>Xem</p>
+                          </a>
+                      </td>
                     ";
 
                     echo "</tr>";
@@ -701,79 +710,6 @@
               formEdit.style.display = 'none';
             </script>
           "; 
-        }
-      }
-    ?>
-
-    <?php
-      //Không chạy được đoạn code sau
-      if(isset($_GET['notification'])) {
-        $_notification = $_GET['notification'];
-
-        echo "
-          <script>
-            var opacityFrame = document.getElementById('opacity-wrapper');
-            opacityFrame.style.opacity = '0.2';
-          </script>
-        "; 
-
-        if($_notification == "insert_successful") {
-          include "./notification/action-successful.php";
-          echo "
-            <script>
-              var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã thêm lịch sân thành công';
-            </script>
-          ";
-        } else if($_notification == "insert_fail") {
-          include "./notification/warning.php"; 
-          echo "
-            <script>
-              var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác thêm lịch sân!';
-              
-              var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được thêm thành công';
-            </script>
-          ";
-        } else if($_notification == "update_successful") {
-          include "./notification/action-successful.php";
-          echo "
-            <script>
-              var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã sửa lịch sân thành công';
-            </script>
-          ";
-        } else if($_notification == "update_fail") {
-          include "./notification/warning.php";
-          echo "
-            <script>
-              var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác sửa lịch sân!';
-              
-              var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được sửa thành công';
-            </script>
-          ";
-        } else if($_notification == "delete_successful") {
-          include "./notification/action-successful.php";
-          echo "
-            <script>
-              var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã xóa lịch sân thành công';
-            </script>
-          ";
-        } else if($_notification == "delete_fail") {
-          include "./notification/warning.php";
-          echo "
-          <script>
-              var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác xóa lịch sân!';
-              
-              var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được xóa thành công';
-            </script>
-          ";
         }
       }
     ?>

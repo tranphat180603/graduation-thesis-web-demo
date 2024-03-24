@@ -35,5 +35,28 @@
             $this->customer_date_of_birth = $customer_date_of_birth;
             $this->created_on_date = $created_on_date;
         }
+
+        //1. Hàm hiển thị tất cả khách hàng
+        public function view_all_customer() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tất cả tài khoản từ database
+            $result = ExecuteDataQuery($link, "SELECT * FROM customer");
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $customer = new customer($rows["customer_id"], $rows["customer_fullname"], $rows["customer_email_address"], 
+                                $rows["customer_phone_number"], $rows["customer_gender"], $rows["customer_date_of_birth"], 
+                                $rows["created_on_date"]);
+                array_push($data, $customer);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

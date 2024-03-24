@@ -29,20 +29,20 @@ p {
 
 /* Định dạng cho thanh cuộn ngang và dọc */
 /* width */
-.court-schedule-table::-webkit-scrollbar,
+.court-order-table::-webkit-scrollbar,
 .form-body::-webkit-scrollbar {
   width: 5px;
 }
 
 /* height */
 #court-order-body-menu ul::-webkit-scrollbar,
-.court-schedule-table::-webkit-scrollbar {
+.court-order-table::-webkit-scrollbar {
   height: 5px;
 }
 
 /* Track */
 #court-order-body-menu ul::-webkit-scrollbar-track,
-.court-schedule-table::-webkit-scrollbar-track,
+.court-order-table::-webkit-scrollbar-track,
 .form-body::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
@@ -50,7 +50,7 @@ p {
 
 /* Handle */
 #court-order-body-menu ul::-webkit-scrollbar-thumb,
-.court-schedule-table::-webkit-scrollbar-thumb,
+.court-order-table::-webkit-scrollbar-thumb,
 .form-body::-webkit-scrollbar-thumb {
   background: #d4d4d4;
   border-radius: 4px;
@@ -58,7 +58,7 @@ p {
 
 /* Handle on hover */
 #court-order-body-menu ul::-webkit-scrollbar-thumb:hover,
-.court-schedule-table::-webkit-scrollbar-thumb:hover,
+.court-order-table::-webkit-scrollbar-thumb:hover,
 .form-body::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
   border-radius: 4px;
@@ -479,7 +479,6 @@ p {
 #court-order-body-menu ul {
   display: flex;
   align-items: flex-start;
-  max-width: 900px;
   overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
   margin: 0px;
   padding: 0px;
@@ -510,10 +509,10 @@ p {
 }
 
 /* -----------------------------Định dạng bảng dữ liệu---------------------------------- */
-.court-schedule-table {
+.court-order-table {
   position: relative;
   width: 100%;
-  max-height: 450px;
+  height: 450px;
   margin: 0px;
   padding: 0px;
   padding-right: 8px;
@@ -557,7 +556,7 @@ tbody tr:hover {
 }
 
 tbody td {
-  max-width: 50px; /* Giới hạn chiều rộng tối đa của ô */
+  max-width: 200px; /* Giới hạn chiều rộng tối đa của ô */
   overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
   text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
   white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */

@@ -48,7 +48,31 @@
             $this->account_id = $account_id;
         }
 
-        //1. Hàm hiển thị tổng số lượng lịch sân
+        //1. Hàm hiển thị tất cả lịch sân
+        public function view_all_court_schedule() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tất cả lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court_schedule = new court_schedule($rows["court_schedule_id"], $rows["court_schedule_date"], 
+                                        $rows["court_schedule_start_time"], $rows["court_schedule_end_time"], 
+                                        $rows["court_schedule_time_frame"], $rows["court_schedule_state"], 
+                                        $rows["created_on_date"], $rows["last_modified_date"], $rows["court_id"], $rows["account_id"]);
+                array_push($data, $court_schedule);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
+
+        //2. Hàm hiển thị tổng số lượng lịch sân
         public function view_all() {
             //Tạo kết nối đến database
             $link = "";
@@ -65,7 +89,7 @@
             return $row;
         }
 
-        //2. Hàm hiển thị tổng số lượng lịch sân theo loại sân
+        //3. Hàm hiển thị tổng số lượng lịch sân theo loại sân
         public function view_court_schedule_by_court_type($court_type_id) {
             //Tạo kết nối đến database
             $link = "";
@@ -85,7 +109,7 @@
             return $row;
         }
 
-        //3. Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
+        //4. Hàm hiển thị dữ liệu của bảng lịch sân theo thanh điều hướng
         public function view_court_schedule($courtType) {
             //Tạo kết nối đến database
             $link = "";
@@ -95,13 +119,17 @@
             if ($courtType == "0") {
                 $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
             } else {
-                $result = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court WHERE court_schedule.court_id = court.court_id AND court.court_type_id = " . $courtType);
+                $result = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court 
+                                                    WHERE court_schedule.court_id = court.court_id AND court.court_type_id = " . $courtType);
             }
 
             $data = array();
 
             while ($rows = mysqli_fetch_assoc($result)) {
-                $court_schedule = new court_schedule($rows["court_schedule_id"], $rows["court_schedule_date"], $rows["court_schedule_start_time"], $rows["court_schedule_end_time"], $rows["court_schedule_time_frame"], $rows["court_schedule_state"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_id"], $rows["account_id"]);
+                $court_schedule = new court_schedule($rows["court_schedule_id"], $rows["court_schedule_date"], 
+                                        $rows["court_schedule_start_time"], $rows["court_schedule_end_time"], 
+                                        $rows["court_schedule_time_frame"], $rows["court_schedule_state"], 
+                                        $rows["created_on_date"], $rows["last_modified_date"], $rows["court_id"], $rows["account_id"]);
                 array_push($data, $court_schedule);
             }
 
@@ -111,13 +139,14 @@
             return $data;
         }
 
-        //4. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
+        //5. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
         public function update_court_schedule_state($currentDate) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
-            $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' WHERE court_schedule_date < '$currentDate' AND court_schedule_state = 'Chưa đặt'");
+            $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' 
+                                                    WHERE court_schedule_date < '$currentDate' AND court_schedule_state = 'Chưa đặt'");
 
             //Giải phóng bộ nhớ
             ReleaseMemory($link, $result);
@@ -125,7 +154,7 @@
             return $result;
         }
 
-        //5. Hàm lấy dữ liệu một lịch sân cụ thể
+        //6. Hàm lấy dữ liệu một lịch sân cụ thể
         public function view_specific_court_schedule($court_schedule_id) {
             //Tạo kết nối đến database
             $link = "";
@@ -141,14 +170,19 @@
             return $row;
         }
 
-        //6. Hàm thêm lịch sân mới
-        public function insert_court_schedule($court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_time_frame, $court_schedule_state, $created_on_date = "", $last_modified_date = "", $court_id, $account_id = 1) {
+        //7. Hàm thêm lịch sân mới
+        public function insert_court_schedule($court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, 
+                                                $court_schedule_time_frame, $court_schedule_state, $created_on_date = "", 
+                                                $last_modified_date = "", $court_id, $account_id = 1) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "INSERT INTO court_schedule (court_schedule_date, court_schedule_start_time, court_schedule_end_time, court_schedule_time_frame, court_schedule_state, created_on_date, court_id, account_id) VALUES ('$court_schedule_date', '$court_schedule_start_time', '$court_schedule_end_time', '$court_schedule_time_frame', '$court_schedule_state', '$created_on_date', $court_id, $account_id)";
+            $sql = "INSERT INTO court_schedule (court_schedule_date, court_schedule_start_time, court_schedule_end_time, 
+                    court_schedule_time_frame, court_schedule_state, created_on_date, court_id, account_id) 
+                    VALUES ('$court_schedule_date', '$court_schedule_start_time', '$court_schedule_end_time', 
+                    '$court_schedule_time_frame', '$court_schedule_state', '$created_on_date', $court_id, $account_id)";
 
             $result = ExecuteNonDataQuery($link, $sql);
 
@@ -160,14 +194,15 @@
             return $message;
         }
 
-        //7. Hàm cập nhật lịch sân 
+        //8. Hàm cập nhật lịch sân 
         public function update_court_schedule($court_schedule_id, $court_schedule_state) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_schedule SET court_schedule_state = '$court_schedule_state' WHERE court_schedule_id = $court_schedule_id";
+            $sql = "UPDATE court_schedule SET court_schedule_state = '$court_schedule_state' 
+                    WHERE court_schedule_id = $court_schedule_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 
@@ -179,7 +214,7 @@
             return $message;
         }
 
-        //8. Hàm xóa lịch sân 
+        //9. Hàm xóa lịch sân 
         public function delete_court_schedule($court_schedule_id) {
             //Tạo kết nối đến database
             $link = "";

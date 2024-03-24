@@ -8,9 +8,9 @@
             $this->account = new account();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng account để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm hiển thị tất cả tài khoản
+        public function view_all_account() {
+            return $result = $this->account->view_all_account();
         }
     }
 ?>

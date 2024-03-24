@@ -287,7 +287,7 @@ CREATE TABLE `court` (
 -- Dumping data for table `court`
 --
 
-INSERT INTO `court` (`court_id`, `court_name`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
+INSERT INTO `court` (`court_id`, `court_name`, `court_state`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
 (1, 'Sân bóng đá số 1', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (2, 'Sân bóng đá số 2', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (3, 'Sân bóng đá số 3', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
@@ -405,7 +405,7 @@ CREATE TABLE `court_order` (
 -- Dumping data for table `court_order`
 --
 
-INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `total_service_amount`, `total_rental_amount`, `total_discount_amount`, `order_total_payment`, `order_total_deposit`, `order_state`, `customer_account_id`, `admin_account_id`, `order_cancel_reason`, `order_cancel_party_account_id`, `ordered_on_date`, `canceled_on_date`, `refunded_on_date`) VALUES
+INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `total_service_amount`, `total_rental_amount`, `total_discount_amount`, `order_total_payment`, `order_total_deposit`, `payment_method`, `order_state`, `customer_account_id`, `admin_account_id`, `order_cancel_reason`, `order_cancel_party_account_id`, `ordered_on_date`, `canceled_on_date`, `refunded_on_date`) VALUES
 (1, 147, 2, 350000, 420000, 77000, 693000, 138600, 'Chuyển khoản ngân hàng', 'Hoàn thành', 2, 1, NULL, NULL, '2024-03-20', NULL, NULL),
 (2, 144, NULL, 100000, 150000, 0, 250000, 50000, 'Ví điện tử momo', 'Chờ thanh toán', 2, 1, NULL, NULL, '2024-04-03', NULL, NULL),
 (3, 139, NULL, 0, 360000, 0, 360000, 72000, 'Chuyển khoản ngân hàng', 'Chờ hoàn tiền', 2, 1, 'Sân này đang được bảo trì, sữa chữa', 1, '2024-03-30', '2024-03-31', NULL),
@@ -942,7 +942,7 @@ CREATE TABLE `court_type` (
 -- Dumping data for table `court_type`
 --
 
-INSERT INTO `court_type` (`court_type_id`, `court_type_name`, `court_type_icon`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
+INSERT INTO `court_type` (`court_type_id`, `court_type_name`, `court_type_icon`, `court_type_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
 (1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
 (2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
 (3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
@@ -1123,35 +1123,35 @@ CREATE TABLE `service` (
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `service_price`, `service_unit`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
+INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `service_price`, `service_unit`, `service_unit`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
 (1, 'Trọng tài', 'Chúng tôi cung cấp các trọng tài chuyên nghiệp, đảm bảo tính công bằng và tuân thủ trong suốt trận đấu của bạn', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (2, 'Thủ môn', 'Một thủ môn chuyên nghiệp để bảo vệ lưới của bạn. Chúng tôi cung cấp những người chơi có kỹ năng cao giúp bạn phòng thủ tuyệt đối trong trận đấu', 200000, 'người', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (3, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
-(4, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng caođể tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
+(4, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng cao để tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (5, 'Chụp hình', 'Lưu lại những khoảnh khắc đáng nhớ trong trận đấu của bạn bằng dịch vụ chụp hình chuyên nghiệp', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (6, 'Nước suối', 'Để duy trì sự tươi mát và sức khoẻ cho các cầu thủ, chúng tôi cung cấp nước suối tinh khiết', 100000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (7, 'Bia', 'Bia cao cấp mang hương vị đặc trưng từ lúa mạch chọn lọc đánh thức sự mạnh mẽ từ bên trong', 250000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (8, 'Khăn lau', 'Khăn lau mặt đa năng với chất liệu siêu mềm mại và khả năng thấm hút tuyệt vời', 10000, 'cái', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (9, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
-(10, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng caođể tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
+(10, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng cao để tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
 (11, 'Chụp hình', 'Lưu lại những khoảnh khắc đáng nhớ trong trận đấu của bạn bằng dịch vụ chụp hình chuyên nghiệp', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
 (12, 'Nước suối', 'Để duy trì sự tươi mát và sức khoẻ cho các cầu thủ, chúng tôi cung cấp nước suối tinh khiết', 100000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
 (13, 'Bia', 'Bia cao cấp mang hương vị đặc trưng từ lúa mạch chọn lọc đánh thức sự mạnh mẽ từ bên trong', 250000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
 (14, 'Khăn lau', 'Khăn lau mặt đa năng với chất liệu siêu mềm mại và khả năng thấm hút tuyệt vời', 10000, 'cái', 'Chưa xóa', '2024-02-18', NULL, 2, 1),
 (15, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
-(16, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng caođể tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
+(16, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng cao để tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
 (17, 'Chụp hình', 'Lưu lại những khoảnh khắc đáng nhớ trong trận đấu của bạn bằng dịch vụ chụp hình chuyên nghiệp', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
 (18, 'Nước suối', 'Để duy trì sự tươi mát và sức khoẻ cho các cầu thủ, chúng tôi cung cấp nước suối tinh khiết', 100000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
 (19, 'Bia', 'Bia cao cấp mang hương vị đặc trưng từ lúa mạch chọn lọc đánh thức sự mạnh mẽ từ bên trong', 250000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
 (20, 'Khăn lau', 'Khăn lau mặt đa năng với chất liệu siêu mềm mại và khả năng thấm hút tuyệt vời', 10000, 'cái', 'Chưa xóa', '2024-02-18', NULL, 3, 1),
 (21, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
-(22, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng caođể tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
+(22, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng cao để tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
 (23, 'Chụp hình', 'Lưu lại những khoảnh khắc đáng nhớ trong trận đấu của bạn bằng dịch vụ chụp hình chuyên nghiệp', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
 (24, 'Nước suối', 'Để duy trì sự tươi mát và sức khoẻ cho các cầu thủ, chúng tôi cung cấp nước suối tinh khiết', 100000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
 (25, 'Bia', 'Bia cao cấp mang hương vị đặc trưng từ lúa mạch chọn lọc đánh thức sự mạnh mẽ từ bên trong', 250000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
 (26, 'Khăn lau', 'Khăn lau mặt đa năng với chất liệu siêu mềm mại và khả năng thấm hút tuyệt vời', 10000, 'cái', 'Chưa xóa', '2024-02-18', NULL, 4, 1),
 (27, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 5, 1),
-(28, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng caođể tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 5, 1),
+(28, 'Giày', 'Các cầu thủ cần những đôi giày thể thao có chất lượng cao để tăng hiệu suất và giành chiến thắng', 80000, 'đôi', 'Chưa xóa', '2024-02-18', NULL, 5, 1),
 (29, 'Chụp hình', 'Lưu lại những khoảnh khắc đáng nhớ trong trận đấu của bạn bằng dịch vụ chụp hình chuyên nghiệp', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 5, 1),
 (30, 'Nước suối', 'Để duy trì sự tươi mát và sức khoẻ cho các cầu thủ, chúng tôi cung cấp nước suối tinh khiết', 100000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 5, 1),
 (31, 'Bia', 'Bia cao cấp mang hương vị đặc trưng từ lúa mạch chọn lọc đánh thức sự mạnh mẽ từ bên trong', 250000, 'thùng', 'Chưa xóa', '2024-02-18', NULL, 5, 1),

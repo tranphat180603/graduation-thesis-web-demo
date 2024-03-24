@@ -1123,7 +1123,7 @@ CREATE TABLE `service` (
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `service_price`, `service_unit`, `service_unit`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
+INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `service_price`, `service_unit`, `service_state`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
 (1, 'Trọng tài', 'Chúng tôi cung cấp các trọng tài chuyên nghiệp, đảm bảo tính công bằng và tuân thủ trong suốt trận đấu của bạn', 150000, 'người', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (2, 'Thủ môn', 'Một thủ môn chuyên nghiệp để bảo vệ lưới của bạn. Chúng tôi cung cấp những người chơi có kỹ năng cao giúp bạn phòng thủ tuyệt đối trong trận đấu', 200000, 'người', 'Chưa xóa', '2024-02-18', NULL, 1, 1),
 (3, 'Đồng phục', 'Tạo sự đồng đều và sự nhận diện cho đội bóng của bạn với các bộ đồng phục đội', 100000, 'bộ', 'Chưa xóa', '2024-02-18', NULL, 1, 1),

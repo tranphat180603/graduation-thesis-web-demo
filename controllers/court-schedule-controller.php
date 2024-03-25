@@ -235,33 +235,24 @@
     }
 
     //Thay đổi CSS của thẻ li đang được chọn
-    if (isset($_GET['court_type_id'])) {
-        $courtType = $_GET['court_type_id'];
-      
-        echo "
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var liElement = document.getElementById('li-court-type-".$courtType."');
-                    liElement.style.borderBottom = '2px solid #285D8F';
+    $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
 
-                    var aElement = document.getElementById('a-court-type-".$courtType."')
-                    aElement.style.color = '#285D8F';
-                    aElement.style.fontSize = '16px';
-                    aElement.style.fontStyle = 'normal';
-                    aElement.style.fontWeight = '500';
-                    aElement.style.lineHeight = '24px';
-                });
-            </script>
-        ";
-    } else {
-        echo "
-            <script>
-                var url = new URL(window.location.href);
-                url.searchParams.set('court_type_id', '0');
-                window.location.href = url.href;
-            </script>
-        ";
-    }
+    echo "
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var liElement = document.getElementById('li-court-type-".$courtType."');
+                liElement.style.borderBottom = '2px solid #285D8F';
+
+                var aElement = document.getElementById('a-court-type-".$courtType."')
+                aElement.style.color = '#285D8F';
+                aElement.style.fontSize = '16px';
+                aElement.style.fontStyle = 'normal';
+                aElement.style.fontWeight = '500';
+                aElement.style.lineHeight = '24px';
+            });
+        </script>
+    ";
+    
 
     if (isset($_POST['currentDate'])) {
         $currentDate = $_POST['currentDate']; // Nhận giá trị từ JavaScript

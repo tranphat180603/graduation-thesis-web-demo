@@ -10,7 +10,7 @@ const search = document.querySelector(".search input"),
   start_date_input = document.getElementById("start-date"),
   end_date_input = document.getElementById("end-date");
 
-// 1.1. Tìm kiếm dữ liệu trong bảng HTML
+// 1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
   table_rows.forEach((row, i) => {
     let table_data = row.textContent.toLowerCase(),
@@ -26,13 +26,13 @@ function searchTable() {
   });
 }
 
-//Hàm chuyển đổi ngày từ định dạng DMY sang YMD
+//2. Hàm chuyển đổi ngày từ định dạng DMY sang YMD
 function formatDateToYMD(dateString) {
   const [day, month, year] = dateString.split("/");
   return `${year}-${month}-${day}`;
 }
 
-//1.2. Lọc dữ liệu trong bảng HTML
+//3. Lọc dữ liệu trong bảng HTML
 function filterTable() {
   const start_date_input_formatted = formatDateToYMD(start_date_input.value),
     end_date_input_formatted = formatDateToYMD(end_date_input.value);
@@ -177,7 +177,7 @@ function filterTable() {
   });
 }
 
-//2. Thay đổi tổng số đơn đặt sân trên thanh điều hướng khi dữ liệu thay đổi
+// 4. Thay đổi tổng số đơn đặt sân trên thanh điều hướng khi dữ liệu thay đổi
 function changeNavNumber() {
   var search_result = document.querySelectorAll("tbody tr:not(.hide)");
   var table_length = search_result.length;
@@ -196,16 +196,16 @@ function changeNavNumber() {
     var courtOrderState = params.get("court_order_state_id");
 
     // Lấy thẻ div bọc ul có id là court-order-body-menu
-    var scheduleBodyMenu = document.getElementById("court-order-body-menu");
+    var courtOrderBodyMenu = document.getElementById("court-order-body-menu");
     // Lấy tất cả các thẻ li trong thẻ ul
-    var liElements = scheduleBodyMenu.querySelectorAll("ul li");
+    var liElements = courtOrderBodyMenu.querySelectorAll("ul li");
     // Đếm số lượng thẻ li
     var liCount = liElements.length;
 
     var navItemCount = liCount + 1;
 
     for (var i = 0; i <= navItemCount; i++) {
-      if (courtType == i.toString()) {
+      if (courtOrderState == i.toString()) {
         var number = document.querySelector(
           "#li-court-order-state-" + i + " span"
         );
@@ -219,23 +219,25 @@ function changeNavNumber() {
   }
 }
 
-//3.1. Hàm tìm kiếm và thay đổi tổng số đơn đặt sân
+// 5. Hàm tìm kiếm và thay đổi tổng số đơn đặt sân
 search.addEventListener("input", function () {
   searchTable();
   setTimeout(changeNavNumber, 500);
 });
 
-//3.2. Hàm lọc và thay đổi tổng số đơn đặt sân
+// 6. Hàm lọc và thay đổi tổng số đơn đặt sân
 filter.addEventListener("click", function () {
   filterTable();
   setTimeout(changeNavNumber, 500);
 });
 
-//3.3. Hàm xử lý sự kiện cho nút đặt lại trong filter
+// 7. Hàm xử lý sự kiện cho nút đặt lại trong filter
 reset.addEventListener("click", function () {
-  cb_have_not_booked.checked = false;
-  cb_have_booked.checked = false;
-  cb_expired.checked = false;
+  cb_football.checked = false;
+  cb_volleyball.checked = false;
+  cb_basketball.checked = false;
+  cb_badminton.checked = false;
+  cb_tennis.checked = false;
 
   start_date_input.value = "";
   end_date_input.value = "";
@@ -253,7 +255,9 @@ reset.addEventListener("click", function () {
   setTimeout(changeNavNumber, 500);
 });
 
-// 4. Sắp xếp dữ liệu của bảng HTML
+// 8. Sắp xếp dữ liệu của bảng HTML
+const table_headings = document.querySelectorAll("thead th");
+
 function sortTable(column, sort_asc) {
   [...table_rows]
     .sort((a, b) => {

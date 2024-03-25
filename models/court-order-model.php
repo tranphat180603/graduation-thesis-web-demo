@@ -120,7 +120,7 @@
             if ($order_state == "Tất cả") {
                 $result = ExecuteDataQuery($link, "SELECT * FROM court_order");
             } else {
-                $result = ExecuteDataQuery($link, "SELECT court_order.* FROM court_order WHERE order_state = " . $order_state);
+                $result = ExecuteDataQuery($link, "SELECT court_order.* FROM court_order WHERE order_state = '".$order_state."'");
             }
 
             $data = array();

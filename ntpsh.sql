@@ -44,15 +44,15 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`, `customer_id`) VALUES
-(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.jpg', 'klhttNTP_151103', NULL, '2024-02-18', NULL),
-(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.jpg', 'DuyenNguyen_22122003', NULL, '2024-02-18', 1),
-(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.jpg', 'DuyenTran_06112003', NULL, '2024-02-18', 2),
-(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.jpg', 'HaoTruong_28052003', NULL, '2024-02-18', 3),
-(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.jpg', 'HoangNguyen_15112003', NULL, '2024-02-18', 4),
-(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.jpg', 'NgocPham_03102003', NULL, '2024-02-18', 5),
-(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.jpg', 'PhatTran_18062003', NULL, '2024-02-18', 6),
-(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.jpg', 'ThuyLe_02112003', NULL, '2024-02-18', 7),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.jpg', 'TienTruong_30072003', NULL, '2024-02-18', 8);
+(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18', NULL),
+(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18', 1),
+(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18', 2),
+(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18', 3),
+(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18', 4),
+(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18', 5),
+(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18', 6),
+(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18', 7),
+(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18', 8);
 
 -- --------------------------------------------------------
 
@@ -323,57 +323,57 @@ CREATE TABLE `court_image` (
 --
 
 INSERT INTO `court_image` (`court_image_id`, `court_image`, `court_id`) VALUES
-(1, '../upload/sport-courts-management/court-1-1.jpg', 1),
-(2, '../upload/sport-courts-management/court-1-2.jpg', 1),
-(3, '../upload/sport-courts-management/court-1-3.jpg', 1),
-(4, '../upload/sport-courts-management/court-2-1.jpg', 2),
-(5, '../upload/sport-courts-management/court-2-2.jpg', 2),
-(6, '../upload/sport-courts-management/court-2-3.jpg', 2),
-(7, '../upload/sport-courts-management/court-3-1.jpg', 3),
-(8, '../upload/sport-courts-management/court-3-2.jpg', 3),
-(9, '../upload/sport-courts-management/court-3-3.jpg', 3),
-(10, '../upload/sport-courts-management/court-4-1.jpg', 4),
-(11, '../upload/sport-courts-management/court-4-2.jpg', 4),
-(12, '../upload/sport-courts-management/court-4-3.jpg', 4),
-(13, '../upload/sport-courts-management/court-5-1.jpg', 5),
-(14, '../upload/sport-courts-management/court-5-2.jpg', 5),
-(15, '../upload/sport-courts-management/court-5-3.jpg', 5),
-(16, '../upload/sport-courts-management/court-6-1.jpg', 6),
-(17, '../upload/sport-courts-management/court-6-2.jpg', 6),
-(18, '../upload/sport-courts-management/court-6-3.jpg', 6),
-(19, '../upload/sport-courts-management/court-7-1.jpg', 7),
-(20, '../upload/sport-courts-management/court-7-2.jpg', 7),
-(21, '../upload/sport-courts-management/court-7-3.jpg', 7),
-(22, '../upload/sport-courts-management/court-8-1.jpg', 8),
-(23, '../upload/sport-courts-management/court-8-2.jpg', 8),
-(24, '../upload/sport-courts-management/court-8-3.jpg', 8),
-(25, '../upload/sport-courts-management/court-9-1.jpg', 9),
-(26, '../upload/sport-courts-management/court-9-2.jpg', 9),
-(27, '../upload/sport-courts-management/court-9-3.jpg', 9),
-(28, '../upload/sport-courts-management/court-10-1.jpg', 10),
-(29, '../upload/sport-courts-management/court-10-2.jpg', 10),
-(30, '../upload/sport-courts-management/court-10-3.jpg', 10),
-(31, '../upload/sport-courts-management/court-11-1.jpg', 11),
-(32, '../upload/sport-courts-management/court-11-2.jpg', 11),
-(33, '../upload/sport-courts-management/court-11-3.jpg', 11),
-(34, '../upload/sport-courts-management/court-12-1.jpg', 12),
-(35, '../upload/sport-courts-management/court-12-2.jpg', 12),
-(36, '../upload/sport-courts-management/court-12-3.jpg', 12),
-(37, '../upload/sport-courts-management/court-13-1.jpg', 13),
-(38, '../upload/sport-courts-management/court-13-2.jpg', 13),
-(39, '../upload/sport-courts-management/court-13-3.jpg', 13),
-(40, '../upload/sport-courts-management/court-14-1.jpg', 14),
-(41, '../upload/sport-courts-management/court-14-2.jpg', 14),
-(42, '../upload/sport-courts-management/court-14-3.jpg', 14),
-(43, '../upload/sport-courts-management/court-15-1.jpg', 15),
-(44, '../upload/sport-courts-management/court-15-2.jpg', 15),
-(45, '../upload/sport-courts-management/court-15-3.jpg', 15),
-(46, '../upload/sport-courts-management/court-16-1.jpg', 16),
-(47, '../upload/sport-courts-management/court-16-2.jpg', 16),
-(48, '../upload/sport-courts-management/court-16-3.jpg', 16),
-(49, '../upload/sport-courts-management/court-17-1.jpg', 17),
-(50, '../upload/sport-courts-management/court-17-2.jpg', 17),
-(51, '../upload/sport-courts-management/court-17-3.jpg', 17);
+(1, '../upload/sport-courts-management/court-1-1.png', 1),
+(2, '../upload/sport-courts-management/court-1-2.png', 1),
+(3, '../upload/sport-courts-management/court-1-3.png', 1),
+(4, '../upload/sport-courts-management/court-2-1.png', 2),
+(5, '../upload/sport-courts-management/court-2-2.png', 2),
+(6, '../upload/sport-courts-management/court-2-3.png', 2),
+(7, '../upload/sport-courts-management/court-3-1.png', 3),
+(8, '../upload/sport-courts-management/court-3-2.png', 3),
+(9, '../upload/sport-courts-management/court-3-3.png', 3),
+(10, '../upload/sport-courts-management/court-4-1.png', 4),
+(11, '../upload/sport-courts-management/court-4-2.png', 4),
+(12, '../upload/sport-courts-management/court-4-3.png', 4),
+(13, '../upload/sport-courts-management/court-5-1.png', 5),
+(14, '../upload/sport-courts-management/court-5-2.png', 5),
+(15, '../upload/sport-courts-management/court-5-3.png', 5),
+(16, '../upload/sport-courts-management/court-6-1.png', 6),
+(17, '../upload/sport-courts-management/court-6-2.png', 6),
+(18, '../upload/sport-courts-management/court-6-3.png', 6),
+(19, '../upload/sport-courts-management/court-7-1.png', 7),
+(20, '../upload/sport-courts-management/court-7-2.png', 7),
+(21, '../upload/sport-courts-management/court-7-3.png', 7),
+(22, '../upload/sport-courts-management/court-8-1.png', 8),
+(23, '../upload/sport-courts-management/court-8-2.png', 8),
+(24, '../upload/sport-courts-management/court-8-3.png', 8),
+(25, '../upload/sport-courts-management/court-9-1.png', 9),
+(26, '../upload/sport-courts-management/court-9-2.png', 9),
+(27, '../upload/sport-courts-management/court-9-3.png', 9),
+(28, '../upload/sport-courts-management/court-10-1.png', 10),
+(29, '../upload/sport-courts-management/court-10-2.png', 10),
+(30, '../upload/sport-courts-management/court-10-3.png', 10),
+(31, '../upload/sport-courts-management/court-11-1.png', 11),
+(32, '../upload/sport-courts-management/court-11-2.png', 11),
+(33, '../upload/sport-courts-management/court-11-3.png', 11),
+(34, '../upload/sport-courts-management/court-12-1.png', 12),
+(35, '../upload/sport-courts-management/court-12-2.png', 12),
+(36, '../upload/sport-courts-management/court-12-3.png', 12),
+(37, '../upload/sport-courts-management/court-13-1.png', 13),
+(38, '../upload/sport-courts-management/court-13-2.png', 13),
+(39, '../upload/sport-courts-management/court-13-3.png', 13),
+(40, '../upload/sport-courts-management/court-14-1.png', 14),
+(41, '../upload/sport-courts-management/court-14-2.png', 14),
+(42, '../upload/sport-courts-management/court-14-3.png', 14),
+(43, '../upload/sport-courts-management/court-15-1.png', 15),
+(44, '../upload/sport-courts-management/court-15-2.png', 15),
+(45, '../upload/sport-courts-management/court-15-3.png', 15),
+(46, '../upload/sport-courts-management/court-16-1.png', 16),
+(47, '../upload/sport-courts-management/court-16-2.png', 16),
+(48, '../upload/sport-courts-management/court-16-3.png', 16),
+(49, '../upload/sport-courts-management/court-17-1.png', 17),
+(50, '../upload/sport-courts-management/court-17-2.png', 17),
+(51, '../upload/sport-courts-management/court-17-3.png', 17);
 
 -- --------------------------------------------------------
 
@@ -943,11 +943,11 @@ CREATE TABLE `court_type` (
 --
 
 INSERT INTO `court_type` (`court_type_id`, `court_type_name`, `court_type_icon`, `court_type_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
-(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
-(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
-(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4.jpg', 'Chưa xóa', '2024-02-18', NULL, 1),
-(5, 'Tennis', '../upload/sport-court-types-management/court-type-5.jpg', 'Chưa xóa', '2024-02-18', NULL, 1);
+(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.png', 'Chưa xóa', '2024-02-18', NULL, 1),
+(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.png', 'Chưa xóa', '2024-02-18', NULL, 1),
+(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.png', 'Chưa xóa', '2024-02-18', NULL, 1),
+(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4.png', 'Chưa xóa', '2024-02-18', NULL, 1),
+(5, 'Tennis', '../upload/sport-court-types-management/court-type-5.png', 'Chưa xóa', '2024-02-18', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1183,12 +1183,12 @@ CREATE TABLE `sport_hub_event` (
 --
 
 INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `event_end_date`, `event_description`, `event_image`, `event_preferential_rate`, `event_preferential_item`, `event_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1.jpg', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2.jpg', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3.jpg', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4.jpg', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.jpg', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.jpg', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
+(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1.png', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2.png', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3.png', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4.png', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.png', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.png', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
 
 --
 -- Indexes for dumped tables

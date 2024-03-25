@@ -301,6 +301,7 @@ p {
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.24px;
+  height: 28px;
 }
 
 #btn-filter-reset:hover {
@@ -545,6 +546,7 @@ thead th {
   text-transform: capitalize;
   background: #d1d1d1;
   white-space: nowrap;
+  max-width: 250px;
 }
 
 tbody tr:nth-child(even) {
@@ -556,7 +558,7 @@ tbody tr:hover {
 }
 
 tbody td {
-  max-width: 200px; /* Giới hạn chiều rộng tối đa của ô */
+  max-width: 250px; /* Giới hạn chiều rộng tối đa của ô */
   overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
   text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
   white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
@@ -615,41 +617,6 @@ tbody tr.hide td {
 
 /* *********************** */
 
-/* Định dạng cho trạng thái của lịch sân */
-.status {
-  padding: 0.6rem 0;
-  border-radius: 6px;
-  background: #dee4e2;
-  text-align: center;
-  vertical-align: middle;
-
-  color: #7f8283;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 16px;
-}
-
-.haveNotBooked {
-  background: #dee4e2;
-  color: #7f8283;
-}
-
-.haveBooked {
-  background: #d3fff2;
-  color: #339db5;
-}
-
-.expired {
-  background: #fcd7e2;
-  color: #e7527e;
-}
-
-.deleted {
-  background: #f0efc6;
-  color: #acaa3d;
-}
-
 /* Định dạng sorting */
 
 thead th span.icon-arrow {
@@ -688,18 +655,13 @@ tbody td.active {
   color: #007ebd;
 }
 
-/* Định dạng checkbox */
-input[type="checkbox"]:hover {
-  cursor: pointer;
-}
-
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
-  .schedule-body {
+  .court-order-body {
     padding: 30px 20px;
   }
 
-  .schedule-body-content {
+  .court-order-body-content {
     padding: 24px 14px;
   }
 }

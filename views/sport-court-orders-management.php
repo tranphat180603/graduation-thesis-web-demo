@@ -101,7 +101,7 @@
               <div class="filter-action">
                 <a id="btn-filter-reset" href="#">Đặt lại</a>
                   <div class="right-part">
-                    <a id="btn-filter-cancel" href="./sport-court-orders-management.php?court_order_state=1">Hủy</a>
+                    <a id="btn-filter-cancel" href="./sport-court-orders-management.php?court_order_state=0">Hủy</a>
                     <a id="btn-filter-confirm" href="#">Xác nhận</a>
                   </div>
                 </div>
@@ -186,7 +186,7 @@
               <thead> 
                 <tr>
                   <th>Mã đơn đặt sân<span class='icon-arrow'>&UpArrow;</span></th>
-                  <th style="max-width: 200px;">Tên sân<span class='icon-arrow'>&UpArrow;</span></th>
+                  <th>Tên sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Loại sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Ngày nhận sân<span class='icon-arrow'>&UpArrow;</span></th>
                   <th>Khung giờ<span class='icon-arrow'>&UpArrow;</span></th>
@@ -272,8 +272,27 @@
 
                     echo "<td>".$court_order->getPaymentMethod()."</td>";
 
+                    echo "<td style='display: flex; gap: 10px; align-items: center;'>
+                            <img src='";
+                    foreach ($accounts as $account) {
+                      if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
+                        echo $account->getAccountAvatar();
+                      }
+                    }
+                    echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
+                    foreach ($accounts as $account) {
+                      if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
+                        foreach ($customers as $customer) {
+                          if ($customer->getCustomerId() == $account->getCustomerId()) {
+                            echo $customer->getCustomerFullname();
+                          }
+                        }
+                      }
+                    }
+                    echo "</td>";
+
                     echo "<td class='btn-view'>
-                            <a href='?option=view_court_order_detail_state_";
+                            <a href='?court_order_id=".$court_order->getCourtOrderId()."&option=view_court_order_detail_state_";
 
                     if ($court_order->getOrderState() == "Chờ thanh toán") {
                       echo "payment'>";
@@ -291,49 +310,6 @@
                             <p>Xem</p>
                         </a>
                       </td>
-                    ";
-
-                    echo "</tr>";
-                  }
-
-
-                  $court_schedules = $court_schedule_controller->view_court_schedule();
-
-                  foreach($court_schedules as $court_schedule) {
-                    echo "<tr>";
-
-                    echo "<td>".$court_schedule->getCourtScheduleId()."</td>";
-
-                    echo "<td>";
-                    foreach($courts as $court) {
-                      if ($court->getCourtId() == $court_schedule->getCourtId()) {
-                        echo $court->getCourtName();
-                      }
-                    }
-                    echo "</td>";                    
-
-                    echo "<td>".$court_schedule->getCourtScheduleDate()."</td>";
-                    echo "<td>".substr($court_schedule->getCourtScheduleStartTime(), 0, 5)."</td>";
-                    echo "<td>".substr($court_schedule->getCourtScheduleEndTime(), 0, 5)."</td>";
-                    echo "<td>".$court_schedule->getCourtScheduleTimeFrame()."</td>";
-
-                    if ($court_schedule->getCourtScheduleState() == "Chưa đặt") {
-                        echo "<td><p class='status haveNotBooked'>".$court_schedule->getCourtScheduleState()."</p></td>";
-                    } else if ($court_schedule->getCourtScheduleState() == "Đã đặt") {
-                        echo "<td><p class='status haveBooked'>".$court_schedule->getCourtScheduleState()."</p></td>";
-                    } else if ($court_schedule->getCourtScheduleState() == "Hết hạn") {
-                        echo "<td><p class='status expired'>".$court_schedule->getCourtScheduleState()."</p></td>";
-                    } else if ($court_schedule->getCourtScheduleState() == "Đã xóa") {
-                      echo "<td><p class='status deleted'>".$court_schedule->getCourtScheduleState()."</p></td>";
-                    }
-
-                    echo "
-                        <td class='btn-view'>
-                            <a href='?option=view_court_schedule_detail&court_schedule_id=".$court_schedule->getCourtScheduleId()."&court_schedule_state=".$court_schedule->getCourtScheduleState()."'>
-                                <img src='../image/sport-court-schedules-management-img/eye.svg' alt='eye icon'>
-                                <p>Xem</p>
-                            </a>
-                        </td>
                     ";
 
                     echo "</tr>";

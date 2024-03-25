@@ -679,11 +679,6 @@ body {
   position: relative;
 }
 
-#opacity-wrapper {
-  /* opacity: 0.2; */
-  /* background: #868686; */
-}
-
 #form-view,
 #form-edit,
 #form-insert {

@@ -9,7 +9,7 @@
       </div>
       <div class="action-successful-button-group">
         <a id="home-button" href="../index.php">Trở về trang chủ</a>
-        <a id="court-schedule-button" href="./sport-court-schedules-management.php?court_type_id=0">Trở về quản lý lịch sân</a>
+        <a id="court-schedule-button" href="./sport-court-schedules-management.php">Trở về quản lý lịch sân</a>
       </div>
     </div>
     <style>

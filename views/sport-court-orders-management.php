@@ -27,6 +27,7 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
+    <div id="overlay-wrapper"></div>
     <!-- HEADER -->
     <?php include "../header/admin-managerial-header.php"; ?>
     <!-- BODY -->   
@@ -305,7 +306,7 @@
                     } else if ($court_order->getOrderState() == "Chờ hoàn tiền") {
                       echo "refunded'>";
                     }
-                    
+                      
                     echo "<img src='../image/sport-court-orders-management-img/eye.svg' alt='eye icon'>
                             <p>Xem</p>
                         </a>
@@ -318,8 +319,8 @@
               </tbody>
             </table>
           </div>
-        </div>
       </div>
+    </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/sport-court-orders-management.js" language="javascript"></script>

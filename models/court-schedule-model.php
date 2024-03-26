@@ -99,7 +99,7 @@
             $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule, court, court_type WHERE 
                                             court_schedule.court_id = court.court_id AND 
                                             court.court_type_id = court_type.court_type_id
-                                            AND court.court_type_id = ".$court_type_id.""); 
+                                            AND court.court_type_id = $court_type_id"); 
 
             $row = mysqli_fetch_row($result);
             
@@ -120,7 +120,7 @@
                 $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
             } else {
                 $result = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court 
-                                                    WHERE court_schedule.court_id = court.court_id AND court.court_type_id = " . $courtType);
+                                                    WHERE court_schedule.court_id = court.court_id AND court.court_type_id = $courtType");
             }
 
             $data = array();
@@ -160,7 +160,7 @@
             $link = "";
             MakeConnection($link);
 
-            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule WHERE court_schedule_id = " . $court_schedule_id);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule WHERE court_schedule_id = $court_schedule_id");
 
             $row = mysqli_fetch_row($result);
 

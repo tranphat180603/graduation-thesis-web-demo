@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="action">
-          <a id="war-act-ok" href="./sport-court-schedules-management.php?court_type_id=0">OK</a>
+          <a id="war-act-ok" href="./sport-court-schedules-management.php">OK</a>
         </div>
       </div>
       <style>

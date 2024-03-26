@@ -39,7 +39,9 @@
         public function view_specific_court_schedule() {
             $court_schedule_id = isset($_GET['court_schedule_id']) ? $_GET['court_schedule_id'] : ''; 
 
-            return $result = $this->court_schedule->view_specific_court_schedule($court_schedule_id);
+            if ($court_schedule_id != "") {
+              return $result = $this->court_schedule->view_specific_court_schedule($court_schedule_id);
+            }
         }
 
         //7. Hàm thêm lịch sân mới
@@ -169,8 +171,8 @@
 
         echo "
           <script>
-            var opacityFrame = document.getElementById('opacity-wrapper');
-            opacityFrame.style.opacity = '0.2';
+            var overlayFrame = document.getElementById('overlay-wrapper');
+            overlayFrame.style.display = 'block';
           </script>
         "; 
 

@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="action">
-          <a id="del-con-act-no" href="./sport-court-schedules-management.php?court_type_id=0">Không</a>
+          <a id="del-con-act-no" href="./sport-court-schedules-management.php">Không</a>
           <a 
             id="del-con-act-yes" 
             href="<?php 

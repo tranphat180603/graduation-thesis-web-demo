@@ -621,9 +621,7 @@
     <?php
       if(isset($_GET['option'])) {
         $_option = $_GET['option'];
-
-        echo "<script>console.log(".$_option.")</script>";
-
+        
         echo "
           <script>
             var overlayFrame = document.getElementById('overlay-wrapper');

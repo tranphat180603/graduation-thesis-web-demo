@@ -239,21 +239,27 @@
     //Thay đổi CSS của thẻ li đang được chọn
     $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
 
-    echo "
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var liElement = document.getElementById('li-court-type-".$courtType."');
-                liElement.style.borderBottom = '2px solid #285D8F';
+    // Lấy URL hiện tại
+    $current_url = $_SERVER['PHP_SELF'];
 
-                var aElement = document.getElementById('a-court-type-".$courtType."')
-                aElement.style.color = '#285D8F';
-                aElement.style.fontSize = '16px';
-                aElement.style.fontStyle = 'normal';
-                aElement.style.fontWeight = '500';
-                aElement.style.lineHeight = '24px';
-            });
-        </script>
-    ";
+    // Kiểm tra nếu URL hiện tại là ../views/sport-court-schedules-management.php
+    if (strpos($current_url, 'sport-court-schedules-management.php') !== false) {
+      echo "
+          <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  var liElement = document.getElementById('li-court-type-".$courtType."');
+                  liElement.style.borderBottom = '2px solid #285D8F';
+
+                  var aElement = document.getElementById('a-court-type-".$courtType."')
+                  aElement.style.color = '#285D8F';
+                  aElement.style.fontSize = '16px';
+                  aElement.style.fontStyle = 'normal';
+                  aElement.style.fontWeight = '500';
+                  aElement.style.lineHeight = '24px';
+              });
+          </script>
+      ";    
+    }
     
 
     if (isset($_POST['currentDate'])) {

@@ -117,10 +117,11 @@
 
             // Thực hiện truy vấn dựa vào court_type_id
             if ($courtType == "0") {
-                $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule");
+                $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule WHERE court_schedule_state <> 'Đã xóa'");
             } else {
                 $result = ExecuteDataQuery($link, "SELECT court_schedule.* FROM court_schedule, court 
-                                                    WHERE court_schedule.court_id = court.court_id AND court.court_type_id = $courtType");
+                                                     WHERE court_schedule_state <> 'Đã xóa' AND court_schedule.court_id = court.court_id 
+                                                     AND court.court_type_id = $courtType");
             }
 
             $data = array();

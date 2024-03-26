@@ -692,8 +692,10 @@ body {
 }
 
 #form-view-payment,
-#form-edit,
-#form-insert {
+#form-view-receive,
+#form-view-complete,
+#form-view-canceled,
+#form-view-refunded {
   display: flex;
   width: 597px;
   flex-direction: column;
@@ -706,11 +708,11 @@ body {
   overflow: hidden;
 
   position: absolute;
-  top: 30px;
+  top: 50px;
   right: calc(100% / 2 - 300px);
   z-index: 10;
 
-  /* display: none; */
+  display: none;
 }
 
 /* FORM HEADER */
@@ -803,6 +805,8 @@ body {
   background: #fff;
   padding-right: 16px;
   flex-wrap: wrap;
+
+  pointer-events: none;
 }
 
 .form-row .input:hover,
@@ -832,42 +836,6 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
-}
-
-#form-view .form-row .input {
-  pointer-events: none;
-}
-
-.form-row select {
-  display: flex;
-  flex: 1 0 0;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  align-self: stretch;
-  border-radius: 4px;
-  background-color: #fff;
-  border: none;
-  outline: none;
-  overflow-y: scroll;
-  max-height: 30px;
-  font-family: "Be Vietnam Pro";
-}
-
-.form-row select option {
-  background-color: #edf5fc;
-}
-
-.form-row input[type="date"] {
-  width: 100%;
-  font-family: "Be Vietnam Pro";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  border: none;
-  outline: none;
 }
 
 /* FORM FOOTER */
@@ -908,33 +876,31 @@ body {
   line-height: 22px;
 }
 
-.button-group #form-update {
-  border: 1px solid #026d4d;
-  background: #026d4d;
-}
-
-.button-group #form-update:hover {
-  border: 1px solid #0f976e;
-  background: #0f976e;
-}
-
-.button-group #form-cancel,
-.button-group #form-exit {
+.button-group #form-cancel {
   border: 1px solid #d00000;
   background: #d00000;
 }
 
-.button-group #form-cancel:hover,
-.button-group #form-exit:hover {
+.button-group #form-cancel:hover {
   border: 1px solid #ef1f1f;
   background: #ef1f1f;
+}
+
+.button-group #form-exit {
+  border: 1px solid #1890ff;
+  background: #1890ff;
+}
+
+.button-group #form-exit:hover {
+  border: 1px solid rgb(67, 162, 251);
+  background: rgb(67, 162, 251);
 }
 
 .button-group input[type="submit"] {
   position: relative;
   width: 82px;
   height: 32px;
-  background-color: #1890ff;
+  background-color: #27ae60;
   color: #fff;
   border: none;
   border-radius: 2px;
@@ -950,23 +916,27 @@ body {
 
 .button-group input[type="submit"]:hover {
   cursor: pointer;
-  background-color: rgb(67, 162, 251);
+  background-color: #2fc26c;
 }
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 700px */
 @media screen and (max-width: 900px) {
-  #form-view,
-  #form-edit,
-  #form-insert {
+  #form-view-payment,
+  #form-view-receive,
+  #form-view-complete,
+  #form-view-canceled,
+  #form-view-refunded {
     width: 597px;
   }
 }
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 650px */
 @media screen and (max-width: 650px) {
-  #form-view,
-  #form-edit,
-  #form-insert {
+  #form-view-payment,
+  #form-view-receive,
+  #form-view-complete,
+  #form-view-canceled,
+  #form-view-refunded {
     width: 450px;
     top: 30px;
     right: calc(100% / 2 - 225px);
@@ -975,20 +945,11 @@ body {
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
-  #form-view,
-  #form-edit,
-  #form-insert {
-    width: 380px;
-    top: 30px;
-    right: calc(100% / 2 - 190px);
-  }
-}
-
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
-@media screen and (max-width: 400px) {
-  #form-view,
-  #form-edit,
-  #form-insert {
+  #form-view-payment,
+  #form-view-receive,
+  #form-view-complete,
+  #form-view-canceled,
+  #form-view-refunded {
     width: 320px;
     top: 30px;
     right: calc(100% / 2 - 160px);
@@ -1011,14 +972,6 @@ body {
   }
 
   .form-row .input input[type="text"]::placeholder {
-    font-size: 12px;
-  }
-
-  .form-row select {
-    font-size: 12px;
-  }
-
-  .form-row input[type="date"] {
     font-size: 12px;
   }
 }

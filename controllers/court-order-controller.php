@@ -49,7 +49,7 @@
 
         //4. Hàm lấy dữ liệu một đơn đặt sân cụ thể
         public function view_specific_court_order() {
-            $court_order_id = isset($_GET['court_order_id']) ? $_GET['court_order_id'] : '1'; 
+            $court_order_id = isset($_GET['court_order_id']) ? $_GET['court_order_id'] : ''; 
 
             if ($court_order_id != "") {
               return $result = $this->court_order->view_specific_court_order($court_order_id);
@@ -60,19 +60,25 @@
     //Thay đổi CSS của thẻ li đang được chọn
     $court_order_state_id = isset($_GET['court_order_state_id']) ? $_GET['court_order_state_id'] : '0'; // Mặc định court_order_state_id = '0'
 
-    echo "
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var liElement = document.getElementById('li-court-order-state-".$court_order_state_id."');
-                liElement.style.borderBottom = '2px solid #285D8F';
+    // Lấy URL hiện tại
+    $current_url = $_SERVER['PHP_SELF'];
 
-                var aElement = document.getElementById('a-court-order-state-".$court_order_state_id."')
-                aElement.style.color = '#285D8F';
-                aElement.style.fontSize = '16px';
-                aElement.style.fontStyle = 'normal';
-                aElement.style.fontWeight = '500';
-                aElement.style.lineHeight = '24px';
-            });
-        </script>
-    ";
+    // Kiểm tra nếu URL hiện tại là ../views/sport-court-orders-management.php
+    if (strpos($current_url, 'sport-court-orders-management.php') !== false) {
+        echo "
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var liElement = document.getElementById('li-court-order-state-".$court_order_state_id."');
+                    liElement.style.borderBottom = '2px solid #285D8F';
+
+                    var aElement = document.getElementById('a-court-order-state-".$court_order_state_id."')
+                    aElement.style.color = '#285D8F';
+                    aElement.style.fontSize = '16px';
+                    aElement.style.fontStyle = 'normal';
+                    aElement.style.fontWeight = '500';
+                    aElement.style.lineHeight = '24px';
+                });
+            </script>
+        ";
+    }
 ?>

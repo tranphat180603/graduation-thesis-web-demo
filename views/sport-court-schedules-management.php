@@ -466,11 +466,11 @@
       </div>
       <div class="form-footer">
         <div class="button-group">
-          <a class="form-button" id="form-update" href="<?php echo '?option=view_update_court_schedule&court_schedule_id='.urlencode($specific_court_schedule[0]).'&court_schedule_state='.$specific_court_schedule[5].'&court_type_id=0'; ?>">
+          <a class="form-button" id="form-update" href="<?php echo '?option=view_update_court_schedule&court_schedule_id='.urlencode($specific_court_schedule[0]).'&court_schedule_state='.$specific_court_schedule[5]; ?>">
             <img src="../image/sport-court-schedules-management-img/form-edit.svg" alt="update icon">
             <p>Sửa</p>
           </a>
-          <a class="form-button" id="form-delete" href="<?php echo '?option=confirm_delete_court_schedule&court_schedule_id='.urlencode($specific_court_schedule[0]).'&court_schedule_state='.$specific_court_schedule[5].'&court_type_id=0'; ?>">
+          <a class="form-button" id="form-delete" href="<?php echo '?option=confirm_delete_court_schedule&court_schedule_id='.urlencode($specific_court_schedule[0]).'&court_schedule_state='.$specific_court_schedule[5]; ?>">
             <img src="../image/sport-court-schedules-management-img/form-delete.svg" alt="delete icon">
             <p>Xóa</p>
           </a>
@@ -631,7 +631,7 @@
           </script>
         "; 
 
-        if($_option == "view_insert_court_schedule") { //Không hiển thị được form insert này
+        if($_option == "view_insert_court_schedule") { 
           echo "
             <script>
               var formInsert = document.getElementById('form-insert');

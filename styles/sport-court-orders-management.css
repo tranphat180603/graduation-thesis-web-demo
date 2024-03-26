@@ -691,7 +691,7 @@ body {
   display: none;
 }
 
-#form-view,
+#form-view-payment,
 #form-edit,
 #form-insert {
   display: flex;
@@ -710,7 +710,7 @@ body {
   right: calc(100% / 2 - 300px);
   z-index: 10;
 
-  display: none;
+  /* display: none; */
 }
 
 /* FORM HEADER */
@@ -777,7 +777,7 @@ body {
 
 .form-row p {
   display: flex;
-  max-width: 130px;
+  max-width: 175px;
   padding-right: 10px;
   justify-content: flex-end;
   align-items: center;
@@ -918,13 +918,13 @@ body {
   background: #0f976e;
 }
 
-.button-group #form-delete,
+.button-group #form-cancel,
 .button-group #form-exit {
   border: 1px solid #d00000;
   background: #d00000;
 }
 
-.button-group #form-delete:hover,
+.button-group #form-cancel:hover,
 .button-group #form-exit:hover {
   border: 1px solid #ef1f1f;
   background: #ef1f1f;

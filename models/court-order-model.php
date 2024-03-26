@@ -140,5 +140,21 @@
 
             return $data;
         }
+
+        //4. Hàm lấy dữ liệu một đơn đặt sân cụ thể
+        public function view_specific_court_order($court_order_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_order WHERE court_order_id = $court_order_id");
+
+            $row = mysqli_fetch_row($result);
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
     }
 ?>

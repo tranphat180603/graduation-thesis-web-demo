@@ -46,6 +46,15 @@
             
             return $result = $this->court_order->view_court_order($order_state);
         }
+
+        //4. Hàm lấy dữ liệu một đơn đặt sân cụ thể
+        public function view_specific_court_order() {
+            $court_order_id = isset($_GET['court_order_id']) ? $_GET['court_order_id'] : '1'; 
+
+            if ($court_order_id != "") {
+              return $result = $this->court_order->view_specific_court_order($court_order_id);
+            }
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

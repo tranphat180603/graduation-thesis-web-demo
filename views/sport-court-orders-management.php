@@ -324,5 +324,211 @@
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/sport-court-orders-management.js" language="javascript"></script>
+    <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ THANH TOÁN" -->
+    <form id="form-view-payment" action="../controllers/court-order-controller.php?option=process_payment_court_order" method="post" enctype="multipart/form-data">
+      <div class="form-header">
+        <p>Thông tin đơn đặt sân sân</p>
+        <a href="?option=court_schedule_exit">
+          <img src="../image/sport-court-orders-management-img/close.svg" alt="close">
+        </a>
+      </div>
+      <div class="form-body">
+        <div class="form-body-content">
+          <p class="form-body-title">Thông tin chung</p>
+          <div class="form-row">
+            <p>Mã đơn đặt sân :</p>
+            <div class="input">
+              <?php
+                $court_order = $court_order_controller->view_specific_court_order();
+                echo "<input type='text' name='court_order_id' placeholder='Không nhập' value='".$court_order[0]."'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Tên sân :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='court_name' id='court_name' value='";
+                foreach ($court_schedules as $court_schedule) {
+                  if ($court_order[1] == $court_schedule->getCourtScheduleId()) {
+                    foreach ($courts as $court) {
+                      if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                        echo $court->getCourtName();
+                      }
+                    }
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Loại sân :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='court_type' id='court_type' value='";
+                foreach ($court_schedules as $court_schedule) {
+                  if ($court_order[1] == $court_schedule->getCourtScheduleId()) {
+                    foreach ($courts as $court) {
+                      if ($court->getCourtId() == $court_schedule->getCourtId()) {
+                        foreach ($court_types as $court_type) {
+                          if ($court_type->getCourtTypeId() == $court->getCourtTypeId()) {
+                            echo $court_type->getCourtTypeName();
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Ngày nhận sân :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='court_schedule_date' id='court_schedule_date' value='";
+                foreach ($court_schedules as $court_schedule) {
+                  if ($court_order[1] == $court_schedule->getCourtScheduleId()) {
+                    echo date("d/m/Y", strtotime($court_schedule->getCourtScheduleDate()));
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Khung giờ :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='court_schedule_date' id='court_schedule_date' value='";
+                foreach ($court_schedules as $court_schedule) {
+                  if ($court_order[1] == $court_schedule->getCourtScheduleId()) {
+                    echo $court_schedule->getCourtScheduleTimeFrame();
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <hr>
+          <p class="form-body-title">Thanh toán</p>
+          <div class="form-row">
+            <p>Tổng tiền dịch vụ :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='total_service_amount' placeholder='Không nhập' value='".number_format($court_order[3], 0, ',', '.')."'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Tổng tiền thuê :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='total_rental_amount' placeholder='Không nhập' value='".number_format($court_order[4], 0, ',', '.')."'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Tổng tiền giảm giá :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='total_discount_amount' placeholder='Không nhập' value='-".number_format($court_order[5], 0, ',', '.')."'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Tổng tiền thanh toán :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='order_total_payment' placeholder='Không nhập' value='".number_format($court_order[6], 0, ',', '.')."'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Tổng tiền cọc (20%) :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='order_total_deposit' placeholder='Không nhập' value='".number_format($court_order[7], 0, ',', '.')."'>";
+              ?>
+            </div>
+          </div>
+          <hr>
+          <p class="form-body-title">Khách hàng</p>
+          <div class="form-row">
+            <p>Người đặt :</p>
+            <div class="input" style='display: flex; gap: 10px; align-items: center;'>
+              <?php
+                echo "<img src='";
+                foreach ($accounts as $account) {
+                  if ($account->getAccountId() == $court_order[10]) {
+                    echo $account->getAccountAvatar();
+                  }
+                }
+                echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
+                echo "<input type='text' name='customer_name' id='customer_name' value='";
+                foreach ($accounts as $account) {
+                  if ($account->getAccountId() == $court_order[10]) {
+                    foreach ($customers as $customer) {
+                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                        echo $customer->getCustomerFullname();
+                      }
+                    }
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Số điện thoại :</p>
+            <div class="input">
+              <?php
+                echo "<input type='text' name='customer_phone_number' id='customer_phone_number' value='";
+                foreach ($accounts as $account) {
+                  if ($account->getAccountId() == $court_order[10]) {
+                    foreach ($customers as $customer) {
+                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                        echo $customer->getCustomerPhoneNumber();
+                      }
+                    }
+                  }
+                }
+                echo "'>";
+              ?>
+            </div>
+          </div>
+          <hr>
+          <p class="form-body-title">Thông tin khác</p>
+          <div class="form-row">
+            <p>Trạng thái đơn :</p>
+            <div class="input">
+              <?php echo "<input type='text' name='order_state' placeholder='Không nhập' value='".$court_order[9]."'>";?>
+            </div>
+          </div>
+          <div class="form-row">
+            <p>Ngày cập nhật :</p>
+            <div class="input">
+              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <div class="button-group">
+          <input type="submit" value="Xử lý">
+          <a class="form-button" id="form-cancel" href="<?php echo '?option=confirm_cancel_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+            <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
+            <p>Hủy đơn</p>
+          </a>
+        </div>
+      </div>
+    </form>
+    <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ NHẬN SÂN" -->
+    <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "HOÀN THÀNH" -->
+    <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "ĐÃ HỦY" -->
+    <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ HOÀN TIỀN" -->
+    <!-- SCRIPT PHP ĐIỀU HƯỚNG THAO TÁC -->
   </body>
 </html>

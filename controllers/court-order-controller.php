@@ -109,6 +109,31 @@
                 }   
             }
         }
+
+        //8. Hàm hủy đơn đặt sân
+        public function cancel_court_order() {
+            if(isset($_GET['court_order_id'])) {
+                if(isset($_GET['cancel_reason'])) {
+                    $court_order_id = $_GET['court_order_id'];
+                    $cancel_reason = $_GET['cancel_reason'];
+
+                    if($cancel_reason != "Đơn đặt sân chưa được thanh toán" && $cancel_reason != "Khách hàng không đến nhận sân") {
+                        $result = $this->court_order->cancel_court_order_by_admin($court_order_id);
+                    } else {
+                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id);
+                    }
+
+                    // Kiểm tra giá trị của biến $result
+                    if ($result) {
+                        // echo 'The court order has been canceled successfully';
+                        header("Location: ../views/sport-court-orders-management.php?notification=cancel_successful");    
+                    } else {
+                        // echo 'The court order has been canceled fail';
+                        header("Location: ../views/sport-court-orders-management.php?notification=cancel_fail");
+                    }   
+                }
+            }
+        }
     }
 
     if(isset($_GET["option"])) {
@@ -125,6 +150,10 @@
             case "process_refunded_court_order": 
                 $court_order = new Court_Order_Controller();
                 $court_order->process_refunded_court_order();
+            break;
+            case "cancel_court_order": 
+                $court_order = new Court_Order_Controller();
+                $court_order->cancel_court_order();
             break;
         }
     }   
@@ -161,6 +190,33 @@
               
               var warningExplanation = document.getElementById('warning-explanation');
               warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng đơn đặt sân đã không được xử lý thành công';
+
+              var btn_ok = document.getElementById('war-act-ok');
+              btn_ok.href = './sport-court-orders-management.php';
+            </script>
+          ";
+        } else if($_notification == "cancel_successful") {
+          include "./notification/action-successful.php";
+          echo "
+            <script>
+              var message = document.getElementById('action-successful-message');
+              message.textContent = 'Bạn đã hủy đơn đặt sân thành công';
+
+              var btn_back = document.getElementById('admin-management-button');
+              btn_back.textContent = 'Trở về quản lý đơn đặt sân';
+              btn_back.href = './sport-court-orders-management.php';
+              btn_back.style.fontSize = '12.5px';
+            </script>
+          ";
+        } else if($_notification == "cancel_fail") {
+          include "./notification/warning.php"; 
+          echo "
+            <script>
+              var warningQuestion = document.getElementById('warning-question');
+              warningQuestion.textContent ='Bạn đã thực hiện thao tác hủy đơn đặt sân!';
+              
+              var warningExplanation = document.getElementById('warning-explanation');
+              warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng đơn đặt sân đã không được hủy thành công';
 
               var btn_ok = document.getElementById('war-act-ok');
               btn_ok.href = './sport-court-orders-management.php';

@@ -428,7 +428,7 @@ INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `t
 (20, 55, NULL, 0, 225000, 0, 225000, 45000, 'Ví điện tử momo', 'Đã hủy', 7, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-30', '2024-03-31', NULL),
 (21, 64, 2, 150000, 300000, 45000, 405000, 81000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 7, 1, NULL, NULL, '2024-04-01', NULL, NULL),
 (22, 111, NULL, 100000, 360000, 0, 460000, 92000, 'Ví điện tử momo', 'Hoàn thành', 8, 1, NULL, NULL, '2024-03-03', NULL, NULL),
-(23, 112, 2, 150000, 400000, 55000, 495000, 99000, 'Ví điện tử momo', 'Đã huỷ', 8, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-10', '2024-03-13', NULL),
+(23, 112, 2, 150000, 400000, 55000, 495000, 99000, 'Ví điện tử momo', 'Đã hủy', 8, 1, 'Đơn đặt sân chưa được thanh toán', 1, '2024-03-10', '2024-03-13', NULL),
 (24, 85, NULL, 400000, 600000, 0, 1000000, 200000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 8, 1, NULL, NULL, '2024-04-01', NULL, NULL),
 (25, 29, NULL, 100000, 225000, 0, 325000, 65000, 'Ví điện tử momo', 'Đã hủy', 8, 1, 'Tôi muốn thay đổi lịch sân', 7, '2024-03-17', '2024-03-18', NULL),
 (26, 160, 2, 150000, 150000, 30000, 270000, 54000, 'Chuyển khoản ngân hàng', 'Hoàn thành', 9, 1, NULL, NULL, '2024-03-30', NULL, NULL),

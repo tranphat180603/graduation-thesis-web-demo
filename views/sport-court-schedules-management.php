@@ -460,7 +460,7 @@
           <div class="form-row">
             <p>Ngày cập nhật :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".$specific_court_schedule[7]."'>";?>
+              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($specific_court_schedule[7]))."'>";?>
             </div>
           </div>
         </div>

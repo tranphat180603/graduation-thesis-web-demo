@@ -510,7 +510,7 @@
           <div class="form-row">
             <p>Ngày đặt :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+              <?php echo "<input type='text' name='ordered_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
             </div>
           </div>
         </div>
@@ -521,7 +521,7 @@
             <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
             <p>Xử lý</p>
           </a>
-          <a class="form-button" id="form-cancel" href="<?php echo '?option=confirm_cancel_payment_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_payment_court_order&court_order_id='.urlencode($court_order[0]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
           </a>
@@ -714,7 +714,7 @@
           <div class="form-row">
             <p>Ngày đặt :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+              <?php echo "<input type='text' name='ordered_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
             </div>
           </div>
         </div>
@@ -725,7 +725,7 @@
             <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
             <p>Xử lý</p>
           </a>          
-          <a class="form-button" id="form-cancel" href="<?php echo '?option=confirm_cancel_receive_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_receive_court_order&court_order_id='.urlencode($court_order[0]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
           </a>
@@ -918,7 +918,7 @@
           <div class="form-row">
             <p>Ngày đặt :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+              <?php echo "<input type='text' name='ordered_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
             </div>
           </div>
         </div>
@@ -1118,7 +1118,7 @@
           <div class="form-row">
             <p>Ngày đặt :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+              <?php echo "<input type='text' name='ordered_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
             </div>
           </div>
           <div class="form-row">
@@ -1126,9 +1126,9 @@
             <div class="input">
               <?php 
                 if ($court_order[13] == 1) {
-                  echo "<input type='text' name='order_state' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
+                  echo "<input type='text' name='cancel_party' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
                 } else {
-                  echo "<input type='text' name='order_state' placeholder='Không nhập' value='Khách hàng'>";
+                  echo "<input type='text' name='cancel_party' placeholder='Không nhập' value='Khách hàng'>";
                 }
               ?>
             </div>
@@ -1142,7 +1142,7 @@
           <div class="form-row">
             <p>Ngày hủy :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[15]))."'>";?>
+              <?php echo "<input type='text' name='canceled_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[15]))."'>";?>
             </div>
           </div>
           <?php
@@ -1151,7 +1151,7 @@
                 <div class='form-row'>
                   <p>Ngày hoàn tiền :</p>
                   <div class='input'>
-                    <input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[16]))."'>
+                    <input type='text' name='refunded_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[16]))."'>
                   </div>
                 </div>
               ";
@@ -1354,7 +1354,7 @@
           <div class="form-row">
             <p>Ngày đặt :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
+              <?php echo "<input type='text' name='ordered_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[14]))."'>";?>
             </div>
           </div>
           <div class="form-row">
@@ -1362,9 +1362,9 @@
             <div class="input">
               <?php 
                 if ($court_order[13] == 1) {
-                  echo "<input type='text' name='order_state' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
+                  echo "<input type='text' name='canceled_party' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
                 } else {
-                  echo "<input type='text' name='order_state' placeholder='Không nhập' value='Khách hàng'>";
+                  echo "<input type='text' name='canceled_party' placeholder='Không nhập' value='Khách hàng'>";
                 }
               ?>
             </div>
@@ -1378,7 +1378,7 @@
           <div class="form-row">
             <p>Ngày hủy :</p>
             <div class="input">
-              <?php echo "<input type='text' name='last_modified_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[15]))."'>";?>
+              <?php echo "<input type='text' name='canceled_date' placeholder='Không nhập' value='".date("d/m/Y", strtotime($court_order[15]))."'>";?>
             </div>
           </div>
         </div>
@@ -1449,6 +1449,10 @@
           include "./notification/receive-order-process-confirm.php";
         } else if($_option == "confirm_process_refunded_court_order") {
           include "./notification/refunded-order-process-confirm.php";
+        } else if($_option == "reason_cancel_payment_court_order") {
+          include "./notification/admin-cancel-reason-payment.php";
+        } else if($_option == "reason_cancel_receive_court_order") {
+          include "./notification/admin-cancel-reason-receive.php";
         } else if($_option == "court_order_exit") {
           echo "
             <script>
@@ -1471,6 +1475,46 @@
               formRefunded.style.display = 'none';
             </script>
           "; 
+        }
+      }
+
+      if(isset($_POST['cancel_reason'])) {
+        if(isset($_POST['court_order_id'])) {
+          $cancel_reason = $_POST['cancel_reason'];
+          $court_order_id = $_POST['court_order_id'];
+
+          echo "
+            <script>
+              var overlayFrame = document.getElementById('overlay-wrapper');
+              overlayFrame.style.display = 'block';
+            </script>
+          "; 
+
+          echo "
+          <div class='cancel-container'>
+            <div class='main-content'>
+              <img src='../image/sport-court-orders-management-img/confirm-cancel.svg' alt='confirm icon'>
+              <div class='content'>
+                <p id='confirm-question'>Bạn thật sự muốn hủy đơn đặt sân này?</p>";
+                  if($cancel_reason != 'Đơn đặt sân chưa được thanh toán' && $cancel_reason != 'Khách hàng không đến nhận sân') {
+                    echo "<p id='confirm-explanation'>Đơn đặt sân này sẽ được chuyển trạng thái thành <span style='color: #7836e3;'>CHỜ HOÀN TIỀN</span> nếu bạn hủy nó.</p>";
+                  } else {
+                    echo "<p id='confirm-explanation'>Đơn đặt sân này sẽ được chuyển trạng thái thành <span style='color: #7836e3;'>ĐÃ HỦY</span> nếu bạn hủy nó.</p>";
+                  }
+          echo "</div>
+            </div>
+            <div class='action'>
+              <a id='con-act-no' href='./sport-court-orders-management.php'>Không</a>
+              <a 
+                id='con-act-yes' 
+                href='"; 
+                  echo "?option=cancel_court_order&court_order_id=" . $court_order_id;
+                  echo "&cancel_reason=" . $cancel_reason;
+          echo "'>Có
+              </a>
+            </div>
+          </div>
+          ";
         }
       }
     ?>

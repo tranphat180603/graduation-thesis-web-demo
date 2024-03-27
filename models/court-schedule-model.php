@@ -202,8 +202,11 @@
             $link = "";
             MakeConnection($link);
 
+            $last_modified_date = date("Y-m-d");
+
             //Tạo ra câu SQL
-            $sql = "UPDATE court_schedule SET court_schedule_state = '$court_schedule_state' 
+            $sql = "UPDATE court_schedule SET court_schedule_state = '$court_schedule_state',
+                                                last_modified_date = '$last_modified_date' 
                     WHERE court_schedule_id = $court_schedule_id";
 
             $result = ExecuteNonDataQuery($link, $sql);

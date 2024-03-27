@@ -101,10 +101,10 @@
                 // Kiểm tra giá trị của biến $queryResult sau khi duyệt mảng
                 if ($queryResult) {
                     // echo 'The court schedule has been inserted successfully';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=insert_successful");    
+                    header("Location: ../views/sport-court-schedules-management.php?notification=insert_successful");    
                 } else {
                     // echo 'The court schedule has been inserted fail';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=insert_fail");
+                    header("Location: ../views/sport-court-schedules-management.php?&notification=insert_fail");
                 }                
             }
         }
@@ -121,10 +121,10 @@
                 // Kiểm tra giá trị của biến $result
                 if ($result) {
                     // echo 'The court schedule has been updated successfully';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=update_successful");    
+                    header("Location: ../views/sport-court-schedules-management.php?notification=update_successful");    
                 } else {
                     // echo 'The court schedule has been updated fail';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=update_fail");
+                    header("Location: ../views/sport-court-schedules-management.php?notification=update_fail");
                 }   
             }
         }
@@ -139,10 +139,10 @@
                 // Kiểm tra giá trị của biến $result
                 if ($result) {
                     // echo 'The court schedule has been deleted successfully';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_successful");   
+                    header("Location: ../views/sport-court-schedules-management.php?notification=delete_successful");   
                 } else {
                     // echo 'The court schedule has been deleted fail';
-                    header("Location: ../views/sport-court-schedules-management.php?court_type_id=0&notification=delete_fail");
+                    header("Location: ../views/sport-court-schedules-management.php?notification=delete_fail");
                 }   
             }
         }

@@ -134,11 +134,11 @@
               <img src="../image/sport-court-schedules-management-img/insert.svg" alt="insert icon">
               <p>Thêm</p>
             </a>
-            <a id="update" href="?option=view_update_court_schedule&court_schedule_id=">
+            <a id="update" href="#">
               <img src="../image/sport-court-schedules-management-img/update.svg" alt="update icon">
               <p>Sửa</p>
             </a>
-            <a id="delete" href="?option=confirm_delete_court_schedule&court_schedule_id=">
+            <a id="delete" href="#">
               <img src="../image/sport-court-schedules-management-img/delete.svg" alt="delete icon">
               <p>Xóa</p>
             </a>
@@ -167,7 +167,8 @@
                 foreach($court_schedules as $court_schedule) {
                   echo "<tr>";
 
-                  echo "<td><input type='checkbox' name='court_schedule_id_".$court_schedule->getCourtScheduleId()."' id='court_schedule_id_".$court_schedule->getCourtScheduleId()."' onclick='updateUrl(this)'></td>";
+                  echo "<td><input type='checkbox' name='court_schedule_id_".$court_schedule->getCourtScheduleId()."_state_".$court_schedule->getCourtScheduleState()."'";
+                  echo " id='court_schedule_id_".$court_schedule->getCourtScheduleId()."' onclick='updateUrl(this)'></td>";
                   echo "<td>".$court_schedule->getCourtScheduleId()."</td>";
 
                   echo "<td>";

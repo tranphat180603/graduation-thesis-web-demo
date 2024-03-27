@@ -263,28 +263,35 @@ table_headings.forEach((head, i) => {
   };
 });
 
-//9. Hàm cập nhật url khi tick vào checkbox trong bảng HTML
+//9. Hàm cập nhật href của nút sửa và nút xóa khi tick vào checkbox trong bảng HTML
 function updateUrl(checkbox) {
   var checkedIds = [];
+  var checkStates = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  var btn_update = document.getElementById("update");
+  var btn_delete = document.getElementById("delete");
 
   checkboxes.forEach(function (cb) {
     checkedIds.push(cb.getAttribute("name").split("_")[3]);
   });
 
-  var urlParams = new URLSearchParams(window.location.search);
-  urlParams.set("court_schedule_id", checkedIds.join(","));
+  checkboxes.forEach(function (cb) {
+    checkStates.push(cb.getAttribute("name").split("_")[5]);
+  });
 
-  // Kiểm tra xem nếu không có checkbox nào được chọn, loại bỏ biến 'court_schedule_id' khỏi URL
-  if (checkedIds.length === 0) {
-    urlParams.delete("court_schedule_id");
-  }
+  btn_update.href =
+    "?court_schedule_id=" +
+    checkedIds[0] +
+    "&court_schedule_state=" +
+    checkStates[0] +
+    "&option=view_update_court_schedule";
 
-  window.history.replaceState(
-    {},
-    "",
-    `${window.location.pathname}?${urlParams}`
-  );
+  btn_delete.href =
+    "?court_schedule_id=" +
+    checkedIds[0] +
+    "&court_schedule_state=" +
+    checkStates[0] +
+    "&option=confirm_delete_court_schedule";
 }
 
 //10. Hàm xử lý sự kiện click của checkbox có court_schedule_id = 0

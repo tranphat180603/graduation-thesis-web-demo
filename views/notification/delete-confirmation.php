@@ -17,7 +17,7 @@
                       echo "?option=delete_court_schedule&court_schedule_id=" . $court_schedule_id;
                     }
                   ?>
-            ">Có
+          ">Có
           </a>
         </div>
       </div>

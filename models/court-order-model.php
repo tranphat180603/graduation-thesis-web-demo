@@ -156,5 +156,62 @@
 
             return $row;
         }
+
+        //5. Hàm xử lý dơn đặt sân có trạng thái CHỜ THANH TOÁN
+        public function process_payment_court_order($court_order_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_order SET order_state = 'Chờ nhận sân' WHERE court_order_id = $court_order_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
+
+        //6. Hàm xử lý dơn đặt sân có trạng thái CHỜ NHẬN SÂN
+        public function process_receive_court_order($court_order_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_order SET order_state = 'Hoàn thành' WHERE court_order_id = $court_order_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
+
+        //7. Hàm xử lý dơn đặt sân có trạng thái CHỜ HOÀN TIỀN
+        public function process_refunded_court_order($court_order_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_order SET order_state = 'Đã hủy' WHERE court_order_id = $court_order_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
     }
 ?>

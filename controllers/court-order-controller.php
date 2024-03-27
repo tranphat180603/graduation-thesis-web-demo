@@ -55,6 +55,118 @@
               return $result = $this->court_order->view_specific_court_order($court_order_id);
             }
         }
+
+        //5. Hàm xử lý đơn đặt sân có trạng thái CHỜ THANH TOÁN 
+        public function process_payment_court_order() {
+            if(isset($_GET['court_order_id'])) {
+                $court_order_id = $_GET['court_order_id'];
+
+                $result = $this->court_order->process_payment_court_order($court_order_id);
+
+                // Kiểm tra giá trị của biến $result
+                if ($result) {
+                    // echo 'The court order has been processed successfully';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_successful");    
+                } else {
+                    // echo 'The court order has been processed fail';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_fail");
+                }   
+            }
+        }
+
+        //6. Hàm xử lý đơn đặt sân có trạng thái CHỜ NHẬN SÂN 
+        public function process_receive_court_order() {
+            if(isset($_GET['court_order_id'])) {
+                $court_order_id = $_GET['court_order_id'];
+
+                $result = $this->court_order->process_receive_court_order($court_order_id);
+
+                // Kiểm tra giá trị của biến $result
+                if ($result) {
+                    // echo 'The court order has been processed successfully';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_successful");    
+                } else {
+                    // echo 'The court order has been processed fail';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_fail");
+                }   
+            }
+        }
+
+        //7. Hàm xử lý đơn đặt sân có trạng thái CHỜ HOÀN TIỀN 
+        public function process_refunded_court_order() {
+            if(isset($_GET['court_order_id'])) {
+                $court_order_id = $_GET['court_order_id'];
+
+                $result = $this->court_order->process_refunded_court_order($court_order_id);
+
+                // Kiểm tra giá trị của biến $result
+                if ($result) {
+                    // echo 'The court order has been processed successfully';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_successful");    
+                } else {
+                    // echo 'The court order has been processed fail';
+                    header("Location: ../views/sport-court-orders-management.php?notification=process_fail");
+                }   
+            }
+        }
+    }
+
+    if(isset($_GET["option"])) {
+        $_option = $_GET["option"];
+        switch ($_option) {
+            case "process_payment_court_order": 
+                $court_order = new Court_Order_Controller();
+                $court_order->process_payment_court_order();
+            break;
+            case "process_receive_court_order": 
+                $court_order = new Court_Order_Controller();
+                $court_order->process_receive_court_order();
+            break;
+            case "process_refunded_court_order": 
+                $court_order = new Court_Order_Controller();
+                $court_order->process_refunded_court_order();
+            break;
+        }
+    }   
+
+    if(isset($_GET['notification'])) {
+        $_notification = $_GET['notification'];
+
+        echo "
+          <script>
+            var overlayFrame = document.getElementById('overlay-wrapper');
+            overlayFrame.style.display = 'block';
+          </script>
+        "; 
+
+        if($_notification == "process_successful") {
+          include "./notification/action-successful.php";
+          echo "
+            <script>
+              var message = document.getElementById('action-successful-message');
+              message.textContent = 'Bạn đã xử lý đơn đặt sân thành công';
+
+              var btn_back = document.getElementById('admin-management-button');
+              btn_back.textContent = 'Trở về quản lý đơn đặt sân';
+              btn_back.href = './sport-court-orders-management.php';
+              btn_back.style.fontSize = '12.5px';
+            </script>
+          ";
+        } else if($_notification == "process_fail") {
+          include "./notification/warning.php"; 
+          echo "
+            <script>
+              var warningQuestion = document.getElementById('warning-question');
+              warningQuestion.textContent ='Bạn đã thực hiện thao tác xử lý đơn đặt sân!';
+              
+              var warningExplanation = document.getElementById('warning-explanation');
+              warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng đơn đặt sân đã không được xử lý thành công';
+
+              var btn_ok = document.getElementById('war-act-ok');
+              btn_ok.href = './sport-court-orders-management.php';
+            </script>
+          ";
+        } 
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

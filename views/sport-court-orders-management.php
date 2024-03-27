@@ -325,7 +325,7 @@
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/sport-court-orders-management.js" language="javascript"></script>
     <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ THANH TOÁN" -->
-    <form id="form-view-payment" action="../controllers/court-order-controller.php?option=process_payment_court_order" method="post" enctype="multipart/form-data">
+    <form id="form-view-payment" action="#" method="post" enctype="multipart/form-data">
       <div class="form-header">
         <p>Thông tin đơn đặt sân sân</p>
         <a href="?option=court_order_exit">
@@ -517,7 +517,10 @@
       </div>
       <div class="form-footer">
         <div class="button-group">
-          <input type="submit" value="Xử lý">
+          <a class="form-button" id="form-process" href="<?php echo '?option=confirm_process_payment_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+            <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
+            <p>Xử lý</p>
+          </a>
           <a class="form-button" id="form-cancel" href="<?php echo '?option=confirm_cancel_payment_court_order&court_order_id='.urlencode($court_order[0]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
@@ -526,7 +529,7 @@
       </div>
     </form>
     <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ NHẬN SÂN" -->
-    <form id="form-view-receive" action="../controllers/court-order-controller.php?option=process_receive_court_order" method="post" enctype="multipart/form-data">
+    <form id="form-view-receive" action="" method="post" enctype="multipart/form-data">
       <div class="form-header">
         <p>Thông tin đơn đặt sân sân</p>
         <a href="?option=court_order_exit">
@@ -718,7 +721,10 @@
       </div>
       <div class="form-footer">
         <div class="button-group">
-          <input type="submit" value="Xử lý">
+          <a class="form-button" id="form-process" href="<?php echo '?option=confirm_process_receive_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+            <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
+            <p>Xử lý</p>
+          </a>          
           <a class="form-button" id="form-cancel" href="<?php echo '?option=confirm_cancel_receive_court_order&court_order_id='.urlencode($court_order[0]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
@@ -920,7 +926,7 @@
       <div class="form-footer">
         <div class="button-group">
           <a class="form-button" id="form-exit" href="?option=court_order_exit">
-            <img src="../image/sport-court-orders-management-img/update.svg" alt="delete icon">
+            <img src="../image/sport-court-orders-management-img/delete.svg" alt="exit icon">
             <p>Thoát</p>
           </a>
         </div>
@@ -1156,14 +1162,14 @@
       <div class="form-footer">
         <div class="button-group">
           <a class="form-button" id="form-exit" href="?option=court_order_exit">
-            <img src="../image/sport-court-orders-management-img/update.svg" alt="delete icon">
+            <img src="../image/sport-court-orders-management-img/delete.svg" alt="exit icon">
             <p>Thoát</p>
           </a>
         </div>
       </div>
     </form>
     <!-- FORM XEM ĐƠN ĐẶT SÂN CÓ TRẠNG THÁI "CHỜ HOÀN TIỀN" -->
-    <form id="form-view-refunded" action="../controllers/court-order-controller.php?option=process_refunded_court_order" method="post" enctype="multipart/form-data">
+    <form id="form-view-refunded" action="" method="post" enctype="multipart/form-data">
       <div class="form-header">
         <p>Thông tin đơn đặt sân sân</p>
         <a href="?option=court_order_exit">
@@ -1379,9 +1385,12 @@
       </div>
       <div class="form-footer">
         <div class="button-group">
-          <input type="submit" value="Xử lý">
+          <a class="form-button" id="form-process" href="<?php echo '?option=confirm_process_refunded_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+            <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
+            <p>Xử lý</p>
+          </a>          
           <a class="form-button" id="form-exit" href="?option=court_order_exit">
-            <img src="../image/sport-court-orders-management-img/update.svg" alt="delete icon">
+            <img src="../image/sport-court-orders-management-img/delete.svg" alt="exit icon">
             <p>Thoát</p>
           </a>
         </div>
@@ -1434,6 +1443,12 @@
               formRefunded.style.display = 'flex';
             </script>
           "; 
+        } else if($_option == "confirm_process_payment_court_order") {
+          include "./notification/payment-order-process-confirm.php";
+        } else if($_option == "confirm_process_receive_court_order") {
+          include "./notification/receive-order-process-confirm.php";
+        } else if($_option == "confirm_process_refunded_court_order") {
+          include "./notification/refunded-order-process-confirm.php";
         } else if($_option == "court_order_exit") {
           echo "
             <script>

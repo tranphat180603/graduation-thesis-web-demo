@@ -896,27 +896,14 @@ body {
   background: rgb(67, 162, 251);
 }
 
-.button-group input[type="submit"] {
-  position: relative;
-  width: 82px;
-  height: 32px;
-  background-color: #27ae60;
-  color: #fff;
-  border: none;
-  border-radius: 2px;
-
-  color: #fff;
-  text-align: center;
-  font-family: "Be Vietnam Pro";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 22px;
+.button-group #form-process {
+  border: 1px solid #27ae60;
+  background: #27ae60;
 }
 
-.button-group input[type="submit"]:hover {
-  cursor: pointer;
-  background-color: #2fc26c;
+.button-group #form-process:hover {
+  border: 1px solid #2fc26c;
+  background: #2fc26c;
 }
 
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 700px */

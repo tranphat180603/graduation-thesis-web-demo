@@ -682,16 +682,7 @@
                 </script>
               ";
             } else {
-              include "./notification/delete-confirmation.php";
-              echo "
-                <script>
-                  var delConQuestion = document.getElementById('delete-confirm-question');
-                  delConQuestion.textContent ='Bạn thật sự muốn xóa lịch sân này?';
-                  
-                  var delConExplanation = document.getElementById('delete-confirm-explanation');
-                  delConExplanation.textContent ='Lịch sân này sẽ biến mất trên website của người dùng nếu bạn xoá nó.';
-                </script>
-              ";
+              include "./notification/schedule-delete-confirmation.php";
             }
           } 
         } else if($_option == "court_schedule_exit") {

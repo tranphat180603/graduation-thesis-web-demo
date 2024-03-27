@@ -9,7 +9,7 @@
       </div>
       <div class="action-successful-button-group">
         <a id="home-button" href="../index.php">Trở về trang chủ</a>
-        <a id="court-schedule-button" href="./sport-court-schedules-management.php">Trở về quản lý lịch sân</a>
+        <a id="admin-management-button" href="./sport-court-schedules-management.php">Trở về quản lý lịch sân</a>
       </div>
     </div>
     <style>
@@ -99,7 +99,7 @@
         background: #e4ebf1;
       }
 
-      #court-schedule-button {
+      #admin-management-button {
         display: flex;
         padding: 16px;
         justify-content: center;
@@ -118,7 +118,7 @@
         line-height: 20px;
       }
 
-      #court-schedule-button:hover {
+      #admin-management-button:hover {
         background: #1d476f;
       }
 

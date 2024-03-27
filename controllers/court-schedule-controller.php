@@ -181,7 +181,7 @@
           echo "
             <script>
               var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã thêm lịch sân thành công';
+              message.textContent = 'Bạn đã thêm lịch sân thành công';
             </script>
           ";
         } else if($_notification == "insert_fail") {
@@ -189,10 +189,10 @@
           echo "
             <script>
               var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác thêm lịch sân!';
+              warningQuestion.textContent = 'Bạn đã thực hiện thao tác thêm lịch sân!';
               
               var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được thêm thành công';
+              warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được thêm thành công';
             </script>
           ";
         } else if($_notification == "update_successful") {
@@ -200,7 +200,7 @@
           echo "
             <script>
               var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã sửa lịch sân thành công';
+              message.textContent = 'Bạn đã sửa lịch sân thành công';
             </script>
           ";
         } else if($_notification == "update_fail") {
@@ -208,10 +208,10 @@
           echo "
             <script>
               var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác sửa lịch sân!';
+              warningQuestion.textContent = 'Bạn đã thực hiện thao tác sửa lịch sân!';
               
               var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được sửa thành công';
+              warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được sửa thành công';
             </script>
           ";
         } else if($_notification == "delete_successful") {
@@ -219,7 +219,7 @@
           echo "
             <script>
               var message = document.getElementById('action-successful-message');
-              message.textContent ='Bạn đã xóa lịch sân thành công';
+              message.textContent = 'Bạn đã xóa lịch sân thành công';
             </script>
           ";
         } else if($_notification == "delete_fail") {
@@ -227,10 +227,10 @@
           echo "
           <script>
               var warningQuestion = document.getElementById('warning-question');
-              warningQuestion.textContent ='Bạn đã thực hiện thac tác xóa lịch sân!';
+              warningQuestion.textContent = 'Bạn đã thực hiện thao tác xóa lịch sân!';
               
               var warningExplanation = document.getElementById('warning-explanation');
-              warningExplanation.textContent ='Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được xóa thành công';
+              warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được xóa thành công';
             </script>
           ";
         }

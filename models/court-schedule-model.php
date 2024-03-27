@@ -79,7 +79,7 @@
             MakeConnection($link);
 
             //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
-            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule");
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule WHERE court_schedule_state <> 'Đã xóa'");
 
             $row = mysqli_fetch_row($result);
             
@@ -97,6 +97,7 @@
 
             //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
             $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_schedule, court, court_type WHERE 
+                                            court_schedule_state <> 'Đã xóa' AND
                                             court_schedule.court_id = court.court_id AND 
                                             court.court_type_id = court_type.court_type_id
                                             AND court.court_type_id = $court_type_id"); 

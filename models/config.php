@@ -1,6 +1,6 @@
 <?php
     define("HOST","localhost");
-    define("DATABASE","nhom4");
+    define("DATABASE","ntpsh");
     define("USER","root");
     define("PASSWORD","");
 ?>

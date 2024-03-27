@@ -1,20 +1,20 @@
-      <!-- Delete Confirmation -->
-      <div class="delete-confirm-container">
+      <!-- Order Process Confirmation (refunded) -->
+      <div class="order-confirm-container">
         <div class="main-content">
-          <img src="../image/sport-court-schedules-management-img/delete-confirm.svg" alt="delete confirm icon">
+          <img id="order-confirm-icon" src="../image/sport-court-orders-management-img/refunded.svg" alt="order confirm icon">
           <div class="content">
-            <p id="delete-confirm-question">Bạn thật sự muốn xóa ... này?</p>
-            <p id="delete-confirm-explanation">... này sẽ biến mất trên website của người dùng nếu bạn xoá nó.</p>
+            <p id="order-confirm-question">Bạn thật sự muốn xử lý đơn đặt sân này?</p>
+            <p id="order-confirm-explanation">Đơn đặt sân này sẽ được chuyển trạng thái thành <span id="order-confirm-state">ĐÃ HỦY</span> nếu bạn xử lý nó.</p>
           </div>
         </div>
         <div class="action">
-          <a id="del-con-act-no" href="./sport-court-schedules-management.php">Không</a>
+          <a id="ord-con-act-no" href="./sport-court-orders-management.php">Không</a>
           <a 
-            id="del-con-act-yes" 
+            id="ord-con-act-yes" 
             href="<?php 
-                    if(isset($_GET['court_schedule_id'])) {
-                      $court_schedule_id = urlencode($_GET['court_schedule_id']);
-                      echo "?option=delete_court_schedule&court_schedule_id=" . $court_schedule_id;
+                    if(isset($_GET['court_order_id'])) {
+                      $court_order_id = urlencode($_GET['court_order_id']);
+                      echo "?option=process_refunded_court_order&court_order_id=" . $court_order_id;
                     }
                   ?>
           ">Có
@@ -22,7 +22,7 @@
         </div>
       </div>
       <style>
-        .delete-confirm-container {
+        .order-confirm-container {
           display: flex;
           width: 416px;
           padding: 32px 32px 24px 32px;
@@ -41,14 +41,14 @@
             0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 9px 28px 8px rgba(0, 0, 0, 0.05);
         }
 
-        .delete-confirm-container .main-content {
+        .order-confirm-container .main-content {
           display: flex;
           align-items: flex-start;
           gap: 16px;
           align-self: stretch;
         }
 
-        #delete-confirm-question {
+        #order-confirm-question {
           align-self: stretch;
           color: rgba(0, 0, 0, 0.85);
           font-size: 15.5px;
@@ -57,7 +57,7 @@
           line-height: 24px;
         }
 
-        #delete-confirm-explanation {
+        #order-confirm-explanation {
           align-self: stretch;
           color: rgba(0, 0, 0, 0.85);
           font-size: 14px;
@@ -66,7 +66,11 @@
           line-height: 22px;
         }
 
-        .delete-confirm-container .action {
+        #order-confirm-explanation span {
+          color: #E72E2E;
+        }
+
+        .order-confirm-container .action {
           display: flex;
           justify-content: flex-end;
           align-items: flex-start;
@@ -74,7 +78,7 @@
           align-self: stretch;
         }
 
-        #del-con-act-no {
+        #ord-con-act-no {
           display: flex;
           padding: 4px 15px;
           justify-content: center;
@@ -93,19 +97,19 @@
           line-height: 22px;
         }
 
-        #del-con-act-no:hover {
+        #ord-con-act-no:hover {
           background: #e3e3e3;
         }
 
-        #del-con-act-yes {
+        #ord-con-act-yes {
           display: flex;
           padding: 4px 15px;
           justify-content: center;
           align-items: center;
           gap: 8px;
           border-radius: 2px;
-          border: 1px solid #d00000;
-          background: #d00000;
+          border: 1px solid #E72E2E;
+          background: #E72E2E;
           box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
 
           color: #fff;
@@ -116,13 +120,13 @@
           line-height: 22px;
         }
 
-        #del-con-act-yes:hover {
-          background: #ab0505;
+        #ord-con-act-yes:hover {
+          background: #CA2727;
         }
 
         /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
         @media screen and (max-width: 600px) {
-          .delete-confirm-container {
+          .order-confirm-container {
             width: 300px;
             top: 100px;
             right: calc(100% / 2 - 180px);
@@ -131,7 +135,7 @@
 
         /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
         @media screen and (max-width: 500px) {
-          .delete-confirm-container {
+          .order-confirm-container {
             width: 270px;
             top: 50px;
             right: calc(100% / 2 - 170px);
@@ -140,7 +144,7 @@
 
         /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
         @media screen and (max-width: 400px) {
-          .delete-confirm-container {
+          .order-confirm-container {
             width: 240px;
             top: 50px;
             right: calc(100% / 2 - 155px);

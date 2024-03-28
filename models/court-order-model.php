@@ -215,13 +215,13 @@
         }
 
         //8. Hàm hủy dơn đặt sân có trạng thái CHỜ THANH TOÁN hoặc CHỜ NHẬN SÂN với lý do hủy từ phía NTPSH
-        public function cancel_court_order_by_admin($court_order_id) {
+        public function cancel_court_order_by_admin($court_order_id, $canceled_on_date) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền' WHERE court_order_id = $court_order_id";
+            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', canceled_on_date = '$canceled_on_date' WHERE court_order_id = $court_order_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 
@@ -234,13 +234,13 @@
         }
 
         //9. Hàm hủy dơn đặt sân có trạng thái CHỜ THANH TOÁN hoặc CHỜ NHẬN SÂN với lý do hủy từ phía khách hàng
-        public function cancel_court_order_by_customer($court_order_id) {
+        public function cancel_court_order_by_customer($court_order_id, $canceled_on_date) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_order SET order_state = 'Đã hủy' WHERE court_order_id = $court_order_id";
+            $sql = "UPDATE court_order SET order_state = 'Đã hủy', canceled_on_date = '$canceled_on_date' WHERE court_order_id = $court_order_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 

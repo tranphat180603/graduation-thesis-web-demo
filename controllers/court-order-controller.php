@@ -116,11 +116,12 @@
                 if(isset($_GET['cancel_reason'])) {
                     $court_order_id = $_GET['court_order_id'];
                     $cancel_reason = $_GET['cancel_reason'];
+                    $canceled_on_date = date("Y-m-d");
 
                     if($cancel_reason != "Đơn đặt sân chưa được thanh toán" && $cancel_reason != "Khách hàng không đến nhận sân") {
-                        $result = $this->court_order->cancel_court_order_by_admin($court_order_id);
+                        $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date);
                     } else {
-                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id);
+                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
                     }
 
                     // Kiểm tra giá trị của biến $result

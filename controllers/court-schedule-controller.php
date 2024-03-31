@@ -44,7 +44,79 @@
             }
         }
 
-        //7. Hàm thêm lịch sân mới
+        //7. Hàm kiểm tra trước khi thêm lịch sân mới
+        public function check_insert_court_schedule() {
+          if(isset($_POST['court_id'], $_POST['court_schedule_date'], $_POST['court_schedule_start_time'], $_POST['court_schedule_end_time'], $_POST['court_schedule_state'])) {
+            //Lấy thông tin của các trường trong form
+            $court_id = $_POST['court_id'];
+            $court_schedule_date = date("Y-m-d", strtotime($_POST['court_schedule_date']));
+            $court_schedule_start_time = $_POST['court_schedule_start_time'];
+            $court_schedule_end_time = $_POST['court_schedule_end_time'];
+            $court_schedule_state = $_POST['court_schedule_state'];
+
+            if($court_id == 0 || $court_schedule_date == "" || $court_schedule_start_time == "0" || $court_schedule_end_time == "0" || $court_schedule_state == "Chọn trạng thái") {
+              header("Location: ../views/sport-court-schedules-management.php?notification=insert_fail");
+              return;
+            }
+
+            // Tách giờ và phút từ chuỗi thời gian
+            $court_schedule_start_time_parts = explode(':', $court_schedule_start_time);
+            $court_schedule_end_time_parts = explode(':', $court_schedule_end_time);
+
+            // Chuyển đổi thời gian thành timestamp
+            $start_timestamp = strtotime($court_schedule_start_time);
+            $end_timestamp = strtotime($court_schedule_end_time);
+
+            // Tính khoảng cách giữa hai thời gian
+            $time_difference = $end_timestamp - $start_timestamp;
+
+            // Chuyển đổi khoảng cách thành giờ
+            $time_difference_hours = $time_difference / 3600;
+
+            // Kiểm tra xem $court_schedule_start_time có nhỏ hơn $court_schedule_end_time không
+            if ($court_schedule_start_time_parts[0] < $court_schedule_end_time_parts[0]) {
+              // Kiểm tra xem khoảng cách có đủ 1 tiếng hay không
+              if ($time_difference_hours >= 1) {
+                header("Location: ../views/sport-court-schedules-management.php?notification=insert_fail");
+                return;
+              } 
+            } else {
+              header("Location: ../views/sport-court-schedules-management.php?notification=insert_fail");
+              return;
+            }
+
+            $checkValue = true;
+
+            $court_schedules = $this->court_schedule->data_for_check_insert_court_schedule($court_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time);
+
+            foreach($court_schedules as $court_schedule) {
+              $start_time = date('H:i', strtotime($court_schedule->getCourtScheduleStartTime()));
+              $end_time = date('H:i', strtotime($court_schedule->getCourtScheduleEndTime()));
+
+              // Tách giờ và phút từ chuỗi thời gian
+              $start_time_parts = explode(':', $start_time);
+              $end_time_parts = explode(':', $end_time);
+
+              //Kiểm tra xem start time với end time đã tồn tại hay chưa
+              if(($court_schedule_start_time_parts[0] < $start_time_parts[0] && 
+                    $court_schedule_end_time_parts[0] <= $start_time_parts[0] && $court_schedule_end_time_parts[1] < $start_time_parts[1]) 
+                  || ($court_schedule_start_time_parts[0] > $end_time_parts[0]) 
+                  || ($court_schedule_start_time_parts[0] == $end_time_parts[0] && $court_schedule_start_time_parts[1] > $end_time_parts[1])) {
+              } else {
+                $checkValue = false;
+                break;
+              }
+            }
+
+            if($checkValue) {
+              $this->insert_court_schedule();
+            } else {
+              header("Location: ../views/sport-court-schedules-management.php?notification=insert_fail");    
+            }
+          }
+        }
+
+        //8. Hàm thêm lịch sân mới
         public function insert_court_schedule() {
             if(isset($_POST['court_id'], $_POST['court_schedule_date'], $_POST['court_schedule_start_time'], $_POST['court_schedule_end_time'], $_POST['court_schedule_state'])) {
                 //Lấy thông tin của các trường trong form
@@ -84,8 +156,6 @@
                 //Biến để kiểm tra insert thành công hay không
                 $queryResult = true;
 
-                print_r($court_schedule_time_frames);
-
                 foreach ($court_schedule_time_frames as $court_schedule_time_frame) {
                     $result = $this->court_schedule->insert_court_schedule($court_schedule_date, $court_schedule_start_time, 
                                                                             $court_schedule_end_time, $court_schedule_time_frame, 
@@ -109,7 +179,7 @@
             }
         }
 
-        //8. Hàm cập nhật lịch sân 
+        //9. Hàm cập nhật lịch sân 
         public function update_court_schedule() {
             if(isset($_POST['court_schedule_id'], $_POST['court_schedule_state'])) {
                 //Lấy thông tin của các trường trong form
@@ -129,22 +199,29 @@
             }
         }
 
-        //9. Hàm xóa lịch sân 
+        //10. Hàm xóa lịch sân 
         public function delete_court_schedule() {
-            if(isset($_GET['court_schedule_id'])) {
-                $court_schedule_id = $_GET['court_schedule_id'];
+          if(isset($_GET['court_schedule_id'])) {
+            $court_schedule_id = $_GET['court_schedule_id'];
                 
-                $result = $this->court_schedule->delete_court_schedule($court_schedule_id);
+            $result = $this->court_schedule->delete_court_schedule($court_schedule_id);
 
-                // Kiểm tra giá trị của biến $result
-                if ($result) {
-                    // echo 'The court schedule has been deleted successfully';
-                    header("Location: ../views/sport-court-schedules-management.php?notification=delete_successful");   
-                } else {
-                    // echo 'The court schedule has been deleted fail';
-                    header("Location: ../views/sport-court-schedules-management.php?notification=delete_fail");
-                }   
-            }
+            // Kiểm tra giá trị của biến $result
+            if ($result) {
+              // echo 'The court schedule has been deleted successfully';
+              header("Location: ../views/sport-court-schedules-management.php?notification=delete_successful");   
+            } else {
+              // echo 'The court schedule has been deleted fail';
+              header("Location: ../views/sport-court-schedules-management.php?notification=delete_fail");
+            }   
+          }
+        }
+
+        //11. Hàm điều chỉnh trạng thái của lịch sân khi quản lý hủy đơn với một trong ba lý do: ‘Sân này không cho thuê nữa’, ’Lịch sân này không khả dụng nữa’, ‘Sân này đang được bảo trì, sữa chữa’
+        public function cancel_order_update_schedule_to_expired($court_schedule_id) {
+          if(isset($_GET['court_schedule_id'])) {                
+            $result = $this->court_schedule->cancel_order_update_schedule_to_expired($court_schedule_id);   
+          }
         }
     }
 
@@ -153,7 +230,7 @@
         switch ($_option) {
             case "insert_court_schedule": 
                 $court_schedule_controller = new Court_Schedule_Controller();
-                $court_schedule_controller->insert_court_schedule();
+                $court_schedule_controller->check_insert_court_schedule();
             break;
             case "update_court_schedule": 
                 $court_schedule_controller = new Court_Schedule_Controller();

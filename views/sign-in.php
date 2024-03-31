@@ -56,8 +56,8 @@
                   />
                   <img id="check" src="../image/sign-up-img/check.svg" alt="" />
                 </div>
-                <div class="warning">
-                  <img src="../image/sign-up-img/warning.svg" alt="" />
+                <div id="sign-up-name-warning" class="warning">
+                  <img src="../image/sign-in-img/warning.svg" alt="" />
                   <p id="warning-content">Tên đăng nhập chưa đúng định dạng</p>
                 </div>
                 <div class="sign-in-pass-input">

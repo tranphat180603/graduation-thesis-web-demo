@@ -116,16 +116,29 @@
                 if(isset($_GET['cancel_reason'])) {
                     $court_order_id = $_GET['court_order_id'];
                     $cancel_reason = $_GET['cancel_reason'];
+                    $court_schedule_id = $_GET['court_schedule_id'];
+
                     $canceled_on_date = date("Y-m-d");
+
+                    $result2 = true;
 
                     if($cancel_reason != "Đơn đặt sân chưa được thanh toán" && $cancel_reason != "Khách hàng không đến nhận sân") {
                         $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date);
-                    } else {
+
+                        $court_schedule_controller = new Court_Schedule_Controller();
+                        $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+                    } else if($cancel_reason == "Khách hàng không đến nhận sân") {
                         $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
-                    }
+
+                        $court_schedule_controller = new Court_Schedule_Controller();
+                        $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+                    } else if($cancel_reason == "Đơn đặt sân chưa được thanh toán") {
+                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
+                        //code thêm hàm xử lý
+                    } 
 
                     // Kiểm tra giá trị của biến $result
-                    if ($result) {
+                    if ($result && $result2) {
                         // echo 'The court order has been canceled successfully';
                         header("Location: ../views/sport-court-orders-management.php?notification=cancel_successful");    
                     } else {

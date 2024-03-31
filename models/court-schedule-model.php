@@ -172,6 +172,33 @@
             return $row;
         }
 
+        //7. Hàm lấy dữ liệu để kiểm tra trước khi thêm lịch sân mới
+        public function data_for_check_insert_court_schedule($court_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_schedule WHERE 
+                                            court_id = $court_id AND
+                                            court_schedule_date = '$court_schedule_date'"); 
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court_schedule = new court_schedule($rows["court_schedule_id"], $rows["court_schedule_date"], 
+                                        $rows["court_schedule_start_time"], $rows["court_schedule_end_time"], 
+                                        $rows["court_schedule_time_frame"], $rows["court_schedule_state"], 
+                                        $rows["created_on_date"], $rows["last_modified_date"], $rows["court_id"], $rows["account_id"]);
+                array_push($data, $court_schedule);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
+
         //7. Hàm thêm lịch sân mới
         public function insert_court_schedule($court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, 
                                                 $court_schedule_time_frame, $court_schedule_state, $created_on_date = "", 
@@ -227,6 +254,25 @@
 
             //Tạo ra câu SQL
             $sql = "UPDATE court_schedule SET court_schedule_state = 'Đã xóa' WHERE court_schedule_id = $court_schedule_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
+
+        //10. Hàm điều chỉnh trạng thái của lịch sân khi quản lý hủy đơn với một trong ba lý do: ‘Sân này không cho thuê nữa’, ’Lịch sân này không khả dụng nữa’, ‘Sân này đang được bảo trì, sữa chữa’
+        public function cancel_order_update_schedule_to_expired($court_schedule_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' WHERE court_schedule_id = $court_schedule_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 

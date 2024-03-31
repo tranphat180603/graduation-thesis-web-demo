@@ -258,7 +258,7 @@
           </div>
           <div class="form-row">
             <p>Giờ bắt đầu :</p>
-            <div class="input">
+            <div id="start_time_input" class="input">
               <select id='court_schedule_start_time' name='court_schedule_start_time'>
                 <option value='0'>Chọn giờ bắt đầu</option>
                 <?php
@@ -276,7 +276,7 @@
           </div>
           <div class="form-row">
             <p>Giờ kết thúc :</p>
-            <div class="input">
+            <div id="end_time_input" class="input">
               <select id='court_schedule_end_time' name='court_schedule_end_time'>
                 <option value='0'>Chọn giờ kết thúc</option>
                 <?php

@@ -1,7 +1,7 @@
       <!-- Schedule Delete Confirmation -->
       <div class="delete-confirm-container">
         <div class="main-content">
-          <img src="../image/sport-court-schedules-management-img/delete-confirm.svg" alt="delete confirm icon">
+          <img src="../image/sport-court-schedules-management-img/confirm.svg" alt="delete confirm icon">
           <div class="content">
             <p id="delete-confirm-question">Bạn thật sự muốn xóa lịch sân này?</p>
             <p id="delete-confirm-explanation">Lịch sân này sẽ biến mất trên website của người dùng nếu bạn xoá nó.</p>

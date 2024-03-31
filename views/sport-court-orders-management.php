@@ -521,7 +521,7 @@
             <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
             <p>Xử lý</p>
           </a>
-          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_payment_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_payment_court_order&court_order_id='.urlencode($court_order[0]).'&court_schedule_id='.urlencode($court_order[1]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
           </a>
@@ -725,7 +725,7 @@
             <img src="../image/sport-court-orders-management-img/update.svg" alt="process icon">
             <p>Xử lý</p>
           </a>          
-          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_receive_court_order&court_order_id='.urlencode($court_order[0]); ?>">
+          <a class="form-button" id="form-cancel" href="<?php echo '?option=reason_cancel_receive_court_order&court_order_id='.urlencode($court_order[0]).'&court_schedule_id='.urlencode($court_order[1]); ?>">
             <img src="../image/sport-court-orders-management-img/delete.svg" alt="delete icon">
             <p>Hủy đơn</p>
           </a>
@@ -1482,6 +1482,7 @@
         if(isset($_POST['court_order_id'])) {
           $cancel_reason = $_POST['cancel_reason'];
           $court_order_id = $_POST['court_order_id'];
+          $court_schedule_id = $_POST['court_schedule_id'];
 
           echo "
             <script>
@@ -1510,6 +1511,7 @@
                 href='"; 
                   echo "?option=cancel_court_order&court_order_id=" . $court_order_id;
                   echo "&cancel_reason=" . $cancel_reason;
+                  echo "&court_schedule_id=" . $court_schedule_id;
           echo "'>Có
               </a>
             </div>

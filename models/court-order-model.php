@@ -251,5 +251,24 @@
 
             return $message;
         }
+
+        //10. Hàm cập nhật đơn đặt sân sau mỗi 12 tiếng
+        public function update_court_order_per_12($court_order_id, $canceled_on_date) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', order_cancel_reason = 'Khu liên hợp NTP chưa xác nhận thanh toán kịp', canceled_on_date = '$canceled_on_date' WHERE court_order_id = $court_order_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
     }
 ?>

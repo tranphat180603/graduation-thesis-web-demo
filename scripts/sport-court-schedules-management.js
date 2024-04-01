@@ -385,7 +385,7 @@ function updateUrlAndCBState() {
 function callPHPFunction(currentDate) {
   // Gọi Ajax để gọi hàm PHP và truyền biến vào
   $.ajax({
-    url: "court-schedule-controller.php", // Đường dẫn đến tập tin PHP của bạn
+    url: "../controllers/court-schedule-controller.php", // Đường dẫn đến tập tin PHP của bạn
     type: "POST",
     data: { currentDate: currentDate },
     success: function (response) {

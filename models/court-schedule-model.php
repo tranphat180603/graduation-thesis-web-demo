@@ -142,13 +142,13 @@
         }
 
         //5. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
-        public function update_court_schedule_state($currentDate) {
+        public function update_court_schedule_state($court_schedule_id) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' 
-                                                    WHERE court_schedule_date < '$currentDate' AND court_schedule_state = 'Chưa đặt'");
+                                                    WHERE court_schedule_id = '$court_schedule_id' AND court_schedule_state = 'Chưa đặt'");
 
             //Giải phóng bộ nhớ
             ReleaseMemory($link, $result);
@@ -199,7 +199,7 @@
             return $data;
         }
 
-        //7. Hàm thêm lịch sân mới
+        //8. Hàm thêm lịch sân mới
         public function insert_court_schedule($court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, 
                                                 $court_schedule_time_frame, $court_schedule_state, $created_on_date = "", 
                                                 $last_modified_date = "", $court_id, $account_id = 1) {
@@ -223,7 +223,7 @@
             return $message;
         }
 
-        //8. Hàm cập nhật lịch sân 
+        //9. Hàm cập nhật lịch sân 
         public function update_court_schedule($court_schedule_id, $court_schedule_state) {
             //Tạo kết nối đến database
             $link = "";
@@ -246,7 +246,7 @@
             return $message;
         }
 
-        //9. Hàm xóa lịch sân 
+        //10. Hàm xóa lịch sân 
         public function delete_court_schedule($court_schedule_id) {
             //Tạo kết nối đến database
             $link = "";
@@ -265,7 +265,7 @@
             return $message;
         }
 
-        //10. Hàm điều chỉnh trạng thái của lịch sân khi quản lý hủy đơn với một trong ba lý do: ‘Sân này không cho thuê nữa’, ’Lịch sân này không khả dụng nữa’, ‘Sân này đang được bảo trì, sữa chữa’
+        //11. Hàm điều chỉnh trạng thái của lịch sân khi quản lý hủy đơn với một trong ba lý do: ‘Sân này không cho thuê nữa’, ’Lịch sân này không khả dụng nữa’, ‘Sân này đang được bảo trì, sữa chữa’
         public function cancel_order_update_schedule_to_expired($court_schedule_id) {
             //Tạo kết nối đến database
             $link = "";
@@ -282,6 +282,40 @@
             ReleaseMemory($link, $result);
 
             return $message;
+        }
+
+        //12. Hàm cập nhật trạng thái lịch sân khi hủy đơn với lý do "Đơn đặt sân chưa được thanh toán"
+        public function cancel_order_update_schedule_to_haveNotBooked($court_schedule_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE court_schedule SET court_schedule_state = 'Chưa đặt' WHERE court_schedule_id = $court_schedule_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
+
+        //13. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi đơn đặt sân chưa được xác nhận thanh toán kịp
+        public function update_court_schedule_state_order_payment($court_schedule_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' 
+                                                    WHERE court_schedule_id = '$court_schedule_id' AND court_schedule_state = 'Đã đặt'");
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $result;
         }
     }
 ?>

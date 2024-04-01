@@ -1,6 +1,8 @@
 <?php
     require_once "../models/court-order-model.php";
 
+    require_once "../controllers/court-schedule-controller.php"; 
+
     class Court_Order_Controller {
         public $account;
 
@@ -112,42 +114,104 @@
 
         //8. Hàm hủy đơn đặt sân
         public function cancel_court_order() {
-            if(isset($_GET['court_order_id'])) {
-                if(isset($_GET['cancel_reason'])) {
-                    $court_order_id = $_GET['court_order_id'];
-                    $cancel_reason = $_GET['cancel_reason'];
-                    $court_schedule_id = $_GET['court_schedule_id'];
+            if(isset($_GET['court_order_id'], $_GET['cancel_reason'], $_GET['court_schedule_id'])) {
+                $court_schedule_controller = new Court_Schedule_Controller();
 
-                    $canceled_on_date = date("Y-m-d");
+                $court_order_id = $_GET['court_order_id'];
+                $cancel_reason = $_GET['cancel_reason'];
+                $court_schedule_id = $_GET['court_schedule_id'];
+
+                $canceled_on_date = date("Y-m-d");
+
+                $result2 = true;
+
+                if($cancel_reason != "Đơn đặt sân chưa được thanh toán" && $cancel_reason != "Khách hàng không đến nhận sân") {
+                    $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date);
+
+                    $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+                } else if($cancel_reason == "Khách hàng không đến nhận sân") {
+                    $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
+
+                    $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+                } else if($cancel_reason == "Đơn đặt sân chưa được thanh toán") {
+                    $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
+
+                    $court_schedule_start_time_frame = substr($court_schedule_time_frame, 0, 5);
+                    $court_schedule_end_time_frame = substr($court_schedule_time_frame, -5);
+
+                    // Tách giờ và phút từ chuỗi thời gian
+                    $court_schedule_start_time_frame_parts = explode(':', $court_schedule_start_time_frame);
+                    $court_schedule_end_time_frame_parts = explode(':', $court_schedule_end_time_frame);
 
                     $result2 = true;
 
-                    if($cancel_reason != "Đơn đặt sân chưa được thanh toán" && $cancel_reason != "Khách hàng không đến nhận sân") {
-                        $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date);
+                    $court_id = 0;
+                    $court_schedule_date = "";
+                    $court_schedule_start_time = "";
+                    $court_schedule_end_time = "";
+                    $court_schedule_time_frame = "";
 
-                        $court_schedule_controller = new Court_Schedule_Controller();
-                        $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
-                    } else if($cancel_reason == "Khách hàng không đến nhận sân") {
-                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
+                    $court_schedules = $court_schedule_controller->view_all_court_schedule();
+        
+                    foreach($court_schedules as $court_schedule) {
+                      $start_time_frame = substr($court_schedule->getCourtScheduleTimeFrame(), 0, 5);
+                      $end_time_frame = substr($court_schedule->getCourtScheduleTimeFrame(), -5);
+        
+                      // Tách giờ và phút từ chuỗi thời gian
+                      $start_time_frame_parts = explode(':', $start_time_frame);
+                      $end_time_frame_parts = explode(':', $end_time_frame);
 
-                        $court_schedule_controller = new Court_Schedule_Controller();
-                        $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
-                    } else if($cancel_reason == "Đơn đặt sân chưa được thanh toán") {
-                        $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date);
-                        //code thêm hàm xử lý
-                    } 
+                      $start_time = "".$court_schedule->getCourtScheduleStartTime()."";
+                      $end_time = "".$court_schedule->getCourtScheduleEndTime()."";
+        
+                      // Tách giờ và phút từ chuỗi thời gian
+                      $start_time_parts = explode(':', $start_time);
+                      $end_time_parts = explode(':', $end_time);
 
-                    // Kiểm tra giá trị của biến $result
-                    if ($result && $result2) {
-                        // echo 'The court order has been canceled successfully';
-                        header("Location: ../views/sport-court-orders-management.php?notification=cancel_successful");    
-                    } else {
-                        // echo 'The court order has been canceled fail';
-                        header("Location: ../views/sport-court-orders-management.php?notification=cancel_fail");
-                    }   
-                }
+                      if($court_schedule->getCourtScheduleId() == $court_schedule_id) {
+                        $court_id = $court_schedule->getCourtId();
+                        $court_schedule_date = "".$court_schedule->getCourtScheduleDate()."";
+                        $court_schedule_start_time = "".$court_schedule->getCourtScheduleStartTime()."";
+                        $court_schedule_end_time = "".$court_schedule->getCourtScheduleEndTime()."";
+                        $court_schedule_time_frame = "".$court_schedule->getCourtScheduleTimeFrame()."";
+                      }
+
+                      if($court_schedule->getCourtId() == $court_id && $court_schedule->getCourtScheduleDate() == $court_schedule_date 
+                        && $start_time_parts[0] == $court_schedule_start_time_frame_parts[0] && $start_time_parts[1] == $court_schedule_start_time_frame_parts[1]  
+                        && $end_time_parts[0] == $court_schedule_end_time_frame_parts[0] && $end_time_parts[1] == $court_schedule_end_time_frame_parts[1]) {
+                            //Cập nhật lại trạng thái của các lịch sân khi hủy đơn nếu thỏa điều kiện
+                            //CODE LẠI ĐIỀU KIỆN IF SAU
+                            if(!(($court_schedule_start_time_frame_parts[0] < $start_time_frame_parts[0] && 
+                            $court_schedule_end_time_frame_parts[0] <= $start_time_frame_parts[0] && $court_schedule_end_time_frame_parts[1] < $start_time_frame_parts[1]) 
+                            || ($court_schedule_start_time_frame_parts[0] > $end_time_frame_parts[0]) 
+                            || ($court_schedule_start_time_frame_parts[0] == $end_time_frame_parts[0] && $court_schedule_start_time_frame_parts[1] >= $end_time_frame_parts[1]))) {
+                                $current_date = date("Y-m-d");
+                                if(str_replace("-", "", $court_schedule->getCourtScheduleDate()) < str_replace("-", "", $current_date)) {
+                                    $result2 = $court_schedule_controller->cancel_order_update_schedule_to_haveNotBooked($court_schedule->getCourtScheduleId());
+                                    if($result2 == false) {
+                                        break;
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                } 
+
+                // Kiểm tra giá trị của biến $result
+                if ($result && $result2) {
+                    // echo 'The court order has been canceled successfully';
+                    header("Location: ../views/sport-court-orders-management.php?notification=cancel_successful");    
+                } else {
+                    // echo 'The court order has been canceled fail';
+                    header("Location: ../views/sport-court-orders-management.php?notification=cancel_fail");
+                }   
             }
         }
+
+        //9. Hàm cập nhật đơn đặt sân sau mỗi 12 tiếng
+        public function update_court_order_per_12($court_order_id, $currentDate) {
+            return $result = $this->court_order->update_court_order_per_12($court_order_id, $currentDate);
+        } 
     }
 
     if(isset($_GET["option"])) {
@@ -262,5 +326,28 @@
                 });
             </script>
         ";
+    }
+
+    if (isset($_POST['currentDate'])) {
+        $currentDate = $_POST['currentDate']; // Nhận giá trị từ JavaScript
+  
+        $court_orders = $this->view_all_court_order();
+
+        $court_schedule_controller = new Court_Schedule_Controller();
+
+        $court_schedules = $court_schedule_controller->view_all_court_schedule();
+
+        foreach($court_orders as $court_order) {
+            if($court_order->getOrderState() == "Chờ thanh toán") {
+                foreach($court_schedules as $court_schedule) {
+                    if($court_schedule->getCourtScheduleId() == $court_order->getCourtScheduleId()) {
+                        if(str_replace("-", "", $court_schedule->getCourtScheduleDate()) >= str_replace("-", "", $currentDate)) {
+                            $this->update_court_order_per_12($court_order->getCourtOrderId(), "$currentDate");
+                            $court_schedule_controller->update_court_schedule_state_order_payment($court_schedule->getCourtScheduleId());
+                        }
+                    }
+                }
+            }
+        }
     }
 ?>

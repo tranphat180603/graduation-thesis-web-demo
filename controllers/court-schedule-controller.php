@@ -31,8 +31,8 @@
         }
 
         //5. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi quá ngày nhận sân mà lịch sân vẫn chưa được đặt
-        public function update_court_schedule_state($currentDate) {
-            return $result = $this->court_schedule->update_court_schedule_state($currentDate);
+        public function update_court_schedule_state($court_schedule_id) {
+            return $result = $this->court_schedule->update_court_schedule_state($court_schedule_id);
         } 
 
         //6. Hàm lấy dữ liệu một lịch sân cụ thể
@@ -101,7 +101,7 @@
               if(($court_schedule_start_time_parts[0] < $start_time_parts[0] && 
                     $court_schedule_end_time_parts[0] <= $start_time_parts[0] && $court_schedule_end_time_parts[1] < $start_time_parts[1]) 
                   || ($court_schedule_start_time_parts[0] > $end_time_parts[0]) 
-                  || ($court_schedule_start_time_parts[0] == $end_time_parts[0] && $court_schedule_start_time_parts[1] > $end_time_parts[1])) {
+                  || ($court_schedule_start_time_parts[0] == $end_time_parts[0] && $court_schedule_start_time_parts[1] >= $end_time_parts[1])) {
               } else {
                 $checkValue = false;
                 break;
@@ -219,10 +219,18 @@
 
         //11. Hàm điều chỉnh trạng thái của lịch sân khi quản lý hủy đơn với một trong ba lý do: ‘Sân này không cho thuê nữa’, ’Lịch sân này không khả dụng nữa’, ‘Sân này đang được bảo trì, sữa chữa’
         public function cancel_order_update_schedule_to_expired($court_schedule_id) {
-          if(isset($_GET['court_schedule_id'])) {                
-            $result = $this->court_schedule->cancel_order_update_schedule_to_expired($court_schedule_id);   
-          }
+          $result = $this->court_schedule->cancel_order_update_schedule_to_expired($court_schedule_id);   
         }
+
+        //12. Hàm cập nhật trạng thái lịch sân khi hủy đơn với lý do "Đơn đặt sân chưa được thanh toán"
+        public function cancel_order_update_schedule_to_haveNotBooked($court_schedule_id) {
+          $result = $this->court_schedule->cancel_order_update_schedule_to_haveNotBooked($court_schedule_id);   
+        }
+
+        //13. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi đơn đặt sân chưa được xác nhận thanh toán kịp
+        public function update_court_schedule_state_order_payment($court_schedule_id) {
+          return $result = $this->court_schedule->update_court_schedule_state_order_payment($court_schedule_id);
+        } 
     }
 
     if(isset($_GET["option"])) {
@@ -338,10 +346,15 @@
       ";    
     }
     
-
     if (isset($_POST['currentDate'])) {
-        $currentDate = $_POST['currentDate']; // Nhận giá trị từ JavaScript
-        $court_schedule_controller = new Court_Schedule_Controller();
-        $court_schedule_controller->update_court_schedule_state($currentDate);
+      $currentDate = $_POST['currentDate']; // Nhận giá trị từ JavaScript
+
+      $court_schedules = $this->view_all_court_schedule();
+        
+      foreach($court_schedules as $court_schedule) {
+        if(str_replace("/", "", $court_schedule->getCourtScheduleDate()) >= str_replace("/", "", $currentDate)) {
+          $this->update_court_schedule_state($court_schedule->getCourtScheduleId());
+        }
+      }
     }
 ?>

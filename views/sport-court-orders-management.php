@@ -271,7 +271,11 @@
                     }
                     echo "</td>";
 
-                    echo "<td>".$court_order->getPaymentMethod()."</td>";
+                    if ($court_order->getPaymentMethod() == "Ví điện tử momo") {
+                      echo "<td><p class='status momo'>".$court_order->getPaymentMethod()."</p></td>";
+                    } else if ($court_order->getPaymentMethod() == "Chuyển khoản ngân hàng") {
+                      echo "<td><p class='status bank'>".$court_order->getPaymentMethod()."</p></td>";
+                    }
 
                     echo "<td style='display: flex; gap: 10px; align-items: center;'>
                             <img src='";

@@ -5,7 +5,7 @@
         }
 
         if(isset($_GET['court_schedule_id'])) {
-          $court_order_id = $_GET['court_schedule_id'];
+          $court_schedule_id = $_GET['court_schedule_id'];
         }
     ?>
     <form id="form-admin-cancel-reason-payment" action="./sport-court-orders-management.php" method="post" enctype="multipart/form-data">

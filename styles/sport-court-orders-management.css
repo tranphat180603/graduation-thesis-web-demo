@@ -616,6 +616,30 @@ tbody tr.hide td {
 }
 
 /* *********************** */
+/* Định dạng cho phương thức thanh toán của đơn đặt sân */
+.status {
+  padding: 0.6rem 0;
+  border-radius: 6px;
+  background: #dee4e2;
+  text-align: center;
+  vertical-align: middle;
+
+  color: #7f8283;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.momo {
+  background: #edd4e8;
+  color: #a50064;
+}
+
+.bank {
+  background: #d3e0ff;
+  color: #1b00d9;
+}
 
 /* Định dạng sorting */
 

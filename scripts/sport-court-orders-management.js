@@ -307,3 +307,32 @@ table_headings.forEach((head, i) => {
     sortTable(i, sort_asc);
   };
 });
+
+//9. Hàm cập nhật trạng thái đơn đặt sân tự động sau mỗi 12 tiếng
+// Hàm để gọi PHP và truyền biến vào
+function callPHPFunction(currentDate) {
+  // Gọi Ajax để gọi hàm PHP và truyền biến vào
+  $.ajax({
+    url: "../controllers/court-order-controller.php", // Đường dẫn đến tập tin PHP của bạn
+    type: "POST",
+    data: { currentDate: currentDate },
+    success: function (response) {
+      console.log("Success:", response);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+    },
+  });
+}
+
+// Hàm chạy sau mỗi 12 tiếng
+function runEvery12Hours() {
+  // Tạo biến để lưu ngày hiện tại
+  var currentDate = new Date().toISOString().slice(0, 10); // Lấy ngày hiện tại và định dạng thành 'YYYY-MM-DD'
+
+  // Gọi hàm để gọi PHP và truyền biến vào
+  callPHPFunction(currentDate);
+}
+
+// Thực thi hàm runEvery12Hours() sau mỗi 12 tiếng
+setInterval(runEvery12Hours, 12 * 60 * 60 * 1000); // 12 tiếng * 60 phút * 60 giây * 1000 milliseconds

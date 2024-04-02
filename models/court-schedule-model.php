@@ -148,7 +148,7 @@
             MakeConnection($link);
 
             $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' 
-                                                    WHERE court_schedule_id = '$court_schedule_id' AND court_schedule_state = 'Chưa đặt'");
+                                                    WHERE court_schedule_id = $court_schedule_id AND court_schedule_state = 'Chưa đặt'");
 
             //Giải phóng bộ nhớ
             ReleaseMemory($link, $result);
@@ -310,7 +310,7 @@
             MakeConnection($link);
 
             $result = ExecuteNonDataQuery($link, "UPDATE court_schedule SET court_schedule_state = 'Hết hạn' 
-                                                    WHERE court_schedule_id = '$court_schedule_id' AND court_schedule_state = 'Đã đặt'");
+                                                    WHERE court_schedule_id = $court_schedule_id AND court_schedule_state = 'Đã đặt'");
 
             //Giải phóng bộ nhớ
             ReleaseMemory($link, $result);

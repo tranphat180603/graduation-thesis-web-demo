@@ -3,6 +3,10 @@
         if(isset($_GET['court_order_id'])) {
           $court_order_id = $_GET['court_order_id'];
         }
+
+        if(isset($_GET['court_schedule_id'])) {
+          $court_schedule_id = $_GET['court_schedule_id'];
+        }
     ?>
     <form id="form-admin-cancel-reason-receive" action="./sport-court-orders-management.php" method="post" enctype="multipart/form-data">
       <div class="ad-can-rea-rec-header">
@@ -44,6 +48,7 @@
       </div>
     <?php
       echo "<input type='text' name='court_order_id' value='".$court_order_id."'>";
+      echo "<input type='text' name='court_schedule_id' value='".$court_schedule_id."'>";
     ?>
     </form>
     <style>

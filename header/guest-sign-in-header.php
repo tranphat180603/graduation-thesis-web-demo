@@ -29,14 +29,22 @@
         font-weight: 600;
         line-height: normal;      
       }
+
+      @media screen and (max-width: 500px) {
+        .sign-in-header {
+          padding: 40px 20px;
+        }
+      }
     </style>
 
     <div class="sign-up-header">
       <div class="sign-up-header-content">
-        <img
-          src="../image/header-img/sign-upAin-header-logo.svg"
-          alt="Khu liên hợp thể thao Nguyễn Tri Phương"
-        />
+        <a href="../index.php">
+          <img
+            src="../image/header-img/sign-upAin-header-logo.svg"
+            alt="Khu liên hợp thể thao Nguyễn Tri Phương"
+          />
+        </a>
         <p>Đăng Nhập</p>
       </div>
     </div>

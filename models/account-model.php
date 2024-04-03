@@ -66,5 +66,44 @@
 
             return $data;
         }
+
+        //2. Hàm lấy số lượng lịch sân trong giỏ hàng của tài khoản
+        public function get_customer_cart_amount($username) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM account, cart, cart_detail
+                                                WHERE account.account_sign_up_name = '$username'
+                                                AND account.account_id = cart.account_id
+                                                AND cart.cart_id = cart_detail.cart_id");
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
+
+        //3. Hàm lấy tên khách hàng từ tên đăng nhập của tài khoản
+        public function get_customer_name($username) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT customer_fullname FROM account, customer
+                                                WHERE account.account_sign_up_name = '$username'
+                                                AND account.customer_id = customer.customer_id");
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
     }
 ?>

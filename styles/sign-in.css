@@ -27,13 +27,6 @@ p {
   margin: 0px;
 }
 
-/*---------------------------------- HEADER -----------------------------------*/
-@media screen and (max-width: 500px) {
-  .sign-up-header {
-    padding: 40px 20px;
-  }
-}
-
 /*----------------------------------- BODY -----------------------------------*/
 .sign-in-body {
   display: flex;
@@ -351,18 +344,5 @@ input[type="submit"]:hover {
         rgba(44, 104, 154, 0.6) 0%,
         rgba(95, 200, 222, 0.52) 100%
       );
-  }
-}
-
-/*----------------------------------- FOOTER -----------------------------------*/
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
-@media screen and (max-width: 500px) {
-  .footer {
-    display: flex;
-    padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #888;
-    background: #fafbfc;
   }
 }

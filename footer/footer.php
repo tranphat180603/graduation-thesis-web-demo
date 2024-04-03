@@ -222,6 +222,12 @@
         font-weight: 400;
         line-height: 20px;
       }
+
+      @media screen and (max-width: 500px) {
+        .footer {
+          padding: 20px 20px 40px;
+        }
+      }
     </style>
 
     <div class="footer">

@@ -64,13 +64,6 @@ p {
   border-radius: 4px;
 }
 
-/*---------------------------------- HEADER -----------------------------------*/
-@media screen and (max-width: 500px) {
-  .sign-up-header {
-    padding: 40px 20px;
-  }
-}
-
 /*----------------------------------- BODY -----------------------------------*/
 /* Định dạng tiêu đề */
 .schedule-body {
@@ -78,7 +71,6 @@ p {
   padding: 30px 70px;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 2px;
   background: #f1f1f1;
 }
 

@@ -35,7 +35,7 @@ CREATE TABLE `account` (
   `account_avatar` varchar(100) DEFAULT NULL,
   `account_password` varchar(30) NOT NULL,
   `customer_account_hash_password` varchar(255) DEFAULT NULL,
-  `created_on_date` date NOT NULL,
+  `created_on_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1198,7 +1198,7 @@ INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `ev
 
 CREATE TABLE `visitor` (
   `visitor_id` int(11) NOT NULL,
-  `visitor_IP_address` varchar(255) NOT NULL,
+  `visitor_IP_address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1218,10 +1218,10 @@ INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`) VALUES
 --
 
 --
--- Indexes for table `customer`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`account_id`),
+  ADD PRIMARY KEY (`account_id`);
 
 --
 -- Indexes for table `cart`
@@ -1303,7 +1303,7 @@ ALTER TABLE `court_type`
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`customer_id`),
   ADD KEY `account_id` (`account_id`);
 
 --
@@ -1437,13 +1437,6 @@ ALTER TABLE `sport_hub_event`
 -- Constraints for dumped tables
 --
 
---
--- Constraints for table `account`
---
-ALTER TABLE `account`
-  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
-
---
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
@@ -1510,6 +1503,12 @@ ALTER TABLE `court_schedule`
 --
 ALTER TABLE `court_type`
   ADD CONSTRAINT `court_type_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
 -- Constraints for table `order_service_detail`

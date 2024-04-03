@@ -34,7 +34,7 @@
       <div class="sign-up-sub-body">
         <div class="sign-up-body-content">
           <div class="sign-up-form">
-            <form action="../controllers/account-controller.php" method="post" enctype="multipart/form-data">
+            <form action="../modules/sign-up-module.php" method="post" enctype="multipart/form-data">
               <div class="sign-up-body-title">
                 <p>ĐĂNG KÝ</p>
                 <img id="back-arrow" src="../image/sign-up-img/arrow-narrow-left.svg" alt="Back arrow" onclick="goBack()"/>
@@ -54,6 +54,7 @@
                     id="sign-up-phone-input-text"
                     name="sign-up-phone-input-text"
                     placeholder="Nhập số điện thoại"
+                    value="<?php echo isset($_GET['sign_up_phone']) ? $_GET['sign_up_phone'] : ""; ?>"
                     required
                   />
                   <img id="check" src="../image/sign-up-img/check.svg" alt="" />
@@ -64,6 +65,7 @@
                 </div>                
               </div>
               <input
+                id="phone-next-button"
                 type="submit"
                 name="phone-continue"
                 value="TIẾP THEO"

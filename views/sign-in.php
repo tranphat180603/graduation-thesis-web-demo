@@ -34,7 +34,7 @@
       <div class="sign-in-sub-body">
         <div class="sign-in-body-content">
           <div class="sign-in-form">
-            <form action="account-controller.php">
+            <form action="../modules/sign-in-module.php" method="post" enctype="multipart/form-data">
               <div class="sign-in-body-title">
                 <p>ĐĂNG NHẬP</p>
               </div>

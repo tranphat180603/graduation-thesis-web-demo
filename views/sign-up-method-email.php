@@ -34,7 +34,7 @@
       <div class="sign-up-sub-body">
         <div class="sign-up-body-content">
           <div class="sign-up-form">
-            <form action="../controllers/account-controller.php" method="post" enctype="multipart/form-data">
+            <form action="../modules/sign-up-module.php" method="post" enctype="multipart/form-data">
               <div class="sign-up-body-title">
                 <p>ĐĂNG KÝ</p>
                 <img id="back-arrow" src="../image/sign-up-img/arrow-narrow-left.svg" alt="Back arrow" onclick="goBack()"/>
@@ -54,6 +54,7 @@
                     id="sign-up-email-input-text"
                     name="sign-up-email-input-text"
                     placeholder="Nhập email"
+                    value="<?php echo isset($_GET['sign_up_email']) ? $_GET['sign_up_email'] : ""; ?>"
                     required
                   />
                   <img id="check" src="../image/sign-up-img/check.svg" alt="" />
@@ -64,6 +65,7 @@
                 </div>
               </div>
               <input
+                id="email-next-button"
                 type="submit"
                 name="email-continue"
                 value="TIẾP THEO"

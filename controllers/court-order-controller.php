@@ -4,7 +4,7 @@
     require_once "../controllers/court-schedule-controller.php"; 
 
     class Court_Order_Controller {
-        public $account;
+        public $court_order;
 
         public function __construct() {
             $this->court_order = new court_order();

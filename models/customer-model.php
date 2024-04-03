@@ -7,6 +7,7 @@
         private $customer_email_address;
         private $customer_phone_number;
         private $customer_gender;
+        private $account_id;
         private $customer_date_of_birth;
         private $created_on_date;
 
@@ -15,6 +16,7 @@
         public function getCustomerEmailAddress() { return $this->customer_email_address; }
         public function getCustomerPhoneNumber() { return $this->customer_phone_number; }
         public function getCustomerGender() { return $this->customer_gender; }
+        public function getAccountId() { return $this->account_id; }
         public function getCustomerDateOfBirth() { return $this->customer_date_of_birth; }
         public function getCreatedOnDate() { return $this->created_on_date; }
 
@@ -23,15 +25,17 @@
         public function setCustomerEmailAddress($customer_email_address) { return $this->customer_email_address = $customer_email_address; }
         public function setCustomerPhoneNumber($customer_phone_number) { return $this->customer_phone_number = $customer_phone_number; }
         public function setCustomerGender($customer_gender) { return $this->customer_gender = $customer_gender; }
+        public function setAccountId($account_id) { return $this->account_id = $account_id; }
         public function setCustomerDateOfBirth($customer_date_of_birth) { return $this->customer_date_of_birth = $customer_date_of_birth; }
         public function setCreatedOnDate($created_on_date) { return $this->created_on_date = $created_on_date; }
 
-        public function __construct($customer_id = 0, $customer_fullname = "", $customer_email_address = "", $customer_phone_number = "", $customer_gender = "", $customer_date_of_birth = "", $created_on_date = "") {
+        public function __construct($customer_id = 0, $customer_fullname = "", $customer_email_address = "", $customer_phone_number = "", $customer_gender = "", $account_id = 0, $customer_date_of_birth = "", $created_on_date = "") {
             $this->customer_id = $customer_id;
             $this->customer_fullname = $customer_fullname;
             $this->customer_email_address = $customer_email_address;
             $this->customer_phone_number = $customer_phone_number;
             $this->customer_gender = $customer_gender;
+            $this->account_id = $account_id;
             $this->customer_date_of_birth = $customer_date_of_birth;
             $this->created_on_date = $created_on_date;
         }
@@ -48,8 +52,8 @@
 
             while ($rows = mysqli_fetch_assoc($result)) {
                 $customer = new customer($rows["customer_id"], $rows["customer_fullname"], $rows["customer_email_address"], 
-                                $rows["customer_phone_number"], $rows["customer_gender"], $rows["customer_date_of_birth"], 
-                                $rows["created_on_date"]);
+                                $rows["customer_phone_number"], $rows["customer_gender"], $rows["account_id"],
+                                $rows["customer_date_of_birth"], $rows["created_on_date"]);
                 array_push($data, $customer);
             }
 

@@ -34,7 +34,7 @@
       <div class="sign-up-sub-body">
         <div class="sign-up-body-content">
           <div class="sign-up-form">
-            <form action="account-controller.php">
+            <form action="../modules/sign-up-module.php" method="post" enctype="multipart/form-data">
               <div class="sign-up-body-title">
                 <p>ĐĂNG KÝ</p>
                 <img id="back-arrow" src="../image/sign-up-img/arrow-narrow-left.svg" alt="Back arrow" onclick="goBack()"/>
@@ -57,8 +57,9 @@
                     required
                   />
                   <img id="eye" src="../image/sign-up-img/show.svg" alt="Toggle Password Visibility" onclick="togglePasswordVisibility()"/>
+                  <img id="check-pass" src="../image/sign-up-img/check.svg" alt="" />
                 </div>
-                <div class="warning">
+                <div class="warning-pass">
                   <img src="../image/sign-up-img/warning.svg" alt="" />
                   <p id="warning-content">Mật khẩu chưa đúng định dạng</p>
                 </div>
@@ -78,6 +79,7 @@
                 </div>
               </div>
               <input
+                id="sign-up-button"
                 type="submit"
                 name="sign-up"
                 value="ĐĂNG KÝ"
@@ -96,6 +98,27 @@
                   <a id="sign-in" href="../views/sign-in.php">Đăng nhập</a>
                 </div>
               </div>
+              <?php
+                if(isset($_POST['sign_up_name'])) {
+                  $sign_up_name = $_POST['sign_up_name'];
+                  echo "<input style='display: none;' type='text' name='sign_up_name' value='$sign_up_name'>";
+                }
+
+                if(isset($_POST['sign_up_phone'])) {
+                  $sign_up_phone = $_POST['sign_up_phone'];
+                  echo "<input style='display: none;' type='text' name='sign_up_phone' value='$sign_up_phone'>";
+                }
+
+                if(isset($_POST['sign_up_email'])) {
+                  $sign_up_email = $_POST['sign_up_email'];
+                  echo "<input style='display: none;' type='text' name='sign_up_email' value='$sign_up_email'>";
+                }
+
+                if(isset($_POST['sign-up-acc-name-input-text'])) {
+                  $sign_up_acc_name = $_POST['sign-up-acc-name-input-text'];
+                  echo "<input style='display: none;' type='text' name='sign_up_acc_name' value='$sign_up_acc_name'>";
+                }
+              ?>
             </form>
           </div>
         </div>

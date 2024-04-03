@@ -29,17 +29,31 @@
   <body>
     <?php
       require_once "./controllers/controller.php";
+      $controller = new Controller();
+
+      require_once "./controllers/account_controller.php";
+      $account_controller = new Account_Controller();
     ?>
     <!-- HEADER -->
     <?php 
-      $controller = new Controller();
-      $controller->laugh();
-      //Ở trên là hàm ví dụ đơn giản t viết chơi thui, lúc code thì m code cái hàm controller để nó dẫn tới header 
-      //cho đúng đối tượng nha, khi đăng nhập sẽ có 1 biến $_POST['sign_in_name'] và 1 biến $_POST['password'] gửi
-      //lên từ form trong GD ĐN, m sẽ tạo 1 hàm kiểm tra coi có tồn tại acc trong DB trong account-model, ở controller
-      //của account-controller nếu đúng thì thêm vào url tham số $_GET['account_id'] và $_GET['account_type']. 
-      //Sau đó dẫn tới giao diện trang chủ. Rồi các bước tiếp theo thì m cứ code MVC để láy đc ava vs tên KH đổ lên header,
-      //đồng thời phân loại account cho đúng để lấy header cho đúng 
+      if(!isset($_SESSION['username'])) {
+        include "../header/guest-main-header.php";
+      } else {
+        $username = $_SESSION['username'];
+
+        $accounts = $account_controller->view_all_account();
+
+        foreach($accounts as $account) {
+          if($account->getAccountSignUpName() == $username) {
+            $account_type = $account->getAccountType();
+            if($account_type == 'Quản lý') {
+              include "../header/admin-main-header.php";
+            } else if($account_type == 'Khách hàng') {
+              include "../header/customer-main-header.php";
+            }
+          }
+        }
+      }
     ?>
     <!-- BODY -->
     <!-- FOOTER -->

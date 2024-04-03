@@ -254,14 +254,18 @@ form {
 }
 
 /* Định dạng icon tick xanh khi nhập liệu đúng định dạng*/
-#check {
+#check,
+#check-acc,
+#check-pass {
   width: 20px;
   height: 20px;
   display: none;
 }
 
 /* Định dạng dòng thông báo lỗi khi nhập liệu sai định dạng*/
-.warning {
+.warning,
+.warning-acc,
+.warning-pass {
   display: flex;
   height: 16px;
   align-items: center;
@@ -270,7 +274,9 @@ form {
   visibility: hidden;
 }
 
-.warning p {
+.warning p,
+.warning-acc p,
+.warning-pass p {
   display: flex;
   height: 16px;
   color: #ff4141;

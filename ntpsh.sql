@@ -36,23 +36,22 @@ CREATE TABLE `account` (
   `account_password` varchar(30) NOT NULL,
   `customer_account_hash_password` varchar(255) DEFAULT NULL,
   `created_on_date` date NOT NULL,
-  `customer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`, `customer_id`) VALUES
-(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18', NULL),
-(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18', 1),
-(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18', 2),
-(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18', 3),
-(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18', 4),
-(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18', 5),
-(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18', 6),
-(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18', 7),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18', 8);
+INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`) VALUES
+(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18'),
+(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18'),
+(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18'),
+(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18'),
+(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18'),
+(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18'),
+(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18'),
+(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18'),
+(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18');
 
 -- --------------------------------------------------------
 
@@ -961,6 +960,7 @@ CREATE TABLE `customer` (
   `customer_email_address` varchar(500) DEFAULT NULL,
   `customer_phone_number` char(10) DEFAULT NULL,
   `customer_gender` varchar(5) DEFAULT NULL,
+  `account_id` int(11) NOT NULL,
   `customer_date_of_birth` date DEFAULT NULL,
   `created_on_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -969,15 +969,15 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_fullname`, `customer_email_address`, `customer_phone_number`, `customer_gender`, `customer_date_of_birth`, `created_on_date`) VALUES
-(1, 'Nguyễn Hoàng Mỹ Duyên', 'nguyenhoangmyduyen213@gmail.com', '0929788891', 'Nữ', '2003-12-22', '2024-02-18'),
-(2, 'Trần Thùy Duyên', 'tranduyen06@gmail.com', '0773450611', 'Nữ', '2003-11-06', '2024-02-18'),
-(3, 'Trương Gia Hào', 'hao2805@gmail.com', '0939588290', 'Nam', '2003-05-28', '2024-02-18'),
-(4, 'Nguyễn Ngọc Hoàng', 'hoangnguyen1511@gmail.com', '0797048368', 'Nam', '2003-11-15', '2024-02-18'),
-(5, 'Phạm Thị Hồng Ngọc', 'pthongngoc@gmail.com', '0336962772', 'Nữ', '2003-10-03', '2024-02-18'),
-(6, 'Trần Nguyễn Ngọc Phát', 'phattran180603@gmail.com', '0986385282', 'Nam', '2003-06-18', '2024-02-18'),
-(7, 'Lê Minh Thùy', 'thuyle@gmail.com', '0886908819', 'Nữ', '2003-11-02', '2024-02-18'),
-(8, 'Trương Minh Tiến', 'tientruongminh@gmail.com', '0919966456', 'Nam', '2003-07-30', '2024-02-18');
+INSERT INTO `customer` (`customer_id`, `customer_fullname`, `customer_email_address`, `customer_phone_number`, `customer_gender`, `customer_date_of_birth`, `account_id`, `created_on_date`) VALUES
+(1, 'Nguyễn Hoàng Mỹ Duyên', 'nguyenhoangmyduyen213@gmail.com', '0929788891', 'Nữ', '2003-12-22', 2, '2024-02-18'),
+(2, 'Trần Thùy Duyên', 'tranduyen06@gmail.com', '0773450611', 'Nữ', '2003-11-06', 3, '2024-02-18'),
+(3, 'Trương Gia Hào', 'hao2805@gmail.com', '0939588290', 'Nam', '2003-05-28', 4, '2024-02-18'),
+(4, 'Nguyễn Ngọc Hoàng', 'hoangnguyen1511@gmail.com', '0797048368', 'Nam', '2003-11-15', 5, '2024-02-18'),
+(5, 'Phạm Thị Hồng Ngọc', 'pthongngoc@gmail.com', '0336962772', 'Nữ', '2003-10-03', 6, '2024-02-18'),
+(6, 'Trần Nguyễn Ngọc Phát', 'phattran180603@gmail.com', '0986385282', 'Nam', '2003-06-18', 7, '2024-02-18'),
+(7, 'Lê Minh Thùy', 'thuyle@gmail.com', '0886908819', 'Nữ', '2003-11-02', 8, '2024-02-18'),
+(8, 'Trương Minh Tiến', 'tientruongminh@gmail.com', '0919966456', 'Nam', '2003-07-30', 9, '2024-02-18');
 
 -- --------------------------------------------------------
 
@@ -1190,16 +1190,38 @@ INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `ev
 (5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.png', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
 (6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.png', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
 
+-- --------------------------------------------------------
+
 --
+-- Table structure for table `visitor`
+--
+
+CREATE TABLE `visitor` (
+  `visitor_id` int(11) NOT NULL,
+  `visitor_IP_address` varchar(255) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `visitor`
+--
+
+INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`) VALUES
+(1, '192.168.1.1'),
+(2, '10.0.0.1'),
+(3, '172.16.0.1'),
+(4, '192.0.2.1'),
+(5, '198.51.100.1');
+
+--
+
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `account`
+-- Indexes for table `customer`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`),
-  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `cart`
@@ -1282,6 +1304,7 @@ ALTER TABLE `court_type`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`);
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `order_service_detail`

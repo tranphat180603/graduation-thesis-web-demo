@@ -107,7 +107,7 @@
 
     function signIn($link, $sign_in_name, $password) {
         $result = ExecuteNonDataQuery($link, "SELECT COUNT(*) FROM account WHERE account_sign_up_name = '$sign_in_name'
-                                                                            AND account_password = '".md5($password)."'");
+                                                                            AND account_password = '".$password."'");
 
         $row = mysqli_fetch_row($result);
         mysqli_free_result($result);

@@ -1,5 +1,5 @@
 <?php
-    require_once "config.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/config.php");
 
     function MakeConnection(&$link) {
         $link = mysqli_connect(HOST, USER, PASSWORD, DATABASE);

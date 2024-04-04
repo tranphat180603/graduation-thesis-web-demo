@@ -57,9 +57,9 @@
                     value="<?php echo isset($_GET['sign_up_phone']) ? $_GET['sign_up_phone'] : ""; ?>"
                     required
                   />
-                  <img id="check" src="../image/sign-up-img/check.svg" alt="" />
+                  <img id="check-phone" src="../image/sign-up-img/check.svg" alt="" />
                 </div>
-                <div class="warning">
+                <div class="warning-phone">
                   <img src="../image/sign-up/warning.svg" alt="" />
                   <p id="warning-content">Số điện thoại chưa đúng định dạng</p>
                 </div>                
@@ -102,6 +102,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
+    <?php include_once "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript"src="../scripts/sign-up.js" language="javascript"></script>
   </body>
 </html>

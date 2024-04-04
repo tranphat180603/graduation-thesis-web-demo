@@ -23,16 +23,22 @@ function goBack() {
 }
 
 const sign_up_name = document.querySelector("#sign-up-name-input-text"),
-  sign_up_name_input = document.querySelector(".sign-up-name-input");
+  sign_up_name_input = document.querySelector(".sign-up-name-input"),
+  sign_up_phone = document.querySelector("#sign-up-phone-input-text"),
+  sign_up_phone_input = document.querySelector(".sign-up-phone-input"),
+  sign_up_acc_name = document.getElementById("sign-up-acc-name-input-text"),
+  sign_up_acc_name_input = document.querySelector(".sign-up-acc-name-input"),
+  sign_up_pass = document.getElementById("sign-up-pass-input-text"),
+  sign_up_pass_input = document.querySelector(".sign-up-pass-input");
 
+//Hàm kiểm tra định dạng của tên đăng ký
 function checkSignUpName() {
   var checkImg = document.getElementById("check"),
     warningDiv = document.querySelector(".warning"),
     next_button = document.getElementById("next-button");
-  const su_name = sign_up_name.value;
   const pattern = /^[a-zA-Z0-9]{10,50}$/; // Biểu thức chính quy
 
-  if (pattern.test(su_name)) {
+  if (pattern.test(sign_up_name.value)) {
     // Tên đăng ký hợp lệ
     sign_up_name_input.style.border = "1px solid #34C759";
     checkImg.style.display = "block";
@@ -53,30 +59,55 @@ sign_up_name.addEventListener("input", function () {
   checkSignUpName();
 });
 
-const sign_up_acc_name = document.getElementById("sign-up-acc-name-input-text"),
-  sign_up_acc_name_input = document.querySelector(".sign-up-acc-name-input");
+//Hàm kiểm tra định dạng của SĐT
+function checkSignUpPhone() {
+  var checkImgPhone = document.getElementById("check-phone"),
+    warningDivPhone = document.querySelector(".warning-phone"),
+    phone_next_button = document.getElementById("phone-next-button");
+  const pattern_phone = /^\d{10}$/; // Biểu thức chính quy
 
+  if (pattern_phone.test(sign_up_phone.value)) {
+    // SĐT hợp lệ
+    sign_up_phone_input.style.border = "1px solid #34C759";
+    checkImgPhone.style.display = "block";
+    warningDivPhone.style.visibility = "hidden"; // Ẩn cảnh báo nếu có
+    phone_next_button.style.pointerEvents = "auto";
+    phone_next_button.style.backgroundColor = "#285d8f";
+  } else {
+    // SĐT không hợp lệ
+    sign_up_phone_input.style.border = "1px solid #FF4141";
+    checkImgPhone.style.display = "none"; // Ẩn hình ảnh kiểm tra nếu tên không hợp lệ
+    warningDivPhone.style.visibility = "visible"; // Hiển thị cảnh báo
+    phone_next_button.style.pointerEvents = "none"; //Không cho ấn nút TIẾP THEO khi không hợp lệ
+    phone_next_button.style.backgroundColor = "#5680a7";
+  }
+}
+
+sign_up_phone.addEventListener("input", function () {
+  checkSignUpPhone();
+});
+
+//Hàm kiểm tra định dạng của tên tài khoản
 function checkSignUpAccName() {
   var checkImgAcc = document.getElementById("check-acc"),
     warningDivAcc = document.querySelector(".warning-acc"),
     acc_next_button = document.getElementById("acc-name-continue");
-  const acc_name = sign_up_acc_name.value;
-  const pattern_acc = /['"]/; // Biểu thức chính quy
+  const pattern_acc = /^[a-zA-Z0-9]+$/; // Biểu thức chính quy
 
-  if (pattern_acc.test(acc_name)) {
-    // Tên tài khoản không hợp lệ
-    sign_up_acc_name_input.style.border = "1px solid #FF4141";
-    checkImgAcc.style.display = "none"; // Ẩn hình ảnh kiểm tra nếu tên không hợp lệ
-    warningDivAcc.style.visibility = "visible"; // Hiển thị cảnh báo
-    acc_next_button.style.pointerEvents = "none"; //Không cho ấn nút TIẾP THEO khi không hợp lệ
-    acc_next_button.style.backgroundColor = "#5680a7";
-  } else {
+  if (pattern_acc.test(sign_up_acc_name.value)) {
     // Tên tài khoản hợp lệ
     sign_up_acc_name_input.style.border = "1px solid #34C759";
     checkImgAcc.style.display = "block";
     warningDivAcc.style.visibility = "hidden"; // Ẩn cảnh báo nếu có
     acc_next_button.style.pointerEvents = "auto";
     acc_next_button.style.backgroundColor = "#285d8f";
+  } else {
+    // Tên tài khoản không hợp lệ
+    sign_up_acc_name_input.style.border = "1px solid #FF4141";
+    checkImgAcc.style.display = "none"; // Ẩn hình ảnh kiểm tra nếu tên không hợp lệ
+    warningDivAcc.style.visibility = "visible"; // Hiển thị cảnh báo
+    acc_next_button.style.pointerEvents = "none"; //Không cho ấn nút TIẾP THEO khi không hợp lệ
+    acc_next_button.style.backgroundColor = "#5680a7";
   }
 }
 
@@ -84,18 +115,15 @@ sign_up_acc_name.addEventListener("input", function () {
   checkSignUpAccName();
 });
 
-const sign_up_pass = document.getElementById("sign-up-pass-input-text"),
-  sign_up_pass_input = document.querySelector(".sign-up-pass-input");
-
+//Hàm kiểm tra định dạng của mật khẩu
 function checkSignUpPass() {
   var checkImgPass = document.getElementById("check-pass"),
     warningDivPass = document.querySelector(".warning-pass"),
     sign_up_button = document.getElementById("sign-up-button");
-  const pass = sign_up_pass.value;
   const pattern_pass =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_+=\[{\]};:'",.<>?]).{15,}$/; // Biểu thức chính quy
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_+=\[{\]};:'",.<>?]).{15,30}$/; // Biểu thức chính quy
 
-  if (pattern_pass.test(pass)) {
+  if (pattern_pass.test(sign_up_pass.value)) {
     // Mật khẩu hợp lệ
     sign_up_pass_input.style.border = "1px solid #34C759";
     checkImgPass.style.display = "block";

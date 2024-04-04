@@ -102,6 +102,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
+    <?php include_once "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript"src="../scripts/sign-up.js" language="javascript"></script>
   </body>
 </html>

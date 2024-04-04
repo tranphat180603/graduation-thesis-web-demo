@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/respond-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/respond-model.php");
 
     class Respond_Controller {
         public $respond;

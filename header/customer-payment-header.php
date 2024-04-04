@@ -157,17 +157,17 @@
       <div class="header-top">
         <div class="header-top-content">
           <div class="header-top-left">
-            <a href="../index.php">
-                <img src="../image/header-img/ntpsh.svg" alt="Khu liên hợp thể thao avatar">
+            <a href="/NTP-Sports-Hub/index.php">
+                <img src="/NTP-Sports-Hub/image/header-img/ntpsh.svg" alt="Khu liên hợp thể thao avatar">
             </a>
             <p>Thanh Toán</p>
           </div>
           <div class="header-top-right">
             <div class="cart">
-              <img id="cart-icon" src="../image/header-img/cart.svg" alt="Giỏ hàng icon">
+              <img id="cart-icon" src="/NTP-Sports-Hub/image/header-img/cart.svg" alt="Giỏ hàng icon">
               <div id="cart-amount">
                 <?php
-                  require_once "../controllers/account-controller.php"; 
+                  require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                   $account_controller = new Account_Controller();
 
                   // if(isset($_SESSION['username'])) {
@@ -203,7 +203,7 @@
                     foreach($accounts as $account) {
                       if($account->getAccountSignUpName() == $username) {
                         $customer_avatar_link = $account->getAccountAvatar();
-                        echo $customer_avatar_link;
+                        echo "/NTP-Sports-Hub" . $customer_avatar_link;
                       }
                     }
                   ?>

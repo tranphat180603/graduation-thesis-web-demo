@@ -63,6 +63,11 @@
                   <img src="../image/sign-up-img/warning.svg" alt="" />
                   <p id="warning-content">Mật khẩu chưa đúng định dạng</p>
                 </div>
+                <div class="captcha-div" style="display: none;">
+                  <img src="../modules/captcha.php" alt="recaptcha image">
+                  <p>Mã captcha</p>
+                  <input type="text" name="captcha">
+                </div>
                 <div id="notice">
                   <p>Lưu ý:</p>
                   <ul>

@@ -1,8 +1,9 @@
 <?php
     session_start();
 
-    require_once "../models/connect.php";
-    require_once "./users-module.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
+
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/users-module.php");
 
     //Tạo kết nối đến database
     $link = "";
@@ -15,10 +16,10 @@
         if(signIn($link, $username, $password)) {
             $_SESSION['username'] = $username;
             ReleaseMemory($link, true);
-            header("Location: ../index.php");
+            header("Location: /NTP-Sports-Hub/index.php");
         } else {
             ReleaseMemory($link, true);
-            header("Location: ../views/sign-in.php?msg=sign-in-fail");
+            header("Location: /NTP-Sports-Hub/views/sign-in.php?msg=sign_in_fail");
         }
     }
 ?>

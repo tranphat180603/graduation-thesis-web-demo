@@ -1,7 +1,7 @@
 <?php
-    require_once "../models/court-order-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-order-model.php");
 
-    require_once "../controllers/court-schedule-controller.php"; 
+    require_once ($document_root . "/NTP-Sports-Hub/models/court-schedule-model.php");
 
     class Court_Order_Controller {
         public $court_order;

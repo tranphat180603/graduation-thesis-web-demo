@@ -43,15 +43,15 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`) VALUES
-(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '../upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18'),
-(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '../upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18'),
-(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '../upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18'),
-(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '../upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18'),
-(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '../upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18'),
-(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '../upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18'),
-(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '../upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18'),
-(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '../upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18'),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '../upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18');
+(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '/upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18'),
+(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '/upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18'),
+(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '/upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18'),
+(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '/upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18'),
+(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '/upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18'),
+(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '/upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18'),
+(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '/upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18'),
+(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '/upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18'),
+(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '/upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18');
 
 -- --------------------------------------------------------
 

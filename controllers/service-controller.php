@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/service-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/service-model.php");
 
     class Service_Controller {
         public $service;

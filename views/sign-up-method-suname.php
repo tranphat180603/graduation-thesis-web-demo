@@ -28,6 +28,7 @@
   </head>
   <body>
     <!-- HEADER -->
+    <div id="overlay-wrapper"></div>
     <?php include "../header/guest-sign-up-header.php"; ?>
     <!-- BODY -->
     <div class="sign-up-body">
@@ -126,6 +127,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
+    <?php include_once "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript"src="../scripts/sign-up.js" language="javascript"></script>
   </body>
 </html>

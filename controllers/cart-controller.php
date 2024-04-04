@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/cart-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/cart-model.php");
 
     class Cart_Controller {
         public $cart;

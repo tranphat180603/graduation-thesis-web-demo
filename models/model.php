@@ -1,9 +1,5 @@
 <?php
-    require_once "../models/connect.php";
-    require_once "../models/court-model.php";
-    require_once "../models/court-type-model.php";
-    require_once "../models/event-model.php";
-    require_once "../models/review-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
 
     class Model {
         public function hihi() {

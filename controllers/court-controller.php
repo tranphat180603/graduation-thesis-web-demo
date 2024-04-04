@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/court-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-model.php");
 
     class Court_Controller {
         public $court;

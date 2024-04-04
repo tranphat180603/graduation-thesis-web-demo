@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/account-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/account-model.php");
 
     class Account_Controller {
         public $account;

@@ -39,9 +39,9 @@
 
     <div class="sign-up-header">
       <div class="sign-up-header-content">
-        <a href="../index.php">
+        <a href="/NTP-Sports-Hub/index.php">
           <img
-            src="../image/header-img/sign-upAin-header-logo.svg"
+            src="/NTP-Sports-Hub/image/header-img/sign-upAin-header-logo.svg"
             alt="Khu liên hợp thể thao Nguyễn Tri Phương"
           />
         </a>

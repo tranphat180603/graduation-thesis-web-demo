@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/event-model.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/event-model.php");
 
     class Event_Controller {
         public $event;

@@ -1,5 +1,5 @@
 <?php
-    require_once "../models/connect.php";
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
 
     class court_type {
         private $court_type_id;

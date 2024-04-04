@@ -170,15 +170,15 @@
                   require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                   $account_controller = new Account_Controller();
 
-                  // if(isset($_SESSION['username'])) {
-                  //   $username = $_SESSION['username'];
-                  //   $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                  //   echo $customer_cart_amount[0];
-                  // }
+                  if(isset($_SESSION['username'])) {
+                    $username = $_SESSION['username'];
+                    $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                    echo $customer_cart_amount[0];
+                  }
 
-                  $username = "myduyennguyen2212";
-                  $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                  echo $customer_cart_amount[0];
+                  // $username = "myduyennguyen2212";
+                  // $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                  // echo $customer_cart_amount[0];
                 ?>
               </div>
             </div>
@@ -187,40 +187,40 @@
                 id="customer-avatar" 
                 src="
                   <?php
-                    // if(isset($_SESSION['username'])) {
-                    //   $username = $_SESSION['username'];
-                    //   $accounts = $account_controller->view_all_account();
-                    //   foreach($accounts as $account) {
-                    //     if($account->getAccountSignUpName() == $username) {
-                    //       $customer_avatar_link = $account->getAccountAvatar();
-                    //       echo $customer_avatar_link;
-                    //     }
-                    //   }
-                    // }
-
-                    $username = "myduyennguyen2212";
-                    $accounts = $account_controller->view_all_account();
-                    foreach($accounts as $account) {
-                      if($account->getAccountSignUpName() == $username) {
-                        $customer_avatar_link = $account->getAccountAvatar();
-                        echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                    if(isset($_SESSION['username'])) {
+                      $username = $_SESSION['username'];
+                      $accounts = $account_controller->view_all_account();
+                      foreach($accounts as $account) {
+                        if($account->getAccountSignUpName() == $username) {
+                          $customer_avatar_link = $account->getAccountAvatar();
+                          echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                        }
                       }
                     }
+
+                    // $username = "myduyennguyen2212";
+                    // $accounts = $account_controller->view_all_account();
+                    // foreach($accounts as $account) {
+                    //   if($account->getAccountSignUpName() == $username) {
+                    //     $customer_avatar_link = $account->getAccountAvatar();
+                    //     echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                    //   }
+                    // }
                   ?>
                 " 
                 alt="Khách hàng avatar"
               >
               <p id="customer-name">
                 <?php
-                  // if(isset($_SESSION['username'])) {
-                  //   $username = $_SESSION['username'];
-                  //   $customer_name = $account_controller->get_customer_name($username);
-                  //   echo $customer_name[0];
-                  // }
+                  if(isset($_SESSION['username'])) {
+                    $username = $_SESSION['username'];
+                    $customer_name = $account_controller->get_customer_name($username);
+                    echo $customer_name[0];
+                  }
 
-                  $username = "myduyennguyen2212";
-                  $customer_name = $account_controller->get_customer_name($username);
-                  echo $customer_name[0];
+                  // $username = "myduyennguyen2212";
+                  // $customer_name = $account_controller->get_customer_name($username);
+                  // echo $customer_name[0];
                 ?>
               </p>
             </div>

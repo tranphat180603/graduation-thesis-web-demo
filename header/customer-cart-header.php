@@ -1,4 +1,4 @@
-<style>
+    <style>
         .header {
             display: flex;
             flex-direction: column;
@@ -175,10 +175,6 @@
                     $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
                     echo $customer_cart_amount[0];
                   }
-
-                  // $username = "myduyennguyen2212";
-                  // $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                  // echo $customer_cart_amount[0];
                 ?>
               </div>
             </div>
@@ -197,15 +193,6 @@
                         }
                       }
                     }
-
-                    // $username = "myduyennguyen2212";
-                    // $accounts = $account_controller->view_all_account();
-                    // foreach($accounts as $account) {
-                    //   if($account->getAccountSignUpName() == $username) {
-                    //     $customer_avatar_link = $account->getAccountAvatar();
-                    //     echo "/NTP-Sports-Hub" . $customer_avatar_link;
-                    //   }
-                    // }
                   ?>
                 " 
                 alt="Khách hàng avatar"
@@ -217,10 +204,6 @@
                     $customer_name = $account_controller->get_customer_name($username);
                     echo $customer_name[0];
                   }
-
-                  // $username = "myduyennguyen2212";
-                  // $customer_name = $account_controller->get_customer_name($username);
-                  // echo $customer_name[0];
                 ?>
               </p>
             </div>

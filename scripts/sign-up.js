@@ -59,7 +59,7 @@ sign_up_name.addEventListener("input", function () {
   checkSignUpName();
 });
 
-//Hàm kiểm tra định dạng của SĐT
+//Hàm kiểm tra định dạng của SĐT (không hoạt động)
 function checkSignUpPhone() {
   var checkImgPhone = document.getElementById("check-phone"),
     warningDivPhone = document.querySelector(".warning-phone"),
@@ -87,7 +87,9 @@ sign_up_phone.addEventListener("input", function () {
   checkSignUpPhone();
 });
 
-//Hàm kiểm tra định dạng của tên tài khoản
+//Hàm kiểm tra định dạng của email (chưa làm)
+
+//Hàm kiểm tra định dạng của tên tài khoản (không hoạt động)
 function checkSignUpAccName() {
   var checkImgAcc = document.getElementById("check-acc"),
     warningDivAcc = document.querySelector(".warning-acc"),
@@ -115,7 +117,7 @@ sign_up_acc_name.addEventListener("input", function () {
   checkSignUpAccName();
 });
 
-//Hàm kiểm tra định dạng của mật khẩu
+//Hàm kiểm tra định dạng của mật khẩu (không hoạt động)
 function checkSignUpPass() {
   var checkImgPass = document.getElementById("check-pass"),
     warningDivPass = document.querySelector(".warning-pass"),

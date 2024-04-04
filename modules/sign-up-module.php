@@ -16,7 +16,7 @@
             header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?sign_up_name=".$sign_up_name."&msg=exist_sign_up_name");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_name=".$sign_up_name."&msg=not_exist_sign_up_name");
+            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_name=".$sign_up_name."");
         }
     }
 
@@ -44,7 +44,7 @@
             header("Location: /NTP-Sports-Hub/views/sign-up-method-phone.php?sign_up_phone=".$sign_up_phone."&msg=exist_sign_up_phone");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_phone=".$sign_up_phone."&msg=not_exist_sign_up_phone");
+            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_phone=".$sign_up_phone."");
         }
     }
 
@@ -72,7 +72,7 @@
             header("Location: /NTP-Sports-Hub/views/sign-up-method-email.php?sign_up_email=".$sign_up_email."&msg=exist_sign_up_email");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_email=".$sign_up_email."&msg=not_exist_sign_up_email");
+            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_email=".$sign_up_email."");
         }
     }
 

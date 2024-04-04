@@ -42,8 +42,7 @@
               <div id="announcement">
                 <img src="../image/sign-up-img/xbox.svg" alt="Error" />
                 <p>
-                  Đăng ký KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng ký
-                  bằng cách khác nhé!
+                  Đăng ký KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng ký bằng cách khác nhé!
                 </p>
               </div>
               <div class="sign-up-body-main-content">
@@ -127,7 +126,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
-    <?php include_once "/NTP-Sports-Hub/modules/msg.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript"src="../scripts/sign-up.js" language="javascript"></script>
   </body>
 </html>

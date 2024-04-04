@@ -41,8 +41,7 @@
               <div id="announcement">
                 <img src="../image/sign-in-img/xbox.svg" alt="Error" />
                 <p>
-                  Đăng nhập KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng nhập
-                  bằng cách khác nhé!
+                  Đăng nhập KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng nhập bằng cách khác nhé!
                 </p>
               </div>
               <div class="sign-in-body-main-content">

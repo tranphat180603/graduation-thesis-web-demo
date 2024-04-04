@@ -50,7 +50,7 @@
             if($account_type == 'Quản lý') {
               include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/admin-main-header.php";
             } else if($account_type == 'Khách hàng') {
-              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/customer-cart-header.php";
+              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/customer-main-header.php";
             }
           }
         }

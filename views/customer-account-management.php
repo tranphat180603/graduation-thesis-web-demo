@@ -29,7 +29,7 @@
   </head>
   <body>
     <!-- HEADER -->
-    <?php include "../header/customer-main-header.php"; ?>
+    <?php include "../header/customer-sub-header.php"; ?>
     <!-- BODY -->
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>

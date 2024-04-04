@@ -59,6 +59,7 @@
     <!-- BODY -->
     <!-- FOOTER -->
     <?php include "./footer/footer.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript" src="./scripts/home.js" language="javascript"></script>
   </body>
 </html>

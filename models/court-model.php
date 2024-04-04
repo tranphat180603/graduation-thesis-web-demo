@@ -52,5 +52,25 @@
 
             return $data;
         }
+
+        //2. Hàm hiển thị tổng số lượng sân theo loại sân
+        public function view_court_by_court_type($court_type_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court, court_type WHERE 
+                                            court_state <> 'Đã xóa' AND
+                                            court.court_type_id = court_type.court_type_id
+                                            AND court.court_type_id = $court_type_id"); 
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
     }
 ?>

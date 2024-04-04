@@ -83,6 +83,9 @@
                     announcement.style.display = 'flex';
                 </script>
             ";
+        } else if($msg == "sign_out_fail") {
+            header("Content-type: text/html; charset=utf8");
+            echo "Không thể đăng xuất";
         } 
     }
 ?>

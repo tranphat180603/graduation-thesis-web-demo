@@ -103,7 +103,7 @@
               <div class="filter-action">
                 <a id="btn-filter-reset" href="#">Đặt lại</a>
                   <div class="right-part">
-                    <a id="btn-filter-cancel" href="./sport-court-orders-management.php?court_order_state=0">Hủy</a>
+                    <a id="btn-filter-cancel" href="./sport-court-orders-management.php">Hủy</a>
                     <a id="btn-filter-confirm" href="#">Xác nhận</a>
                   </div>
                 </div>

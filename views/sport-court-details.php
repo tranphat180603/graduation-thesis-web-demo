@@ -30,9 +30,24 @@
   <body>
     <!-- HEADER -->
     <?php 
-      //phần này có tới 3 loại header cho 3 đối tượng lận
-      //nên ai làm cái này thì tìm hiểu cách viết code switch 
-      //case để láy đường dẫn đến header cho đúng nhen 
+      if(!isset($_SESSION['username'])) {
+        include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/guest-sub-header.php";
+      } else {
+        $username = $_SESSION['username'];
+
+        $accounts = $account_controller->view_all_account();
+
+        foreach($accounts as $account) {
+          if($account->getAccountSignUpName() == $username) {
+            $account_type = $account->getAccountType();
+            if($account_type == 'Quản lý') {
+              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/admin-sub-header.php";
+            } else if($account_type == 'Khách hàng') {
+              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/customer-sub-header.php";
+            }
+          }
+        }
+      }
     ?>
     <!-- BODY -->
     <!-- FOOTER -->

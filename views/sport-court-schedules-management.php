@@ -30,7 +30,8 @@
   <body>
     <div id="overlay-wrapper"></div>
     <!-- HEADER -->
-    <?php include "../header/admin-managerial-header.php"; ?>
+    <?php //include "../header/admin-managerial-header.php";
+    include "../header/admin-sub-header.php"; ?>
     <!-- BODY -->
     <?php
       require_once "../controllers/court-schedule-controller.php"; 
@@ -86,7 +87,7 @@
               <div class="filter-action">
                 <a id="btn-filter-reset" href="#">Đặt lại</a>
                 <div class="right-part">
-                  <a id="btn-filter-cancel" href="./sport-court-schedules-management.php?court_type_id=0">Hủy</a>
+                  <a id="btn-filter-cancel" href="./sport-court-schedules-management.php">Hủy</a>
                   <a id="btn-filter-confirm" href="#">Xác nhận</a>
                 </div>
               </div>

@@ -227,6 +227,10 @@
         .footer {
           padding: 20px 20px 40px;
         }
+
+        .footer-general-info {
+          min-width: 200px;
+        }
       }
     </style>
 

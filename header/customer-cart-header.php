@@ -34,13 +34,12 @@
 
         .header-top-left {
             display: flex;
-            min-width: 320px;
             padding-right: 20px;
             align-items: center;
             align-content: center;
             gap: 10px;
             flex: 1 0 0;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .header-top-left p {
@@ -96,6 +95,79 @@
             align-items: center;
             gap: 15px;
             border-left: 2px solid #3f6db2;
+            position: relative;
+        }
+
+        .customer .customer-btn {
+            position: absolute;
+            width: 256px;
+            height: 35px;
+            top: 0px;
+            right: 0px;
+            z-index: 10px;
+        }
+
+        .customer .customer-btn:hover {
+            cursor: pointer;
+        }
+
+        .customer #customer {
+            display: none;
+        }
+
+        .customer-navigation {
+            display: flex;
+            width: 230px;
+            padding: 8px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            border-radius: 4px;
+            border: 1px solid #EAEAEA;
+            background: #EDF5FC;
+            box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+
+            position: absolute;
+            right: 0px;
+            top: 35px;
+
+            opacity: 0;
+            z-index: -5;
+        }
+
+        .customer #customer:checked + .customer-navigation {
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .customer-nav-options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+            gap: 4px;
+        }
+
+        .customer-nav-options a {
+            display: flex;
+            padding: 10px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            align-self: stretch;
+            border-radius: 4px;
+        }
+
+        .customer-nav-options a p {
+            color: #3F6DB2; 
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px; 
+        }
+
+        .customer-nav-options a:hover {
+            background: #CFEAF6;
         }
 
         #customer-avatar {
@@ -130,7 +202,6 @@
 
         .header-bottom p {
             display: flex;
-            min-width: 320px;
             max-width: 1300px;
             flex-direction: column;
             align-items: flex-start;
@@ -145,11 +216,17 @@
 
         @media screen and (max-width: 500px) {
             .header-top {
-                padding: 40px 20px;
+                padding: 20px 20px;
             }
 
             .header-bottom {
-                padding: 40px 20px;
+                padding: 20px 20px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .header-top-right {
+              min-width: 250px;
             }
         }
     </style>
@@ -170,21 +247,50 @@
                   require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                   $account_controller = new Account_Controller();
 
-                  if(isset($_SESSION['username'])) {
-                    $username = $_SESSION['username'];
-                    $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                    echo $customer_cart_amount[0];
-                  }
+                  // if(isset($_SESSION['username'])) {
+                  //   $username = $_SESSION['username'];
+                  //   $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                  //   echo $customer_cart_amount[0];
+                  // }
+
+                  $username = "myduyennguyen2212";
+                  $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                  echo $customer_cart_amount[0];
                 ?>
               </div>
             </div>
             <div class="customer">
+              <label for="customer" class="customer-btn" title="customer"></label>
+              <input type="checkbox" id="customer">
+              <div class="customer-navigation">
+                <div class="customer-nav-options">
+                  <a href="/NTP-Sports-Hub/views/customer-account-management.php">
+                    <p>Tài khoản của tôi</p>
+                  </a>
+                  <a href="/NTP-Sports-Hub/views/sport-court-booking-history-management.php">
+                    <p>Đơn đặt sân</p>
+                  </a>
+                  <a href="?sign_out=yes">
+                    <p>Đăng xuất</p>
+                  </a>
+                </div>
+              </div>
               <img 
                 id="customer-avatar" 
                 src="
                   <?php
-                    if(isset($_SESSION['username'])) {
-                      $username = $_SESSION['username'];
+                    // if(isset($_SESSION['username'])) {
+                    //   $username = $_SESSION['username'];
+                    //   $accounts = $account_controller->view_all_account();
+                    //   foreach($accounts as $account) {
+                    //     if($account->getAccountSignUpName() == $username) {
+                    //       $customer_avatar_link = $account->getAccountAvatar();
+                    //       echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                    //     }
+                    //   }
+                    // }
+
+                      $username = "myduyennguyen2212";
                       $accounts = $account_controller->view_all_account();
                       foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
@@ -192,18 +298,21 @@
                           echo "/NTP-Sports-Hub" . $customer_avatar_link;
                         }
                       }
-                    }
                   ?>
                 " 
                 alt="Khách hàng avatar"
               >
               <p id="customer-name">
                 <?php
-                  if(isset($_SESSION['username'])) {
-                    $username = $_SESSION['username'];
+                  // if(isset($_SESSION['username'])) {
+                  //   $username = $_SESSION['username'];
+                  //   $customer_name = $account_controller->get_customer_name($username);
+                  //   echo $customer_name[0];
+                  // }
+
+                    $username = "myduyennguyen2212";
                     $customer_name = $account_controller->get_customer_name($username);
                     echo $customer_name[0];
-                  }
                 ?>
               </p>
             </div>

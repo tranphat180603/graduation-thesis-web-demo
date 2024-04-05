@@ -215,10 +215,7 @@
         }
 
         @media screen and (max-width: 500px) {
-            .header-top {
-                padding: 20px 20px;
-            }
-
+            .header-top,
             .header-bottom {
                 padding: 20px 20px;
             }
@@ -240,25 +237,27 @@
             <p>Giỏ Hàng</p>
           </div>
           <div class="header-top-right">
-            <div class="cart">
-              <img id="cart-icon" src="/NTP-Sports-Hub/image/header-img/cart.svg" alt="Giỏ hàng icon">
-              <div id="cart-amount">
-                <?php
-                  require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
-                  $account_controller = new Account_Controller();
+            <a href="/NTP-Sports-Hub/views/cart-management.php">
+              <div class="cart">
+                <img id="cart-icon" src="/NTP-Sports-Hub/image/header-img/cart.svg" alt="Giỏ hàng icon">
+                <div id="cart-amount">
+                  <?php
+                    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+                    $account_controller = new Account_Controller();
 
-                  // if(isset($_SESSION['username'])) {
-                  //   $username = $_SESSION['username'];
-                  //   $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                  //   echo $customer_cart_amount[0];
-                  // }
+                    // if(isset($_SESSION['username'])) {
+                    //   $username = $_SESSION['username'];
+                    //   $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                    //   echo $customer_cart_amount[0];
+                    // }
 
-                  $username = "myduyennguyen2212";
-                  $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                  echo $customer_cart_amount[0];
-                ?>
+                    $username = "myduyennguyen2212";
+                    $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                    echo $customer_cart_amount[0];
+                  ?>
+                </div>
               </div>
-            </div>
+            </a>
             <div class="customer">
               <label for="customer" class="customer-btn" title="customer"></label>
               <input type="checkbox" id="customer">
@@ -270,7 +269,7 @@
                   <a href="/NTP-Sports-Hub/views/sport-court-booking-history-management.php">
                     <p>Đơn đặt sân</p>
                   </a>
-                  <a href="?sign_out=yes">
+                  <a href="/NTP-Sports-Hub/modules/sign-out-module.php">
                     <p>Đăng xuất</p>
                   </a>
                 </div>

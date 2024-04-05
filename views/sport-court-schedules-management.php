@@ -31,7 +31,7 @@
     <div id="overlay-wrapper"></div>
     <!-- HEADER -->
     <?php //include "../header/admin-managerial-header.php";
-    include "../header/admin-sub-header.php"; ?>
+    include "../header/guest-main-header.php"; ?>
     <!-- BODY -->
     <?php
       require_once "../controllers/court-schedule-controller.php"; 

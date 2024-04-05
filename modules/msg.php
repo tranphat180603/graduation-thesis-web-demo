@@ -84,8 +84,26 @@
                 </script>
             ";
         } else if($msg == "sign_out_fail") {
-            header("Content-type: text/html; charset=utf8");
-            echo "Không thể đăng xuất";
+            echo "
+                <script>
+                    var overlayFrame = document.getElementById('overlay-wrapper');
+                    overlayFrame.style.display = 'block';
+                </script>
+            "; 
+
+            include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/warning.php";
+
+            echo "
+                <script>
+                    var question = document.getElementById('warning-question');
+                    var explanation = document.getElementById('warning-explanation');
+                    var OKBtn = document.getElementById('war-act-ok');
+
+                    question.textContent = 'Bạn đã thực hiện đăng xuất';
+                    explanation.textContent = 'Rất tiếc, thao tác đăng xuất đã thất bại';
+                    OKBtn.href = '../index.php';
+                </script>
+            ";        
         } 
     }
 ?>

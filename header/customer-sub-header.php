@@ -244,8 +244,7 @@
         .header-bottom {
             display: flex;
             height: 70px;
-            padding: 0px 105px;
-            flex-direction: column;
+            padding: 0px 70px;
             justify-content: center;
             align-items: center;
             gap: 10px;
@@ -254,13 +253,10 @@
         }
 
         .menu {
-            display: flex;
             max-width: 1300px;
-            align-items: center;
             align-self: stretch;
-            flex-wrap: wrap;
             height: 40px;
-            gap: 32px;
+            width: 100%;
         }
 
         .menu ul {
@@ -268,9 +264,7 @@
             align-items: center;
             max-width: 1300px;
             overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
-            margin: 0px;
             padding: 0px;
-            align-self: stretch;
             gap: 36px;
             white-space: nowrap;
             padding-bottom: 8px;
@@ -296,21 +290,9 @@
             line-height: 24px;
         }
 
-        @media screen and (max-width: 1500px) {
-            .header-bottom {
-                padding: 0px 70px;
-            }
-        }
-
         @media screen and (max-width: 500px) {
-            .header-top {
-                padding: 20px 20px;
-            }
-
-            .header-middle {
-                padding: 20px 20px;
-            }
-
+            .header-top,
+            .header-middle,
             .header-bottom {
                 padding: 20px 20px;
             }
@@ -328,8 +310,6 @@
 
       require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
       $court_controller = new Court_Controller();
-
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/sign-out-module.php"; 
     ?>
     <div class="header">
       <div class="header-top">
@@ -375,7 +355,7 @@
                   <a href="/NTP-Sports-Hub/views/sport-court-booking-history-management.php">
                     <p>Đơn đặt sân</p>
                   </a>
-                  <a href="?sign_out=yes">
+                  <a href="/NTP-Sports-Hub/modules/sign-out-module.php">
                     <p>Đăng xuất</p>
                   </a>
                 </div>
@@ -435,7 +415,7 @@
                     
                     foreach($court_types as $court_type) {
                     echo "
-                        <li class='header-li-court-type' id='li-court-type-".$court_type->getCourtTypeId()."'>
+                        <li class='header-li-court-type' id='header-li-court-type-".$court_type->getCourtTypeId()."'>
                         <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/NTP-Sports-Hub/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
                     ";
                         

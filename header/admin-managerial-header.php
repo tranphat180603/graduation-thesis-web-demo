@@ -212,11 +212,10 @@
             line-height: normal;
         }
 
-        .header-sub-middle {
+        .header-bottom {
             display: flex;
             height: 70px;
-            padding: 0px 105px;
-            flex-direction: column;
+            padding: 0px 70px;
             justify-content: center;
             align-items: center;
             gap: 10px;
@@ -224,30 +223,25 @@
             border-bottom: 1px solid #C4C4C4;
         }
 
-        .menu {
-            display: flex;
+        .header-bottom .menu {
             max-width: 1300px;
-            align-items: center;
             align-self: stretch;
-            flex-wrap: wrap;
             height: 40px;
-            gap: 32px;
+            width: 100%;
         }
 
-        .menu ul {
+        .header-bottom .menu ul {
             display: flex;
             align-items: center;
             max-width: 1300px;
             overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
-            margin: 0px;
             padding: 0px;
-            align-self: stretch;
             gap: 36px;
             white-space: nowrap;
             padding-bottom: 8px;
         }
 
-        .header-li-court-type {
+        .management-option {
             display: flex;
             align-items: center;
             margin: 0px;
@@ -255,11 +249,11 @@
             padding-bottom: 5px;
         }
 
-        .header-li-court-type:hover a {
+        .management-option:hover a {
             color: #88938F;
         }
 
-        .header-li-court-type a {
+        .management-option a {
             color: #171C1A;
             font-size: 16px;
             font-style: normal;
@@ -267,21 +261,19 @@
             line-height: 24px;
         }
 
-        @media screen and (max-width: 1500px) {
-            .header-bottom {
-                padding: 0px 70px;
-            }
+        .management {
+            color: #248DAE;
+            text-align: center;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 550;
+            line-height: 24px; 
         }
 
         @media screen and (max-width: 500px) {
-            .header-top {
-                padding: 20px 20px;
-            }
-
-            .header-middle {
-                padding: 20px 20px;
-            }
-
+            .header-top,
+            .header-middle,
+            .header-sub-middle,
             .header-bottom {
                 padding: 20px 20px;
             }
@@ -299,8 +291,6 @@
 
       require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
       $court_controller = new Court_Controller();
-
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/sign-out-module.php"; 
     ?>
     <div class="header">
       <div class="header-top">
@@ -319,7 +309,7 @@
               <input type="checkbox" id="admin">
               <div class="admin-navigation">
                 <div class="admin-nav-options">
-                  <a href="?sign_out=yes">
+                  <a href="/NTP-Sports-Hub/modules/sign-out-module.php">
                     <p>Đăng xuất</p>
                   </a>
                 </div>
@@ -328,7 +318,6 @@
                 id="admin-avatar" 
                 src="
                   <?php
-                  
                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                     $account_controller = new Account_Controller();
 
@@ -384,29 +373,6 @@
       </div>
       <div class="header-middle">
         <p>Quản lý đặt sân thể thao trực tuyến cùng NTP Sports Hub</p>
-      </div>
-      <div class="header-sub-middle">
-        <div class="menu">
-            <ul>
-                <?php 
-                    $court_types = $court_type_controller->view_all_court_type();
-                    
-                    foreach($court_types as $court_type) {
-                    echo "
-                        <li class='header-li-court-type' id='li-court-type-".$court_type->getCourtTypeId()."'>
-                        <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/NTP-Sports-Hub/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
-                    ";
-                        
-                    $court_amount = $court_controller->view_court_by_court_type($court_type->getCourtTypeId());
-                    echo "
-                            &nbsp;(<span>".$court_amount[0]."</span>)
-                        </a>
-                        </li>
-                    ";
-                    }
-                ?>
-            </ul>
-        </div>
       </div>
       <div class="header-bottom">
         <div class="menu">

@@ -1182,12 +1182,12 @@ CREATE TABLE `sport_hub_event` (
 --
 
 INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `event_end_date`, `event_description`, `event_image`, `event_preferential_rate`, `event_preferential_item`, `event_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1.png', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2.png', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3.png', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
-(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4.png', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.png', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
-(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.png', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
+(1, 'Ưu đãi giờ cố định lâu dài', '2024-01-01', '2100-02-18', 'Dành cho các đội đặt sân khung giờ cố định và lâu dài', '../upload/event-management/event-1.svg', 5, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(2, 'Ưu đãi học sinh, sinh viên', '2024-01-01', '2100-02-18', 'Học sinh, sinh viên đặt sân sẽ được giá ưu đãi giảm đến 10%', '../upload/event-management/event-2.svg', 10, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(3, 'Ưu đãi giải đấu phong trào', '2024-01-01', '2100-02-18', 'Các tổ chức giải phủi, giải đấu phong trào khi đặt sân sẽ được giá ưu đãi giảm đến 15%', '../upload/event-management/event-3.svg', 15, NULL, 'Còn hạn', '2024-02-18', NULL, 1),
+(4, 'Ưu đãi đón xuân 2024 (nhỏ)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 lốc nước suối trị giá 100.000 VNĐ', '../upload/event-management/event-4.svg', 0, '1 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(5, 'Ưu đãi đón xuân 2024 (vừa)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 2 lốc nước suối trị giá 200.000 VNĐ', '../upload/event-management/event-5.svg', 0, '2 lốc nước suối', 'Hết hạn', '2024-02-18', NULL, 1),
+(6, 'Ưu đãi đón xuân 2024 (lớn)', '2024-01-01', '2024-02-18', 'Đặt sân thể thao nhân dịp cuối năm sẽ được tặng 1 thùng bia trị giá 250.000 VNĐ', '../upload/event-management/event-6.svg', 0, '1 thùng bia', 'Hết hạn', '2024-02-18', NULL, 1);
 
 -- --------------------------------------------------------
 

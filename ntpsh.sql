@@ -33,8 +33,7 @@ CREATE TABLE `account` (
   `account_sign_up_name` varchar(500) NOT NULL,
   `account_name` varchar(100) NOT NULL,
   `account_avatar` varchar(100) DEFAULT NULL,
-  `account_password` varchar(30) NOT NULL,
-  `customer_account_hash_password` varchar(255) DEFAULT NULL,
+  `account_hash_password` varchar(255) DEFAULT NULL,
   `created_on_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -42,16 +41,16 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_password`, `customer_account_hash_password`, `created_on_date`) VALUES
-(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '/upload/account-management/avatar-1.png', 'klhttNTP_151103', NULL, '2024-02-18'),
-(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '/upload/account-management/avatar-2.png', 'DuyenNguyen_22122003', NULL, '2024-02-18'),
-(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '/upload/account-management/avatar-3.png', 'DuyenTran_06112003', NULL, '2024-02-18'),
-(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '/upload/account-management/avatar-4.png', 'HaoTruong_28052003', NULL, '2024-02-18'),
-(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '/upload/account-management/avatar-5.png', 'HoangNguyen_15112003', NULL, '2024-02-18'),
-(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '/upload/account-management/avatar-6.png', 'NgocPham_03102003', NULL, '2024-02-18'),
-(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '/upload/account-management/avatar-7.png', 'PhatTran_18062003', NULL, '2024-02-18'),
-(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '/upload/account-management/avatar-8.png', 'ThuyLe_02112003', NULL, '2024-02-18'),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '/upload/account-management/avatar-9.png', 'TienTruong_30072003', NULL, '2024-02-18');
+INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_hash_password`, `created_on_date`) VALUES
+(1, 'Quản lý', 'adminKLHTTNTP', 'Khu liên hợp thể thao NTP', '/upload/account-management/avatar-1.png', '2cde5d3e5b1eaec32b5ebd9e17d4776b', '2024-02-18'),
+(2, 'Khách hàng', 'myduyennguyen2212', 'Nguyễn Hoàng Mỹ Duyên', '/upload/account-management/avatar-2.png', '87e0ec8d8926c7a824649009ecafbd48', '2024-02-18'),
+(3, 'Khách hàng', 'duyentran0611', 'Duyên Trần', '/upload/account-management/avatar-3.png', '732382edd12d1cadbab1f69cf94d81cf', '2024-02-18'),
+(4, 'Khách hàng', 'haotruong2805', 'Gia Hào', '/upload/account-management/avatar-4.png', 'ce80c1bd04b69af85225fb8e3febe7fb', '2024-02-18'),
+(5, 'Khách hàng', 'ngochoangharry15', 'Ngọc Hoàng Nguyễn', '/upload/account-management/avatar-5.png', 'bb0f011a356033662833579fb7a589f5', '2024-02-18'),
+(6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '/upload/account-management/avatar-6.png', 'd9ee29c7e0e63450e2e0f5ad011f47d4', '2024-02-18'),
+(7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '/upload/account-management/avatar-7.png', '7fb37b895bba6ab3f836590ec2e6be03', '2024-02-18'),
+(8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '/upload/account-management/avatar-8.png', 'd9512d59a73665fab74582a0a6ecdf88', '2024-02-18'),
+(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '/upload/account-management/avatar-9.png', 'd51e33c74a622df1a176c4e1d5703b18', '2024-02-18');
 
 -- --------------------------------------------------------
 
@@ -1198,19 +1197,40 @@ INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `ev
 
 CREATE TABLE `visitor` (
   `visitor_id` int(11) NOT NULL,
-  `visitor_IP_address` varchar(255) NOT NULL
+  `visitor_IP_address` varchar(255) NOT NULL,
+  `created_on_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `visitor`
 --
 
-INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`) VALUES
-(1, '192.168.1.1'),
-(2, '10.0.0.1'),
-(3, '172.16.0.1'),
-(4, '192.0.2.1'),
-(5, '198.51.100.1');
+INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`, `created_on_date`) VALUES
+(1, '192.168.1.1', '2024-09-13'),
+(2, '10.0.0.1', '2024-09-14'),
+(3, '172.16.0.1', '2024-09-15'),
+(4, '192.0.2.1', '2024-09-16'),
+(5, '198.51.100.1', '2024-09-17'),
+(6, '203.0.113.1', '2024-10-18'),
+(7, '192.168.0.1', '2024-10-19'),
+(8, '10.10.10.1', '2024-10-20'),
+(9, '172.31.0.1', '2024-10-21'),
+(10, '198.18.0.1', '2024-10-22'),
+(11, '203.0.113.2', '2024-11-23'),
+(12, '192.168.0.2', '2024-11-24'),
+(13, '10.10.10.2', '2024-11-25'),
+(14, '172.31.0.2', '2024-11-26'),
+(15, '198.18.0.2', '2024-11-27'),
+(16, '203.0.113.3', '2024-12-28'),
+(17, '192.168.0.3', '2024-12-29'),
+(18, '10.10.10.3', '2024-12-30'),
+(19, '172.31.0.3', '2024-12-31'),
+(20, '198.18.0.3', '2024-12-01'),
+(21, '203.0.113.4', '2024-12-02'),
+(22, '192.168.0.4', '2024-12-03'),
+(23, '10.10.10.4', '2024-12-04'),
+(24, '172.31.0.4', '2024-12-05'),
+(25, '198.18.0.4', '2024-12-06');
 
 --
 

@@ -264,7 +264,7 @@
                     foreach ($accounts as $account) {
                       if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
                         foreach ($customers as $customer) {
-                          if ($customer->getCustomerId() == $account->getCustomerId()) {
+                          if ($customer->getAccountId() == $account->getAccountId()) {
                             echo $customer->getCustomerPhoneNumber();
                           }
                         }
@@ -282,14 +282,14 @@
                             <img src='";
                     foreach ($accounts as $account) {
                       if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
-                        echo $account->getAccountAvatar();
+                        echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                       }
                     }
                     echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
                     foreach ($accounts as $account) {
                       if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
                         foreach ($customers as $customer) {
-                          if ($customer->getCustomerId() == $account->getCustomerId()) {
+                          if ($customer->getAccountId() == $account->getAccountId()) {
                             echo $customer->getCustomerFullname();
                           }
                         }
@@ -468,7 +468,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo $account->getAccountAvatar();
+                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -476,7 +476,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerFullname();
                       }
                     }
@@ -494,7 +494,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerPhoneNumber();
                       }
                     }
@@ -672,7 +672,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo $account->getAccountAvatar();
+                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -680,7 +680,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerFullname();
                       }
                     }
@@ -698,7 +698,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerPhoneNumber();
                       }
                     }
@@ -876,7 +876,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo $account->getAccountAvatar();
+                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -884,7 +884,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerFullname();
                       }
                     }
@@ -902,7 +902,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerPhoneNumber();
                       }
                     }
@@ -1076,7 +1076,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo $account->getAccountAvatar();
+                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -1084,7 +1084,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerFullname();
                       }
                     }
@@ -1102,7 +1102,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerPhoneNumber();
                       }
                     }
@@ -1312,7 +1312,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo $account->getAccountAvatar();
+                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -1320,7 +1320,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerFullname();
                       }
                     }
@@ -1338,7 +1338,7 @@
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
                     foreach ($customers as $customer) {
-                      if ($customer->getCustomerId() == $account->getCustomerId()) {
+                      if ($customer->getAccountId() == $account->getAccountId()) {
                         echo $customer->getCustomerPhoneNumber();
                       }
                     }

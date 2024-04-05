@@ -3,14 +3,14 @@
 
     require_once "../controllers/account-controller.php"; 
 
-    function signUpBySUName($link, $account_sign_up_name, $account_name, $account_password) {
+    function signUpBySUName($link, $account_sign_up_name, $account_name, $account_hash_password) {
         $account_controller = new Account_Controller();
         $created_on_date = date("Y-m-d");
 
         //Thêm tài khoản mới
-        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, account_password, 
-                                                customer_account_hash_password, created_on_date) VALUES ('Khách hàng', '$account_sign_up_name', 
-                                                '$account_name', '$account_password', '".md5($account_password)."', '$created_on_date')");
+        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, account_hash_password, 
+                                                created_on_date) VALUES ('Khách hàng', '$account_sign_up_name', '$account_name', 
+                                                '".md5($account_hash_password)."', '$created_on_date')");
 
         //Lấy account_id của tài khoản vừa thêm
         $account_id = 0;
@@ -37,14 +37,14 @@
         }
     }
 
-    function signUpByPhone($link, $customer_phone_number, $account_name, $account_password) {  
+    function signUpByPhone($link, $customer_phone_number, $account_name, $account_hash_password) {  
         $account_controller = new Account_Controller();
         $created_on_date = date("Y-m-d");
 
         //Thêm tài khoản mới
-        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, account_password, 
-                                                customer_account_hash_password, created_on_date) VALUES ('Khách hàng', '$customer_phone_number', 
-                                                '$account_name', '$account_password', '".md5($account_password)."', '$created_on_date')");
+        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, account_hash_password, 
+                                                created_on_date) VALUES ('Khách hàng', '$customer_phone_number', '$account_name', 
+                                                '".md5($account_hash_password)."', '$created_on_date')");
 
         //Lấy account_id của tài khoản vừa thêm
         $account_id = 0;
@@ -71,14 +71,14 @@
         }
     }
 
-    function signUpByEmail($link, $customer_email_address, $account_name, $account_password) {  
+    function signUpByEmail($link, $customer_email_address, $account_name, $account_hash_password) {  
         $account_controller = new Account_Controller();
         $created_on_date = date("Y-m-d");
 
         //Thêm tài khoản mới
-        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, account_password, 
-                                                customer_account_hash_password, created_on_date) VALUES ('Khách hàng', '$customer_email_address', 
-                                                '$account_name', '$account_password', '".md5($account_password)."', '$created_on_date')");
+        $accResult = ExecuteNonDataQuery($link, "INSERT INTO account(account_type, account_sign_up_name, account_name, 
+                                                account_hash_password, created_on_date) VALUES ('Khách hàng', '$customer_email_address', 
+                                                '$account_name', '".md5($account_hash_password)."', '$created_on_date')");
 
         //Lấy account_id của tài khoản vừa thêm
         $account_id = 0;
@@ -107,7 +107,7 @@
 
     function signIn($link, $sign_in_name, $password) {
         $result = ExecuteNonDataQuery($link, "SELECT COUNT(*) FROM account WHERE account_sign_up_name = '$sign_in_name'
-                                                                            AND account_password = '".$password."'");
+                                                                            AND account_hash_password = '".md5($password)."'");
 
         $row = mysqli_fetch_row($result);
         mysqli_free_result($result);

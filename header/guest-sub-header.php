@@ -102,6 +102,10 @@
             background: #C7D9E7;
         }
 
+        #btn-sign-up:hover {
+            background: #bbcedc;
+        }
+
         #btn-sign-up p {
             display: flex;
             width: 158px;
@@ -114,6 +118,10 @@
             font-style: normal;
             font-weight: 700;
             line-height: normal;
+        }
+
+        #btn-sign-up:hover p {
+            color: #4fa2c6;
         }
 
         #btn-sign-in {
@@ -134,6 +142,16 @@
             );
         }
 
+        #btn-sign-in:hover {
+            background: linear-gradient(
+                180deg,
+                #3c81b9 0%,
+                rgba(55, 121, 175, 0.92) 0.01%,
+                #69d3e3 99.99%,
+                rgba(0, 0, 0, 0) 100%
+            );
+        }
+
         #btn-sign-in p {
             display: flex;
             width: 158px;
@@ -146,6 +164,10 @@
             font-style: normal;
             font-weight: 700;
             line-height: normal;
+        }
+
+        #btn-sign-in:hover p {
+            color: #f1efef;
         }
 
         .header-middle {

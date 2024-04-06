@@ -77,7 +77,7 @@
                   value="ĐĂNG NHẬP"
                 />
                 <div class="have-account">
-                  <p>Bạn đã có tài khoản?</p>
+                  <p>Bạn chưa có tài khoản?</p>
                   <a id="sign-up" href="../views/sign-up-method-suname.php">Đăng ký</a>
                 </div>
               </div>

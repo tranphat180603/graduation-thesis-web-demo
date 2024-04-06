@@ -13,7 +13,7 @@
             return $result = $this->account->view_all_account();
         }
 
-        //2. Hàm lấy số lượng lịch sân trong giỏ hàng của tài khoản
+        //2. Hàm lấy số lượng đơn đặt sân trong giỏ hàng của tài khoản
         public function get_customer_cart_amount($username) {
             return $result = $this->account->get_customer_cart_amount($username);
         }

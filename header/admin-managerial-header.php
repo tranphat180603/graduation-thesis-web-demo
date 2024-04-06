@@ -321,18 +321,8 @@
                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                     $account_controller = new Account_Controller();
 
-                    // if(isset($_SESSION['username'])) {
-                    //   $username = $_SESSION['username'];
-                    //   $accounts = $account_controller->view_all_account();
-                    //   foreach($accounts as $account) {
-                    //     if($account->getAccountSignUpName() == $username) {
-                    //       $customer_avatar_link = $account->getAccountAvatar();
-                    //       echo "/NTP-Sports-Hub" . $customer_avatar_link;
-                    //     }
-                    //   }
-                    // }
-
-                      $username = "adminKLHTTNTP";
+                    if(isset($_SESSION['username'])) {
+                      $username = $_SESSION['username'];
                       $accounts = $account_controller->view_all_account();
                       foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
@@ -340,30 +330,22 @@
                           echo "/NTP-Sports-Hub" . $customer_avatar_link;
                         }
                       }
+                    }
                   ?>
                 " 
                 alt="Quản lý avatar"
               >
               <p id="admin-name">
                 <?php
-                    // if(isset($_SESSION['username'])) {
-                    //   $username = $_SESSION['username'];
-                    //   $accounts = $account_controller->view_all_account();
-                    //   foreach($accounts as $account) {
-                    //     if($account->getAccountSignUpName() == $username) {
-                    //       $account_name = $account->getAccountName();
-                    //       echo $account_name;
-                    //     }
-                    //   }
-                    // }
-
-                    $username = "adminKLHTTNTP";
-                    $accounts = $account_controller->view_all_account();
-                    foreach($accounts as $account) {
+                    if(isset($_SESSION['username'])) {
+                      $username = $_SESSION['username'];
+                      $accounts = $account_controller->view_all_account();
+                      foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
-                        $account_name = $account->getAccountName();
-                        echo $account_name;
+                          $account_name = $account->getAccountName();
+                          echo $account_name;
                         }
+                      }
                     }
                 ?>
               </p>

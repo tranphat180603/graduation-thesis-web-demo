@@ -278,18 +278,8 @@
                 id="customer-avatar" 
                 src="
                   <?php
-                    // if(isset($_SESSION['username'])) {
-                    //   $username = $_SESSION['username'];
-                    //   $accounts = $account_controller->view_all_account();
-                    //   foreach($accounts as $account) {
-                    //     if($account->getAccountSignUpName() == $username) {
-                    //       $customer_avatar_link = $account->getAccountAvatar();
-                    //       echo "/NTP-Sports-Hub" . $customer_avatar_link;
-                    //     }
-                    //   }
-                    // }
-
-                      $username = "myduyennguyen2212";
+                    if(isset($_SESSION['username'])) {
+                      $username = $_SESSION['username'];
                       $accounts = $account_controller->view_all_account();
                       foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
@@ -297,21 +287,18 @@
                           echo "/NTP-Sports-Hub" . $customer_avatar_link;
                         }
                       }
+                    }
                   ?>
                 " 
                 alt="Khách hàng avatar"
               >
               <p id="customer-name">
                 <?php
-                  // if(isset($_SESSION['username'])) {
-                  //   $username = $_SESSION['username'];
-                  //   $customer_name = $account_controller->get_customer_name($username);
-                  //   echo $customer_name[0];
-                  // }
-
-                    $username = "myduyennguyen2212";
+                  if(isset($_SESSION['username'])) {
+                    $username = $_SESSION['username'];
                     $customer_name = $account_controller->get_customer_name($username);
                     echo $customer_name[0];
+                  }
                 ?>
               </p>
             </div>

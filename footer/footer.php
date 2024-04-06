@@ -239,7 +239,7 @@
         <div class="footer-top">
           <div class="footer-top-top">
             <img id="NTP-logo-img"
-              src="../image/footer-img/footer-logo.svg"
+              src="/NTP-Sports-Hub/image/footer-img/footer-logo.svg"
               alt="Khu liên hợp thể thao NTP"
             />
             <p>
@@ -256,13 +256,13 @@
               <div class="footer-general-info-contact">
                 <div class="phone-number">
                   <img id="phone-img"
-                    src="../image/footer-img/call.svg"
+                    src="/NTP-Sports-Hub/image/footer-img/call.svg"
                     alt="Số điện thoại"
                   />
                   <p>Liên hệ: 090 379 93 86</p>
                 </div>
                 <div class="address">
-                  <img id="address-img" src="../image/footer-img/location.svg" alt="Địa chỉ" />
+                  <img id="address-img" src="/NTP-Sports-Hub/image/footer-img/location.svg" alt="Địa chỉ" />
                   <p>
                     Địa điểm: 477 Đ. Nguyễn Tri Phương, KP. Bình Đường 4, P. An
                     Bình, TP. Dĩ An, Bình Dương
@@ -289,7 +289,7 @@
             <div class="footer-contact-info">
               <p>Kết nối với chúng tôi</p>
               <div class="facebook">
-                <img id="facebook-img" src="../image/footer-img/facebook.svg" alt="Facebook" />
+                <img id="facebook-img" src="/NTP-Sports-Hub/image/footer-img/facebook.svg" alt="Facebook" />
                 <a
                   href="https://www.facebook.com/sbnguyentriphuong"
                   target="_blank"
@@ -297,7 +297,7 @@
                 >
               </div>
               <div class="email">
-                <img id="email-img" src="../image/footer-img/mail-opened.svg" alt="Email" />
+                <img id="email-img" src="/NTP-Sports-Hub/image/footer-img/mail-opened.svg" alt="Email" />
                 <a
                   style="word-break: break-all"
                   href="mailto:sbnguyentriphuong@gmail.com"

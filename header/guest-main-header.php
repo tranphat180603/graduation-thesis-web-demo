@@ -1,4 +1,4 @@
-<style>
+    <style>
         /* height */
         .menu ul::-webkit-scrollbar {
             height: 5px;
@@ -50,7 +50,7 @@
             justify-content: space-between;
             align-items: center;
             align-content: center;
-            row-gap: 10px;
+            row-gap: 5px;
             flex: 1 0 0;
             flex-wrap: wrap;
         }
@@ -60,7 +60,7 @@
             padding-right: 20px;
             align-items: center;
             align-content: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1 0 0;
             flex-wrap: nowrap;
         }
@@ -72,6 +72,7 @@
             font-style: normal;
             font-weight: 700;
             line-height: normal;
+            min-width: 225px;
         }
 
         .header-top-left p span {
@@ -102,6 +103,10 @@
             background: #C7D9E7;
         }
 
+        #btn-sign-up:hover {
+            background: #bbcedc;
+        }
+
         #btn-sign-up p {
             display: flex;
             width: 158px;
@@ -114,6 +119,10 @@
             font-style: normal;
             font-weight: 700;
             line-height: normal;
+        }
+
+        #btn-sign-up:hover p {
+            color: #4fa2c6;
         }
 
         #btn-sign-in {
@@ -134,6 +143,16 @@
             );
         }
 
+        #btn-sign-in:hover {
+            background: linear-gradient(
+                180deg,
+                #3c81b9 0%,
+                rgba(55, 121, 175, 0.92) 0.01%,
+                #69d3e3 99.99%,
+                rgba(0, 0, 0, 0) 100%
+            );
+        }
+
         #btn-sign-in p {
             display: flex;
             width: 158px;
@@ -148,6 +167,10 @@
             line-height: normal;
         }
 
+        #btn-sign-in:hover p {
+            color: #f1efef;
+        }
+
         .header-middle {
             display: flex;
             padding: 20px 70px;
@@ -160,10 +183,18 @@
             border-bottom: 1px solid #c4c4c4;
         }
 
-        .header-middle p {
+        .header-middle-container {
             display: flex;
             max-width: 1300px;
-            flex-direction: column;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1 0 0;
+        }
+
+        .header-middle p {
+            display: flex;
+            min-width: 480px;
             align-items: flex-start;
             gap: 10px;
             flex: 1 0 0;
@@ -172,6 +203,249 @@
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+        }
+
+        .header-search {
+            display: flex;
+            gap: 15px 30px;
+            min-width: 320px;
+            max-width: 540px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .instance-container,
+        .search-container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .search-container {
+            height: 20px;
+            gap: 10px;
+        }
+
+        .instance-container {
+            align-self: stretch;
+            border-radius: 8px;
+            border: 2px solid rgba(156, 184, 201, 0.2);
+            padding: 10px 12px 10px 8px;
+            min-width: 200px;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .searchVector {
+            width: 18px;
+            height: 18px;
+        }
+
+        .input,
+        .searchVector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0 0 8px;
+        }
+
+        .input {
+            width: calc(100% - 18px);
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            height: 18px;
+            flex: 1;
+            align-items: flex-start;
+            padding: 0 8px 0;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #818183;
+            min-width: 116px;
+        }
+
+        #courtType_checkboxList {
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-width: 200px;
+            max-width: 250px;
+            border: 2px solid rgba(156, 184, 201, 0.2);
+            border-radius: 8px;
+            box-sizing: border-box;
+            padding: 0;
+            width: 100%;
+        }
+
+        #courtType_checkboxList li {
+            display: flex;
+            border-right: 1px solid #fff;
+            position: relative;
+            text-align: left;
+            padding: 11px 10px;
+            align-items: center;
+            gap: 18px;
+            min-width: 200px;
+            max-width: 250px;
+        }
+
+        #courtType_checkboxList > li {
+            float: left;
+            position: relative;
+        }
+
+        .court-vector {
+            width: 20px;
+            height: 20px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 300px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            padding: 0;
+            /* Loại bỏ padding mặc định */
+            margin-top: 0;
+            /* Loại bỏ margin mặc định */
+            overflow: visible;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .checkboxList {
+            cursor: pointer;
+            background-color: #fff;
+            align-self: stretch;
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 0 18px;
+        }
+
+        .court-type-name {
+            padding: 8px 16px;
+            /* Thêm padding vào mỗi mục trong dropdown menu */
+            white-space: nowrap;
+            /* Ngăn chặn cắt chữ */
+            width: 200px;
+        }
+
+        .court-type a {
+            display: block;
+            overflow: visible;
+        }
+
+        .dropdown_list {
+            position: absolute;
+            padding-bottom: 10px;
+            list-style: none;
+            display: none;
+            width: 247px;
+            top: 40px;
+            left: 0px;
+            border-radius: 0px 0px 6px 6px;
+            background: #FFF;
+            box-shadow: 0px 1px 4px 0px rgba(109, 108, 108, 0.70);
+        }
+
+        #courtType_checkboxList > li:hover > ul.dropdown_list {
+            display: block;
+            z-index: 100;
+        }
+
+        ul.dropdown_list > li {
+            position: relative;
+        }
+
+        .selectedCourts {
+            text-align: left;
+            flex-shrink: 0;
+            max-width: 140px;
+            white-space: nowrap; /* Ngăn không cho nội dung xuống dòng */
+            overflow: hidden; /* Ẩn nội dung bị tràn */
+            text-overflow: ellipsis; /* Hiển thị dấu ... khi nội dung tràn */
+            white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
+            gap: 0 18px;
+        }
+
+        #selectedCourts {
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .dropdown-vector {
+            height: 7.9px;
+            width: 13.7px;
+        }
+
+        .court-type-name {
+            padding: 8px 16px;
+            /* Thêm padding vào mỗi mục trong dropdown menu */
+            white-space: nowrap;
+            /* Ngăn chặn cắt chữ */
+            width: 200px;
+        }
+
+        .btn-group {
+            display: flex;
+            width: 275px;
+            height: 30px;
+            align-items: flex-start;
+            gap: 10px;
+            padding-left: 12px;
+        }
+
+        .btn-group b {
+            color: #fafbfc;
+            font-family: "Be Vietnam Pro";
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+        #court-type-apply {
+            display: flex;
+            padding: 0px 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            border-radius: 4px;
+            background: #27ae60;
+            border: none;
+        }
+
+        #court-type-apply:hover {
+            background-color: #1d7b44;
+        }
+
+        #court-type-reset {
+            display: flex;
+            padding: 8px 12px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            border-radius: 4px;
+            background: #d00000;
+            border: none;
+        }
+
+        #court-type-reset:hover {
+            background-color: #a10404;
         }
 
         .header-bottom {
@@ -223,6 +497,12 @@
             line-height: 24px;
         }
 
+        @media screen and (max-width: 730px) {
+            .header-middle p {
+                min-width: 300px;
+            }
+        }
+
         @media screen and (max-width: 500px) {
             .header-top,
             .header-middle,
@@ -260,7 +540,47 @@
         </div>
       </div>
       <div class="header-middle">
-        <p>Trải nghiệm đặt sân thể thao trực tuyến cùng NTP Sports Hub</p>
+        <div class="header-middle-container">
+            <p>Trải nghiệm đặt sân thể thao trực tuyến cùng NTP Sports Hub</p>
+            <div class="header-search">
+                <div class="instance-container">
+                <div class="search-container">
+                    <img class="searchVector" alt="" src="/NTP-Sports-Hub/image/header-img/search.svg" />
+                    <input id="searchInput" class="input" placeholder="Tìm kiếm" type="search" onkeydown="searchOnEnter(event)" />
+                </div>
+                </div>
+                <ul id="courtType_checkboxList">
+                <li class="checkboxList">
+                    <img class="court-vector" alt="" src="/NTP-Sports-Hub/image/header-img/filter.svg" />
+                    <div class="selectedCourts"><p id="selectedCourts">Tất cả loại sân</p></div>
+                    <img class="dropdown-vector" alt="" src="/NTP-Sports-Hub/image/header-img/dropdown.svg" />
+                    <ul class='dropdown_list'>
+                        <?php
+                            $court_types = $court_type_controller->view_all_court_type();
+                            foreach ($court_types as $court_type) {
+                                echo "
+                                    <li class='court-type-name' id='filter-li-court-type-".$court_type->getCourtTypeId()."'>
+                                        <input type='checkbox' id='checkbox-court-type-".$court_type->getCourtTypeId()."' value='".$court_type->getCourtTypeId()."'>
+                                        <label for='checkbox-court-type-".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."</label>
+                                    </li>
+                                ";
+                            }
+                        ?>
+
+                        <div class="btn-group">
+                            <button id='court-type-apply' onclick='applyFilters()'>
+                                <b class='apply'>Áp dụng</b>
+                            </button>
+                                    
+                            <button id='court-type-reset' onclick='resetFilters()'>
+                                <b class='reset'>Đặt lại</b>
+                            </button>
+                        </div>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
       </div>
       <div class="header-bottom">
         <div class="menu">
@@ -312,3 +632,110 @@
             ";    
         }
     ?>
+    <script>
+        // Lọc theo nhiều loại sân checkbox
+        function updateSelectedCourts() {
+        var checkboxes = document.querySelectorAll(
+            '.court-type-name input[type="checkbox"]'
+        );
+        var selectedCourtNames = [];
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+            var label = checkbox.nextElementSibling.textContent;
+            selectedCourtNames.push(label);
+            }
+        });
+        var courtsDiv = document.getElementById("selectedCourts");
+        courtsDiv.textContent =
+            selectedCourtNames.length > 0
+            ? selectedCourtNames.join(", ")
+            : "Tất cả loại sân";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var courtTypeIds = urlParams.get("court_type_id")
+            ? urlParams.get("court_type_id").split(",")
+            : [];
+        var checkboxes = document.querySelectorAll(
+            '.court-type-name input[type="checkbox"]'
+        );
+        checkboxes.forEach(function (checkbox) {
+            if (courtTypeIds.includes(checkbox.value)) {
+            checkbox.checked = true;
+            }
+        });
+        updateSelectedCourts();
+        });
+
+        // Nút apply
+        function applyFilters() {
+        var checkboxes = document.querySelectorAll(
+            '.court-type-name input[type="checkbox"]'
+        );
+        var selectedCourtTypes = [];
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+            selectedCourtTypes.push(checkbox.value);
+            }
+        });
+        if (selectedCourtTypes.length > 0) {
+            var url = "?court_type_id=" + selectedCourtTypes.join(",");
+            window.location.href = url;
+        } else {
+            alert("Please select at least one court type.");
+        }
+        }
+        //Hàm Dropdown
+        $("#courtType_checkboxList > li").hover(
+        function () {
+            $(".dropdown_list", this).slideDown();
+        },
+        function () {
+            $(".dropdown_list", this).slideUp();
+        }
+        );
+        //Reset mục chọn trong checkbox
+        function resetFilters() {
+        var checkboxes = document.querySelectorAll(
+            '.court-type-name input[type="checkbox"]'
+        );
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+
+        var courtsDiv = document.getElementById("selectedCourts");
+        courtsDiv.textContent = "Tất cả loại sân";
+
+        // Xóa tham số court_type_id khỏi URL
+        var url = new URL(window.location.href);
+        url.searchParams.delete("court_type_id");
+        // Thay đổi URL
+        window.history.replaceState({}, "", url);
+        }
+
+        //Tìm kiếm thẻ sân
+
+        document.addEventListener("DOMContentLoaded", function () {
+        var searchField = document.getElementById("searchInput");
+        var courtCards = document.querySelectorAll(".court-card");
+
+        // Hàm lọc các thẻ court-card dựa trên từ khóa tìm kiếm
+        function filterCourts(searchTerm) {
+            searchTerm = searchTerm.toLowerCase();
+            courtCards.forEach(function (card) {
+            var courtName = card.querySelector(".c-name").textContent.toLowerCase();
+            if (courtName.includes(searchTerm)) {
+                card.style.display = ""; // Hiển thị thẻ nếu tên sân chứa từ khóa tìm kiếm
+            } else {
+                card.style.display = "none"; // Ẩn thẻ nếu không chứa từ khóa tìm kiếm
+            }
+            });
+        }
+
+        // Lắng nghe sự kiện nhập vào trường tìm kiếm
+        searchField.addEventListener("input", function () {
+            filterCourts(searchField.value); // Gọi hàm lọc kết quả tìm kiếm
+        });
+        });
+    </script>

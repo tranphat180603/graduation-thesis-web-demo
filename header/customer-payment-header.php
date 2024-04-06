@@ -100,7 +100,7 @@
 
         .customer .customer-btn {
             position: absolute;
-            width: 256px;
+            width: 200px;
             height: 35px;
             top: 0px;
             right: 0px;

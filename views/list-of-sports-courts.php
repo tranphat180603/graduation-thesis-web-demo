@@ -28,6 +28,10 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
+    <?php
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+      $account_controller = new Account_Controller();
+    ?>
     <!-- HEADER -->
     <?php 
       if(!isset($_SESSION['username'])) {

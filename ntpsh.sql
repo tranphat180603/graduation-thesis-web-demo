@@ -78,7 +78,7 @@ INSERT INTO `cart` (`cart_id`, `event_id`, `cart_service_amount`, `cart_rental_a
 (2, NULL, 0, 0, 0, 0, 0, 3),
 (3, NULL, 0, 0, 0, 0, 0, 4),
 (4, NULL, 0, 0, 0, 0, 0, 5),
-(5, NULL, 0, 0, 0, 0, 0, 5),
+(5, NULL, 0, 0, 0, 0, 0, 6),
 (6, NULL, 0, 0, 0, 0, 0, 7),
 (7, NULL, 0, 0, 0, 0, 0, 8),
 (8, NULL, 0, 0, 0, 0, 0, 9);

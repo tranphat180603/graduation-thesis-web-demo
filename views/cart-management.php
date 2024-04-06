@@ -33,7 +33,6 @@
     <!-- BODY -->
     <div class="cart-body">
       <?php
-        //Code này áp dụng khi code xong giao diện đăng nhập
         if(isset($_SESSION['username'])) {
           $username = $_SESSION['username'];
           $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
@@ -44,37 +43,24 @@
             echo "</div>";
           } else {
             echo "<div class='cart-body-top-content'>";
+            echo "<table>";
+            echo "
+              <thead> 
+                <tr>
+                  <th style='max-width: 200px;'>Sân</th>
+                  <th>Loại sân</th>
+                  <th>Ngày</th>
+                  <th>Khung giờ</th>
+                  <th style='max-width: 200px;'>Dịch vụ</th>
+                  <th>Tiền dịch vụ</th>
+                  <th>Tiền thuê</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+            ";
+            echo "</table>";
             echo "</div>";
           }
-        }
-        
-        //Code áp dụng khi chưa code xong giao diện đăng nhập
-        $username = "myduyennguyen2212";
-        $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-        if($customer_cart_amount[0] == 0) {
-          echo "<div class='cart-body-top-content-empty'>";
-          echo "<img src='../image/cart-management-img/empty-cart.svg' alt='Hình ảnh giỏ hàng trống'>";
-          echo "<p id ='cart-empty-message' >Bạn chưa thêm lịch sân nào vào giỏ hàng. Giỏ hàng của bạn hiện đang trống...</p>";
-          echo "</div>";
-        } else {
-          echo "<div class='cart-body-top-content'>";
-          echo "<table>";
-          echo "
-            <thead> 
-              <tr>
-                <th style='max-width: 200px;'>Sân</th>
-                <th>Loại sân</th>
-                <th>Ngày</th>
-                <th>Khung giờ</th>
-                <th style='max-width: 200px;'>Dịch vụ</th>
-                <th>Tiền dịch vụ</th>
-                <th>Tiền thuê</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-          ";
-          echo "</table>";
-          echo "</div>";
         }
       ?>
       <div class="warning">

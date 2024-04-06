@@ -145,7 +145,7 @@
 
         .customer-navigation {
             display: flex;
-            width: 230px;
+            width: 160px;
             padding: 8px;
             flex-direction: column;
             align-items: flex-start;

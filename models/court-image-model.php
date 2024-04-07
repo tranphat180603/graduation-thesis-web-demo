@@ -19,5 +19,22 @@
             $this->court_image = $court_image;
             $this->court_id = $court_id;
         }
+
+        //1. Hàm lấy ra đường dẫn đến hình ảnh đầu tiên của sân
+        public function get_first_court_image($court_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng đơn đặt sân sân từ database
+            $result = ExecuteDataQuery($link, "SELECT court_image FROM court_image WHERE court_id = $court_id LIMIT 1");
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
     }
 ?>

@@ -39,5 +39,26 @@
             $this->cart_total_deposit = $cart_total_deposit;
             $this->account_id = $account_id;
         }
+
+        //1. Hàm lấy dữ liệu tất cả giỏ hàng
+        public function view_all_cart() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM cart");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $cart = new cart($rows["cart_id"], $rows["event_id"], $rows["cart_service_amount"], $rows["cart_rental_amount"], $rows["cart_discount_amount"], $rows["cart_total_payment"], $rows["cart_total_deposit"], $rows["account_id"]);
+                array_push($data, $cart);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

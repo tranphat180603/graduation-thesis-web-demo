@@ -27,6 +27,35 @@ p {
   margin: 0px;
 }
 
+/* Định dạng cho thanh cuộn ngang và dọc */
+/* width */
+.cart-body-top-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* height */
+.cart-body-top-content::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.cart-body-top-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Handle */
+.cart-body-top-content::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.cart-body-top-content::-webkit-scrollbar-thumb:hover {
+  background: #9c9c9c;
+  border-radius: 4px;
+}
+
 /*----------------------------------- BODY -----------------------------------*/
 .cart-body {
   display: flex;
@@ -74,20 +103,151 @@ p {
 /* ------------ Định dạng giỏ hàng có sản phẩm ---------- */
 .cart-body-top-content {
   position: relative;
-  display: flex;
+  height: 600px;
+  min-height: 600px;
   max-width: 1300px;
-  height: 718px;
-  min-height: 718px;
   margin: 0px;
   padding: 0px;
   padding-right: 8px;
   padding-bottom: 8px;
   flex-direction: column;
   justify-content: center;
+  background: #f1f1f1;
   align-items: flex-start;
   gap: 13px;
   width: 100%;
   overflow: scroll;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 1rem;
+  text-align: left;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  text-transform: capitalize;
+  white-space: nowrap;
+  background: #ffffff;
+
+  color: #606770;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+tbody td {
+  max-width: 300px;
+  overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
+  text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
+  white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
+}
+
+.court {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.court img {
+  width: 109px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.court_name {
+  color: #606770;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.p_general_style {
+  color: #7a7e85;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.service_details {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.service_detail {
+  display: flex;
+  height: 20px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  background: #5a8aac;
+}
+
+.service_detail p {
+  color: #fafbfc;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.arr-gr {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.money {
+  color: #285d8f;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.btn-delete a {
+  display: flex;
+  width: 70px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #d00000;
+}
+
+.btn-delete a:hover {
+  background: #e65656;
+}
+
+.btn-delete a p {
+  color: #fafbfc;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .warning {

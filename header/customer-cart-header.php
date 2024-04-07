@@ -245,15 +245,11 @@
                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
                     $account_controller = new Account_Controller();
 
-                    // if(isset($_SESSION['username'])) {
-                    //   $username = $_SESSION['username'];
-                    //   $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                    //   echo $customer_cart_amount[0];
-                    // }
-
-                    $username = "myduyennguyen2212";
-                    $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
-                    echo $customer_cart_amount[0];
+                    if(isset($_SESSION['username'])) {
+                      $username = $_SESSION['username'];
+                      $customer_cart_amount = $account_controller->get_customer_cart_amount($username);
+                      echo $customer_cart_amount[0];
+                    }
                   ?>
                 </div>
               </div>

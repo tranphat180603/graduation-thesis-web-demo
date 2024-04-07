@@ -8,9 +8,9 @@
             $this->cart = new cart();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng cart để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm lấy dữ liệu tất cả giỏ hàng
+        public function view_all_cart() {
+            return $result = $this->cart->view_all_cart();
         }
     }
 ?>

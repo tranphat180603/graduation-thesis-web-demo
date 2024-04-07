@@ -8,9 +8,9 @@
             $this->court_image = new court_image();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court_image để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm lấy ra đường dẫn đến hình ảnh đầu tiên của sân
+        public function get_first_court_image($court_id) {
+            return $result = $this->court_image->get_first_court_image($court_id);
         }
     }
 ?>

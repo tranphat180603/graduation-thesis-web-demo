@@ -27,5 +27,26 @@
             $this->cart_item_service_quantity = $cart_item_service_quantity;
             $this->cart_item_total_service_price = $cart_item_total_service_price;
         }
+
+        //1. Hàm lấy dữ liệu tất cả chi tiết giỏ hàng dịch vụ
+        public function view_all_cart_service_detail() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM cart_service_detail");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $cart_service_detail = new cart_service_detail($rows["cart_id"], $rows["court_schedule_id"], $rows["service_id"], $rows["cart_item_service_quantity"], $rows["cart_item_total_service_price"]);
+                array_push($data, $cart_service_detail);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

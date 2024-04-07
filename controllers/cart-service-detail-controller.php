@@ -8,9 +8,9 @@
             $this->cart_service_detail = new cart_service_detail();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng cart_service_detail để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm lấy dữ liệu tất cả chi tiết giỏ hàng dịch vụ
+        public function view_all_cart_service_detail() {
+            return $result = $this->cart_service_detail->view_all_cart_service_detail();
         }
     }
 ?>

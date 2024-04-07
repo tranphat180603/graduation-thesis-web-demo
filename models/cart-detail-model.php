@@ -27,5 +27,26 @@
             $this->cart_item_rental_amount = $cart_item_rental_amount;
             $this->created_on_date = $created_on_date;
         }
+
+        //1. Hàm lấy dữ liệu tất cả chi tiết giỏ hàng
+        public function view_all_cart_detail() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM cart_detail");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $cart_detail = new cart_detail($rows["cart_id"], $rows["court_schedule_id"], $rows["cart_item_service_amount"], $rows["cart_item_rental_amount"], $rows["created_on_date"]);
+                array_push($data, $cart_detail);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

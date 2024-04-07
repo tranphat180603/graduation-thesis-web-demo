@@ -55,5 +55,29 @@
             $this->last_modified_date = $last_modified_date;
             $this->account_id = $account_id;
         }
+
+        //1. Hàm lấy dữ liệu tất cả sự kiện
+        public function view_all_event() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM sport_hub_event WHERE event_state = 'Còn hạn'");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $event = new event($rows["event_id"], $rows["event_name"], $rows["event_start_date"], $rows["event_end_date"], 
+                                    $rows["event_description"], $rows["event_image"], $rows["event_preferential_rate"], 
+                                    $rows["event_preferential_item"], $rows["event_state"], $rows["created_on_date"], 
+                                    $rows["last_modified_date"], $rows["account_id"]);
+                array_push($data, $event);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

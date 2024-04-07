@@ -8,9 +8,9 @@
             $this->event = new event();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng event để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        //1. Hàm lấy dữ liệu tất cả sự kiện
+        public function view_all_event() {
+            return $result = $this->event->view_all_event();
         }
     }
 ?>

@@ -764,14 +764,6 @@ input[type="checkbox"]:hover {
   }
 }
 
-/*----------------------------------- FOOTER -----------------------------------*/
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
-@media screen and (max-width: 500px) {
-  .footer {
-    padding: 20px 20px 40px;
-  }
-}
-
 /*----------------------------------- ĐỊNH DANG FORM -----------------------------------*/
 body {
   position: relative;

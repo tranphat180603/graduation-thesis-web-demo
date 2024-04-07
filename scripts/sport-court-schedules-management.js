@@ -264,7 +264,7 @@ table_headings.forEach((head, i) => {
 });
 
 //9. Hàm cập nhật href của nút sửa và nút xóa khi tick vào checkbox trong bảng HTML
-function updateUrl(checkbox) {
+function updateUrl() {
   var checkedIds = [];
   var checkStates = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');

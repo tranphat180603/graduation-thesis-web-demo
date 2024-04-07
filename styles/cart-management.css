@@ -153,6 +153,14 @@ tbody td {
   white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
 }
 
+.available_cart_detail:hover {
+  background: #cfe3e8 !important;
+}
+
+.unavailable_cart_detail:hover {
+  background: #f0d4d4 !important;
+}
+
 .court {
   display: flex;
   align-items: center;
@@ -184,18 +192,14 @@ tbody td {
 }
 
 .service_details {
-  display: flex;
-  width: 200px;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  flex-wrap: wrap;
+  width: 150px;
 }
 
 .service_detail {
   display: flex;
   height: 20px;
   padding: 8px 12px;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -268,3 +272,339 @@ tbody td {
   line-height: 24px;
 }
 /* ------------------------------------------- */
+
+/*---------------- Định dạng thanh tổng hợp -------------- */
+.cart-body-bottom-content {
+  display: flex;
+  max-width: 1300px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+}
+
+.service_and_event_db {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 30px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+#service_form {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+}
+
+#service_pick {
+  color: #1a1f23;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.service_action_group {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 15px 30px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.service_select {
+  display: flex;
+  width: 237px;
+  height: 42px;
+  padding: 0px 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #4eacdf;
+  background: #fafbfc;
+}
+
+#service_id,
+#event_id {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #2c6b8c;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.service_amount,
+.event_percent {
+  display: flex;
+  width: 215px;
+  height: 42px;
+  padding: 0px 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #4eacdf;
+  background: #dce9f7;
+}
+
+.service_amount_left,
+.event_percent_left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.service_amount_left p,
+#service_amount,
+.event_percent_left p,
+#event_percent {
+  color: #68acd1;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.service_quantity {
+  display: flex;
+  width: 145px;
+  height: 42px;
+  padding: 0px 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #4eacdf;
+  background: #fafbfc;
+}
+
+.service_quantity_left {
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.service_quantity_left p {
+  color: #2c6b8c;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.service_quantity_left input[type="text"] {
+  border: none;
+  outline: none;
+  width: 30px;
+  color: #2c6b8c;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.service_quantity_action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+#insert_service_btn {
+  padding: 8px;
+  background-color: #f0bd0a;
+  border: none;
+  border-radius: 2px;
+
+  color: #fafbfc;
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#insert_service_btn:hover {
+  cursor: pointer;
+  background-color: #d2a708;
+}
+
+.event_section {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 0 0;
+}
+
+.event_action_group {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 15px 30px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.event_select {
+  display: flex;
+  width: 237px;
+  height: 42px;
+  padding: 0px 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #4eacdf;
+  background: #fafbfc;
+}
+
+hr {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background-color: #d3cece;
+}
+/*-------------------- Định dạng form chi tiết tiền --------------*/
+#payment_details {
+  display: flex;
+  padding: 0px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #eafafd;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+}
+
+.payment_details_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 10px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.service_total_amount,
+.rental_total_amount,
+.discount_amount,
+.deposit_amount {
+  display: flex;
+  height: 70px;
+  min-width: 250px;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  flex: 1 0 0;
+  flex-wrap: wrap;
+}
+
+.payment_details_top input[type="text"] {
+  border: none;
+  outline: none;
+  width: 120px;
+  background: #eafafd;
+  color: #606770;
+  font-family: "Be Vietnam Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.payment_details_bottom {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 10px 30px;
+  align-self: stretch;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.total_payment_amount {
+  display: flex;
+  height: 70px;
+  min-width: 350px;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  flex: 1 0 0;
+  flex-wrap: wrap;
+}
+
+.total_payment_amount p {
+  color: #3364a3;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.total_payment_amount input[type="text"] {
+  border: none;
+  outline: none;
+  width: 120px;
+  background: #eafafd;
+  color: #418ba2;
+  font-family: "Be Vietnam Pro";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+#btn-book {
+  display: flex;
+  width: 197px;
+  height: 42px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 3px;
+  background: #285d8f;
+  border: none;
+  outline: none;
+
+  color: #fff;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#btn-book:hover {
+  cursor: pointer;
+  background: #4a84b9;
+}
+
+/* -------------------------------------------------------------- */
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 450px) {
+  .cart-body {
+    padding: 30px 20px;
+  }
+}

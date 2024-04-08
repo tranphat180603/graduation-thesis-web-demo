@@ -348,7 +348,6 @@
               </div>
               <div class="discount_amount">
                 <p>Tổng Tiền Giảm Giá:</p>
-                <!-- <input type="text" name="discount_amount" value="đ110.000"> -->
                 <?php
                   $cartItemServiceAmount = 0;
                   $cartItemRentalAmount = 0;

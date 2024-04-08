@@ -196,13 +196,13 @@
         }
 
         //7. Hàm xử lý dơn đặt sân có trạng thái CHỜ HOÀN TIỀN
-        public function process_refunded_court_order($court_order_id) {
+        public function process_refunded_court_order($court_order_id, $refunded_on_date) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_order SET order_state = 'Đã hủy' WHERE court_order_id = $court_order_id";
+            $sql = "UPDATE court_order SET order_state = 'Đã hủy', refunded_on_date = '$refunded_on_date' WHERE court_order_id = $court_order_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 

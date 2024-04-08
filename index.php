@@ -61,5 +61,143 @@
     <?php include "./footer/footer.php"; ?>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/msg.php"; ?>
     <script type="text/javascript" src="./scripts/home.js" language="javascript"></script>
+    <?php
+      //Thay đổi CSS của thẻ li đang được chọn
+      $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
+
+      // Lấy URL hiện tại
+      $current_url = $_SERVER['PHP_SELF'];
+
+      // Kiểm tra URL hiện tại
+      if (strpos($current_url, 'list-of-sports-courts.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('header-li-court-type-".$courtType."');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('header-a-court-type-".$courtType."')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'sport-court-types-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-1');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-1')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'sport-courts-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-2');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-2')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'sport-court-schedules-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-3');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-3')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'event-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-4');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-4')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'service-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-5');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-5')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'sport-court-orders-management.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-6');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-6')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      } else if (strpos($current_url, 'statistical-report.php') !== false) {
+          echo "
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var liElement = document.getElementById('mana-li-7');
+                      liElement.style.borderBottom = '2px solid #285D8F';
+
+                      var aElement = document.getElementById('mana-a-7')
+                      aElement.style.color = '#285D8F';
+                      aElement.style.fontSize = '16px';
+                      aElement.style.fontStyle = 'normal';
+                      aElement.style.fontWeight = '500';
+                      aElement.style.lineHeight = '24px';
+                  });
+              </script>
+          ";    
+      }
+    ?>
   </body>
 </html>

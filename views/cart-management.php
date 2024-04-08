@@ -28,6 +28,7 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
+    <div id="overlay-wrapper"></div>
     <!-- HEADER -->
     <?php include "../header/customer-cart-header.php"; ?>
     <!-- BODY -->
@@ -488,5 +489,73 @@
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/cart-management.js" language="javascript"></script>
+    <!-- SCRIPT PHP ĐIỀU HƯỚNG THAO TÁC -->
+    <?php
+      if(isset($_GET['option'])) {
+        $_option = $_GET['option']; 
+
+        if($_option == "confirm_delete_cart_detail") { 
+          echo "
+            <script>
+              var overlayFrame = document.getElementById('overlay-wrapper');
+              overlayFrame.style.display = 'block';
+            </script>
+          ";
+          include "./notification/cart-detail-delete-confirmation.php";
+        } else if($_option == "increase_service_detail") {
+          echo "";
+        } else if($_option == "delete_cart_detail") {
+          if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+            $cart_id = $_GET['cart_id'];
+            $court_schedule_id = $_GET['court_schedule_id'];
+
+            $result = $cart_detail_controller->delete_cart_detail($cart_id, $court_schedule_id);
+
+            echo "
+              <script>
+                var overlayFrame = document.getElementById('overlay-wrapper');
+                overlayFrame.style.display = 'block';
+              </script>
+            ";
+
+            // Kiểm tra giá trị của biến $result
+            if ($result == true) {
+              // echo 'The cart detail has been deleted successfully';
+              include "./notification/action-successful.php";
+              echo "
+                <script>
+                  var message = document.getElementById('action-successful-message');
+                  message.textContent = 'Bạn đã xóa chi tiết giỏ hàng thành công';
+
+                  var btn_back = document.getElementById('admin-management-button');
+                  btn_back.textContent = 'Trở về quản lý giỏ hàng';
+                  btn_back.href = './cart-management.php';
+                  btn_back.style.fontSize = '12.5px';
+                </script>
+              ";   
+            } else if ($result == false) {
+              // echo 'The cart detail has been deleted fail';
+              include "./notification/warning.php"; 
+              echo "
+                <script>
+                  var warningQuestion = document.getElementById('warning-question');
+                  warningQuestion.textContent = 'Bạn đã thực hiện thao tác xóa chi tiết giỏ hàng!';
+                    
+                  var warningExplanation = document.getElementById('warning-explanation');
+                  warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng chi tiết giỏ hàng của bạn đã không được xóa thành công';
+    
+                  var btn_ok = document.getElementById('war-act-ok');
+                  btn_ok.href = './cart-management.php';
+                </script>
+              ";
+            }  
+          }
+        } else if($_option == "decrease_service_detail") {
+          echo "";
+        } else if($_option == "delete_service_detail") {
+          echo "";
+        }
+      }
+    ?>
   </body>
 </html>

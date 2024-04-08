@@ -48,5 +48,24 @@
 
             return $data;
         }
+
+        //2. Hàm xóa chi tiết giỏ hàng
+        public function delete_cart_detail($cart_id, $court_schedule_id) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "DELETE FROM cart_detail WHERE cart_id = $cart_id AND court_schedule_id = $court_schedule_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
     }
 ?>

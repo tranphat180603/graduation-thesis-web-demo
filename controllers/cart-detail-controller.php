@@ -12,5 +12,10 @@
         public function view_all_cart_detail() {
             return $result = $this->cart_detail->view_all_cart_detail();
         }
-    }
+
+        //2. Hàm xóa chi tiết giỏ hàng 
+        public function delete_cart_detail($cart_id, $court_schedule_id) {                  
+            return $result = $this->cart_detail->delete_cart_detail($cart_id, $court_schedule_id); 
+        }
+    }  
 ?>

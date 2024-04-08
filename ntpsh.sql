@@ -931,8 +931,8 @@ CREATE TABLE `court_type` (
   `court_type_name` varchar(100) NOT NULL,
   `court_type_icon` varchar(100) NOT NULL,
   `court_type_state` varchar(20) NOT NULL,
-  `created_on_date` date NOT NULL,
-  `last_modified_date` date DEFAULT NULL,
+  `created_on_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_modified_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

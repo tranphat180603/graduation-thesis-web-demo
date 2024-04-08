@@ -216,7 +216,7 @@
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/sport-court-schedules-management.js" language="javascript"></script>
     <!-- FORM THÊM LỊCH SÂN -->
-    <form id="form-insert" action="../controllers/court-schedule-controller.php?option=insert_court_schedule" method="post" enctype="multipart/form-data">
+    <form id="form-insert" action="?option=insert_court_schedule" method="post" enctype="multipart/form-data">
       <div class="form-header">
         <p>Thông tin lịch sân</p>
         <a href="?option=court_schedule_exit">
@@ -480,7 +480,7 @@
       </div>
     </form>
     <!-- FORM CHỈNH SỬA THÔNG TIN LỊCH SÂN -->
-    <form id="form-edit" action="../controllers/court-schedule-controller.php?option=update_court_schedule" method="post" enctype="multipart/form-data">
+    <form id="form-edit" action="?option=update_court_schedule" method="post" enctype="multipart/form-data">
       <div class="form-header">
         <p>Thông tin lịch sân</p>
         <a href="?option=court_schedule_exit">
@@ -638,6 +638,41 @@
               formInsert.style.display = 'flex';
             </script>
           "; 
+        } else if($_option == "insert_court_schedule") {
+          if(isset($_POST['court_id'], $_POST['court_schedule_date'], $_POST['court_schedule_start_time'], $_POST['court_schedule_end_time'], $_POST['court_schedule_state'])) {
+            //Lấy thông tin của các trường trong form
+            $court_id = $_POST['court_id'];
+            $court_schedule_date = date("Y-m-d", strtotime($_POST['court_schedule_date']));
+            $court_schedule_start_time = $_POST['court_schedule_start_time'];
+            $court_schedule_end_time = $_POST['court_schedule_end_time'];
+            $court_schedule_state = $_POST['court_schedule_state'];
+
+            $result = $court_schedule_controller->check_insert_court_schedule($court_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time, $court_schedule_state);
+
+            // Kiểm tra giá trị của biến $result
+            if ($result == true) {
+              // echo 'The court schedule has been inserted successfully';
+              include "./notification/action-successful.php";
+              echo "
+                <script>
+                  var message = document.getElementById('action-successful-message');
+                  message.textContent = 'Bạn đã thêm lịch sân thành công';
+                </script>
+              ";   
+            } else if ($result == false) {
+              // echo 'The court schedule has been inserted fail';
+              include "./notification/warning.php"; 
+              echo "
+                <script>
+                  var warningQuestion = document.getElementById('warning-question');
+                  warningQuestion.textContent = 'Bạn đã thực hiện thao tác thêm lịch sân!';
+                  
+                  var warningExplanation = document.getElementById('warning-explanation');
+                  warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được thêm thành công';
+                </script>
+              ";
+            }  
+          }
         } else if($_option == "view_court_schedule_detail") {
           echo "
             <script>
@@ -668,6 +703,39 @@
               ";       
             }
           }
+        } else if($_option == "update_court_schedule") {
+          if(isset($_POST['court_schedule_id'], $_POST['court_schedule_state'])) {
+            //Lấy thông tin của các trường trong form
+            $court_schedule_id = $_POST['court_schedule_id'];
+            $court_schedule_state = $_POST['court_schedule_state'];
+            $last_modified_date = date("Y-m-d");
+
+            $result = $court_schedule_controller->update_court_schedule($court_schedule_id, $court_schedule_state, $last_modified_date);
+
+            // Kiểm tra giá trị của biến $result
+            if ($result) {
+              // echo 'The court schedule has been updated successfully'; 
+              include "./notification/action-successful.php";
+              echo "
+                <script>
+                  var message = document.getElementById('action-successful-message');
+                  message.textContent = 'Bạn đã sửa lịch sân thành công';
+                </script>
+              "; 
+            } else {
+                // echo 'The court schedule has been updated fail';
+                include "./notification/warning.php";
+                echo "
+                  <script>
+                    var warningQuestion = document.getElementById('warning-question');
+                    warningQuestion.textContent = 'Bạn đã thực hiện thao tác sửa lịch sân!';
+                    
+                    var warningExplanation = document.getElementById('warning-explanation');
+                    warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được sửa thành công';
+                  </script>
+                ";
+            }
+          }
         } else if($_option == "confirm_delete_court_schedule") {
           if(isset($_GET['court_schedule_state'])) {
             $court_schedule_state = $_GET['court_schedule_state'];
@@ -686,6 +754,36 @@
               include "./notification/schedule-delete-confirmation.php";
             }
           } 
+        } else if($_option == "delete_court_schedule") {
+          if(isset($_GET['court_schedule_id'])) {
+            $court_schedule_id = $_GET['court_schedule_id'];
+
+            $result = $court_schedule_controller->delete_court_schedule($court_schedule_id);
+
+            // Kiểm tra giá trị của biến $result
+            if ($result) {
+              // echo 'The court schedule has been deleted successfully';
+              include "./notification/action-successful.php";
+              echo "
+                <script>
+                  var message = document.getElementById('action-successful-message');
+                  message.textContent = 'Bạn đã xóa lịch sân thành công';
+                </script>
+              ";
+            } else {
+              // echo 'The court schedule has been deleted fail';
+              include "./notification/warning.php";
+              echo "
+              <script>
+                  var warningQuestion = document.getElementById('warning-question');
+                  warningQuestion.textContent = 'Bạn đã thực hiện thao tác xóa lịch sân!';
+                  
+                  var warningExplanation = document.getElementById('warning-explanation');
+                  warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng lịch sân đã không được xóa thành công';
+                </script>
+              ";
+            }  
+          }
         } else if($_option == "court_schedule_exit") {
           echo "
             <script>

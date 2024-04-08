@@ -73,6 +73,7 @@
             echo "<p>Bạn chưa thêm lịch sân nào vào giỏ hàng. Giỏ hàng của bạn hiện đang trống...</p>";
             echo "</div>";
           } else {
+            echo "<div class='cart-body-container'>";
             echo "<div class='cart-body-top-content'>";
             echo "<table>";
             echo "
@@ -184,11 +185,19 @@
                                   echo "<p>".$service->getServiceName()."<span> &nbsp;(".$cart_service_detail->getCartItemServiceQuantity().")</span></p>";
                                   echo "
                                     <div class='arr-gr'>
-                                      <img src='../image/cart-management-img/up-arrow.svg' alt='up arrow'>
-                                      <img src='../image/cart-management-img/down-arrow.svg' alt='down arrow'>
+                                      <a style='display: flex;' href='?option=increase_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
+                                        <img src='../image/cart-management-img/up-arrow.svg' alt='up arrow'>
+                                      </a>
+                                      <a style='display: flex;' href='?option=decrease_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
+                                        <img src='../image/cart-management-img/down-arrow.svg' alt='down arrow'>
+                                      </a>
                                     </div>
                                   ";
-                                  echo "<img src='../image/cart-management-img/red-x.svg' alt='delete service button'>";
+                                  echo "
+                                    <a style='display: flex;' href='?option=delete_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."'>
+                                      <img src='../image/cart-management-img/red-x.svg' alt='delete service button'>
+                                    </a>
+                                  ";
                                   echo "</div>";
                                 }
                               }
@@ -221,14 +230,15 @@
             echo "</tbody>";
             echo "</table>";
             echo "</div>";
+            echo "</div>";
           }
         }
       ?>
       <div class="warning">
         <p id="warning-message">Lưu ý: Mỗi lần đặt, chỉ được chọn và đặt một lịch sân</p>
       </div>
-      <div class="cart-body-bottom-content">
-        <div class="service_and_event_db">
+      <div id="cart-body-bottom-content">
+        <div class="service_wrapper">
           <form id="service_form" action="../controllers/cart-detail-controller.php?option=insert_service_detail" method="post" enctype="multipart/form-data">
             <p id="service_pick">Chọn dịch vụ</p>
             <div class="service_action_group">
@@ -246,7 +256,7 @@
                                 if($court_type->getCourtTypeId() == $court->getCourtTypeId()) {
                                   foreach($services as $service) {
                                     if($service->getCourtTypeId() == $court_type->getCourtTypeId()) {
-                                      echo "<option value='".$service->getServiceId()."'>".$service->getServiceName()."</option>";
+                                      echo "<option value='".$service->getServiceId()."'>".$service->getServiceName()." (đ".number_format($service->getServicePrice(), 0, ',', '.').")</option>";
                                     }
                                   }
                                 }
@@ -258,32 +268,29 @@
                     } else {
                       echo "<option>Hãy chọn lịch sân</option>";
                     }
-                    // $services = $service_controller->view_all_service();
-
-                    // foreach($services as $service) {}
                   ?>
                 </select>
-              </div>
-              <div class="service_amount">
-                <div class="service_amount_left">
-                  <img src="../image/cart-management-img/service_amount.svg" alt="service amount icon">
-                  <p>Tiền dịch vụ:</p>
-                </div>
-                <p id="service_amount">0</p>
               </div>
               <div class="service_quantity">
                 <div class="service_quantity_left">
                   <p>Số lượng:</p>
-                  <input type="text" name="service_quantity" value="0">
-                </div>
-                <div class="service_quantity_action">
-                  <img src="../image/cart-management-img/service_quantity_up.svg" alt="service quantity up">
-                  <img src="../image/cart-management-img/service_quantity_down.svg" alt="service quantity down">
+                  <input type="number" name="service_quantity" value="0">
                 </div>
               </div>
             </div>
+            <?php
+              if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                echo "
+                  <input style='display: none;' type='text' name='cart_id' value='".$_GET['cart_id']."'>
+                  <input style='display: none;' type='text' name='court_schedule_id' value='".$_GET['court_schedule_id']."'>
+                ";
+              }
+            ?>
             <input id="insert_service_btn" type="submit" value="Thêm dịch vụ">
           </form>
+        </div>
+        <hr>
+        <form id="book_court_form" action="./book-sports-courts.php" method="post" enctype="multipart/form-data">
           <div class="event_section">
             <p>Chọn sự kiện</p>
             <div class="event_action_group">
@@ -293,48 +300,69 @@
                   <option value="0">Sự kiện</option>
                   <?php
                     foreach($events as $event) {
-                      echo "<option value='".$event->getEventId."'>".$event->getEventName()."</option>";
+                      echo "<option value='".$event->getEventId()."'>".$event->getEventName()." (-".$event->getEventPreferentialRate()."%)</option>";
                     }
                   ?>
                 </select>
               </div>
-              <div class="event_percent">
-                <div class="event_percent_left">
-                  <img src="../image/cart-management-img/service_amount.svg" alt="service amount icon">
-                  <p>Tiền giảm giá:</p>
-                </div>
-                <p id="event_percent">0%</p>
+            </div>
+          </div>
+          <hr>
+          <div id="payment_details">
+            <div class="payment_details_top">
+              <div class="service_total_amount">
+                <p>Tổng Tiền Dịch Vụ:</p>
+                <?php
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        echo "<input type='text' name='service_total_amount' value='đ".number_format($cart_detail->getCartItemServiceAmount(), 0, ',', '.')."'>";
+                      }
+                    }
+                  } else {
+                    echo "<input type='text' name='service_total_amount' value='đ0'>";
+                  }
+                ?>
+              </div>
+              <div class="rental_total_amount">
+                <p>Tổng Tiền Thuê:</p>
+                <?php
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        echo "<input type='text' name='rental_total_amount' value='đ".number_format($cart_detail->getCartItemRentalAmount(), 0, ',', '.')."'>";
+                      }
+                    }
+                  } else {
+                    echo "<input type='text' name='rental_total_amount' value='đ0'>";
+                  }
+                ?>
+              </div>
+              <div class="discount_amount">
+                <p>Tổng Tiền Giảm Giá:</p>
+                <input type="text" name="discount_amount" value="đ110.000">
+              </div>
+              <div class="deposit_amount">
+                <p>Tổng Tiền Cọc:</p>
+                <input type="text" name="deposit_amount" value="đ198.000">
               </div>
             </div>
-          </div>
-        </div>
-        <hr>
-        <form id="payment_details" action="../book-sports-courts.php" method="post" enctype="multipart/form-data">
-          <div class="payment_details_top">
-            <div class="service_total_amount">
-              <p>Tổng Tiền Dịch Vụ:</p>
-              <input type="text" name="service_total_amount" value="đ700.000">
-            </div>
-            <div class="rental_total_amount">
-              <p>Tổng Tiền Thuê:</p>
-              <input type="text" name="rental_total_amount" value="đ400.000">
-            </div>
-            <div class="discount_amount">
-              <p>Tổng Tiền Giảm Giá:</p>
-              <input type="text" name="discount_amount" value="đ110.000">
-            </div>
-            <div class="deposit_amount">
-              <p>Tổng Tiền Cọc:</p>
-              <input type="text" name="deposit_amount" value="đ198.000">
+            <div class="payment_details_bottom">
+              <div class="total_payment_amount">
+                <p>Tổng Tiền Thanh Toán:</p>
+                <input type="text" name="total_payment_amount" value="đ990.000">
+              </div>
+              <input id="btn-book" type="submit" value="Đặt Ngay">
             </div>
           </div>
-          <div class="payment_details_bottom">
-            <div class="total_payment_amount">
-              <p>Tổng Tiền Thanh Toán:</p>
-              <input type="text" name="total_payment_amount" value="đ990.000">
-            </div>
-            <input id="btn-book" type="submit" value="Đặt Ngay">
-          </div>
+          <?php
+            if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+              echo "
+                <input style='display: none;' type='text' name='cart_id' value='".$_GET['cart_id']."'>
+                <input style='display: none;' type='text' name='court_schedule_id' value='".$_GET['court_schedule_id']."'>
+              ";
+            }
+          ?>
         </form>
       </div>
     </div>

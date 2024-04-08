@@ -117,6 +117,7 @@
 
                 foreach($court_schedules as $court_schedule) {
                     $schedule_id = $court_schedule->getCourtScheduleId();
+                    $schedule_state = $court_schedule->getCourtScheduleState();
                     $date = $court_schedule->getCourtScheduleDate();
                     $start_time = $court_schedule->getCourtScheduleStartTime();
                     $end_time = $court_schedule->getCourtScheduleEndTime();
@@ -129,7 +130,7 @@
                     $time_frame_start_parts = explode(':', $time_frame_start);
                     $time_frame_end_parts = explode(':', $time_frame_end);
 
-                    if($court_schedule_date == $date && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time) {
+                    if($court_schedule_date == $date && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
                         if((($time_frame_start_parts[0] >= $court_schedule_time_frame_start_parts[0] && $time_frame_start_parts[1] >= $court_schedule_time_frame_start_parts[1])
                             && ($time_frame_start_parts[0] <= $court_schedule_time_frame_end_parts[0] && $time_frame_start_parts[1] <= $court_schedule_time_frame_end_parts[1]))
                             || (($time_frame_end_parts[0] >= $court_schedule_time_frame_start_parts[0] && $time_frame_end_parts[1] >= $court_schedule_time_frame_start_parts[1])

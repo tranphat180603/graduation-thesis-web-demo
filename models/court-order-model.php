@@ -215,8 +215,6 @@
         }
 
         //8. Hàm hủy dơn đặt sân có trạng thái CHỜ THANH TOÁN hoặc CHỜ NHẬN SÂN với lý do hủy từ phía NTPSH
-        private $order_cancel_reason;
-        private $order_cancel_party_account_id;
         public function cancel_court_order_by_admin($court_order_id, $canceled_on_date, $cancel_reason) {
             //Tạo kết nối đến database
             $link = "";

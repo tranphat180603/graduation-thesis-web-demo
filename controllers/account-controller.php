@@ -19,8 +19,8 @@
         }
 
         //3. Hàm lấy tên khách hàng từ tên đăng nhập của tài khoản
-        public function get_customer_name($username) {
-            return $result = $this->account->get_customer_name($username);
+        public function get_account_name($username) {
+            return $result = $this->account->get_account_name($username);
         }
     }
 ?>

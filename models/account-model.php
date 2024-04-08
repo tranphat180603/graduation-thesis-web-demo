@@ -79,15 +79,14 @@
         }
 
         //5. Hàm lấy tên khách hàng từ tên đăng nhập của tài khoản 
-        public function get_customer_name($username) {
+        public function get_account_name($username) {
             //Tạo kết nối đến database
             $link = "";
             MakeConnection($link);
 
             //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
-            $result = ExecuteDataQuery($link, "SELECT customer_fullname FROM account, customer
-                                                WHERE account.account_sign_up_name = '$username'
-                                                AND account.account_id = customer.account_id");
+            $result = ExecuteDataQuery($link, "SELECT account_name FROM account
+                                                WHERE account.account_sign_up_name = '$username'");
 
             $row = mysqli_fetch_row($result);
             

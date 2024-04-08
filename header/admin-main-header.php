@@ -99,7 +99,7 @@
 
         .admin .admin-btn {
             position: absolute;
-            width: 256px;
+            width: 100%;
             height: 35px;
             top: 0px;
             right: 0px;

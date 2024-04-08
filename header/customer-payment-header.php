@@ -100,7 +100,7 @@
 
         .customer .customer-btn {
             position: absolute;
-            width: 200px;
+            width: 100%;
             height: 35px;
             top: 0px;
             right: 0px;
@@ -280,7 +280,11 @@
                       foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
                           $customer_avatar_link = $account->getAccountAvatar();
-                          echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                          if($customer_avatar_link == "") {
+                            echo "/NTP-Sports-Hub/image/account-management-img/avatar-user.png";
+                          } else {
+                            echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                          }
                         }
                       }
                     }
@@ -292,8 +296,8 @@
                 <?php
                   if(isset($_SESSION['username'])) {
                     $username = $_SESSION['username'];
-                    $customer_name = $account_controller->get_customer_name($username);
-                    echo $customer_name[0];
+                    $account_name = $account_controller->get_account_name($username);
+                    echo $account_name[0];
                   }
                 ?>
               </p>

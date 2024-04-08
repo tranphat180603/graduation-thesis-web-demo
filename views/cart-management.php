@@ -238,7 +238,7 @@
         <p id="warning-message">Lưu ý: Mỗi lần đặt, chỉ được chọn và đặt một lịch sân</p>
       </div>
       <div id="cart-body-bottom-content">
-        <div class="service_wrapper">
+        <div class="cart_body_bottom_wrapper">
           <form id="service_form" action="../controllers/cart-detail-controller.php?option=insert_service_detail" method="post" enctype="multipart/form-data">
             <p id="service_pick">Chọn dịch vụ</p>
             <div class="service_action_group">
@@ -288,10 +288,7 @@
             ?>
             <input id="insert_service_btn" type="submit" value="Thêm dịch vụ">
           </form>
-        </div>
-        <hr>
-        <form id="book_court_form" action="./book-sports-courts.php" method="post" enctype="multipart/form-data">
-          <div class="event_section">
+          <form id="event_form" action="" method="post" enctype="multipart/form-data">
             <p>Chọn sự kiện</p>
             <div class="event_action_group">
               <div class="event_select">
@@ -299,15 +296,26 @@
                 <select name="event_id" id="event_id">
                   <option value="0">Sự kiện</option>
                   <?php
-                    foreach($events as $event) {
-                      echo "<option value='".$event->getEventId()."'>".$event->getEventName()." (-".$event->getEventPreferentialRate()."%)</option>";
+                    if(isset($_POST["event_id"])) {
+                      foreach($events as $event) {
+                        if($event->getEventId() == $_POST["event_id"]) {
+                          echo "<option value='".$event->getEventId()."' selected>".$event->getEventName()." (-".$event->getEventPreferentialRate()."%)</option>";
+                        }
+                      }
+                    } else {
+                      foreach($events as $event) {
+                        echo "<option value='".$event->getEventId()."'>".$event->getEventName()." (-".$event->getEventPreferentialRate()."%)</option>";
+                      }
                     }
                   ?>
                 </select>
               </div>
             </div>
-          </div>
-          <hr>
+            <input id="pick_event_btn" type="submit" value="Áp dụng sự kiện">
+          </form>
+        </div>
+        <hr>
+        <form id="book_court_form" action="./book-sports-courts.php" method="post" enctype="multipart/form-data">
           <div id="payment_details">
             <div class="payment_details_top">
               <div class="service_total_amount">
@@ -340,17 +348,129 @@
               </div>
               <div class="discount_amount">
                 <p>Tổng Tiền Giảm Giá:</p>
-                <input type="text" name="discount_amount" value="đ110.000">
+                <!-- <input type="text" name="discount_amount" value="đ110.000"> -->
+                <?php
+                  $cartItemServiceAmount = 0;
+                  $cartItemRentalAmount = 0;
+                  $eventPreferentialRate = 0;
+                  $discountAmount = 0;
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemServiceAmount = $cart_detail->getCartItemServiceAmount();
+                      }
+                    }
+                  } 
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemRentalAmount = $cart_detail->getCartItemRentalAmount();
+                      }
+                    }
+                  }
+
+                  if(isset($_POST["event_id"])) {
+                    $event_id = $_POST["event_id"];
+
+                    foreach($events as $event) {
+                      if($event->getEventId() == $event_id) {
+                        $eventPreferentialRate = $event->getEventPreferentialRate();
+                        $discountAmount = ($cartItemServiceAmount + $cartItemRentalAmount) * $eventPreferentialRate / 100;
+                        echo "<input type='text' name='discount_amount' value='đ".number_format($discountAmount, 0, ',', '.')."'>";
+                      }
+                    }
+                  } else {
+                    echo "<input type='text' name='discount_amount' value='đ0'>";
+                  }
+                ?>
               </div>
               <div class="deposit_amount">
                 <p>Tổng Tiền Cọc:</p>
-                <input type="text" name="deposit_amount" value="đ198.000">
+                <?php
+                  $cartItemServiceAmount = 0;
+                  $cartItemRentalAmount = 0;
+                  $eventPreferentialRate = 0;
+                  $discountAmount = 0;
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemServiceAmount = $cart_detail->getCartItemServiceAmount();
+                      }
+                    }
+                  } 
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemRentalAmount = $cart_detail->getCartItemRentalAmount();
+                      }
+                    }
+                  }
+
+                  if(isset($_POST["event_id"])) {
+                    $event_id = $_POST["event_id"];
+
+                    foreach($events as $event) {
+                      if($event->getEventId() == $event_id) {
+                        $eventPreferentialRate = $event->getEventPreferentialRate();
+                        $discountAmount = ($cartItemServiceAmount + $cartItemRentalAmount) * $eventPreferentialRate / 100;
+                      }
+                    }
+                  } else {
+                    $discountAmount = 0;
+                  }
+
+                  $depositAmount = ($cartItemServiceAmount + $cartItemRentalAmount - $discountAmount) * 20 / 100;
+
+                  echo "<input type='text' name='deposit_amount' value='đ".number_format($depositAmount, 0, ',', '.')."'>";
+                ?>
               </div>
             </div>
             <div class="payment_details_bottom">
               <div class="total_payment_amount">
                 <p>Tổng Tiền Thanh Toán:</p>
-                <input type="text" name="total_payment_amount" value="đ990.000">
+                <?php
+                  $cartItemServiceAmount = 0;
+                  $cartItemRentalAmount = 0;
+                  $eventPreferentialRate = 0;
+                  $discountAmount = 0;
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemServiceAmount = $cart_detail->getCartItemServiceAmount();
+                      }
+                    }
+                  } 
+
+                  if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id'])) {
+                    foreach($cart_details as $cart_detail) {
+                      if($cart_detail->getCartId() == $_GET['cart_id'] && $cart_detail->getCourtScheduleId()== $_GET['court_schedule_id']) {
+                        $cartItemRentalAmount = $cart_detail->getCartItemRentalAmount();
+                      }
+                    }
+                  }
+
+                  if(isset($_POST["event_id"])) {
+                    $event_id = $_POST["event_id"];
+
+                    foreach($events as $event) {
+                      if($event->getEventId() == $event_id) {
+                        $eventPreferentialRate = $event->getEventPreferentialRate();
+                        $discountAmount = ($cartItemServiceAmount + $cartItemRentalAmount) * $eventPreferentialRate / 100;
+                      }
+                    }
+                  } else {
+                    $discountAmount = 0;
+                  }
+
+                  $total_payment_amount = $cartItemServiceAmount + $cartItemRentalAmount - $discountAmount;
+
+                  echo "<input type='text' name='total_payment_amount' value='đ".number_format($total_payment_amount, 0, ',', '.')."'>";
+                ?>
               </div>
               <input id="btn-book" type="submit" value="Đặt Ngay">
             </div>

@@ -300,7 +300,7 @@ tbody td {
   width: 100%;
 }
 
-.service_wrapper {
+.cart_body_bottom_wrapper {
   display: flex;
   align-items: flex-start;
   align-content: flex-start;
@@ -309,7 +309,8 @@ tbody td {
   flex-wrap: wrap;
 }
 
-#service_form {
+#service_form,
+#event_form {
   display: flex;
   min-width: 240px;
   max-width: 510px;
@@ -428,22 +429,6 @@ tbody td {
   background-color: #d2a708;
 }
 
-#book_court_form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-.event_section {
-  display: flex;
-  min-width: 240px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  flex: 1 0 0;
-}
-
 .event_action_group {
   display: flex;
   align-items: flex-start;
@@ -465,6 +450,26 @@ tbody td {
   background: #fafbfc;
 }
 
+#pick_event_btn {
+  padding: 8px;
+  background-color: #3fd8c6;
+  border: none;
+  border-radius: 2px;
+
+  color: #fafbfc;
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#pick_event_btn:hover {
+  cursor: pointer;
+  background-color: #30bbab;
+}
+
 hr {
   border: none;
   width: 100%;
@@ -472,6 +477,13 @@ hr {
   background-color: #d3cece;
 }
 /*-------------------- Định dạng form chi tiết tiền --------------*/
+#book_court_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
 #payment_details {
   display: flex;
   padding: 0px 20px;

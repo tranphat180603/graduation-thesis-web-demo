@@ -1,50 +1,69 @@
-// Khai báo một biến cờ để xác định khi nào hàm xử lý được gọi sau khi tải lại trang
-var isReloaded = false;
+// Hàm kiểm tra URL và đánh dấu lại checkbox
+function markCheckboxesFromURL() {
+  // Lấy tham số từ URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const cartIds = urlParams.get("cart_id");
+  const courtScheduleIds = urlParams.get("court_schedule_id");
 
-// Hàm cập nhật URL khi tick vào checkbox trong bảng HTML
+  // Kiểm tra nếu có tham số cart_id và court_schedule_id trong URL
+  if (cartIds && courtScheduleIds) {
+    // Tách các giá trị cart_id và court_schedule_id thành mảng
+    const cartIdArray = cartIds.split(",");
+    const courtScheduleIdArray = courtScheduleIds.split(",");
+
+    // Duyệt qua mảng và đánh dấu checkbox tương ứng
+    cartIdArray.forEach(function (cartId, index) {
+      const cbId =
+        "cart_id_" +
+        cartId +
+        "_court_schedule_id_" +
+        courtScheduleIdArray[index];
+      const checkbox = document.getElementById(cbId);
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    });
+  }
+}
+
+// Gọi hàm markCheckboxesFromURL khi trang được tải lại
+window.addEventListener("load", function () {
+  markCheckboxesFromURL();
+});
+
+// Hàm cập nhật URL khi tick vào checkbox
 function updateURL(checkbox) {
+  var urlParams = new URLSearchParams(window.location.search);
   var cartIds = [];
   var courtScheduleIds = [];
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
+  // Lấy giá trị của checkbox được tick
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   checkboxes.forEach(function (cb) {
     cartIds.push(cb.getAttribute("name").split("_")[2]);
     courtScheduleIds.push(cb.getAttribute("name").split("_")[6]);
   });
 
-  var urlParams = new URLSearchParams(window.location.search);
   urlParams.set("cart_id", cartIds.join(","));
   urlParams.set("court_schedule_id", courtScheduleIds.join(","));
 
-  // Cập nhật URL
+  // Thêm tham số vào URL và reload trang
   window.history.replaceState(
     {},
     "",
     `${window.location.pathname}?${urlParams}`
   );
 
-  // Tải lại trang
-  window.location.reload();
-
-  // Đặt cờ là true khi đã tải lại trang
-  isReloaded = true;
-}
-
-// Xử lý checkbox sau khi trang đã được tải lại
-window.addEventListener("DOMContentLoaded", function () {
-  // Kiểm tra nếu trang đã được tải lại từ hàm updateURL
-  if (isReloaded) {
-    var checkboxes = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    );
-    checkboxes.forEach(function (cb) {
-      var cartId = cb.getAttribute("name").split("_")[2];
-      var courtScheduleId = cb.getAttribute("name").split("_")[6];
-      var cbId = "cart_id_" + cartId + "_court_schedule_id_" + courtScheduleId;
-      var checkbox = document.getElementById(cbId);
-      if (checkbox) {
-        checkbox.checked = true;
-      }
-    });
+  // Kiểm tra xem nếu không có checkbox nào được chọn, loại bỏ tham số 'cart_id' và 'court_schedule_id' khỏi URL
+  if (cartIds.length === 0 && courtScheduleIds.length === 0) {
+    urlParams.delete("cart_id");
+    urlParams.delete("court_schedule_id");
   }
-});
+  window.history.replaceState(
+    {},
+    "",
+    `${window.location.pathname}?${urlParams}`
+  );
+
+  location.reload();
+}

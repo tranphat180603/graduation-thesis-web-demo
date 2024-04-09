@@ -85,10 +85,14 @@
                 $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date, $cancel_reason);
 
                 $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+
+                $result3 = true;
             } else if($cancel_reason == "Khách hàng không đến nhận sân") {
                 $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date, $cancel_reason);
 
                 $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+
+                $result3 = true;
             } else if($cancel_reason == "Đơn đặt sân chưa được thanh toán") {
                 $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date, $cancel_reason);
 

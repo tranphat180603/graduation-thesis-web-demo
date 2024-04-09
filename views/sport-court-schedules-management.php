@@ -715,10 +715,12 @@
 
             if($court_schedule_state == "Hết hạn") {
               $result = $court_schedule_controller->update_court_schedule($court_schedule_id, $court_schedule_state, $last_modified_date);
+
+              $result2 = true;
             } else if($court_schedule_state == "Đã đặt") {
               $result = $court_schedule_controller->update_court_schedule($court_schedule_id, $court_schedule_state, $last_modified_date);
 
-              $result2 = "";
+              $result2 = $court_schedule_controller->update_court_schedule_when_ordered($court_schedule_id, $last_modified_date);
             }
 
             // Kiểm tra giá trị của biến $result

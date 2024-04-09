@@ -724,7 +724,7 @@
             }
 
             // Kiểm tra giá trị của biến $result
-            if ($result) {
+            if ($result && $result2) {
               // echo 'The court schedule has been updated successfully'; 
               include "./notification/action-successful.php";
               echo "

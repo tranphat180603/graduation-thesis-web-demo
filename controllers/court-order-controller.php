@@ -102,6 +102,7 @@
                 $court_schedule_start_time = "";
                 $court_schedule_end_time = "";
                 $court_schedule_time_frame = "";
+                $court_id = "";
 
                 foreach($court_schedules as $court_schedule) {
                     if($court_schedule->getCourtScheduleId() == $court_schedule_id) {

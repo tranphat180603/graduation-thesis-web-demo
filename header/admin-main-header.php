@@ -108,7 +108,7 @@
 
         .admin .admin-btn:hover {
             cursor: pointer;
-        }.admin-navigation
+        }
 
         .admin #admin {
             display: none;

@@ -711,20 +711,15 @@
             $last_modified_date = date("Y-m-d");
 
             $result = false;
-            $result2 = false;
 
             if($court_schedule_state == "Hết hạn") {
               $result = $court_schedule_controller->update_court_schedule($court_schedule_id, $court_schedule_state, $last_modified_date);
-
-              $result2 = true;
             } else if($court_schedule_state == "Đã đặt") {
-              $result = $court_schedule_controller->update_court_schedule($court_schedule_id, $court_schedule_state, $last_modified_date);
-
-              $result2 = $court_schedule_controller->update_court_schedule_when_ordered($court_schedule_id, $last_modified_date);
+              $result = $court_schedule_controller->update_court_schedule_when_ordered($court_schedule_id, $last_modified_date);
             }
 
             // Kiểm tra giá trị của biến $result
-            if ($result && $result2) {
+            if ($result) {
               // echo 'The court schedule has been updated successfully'; 
               include "./notification/action-successful.php";
               echo "

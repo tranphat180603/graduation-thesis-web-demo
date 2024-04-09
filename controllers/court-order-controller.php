@@ -136,9 +136,9 @@
                     $time_frame_start = substr($time_frame, 0, 5);
                     $time_frame_end = substr($time_frame, -5);
 
-                    if($court_schedule_date == $date && $schedule_court_id = $court_id && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
-                        if(isTimeBetween($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
-                            || isTimeBetween($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
+                    if($schedule_id != $court_schedule_id && $court_schedule_date == $date && $schedule_court_id = $court_id && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
+                        if(isTimeBetweenST($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
+                            || isTimeBetweenET($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
                             $current_date = date("Y-m-d");
                             if(str_replace("-", "", $date) > str_replace("-", "", $current_date)) {
                                 $result3 = $court_schedule_controller->cancel_order_update_schedule_to_haveNotBooked($schedule_id);
@@ -166,14 +166,24 @@
         } 
     }
 
-    function isTimeBetween($checkTime, $startTime, $endTime) {
+    function isTimeBetweenST($checkTime, $startTime, $endTime) {
         // Chuyển các chuỗi thời gian thành dạng Unix timestamp
         $checkTimestamp = strtotime($checkTime);
         $startTimestamp = strtotime($startTime);
         $endTimestamp = strtotime($endTime);
-
+    
         // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
-        return ($checkTimestamp >= $startTimestamp && $checkTimestamp <= $endTimestamp);
+        return ($checkTimestamp >= $startTimestamp && $checkTimestamp < $endTimestamp);
+    }
+    
+    function isTimeBetweenET($checkTime, $startTime, $endTime) {
+        // Chuyển các chuỗi thời gian thành dạng Unix timestamp
+        $checkTimestamp = strtotime($checkTime);
+        $startTimestamp = strtotime($startTime);
+        $endTimestamp = strtotime($endTime);
+    
+        // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
+        return ($checkTimestamp > $startTimestamp && $checkTimestamp <= $endTimestamp);
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

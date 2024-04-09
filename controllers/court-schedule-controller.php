@@ -184,7 +184,7 @@
     } 
 
     //14. Hàm cập nhật trạng thái của lịch sân thành hết hạn khi đơn đặt sân được điều chỉnh trạng thái từ chưa đặt thành đã đặt
-    public function update_court_schedule_when_ordered($court_schedule_id) {
+    public function update_court_schedule_when_ordered($court_schedule_id, $last_modified_date) {
       $court_schedules = $this->court_schedule->view_all_court_schedule();
 
       $court_schedule_date = "";
@@ -192,6 +192,9 @@
       $court_schedule_end_time = "";
       $court_schedule_time_frame = "";
       $court_id = "";
+
+      $result = $this->court_schedule->update_court_schedule($court_schedule_id, "Đã đặt", $last_modified_date);
+      $result2 = false;
 
       foreach($court_schedules as $court_schedule) {
         if($court_schedule->getCourtScheduleId() == $court_schedule_id) {
@@ -218,16 +221,16 @@
         $time_frame_start = substr($time_frame, 0, 5);
         $time_frame_end = substr($time_frame, -5);
 
-        if($court_schedule_date == $date && $schedule_court_id = $court_id && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state == "Chưa đặt") {
-          if(isTimeBetween($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
-            || isTimeBetween($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
-              $result = $this->court_schedule->cancel_order_update_schedule_to_expired($schedule_id);
+        if($schedule_id != $court_schedule_id && $court_schedule_date == $date && $schedule_court_id = $court_id && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state == "Chưa đặt") {
+          if(isTimeBetweenST($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
+            || isTimeBetweenET($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
+              $result2 = $this->court_schedule->cancel_order_update_schedule_to_expired($schedule_id);
           }
         }
       }
 
       // Kiểm tra giá trị của biến $result
-      if ($result) {
+      if ($result && $result2) {
         // echo 'The court schedule has been updated successfully';
         return true;    
       } else {
@@ -235,6 +238,26 @@
         return false;
       } 
     }
+  }
+
+  function isTimeBetweenST($checkTime, $startTime, $endTime) {
+    // Chuyển các chuỗi thời gian thành dạng Unix timestamp
+    $checkTimestamp = strtotime($checkTime);
+    $startTimestamp = strtotime($startTime);
+    $endTimestamp = strtotime($endTime);
+
+    // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
+    return ($checkTimestamp >= $startTimestamp && $checkTimestamp < $endTimestamp);
+  }
+
+  function isTimeBetweenET($checkTime, $startTime, $endTime) {
+    // Chuyển các chuỗi thời gian thành dạng Unix timestamp
+    $checkTimestamp = strtotime($checkTime);
+    $startTimestamp = strtotime($startTime);
+    $endTimestamp = strtotime($endTime);
+
+    // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
+    return ($checkTimestamp > $startTimestamp && $checkTimestamp <= $endTimestamp);
   }
 
   //Thay đổi CSS của thẻ li đang được chọn

@@ -188,21 +188,6 @@
                                       if($service->getServiceId() == $cart_service_detail->getServiceId()) {
                                         echo "<div class='service_detail'>";
                                         echo "<p>".$service->getServiceName()."<span> &nbsp;(".$cart_service_detail->getCartItemServiceQuantity().")</span></p>";
-                                        echo "
-                                          <div class='arr-gr'>
-                                            <a style='display: flex; pointer-events: none;' href='?option=increase_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
-                                              <img src='../image/cart-management-img/up-arrow.svg' alt='up arrow'>
-                                            </a>
-                                            <a style='display: flex; pointer-events: none;' href='?option=decrease_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
-                                              <img src='../image/cart-management-img/down-arrow.svg' alt='down arrow'>
-                                            </a>
-                                          </div>
-                                        ";
-                                        echo "
-                                          <a style='display: flex; pointer-events: none;' href='?option=delete_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."'>
-                                            <img src='../image/cart-management-img/red-x.svg' alt='delete service button'>
-                                          </a>
-                                        ";
                                         echo "</div>";
                                       }
                                     }
@@ -213,10 +198,10 @@
                                         echo "<p>".$service->getServiceName()."<span> &nbsp;(".$cart_service_detail->getCartItemServiceQuantity().")</span></p>";
                                         echo "
                                           <div class='arr-gr'>
-                                            <a style='display: flex;' href='?option=increase_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
+                                            <a style='display: flex;' href='?option=increase_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."'>
                                               <img src='../image/cart-management-img/up-arrow.svg' alt='up arrow'>
                                             </a>
-                                            <a style='display: flex;' href='?option=decrease_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."&service_quantity=".$cart_service_detail->getCartItemServiceQuantity()."'>
+                                            <a style='display: flex;' href='?option=decrease_service_detail&cart_id=".$cart_detail->getCartId()."&court_schedule_id=".$cart_detail->getCourtScheduleId()."&service_id=".$cart_service_detail->getServiceId()."'>
                                               <img src='../image/cart-management-img/down-arrow.svg' alt='down arrow'>
                                             </a>
                                           </div>
@@ -580,9 +565,170 @@
             }  
           }
         } else if($_option == "increase_service_detail") {
-          echo "";
+          if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id']) && isset($_GET['service_id'])) {
+            $cart_id = $_GET['cart_id'];
+            $court_schedule_id = $_GET['court_schedule_id'];
+            $service_id = $_GET['service_id'];
+
+            $cart_item_service_quantity = 0;
+            $cart_item_total_service_price = 0;
+
+            foreach($cart_service_details as $cart_service_detail) {
+              if($cart_service_detail->getCartId() == $cart_id && $cart_service_detail->getCourtScheduleId() == $court_schedule_id && $cart_service_detail->getServiceId() == $service_id) {
+                $cart_item_service_quantity = $cart_service_detail->getCartItemServiceQuantity();
+                $cart_item_total_service_price = $cart_service_detail->getCartItemTotalServicePrice();
+              }
+            }
+
+            $cart_item_unit_service_price = $cart_item_total_service_price / $cart_item_service_quantity;
+
+            $cart_item_service_quantity_increased = $cart_item_service_quantity + 1;
+
+            $cart_item_total_service_price_increased = $cart_item_unit_service_price * $cart_item_service_quantity_increased;
+
+            $result = $cart_service_detail_controller->modify_service_detail_quantity($cart_id, $court_schedule_id, $service_id, $cart_item_service_quantity_increased, $cart_item_total_service_price_increased);
+
+            // Cập nhật lại $cart_service_details sau khi sửa
+            $cart_service_details = $cart_service_detail_controller->view_all_cart_service_detail(); 
+
+            $cart_item_service_amount = 0;
+
+            $result2 = true;
+
+            if($result) {
+              foreach($cart_service_details as $cart_service_detail) {
+                if($cart_service_detail->getCartId() == $cart_id && $cart_service_detail->getCourtScheduleId() == $court_schedule_id) {
+                  $cart_item_service_amount = $cart_item_service_amount + $cart_service_detail->getCartItemTotalServicePrice();
+                }
+              }
+
+              $result2 = $cart_detail_controller->update_cart_detail_when_delete_or_update_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount);
+            }
+
+            echo "
+              <script>
+                var overlayFrame = document.getElementById('overlay-wrapper');
+                overlayFrame.style.display = 'block';
+              </script>
+            ";
+
+            if($result && $result2) {
+              include "./notification/action-successful.php";
+              echo "
+                <script>
+                  var message = document.getElementById('action-successful-message');
+                  message.textContent = 'Bạn đã thêm số lượng cho chi tiết giỏ hàng dịch vụ thành công';
+
+                  var btn_back = document.getElementById('admin-management-button');
+                  btn_back.textContent = 'Trở về quản lý giỏ hàng';
+                  btn_back.href = './cart-management.php';
+                  btn_back.style.fontSize = '12.5px';
+                </script>
+              ";   
+            } else {
+              include "./notification/warning.php"; 
+              echo "
+                <script>
+                  var warningQuestion = document.getElementById('warning-question');
+                  warningQuestion.textContent = 'Bạn đã thực hiện thao tác thêm số lượng cho chi tiết giỏ hàng dịch vụ!';
+                    
+                  var warningExplanation = document.getElementById('warning-explanation');
+                  warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng chi tiết giỏ hàng dịch vụ của bạn đã không được thêm số lượng thành công';
+    
+                  var btn_ok = document.getElementById('war-act-ok');
+                  btn_ok.href = './cart-management.php';
+                </script>
+              ";
+            }
+          }
         } else if($_option == "decrease_service_detail") {
-          echo "";
+          if(isset($_GET['cart_id']) && isset($_GET['court_schedule_id']) && isset($_GET['service_id'])) {
+            $cart_id = $_GET['cart_id'];
+            $court_schedule_id = $_GET['court_schedule_id'];
+            $service_id = $_GET['service_id'];
+
+            $cart_item_service_quantity = 0;
+            $cart_item_total_service_price = 0;
+
+            foreach($cart_service_details as $cart_service_detail) {
+              if($cart_service_detail->getCartId() == $cart_id && $cart_service_detail->getCourtScheduleId() == $court_schedule_id && $cart_service_detail->getServiceId() == $service_id) {
+                $cart_item_service_quantity = $cart_service_detail->getCartItemServiceQuantity();
+                $cart_item_total_service_price = $cart_service_detail->getCartItemTotalServicePrice();
+              }
+            }
+
+            $cart_item_unit_service_price = $cart_item_total_service_price / $cart_item_service_quantity;
+
+            $cart_item_service_quantity_decreased = $cart_item_service_quantity - 1;
+
+            if($cart_item_service_quantity_decreased > 0) {
+              $cart_item_total_service_price_decreased = $cart_item_unit_service_price * $cart_item_service_quantity_decreased;
+
+              $result = $cart_service_detail_controller->modify_service_detail_quantity($cart_id, $court_schedule_id, $service_id, $cart_item_service_quantity_decreased, $cart_item_total_service_price_decreased);
+
+              // Cập nhật lại $cart_service_details sau khi sửa
+              $cart_service_details = $cart_service_detail_controller->view_all_cart_service_detail(); 
+
+              $cart_item_service_amount = 0;
+
+              $result2 = true;
+
+              if($result) {
+                foreach($cart_service_details as $cart_service_detail) {
+                  if($cart_service_detail->getCartId() == $cart_id && $cart_service_detail->getCourtScheduleId() == $court_schedule_id) {
+                    $cart_item_service_amount = $cart_item_service_amount + $cart_service_detail->getCartItemTotalServicePrice();
+                  }
+                }
+
+                $result2 = $cart_detail_controller->update_cart_detail_when_delete_or_update_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount);
+              }
+
+              echo "
+                <script>
+                  var overlayFrame = document.getElementById('overlay-wrapper');
+                  overlayFrame.style.display = 'block';
+                </script>
+              ";
+
+              if($result && $result2) {
+                include "./notification/action-successful.php";
+                echo "
+                  <script>
+                    var message = document.getElementById('action-successful-message');
+                    message.textContent = 'Bạn đã giảm số lượng cho chi tiết giỏ hàng dịch vụ thành công';
+
+                    var btn_back = document.getElementById('admin-management-button');
+                    btn_back.textContent = 'Trở về quản lý giỏ hàng';
+                    btn_back.href = './cart-management.php';
+                    btn_back.style.fontSize = '12.5px';
+                  </script>
+                ";   
+              } else {
+                include "./notification/warning.php"; 
+                echo "
+                  <script>
+                    var warningQuestion = document.getElementById('warning-question');
+                    warningQuestion.textContent = 'Bạn đã thực hiện thao tác giảm số lượng cho chi tiết giỏ hàng dịch vụ!';
+                      
+                    var warningExplanation = document.getElementById('warning-explanation');
+                    warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng chi tiết giỏ hàng dịch vụ của bạn đã không được giảm số lượng thành công';
+      
+                    var btn_ok = document.getElementById('war-act-ok');
+                    btn_ok.href = './cart-management.php';
+                  </script>
+                ";
+              }
+            } else {
+              echo "
+                <script>
+                  var overlayFrame = document.getElementById('overlay-wrapper');
+                  overlayFrame.style.display = 'block';
+                </script>
+              ";
+
+              include "./notification/service-detail-delete-confirmation.php";
+            }
+          }
         } else if($_option == "insert_service_detail") {
           echo "";
         } else if($_option == "delete_service_detail") {
@@ -607,7 +753,7 @@
                 }
               }
 
-              $result2 = $cart_detail_controller->update_cart_detail_when_delete_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount);
+              $result2 = $cart_detail_controller->update_cart_detail_when_delete_or_update_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount);
             }
 
             echo "

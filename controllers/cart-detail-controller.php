@@ -19,8 +19,8 @@
         }
 
         //3. Hàm cập nhật chi tiết giỏ hàng khi xóa chi tiết giỏ hàng dịch vụ
-        public function update_cart_detail_when_delete_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount) {                  
-            return $result = $this->cart_detail->update_cart_detail_when_delete_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount); 
+        public function update_cart_detail_when_delete_or_update_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount) {                  
+            return $result = $this->cart_detail->update_cart_detail_when_delete_or_update_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount); 
         }
     }  
 ?>

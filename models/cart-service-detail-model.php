@@ -67,5 +67,26 @@
 
             return $message;
         }
+
+        //3. Hàm cập nhật thêm số lượng vào chi tiết giỏ hàng dịch vụ
+        public function modify_service_detail_quantity($cart_id, $court_schedule_id, $service_id, $cart_item_service_quantity, $cart_item_total_service_price) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE cart_service_detail SET cart_item_service_quantity = $cart_item_service_quantity, 
+                    cart_item_total_service_price = $cart_item_total_service_price WHERE cart_id = $cart_id 
+                    AND court_schedule_id = $court_schedule_id AND service_id = $service_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
     }
 ?>

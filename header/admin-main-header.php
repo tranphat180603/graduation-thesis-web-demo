@@ -108,7 +108,7 @@
 
         .admin .admin-btn:hover {
             cursor: pointer;
-        }
+        }.admin-navigation
 
         .admin #admin {
             display: none;
@@ -116,7 +116,7 @@
 
         .admin-navigation {
             display: flex;
-            width: 230px;
+            width: 88%;
             padding: 8px;
             flex-direction: column;
             align-items: flex-start;

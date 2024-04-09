@@ -79,6 +79,7 @@
 
             $result = true;
             $result2 = true;
+            $result3 = true;
 
             if($cancel_reason == "Sân này không cho thuê nữa" || $cancel_reason == "Lịch sân này không khả dụng nữa" || $cancel_reason == "Sân này đang được bảo trì, sữa chữa") {
                 $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date, $cancel_reason);
@@ -91,7 +92,6 @@
             } else if($cancel_reason == "Đơn đặt sân chưa được thanh toán") {
                 $result = $this->court_order->cancel_court_order_by_customer($court_order_id, $canceled_on_date, $cancel_reason);
 
-                //Code lại
                 $court_schedules = $court_schedule_controller->view_all_court_schedule();
 
                 $court_schedule_date = "";
@@ -108,12 +108,15 @@
                     }
                 }
 
+                $current_date = date("Y-m-d");
+                if(str_replace("-", "", $court_schedule_date) > str_replace("-", "", $current_date)) {
+                    $result2 = $court_schedule_controller->cancel_order_update_schedule_to_haveNotBooked($court_schedule_id);
+                } else {
+                    $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($court_schedule_id);
+                }
+
                 $court_schedule_time_frame_start = substr($court_schedule_time_frame, 0, 5);
                 $court_schedule_time_frame_end = substr($court_schedule_time_frame, -5);
-
-                // Tách giờ và phút từ chuỗi thời gian
-                $court_schedule_time_frame_start_parts = explode(':', $court_schedule_time_frame_start);
-                $court_schedule_time_frame_end_parts = explode(':', $court_schedule_time_frame_end);
 
                 foreach($court_schedules as $court_schedule) {
                     $schedule_id = $court_schedule->getCourtScheduleId();
@@ -125,28 +128,22 @@
 
                     $time_frame_start = substr($time_frame, 0, 5);
                     $time_frame_end = substr($time_frame, -5);
-        
-                    // Tách giờ và phút từ chuỗi thời gian
-                    $time_frame_start_parts = explode(':', $time_frame_start);
-                    $time_frame_end_parts = explode(':', $time_frame_end);
 
                     if($court_schedule_date == $date && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
-                        if((($time_frame_start_parts[0] >= $court_schedule_time_frame_start_parts[0] && $time_frame_start_parts[1] >= $court_schedule_time_frame_start_parts[1])
-                            && ($time_frame_start_parts[0] <= $court_schedule_time_frame_end_parts[0] && $time_frame_start_parts[1] <= $court_schedule_time_frame_end_parts[1]))
-                            || (($time_frame_end_parts[0] >= $court_schedule_time_frame_start_parts[0] && $time_frame_end_parts[1] >= $court_schedule_time_frame_start_parts[1])
-                            && ($time_frame_end_parts[0] <= $court_schedule_time_frame_end_parts[0] && $time_frame_end_parts[1] <= $court_schedule_time_frame_end_parts[1]))) {
+                        if(isTimeBetween($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
+                            || isTimeBetween($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
                             $current_date = date("Y-m-d");
                             if(str_replace("-", "", $date) > str_replace("-", "", $current_date)) {
-                                $result2 = $court_schedule_controller->cancel_order_update_schedule_to_haveNotBooked($schedule_id);
+                                $result3 = $court_schedule_controller->cancel_order_update_schedule_to_haveNotBooked($schedule_id);
                             } else {
-                                $result2 = $court_schedule_controller->cancel_order_update_schedule_to_expired($schedule_id);
+                                $result3 = $court_schedule_controller->cancel_order_update_schedule_to_expired($schedule_id);
                             }
                         }
                     }
                 }
 
                 // Kiểm tra giá trị của biến $result
-                if ($result && $result2) {
+                if ($result && $result2 && $result3) {
                     // echo 'The court order has been canceled successfully';
                     return true;    
                 } else {
@@ -160,6 +157,16 @@
         public function update_court_order_per_12($court_order_id, $currentDate) {
             return $result = $this->court_order->update_court_order_per_12($court_order_id, $currentDate);
         } 
+    }
+
+    function isTimeBetween($checkTime, $startTime, $endTime) {
+        // Chuyển các chuỗi thời gian thành dạng Unix timestamp
+        $checkTimestamp = strtotime($checkTime);
+        $startTimestamp = strtotime($startTime);
+        $endTimestamp = strtotime($endTime);
+
+        // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
+        return ($checkTimestamp >= $startTimestamp && $checkTimestamp <= $endTimestamp);
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

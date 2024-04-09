@@ -409,7 +409,7 @@ tbody td {
 .service_quantity_left input[type="number"] {
   border: none;
   outline: none;
-  width: 30px;
+  width: 50px;
   color: #2c6b8c;
   font-family: "Be Vietnam Pro";
   font-size: 14px;

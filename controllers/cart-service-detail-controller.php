@@ -22,5 +22,10 @@
         public function modify_service_detail_quantity($cart_id, $court_schedule_id, $service_id, $cart_item_service_quantity, $cart_item_total_service_price) {
             return $result = $this->cart_service_detail->modify_service_detail_quantity($cart_id, $court_schedule_id, $service_id, $cart_item_service_quantity, $cart_item_total_service_price);
         }
+
+        //4. Hàm thêm chi tiết giỏ hàng dịch vụ
+        public function insert_service_detail($cart_id, $court_schedule_id, $service_id, $service_quantity, $total_service_price) {                  
+            return $result = $this->cart_service_detail->insert_service_detail($cart_id, $court_schedule_id, $service_id, $service_quantity, $total_service_price); 
+        }
     }
 ?>

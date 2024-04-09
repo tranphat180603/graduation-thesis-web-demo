@@ -113,7 +113,7 @@
                   foreach($carts as $cart) {
                     if($cart->getAccountId() == $account->getAccountId()) {
                       foreach($cart_details as $cart_detail) {
-                        if($cart_detail->getCartId() == $cart->getCartId() - 1) {
+                        if($cart_detail->getCartId() == $cart->getCartId()) {
 
                           foreach($court_schedules as $court_schedule) {
                             if($court_schedule->getCourtScheduleId() == $cart_detail->getCourtScheduleId()) {

@@ -166,26 +166,6 @@
         } 
     }
 
-    function isTimeBetweenST($checkTime, $startTime, $endTime) {
-        // Chuyển các chuỗi thời gian thành dạng Unix timestamp
-        $checkTimestamp = strtotime($checkTime);
-        $startTimestamp = strtotime($startTime);
-        $endTimestamp = strtotime($endTime);
-    
-        // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
-        return ($checkTimestamp >= $startTimestamp && $checkTimestamp < $endTimestamp);
-    }
-    
-    function isTimeBetweenET($checkTime, $startTime, $endTime) {
-        // Chuyển các chuỗi thời gian thành dạng Unix timestamp
-        $checkTimestamp = strtotime($checkTime);
-        $startTimestamp = strtotime($startTime);
-        $endTimestamp = strtotime($endTime);
-    
-        // Kiểm tra xem thời gian kiểm tra có nằm giữa hai thời gian bắt đầu và kết thúc không
-        return ($checkTimestamp > $startTimestamp && $checkTimestamp <= $endTimestamp);
-    }
-
     //Thay đổi CSS của thẻ li đang được chọn
     $court_order_state_id = isset($_GET['court_order_state_id']) ? $_GET['court_order_state_id'] : '0'; // Mặc định court_order_state_id = '0'
 

@@ -50,7 +50,7 @@ INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `ac
 (6, 'Khách hàng', 'ngocpham0310', 'Phạm Thị Hồng Ngọc', '/upload/account-management/avatar-6.png', 'd9ee29c7e0e63450e2e0f5ad011f47d4', '2024-02-18'),
 (7, 'Khách hàng', 'phattran1806', 'Ngọc Phát', '/upload/account-management/avatar-7.png', '7fb37b895bba6ab3f836590ec2e6be03', '2024-02-18'),
 (8, 'Khách hàng', 'thuyle0211', 'Thùy Lê', '/upload/account-management/avatar-8.png', 'd9512d59a73665fab74582a0a6ecdf88', '2024-02-18'),
-(9, 'Khách hàng', 'tientruong3007', 'Tiến Trương Minh', '/upload/account-management/avatar-9.png', 'd51e33c74a622df1a176c4e1d5703b18', '2024-02-18');
+(9, 'Khách hàng', 'tientruongminh', 'Tiến Trương Minh', '/upload/account-management/avatar-9.png', 'ba49acaa24657174c12e54d113434a92', '2024-02-18');
 
 -- --------------------------------------------------------
 

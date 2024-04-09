@@ -67,5 +67,24 @@
 
             return $message;
         }
+
+        //3. Hàm cập nhật chi tiết giỏ hàng khi xóa chi tiết giỏ hàng dịch vụ
+        public function update_cart_detail_when_delete_service_detail($cart_id, $court_schedule_id, $cart_item_service_amount) {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            //Tạo ra câu SQL
+            $sql = "UPDATE cart_detail SET cart_item_service_amount = $cart_item_service_amount WHERE cart_id = $cart_id AND court_schedule_id = $court_schedule_id";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            $message = $result;
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $message;
+        }
     }
 ?>

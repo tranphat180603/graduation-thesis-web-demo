@@ -12,5 +12,10 @@
         public function view_all_cart_service_detail() {
             return $result = $this->cart_service_detail->view_all_cart_service_detail();
         }
+
+        //2. Hàm xóa chi tiết giỏ hàng dịch vụ
+        public function delete_service_detail($cart_id, $court_schedule_id, $service_id) {                  
+            return $result = $this->cart_service_detail->delete_service_detail($cart_id, $court_schedule_id, $service_id); 
+        }
     }
 ?>

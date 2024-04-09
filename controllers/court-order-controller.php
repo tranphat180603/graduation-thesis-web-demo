@@ -77,9 +77,9 @@
         public function cancel_court_order($court_order_id, $cancel_reason, $court_schedule_id, $canceled_on_date) {
             $court_schedule_controller = new Court_Schedule_Controller();
 
-            $result = true;
-            $result2 = true;
-            $result3 = true;
+            $result = false;
+            $result2 = false;
+            $result3 = false;
 
             if($cancel_reason == "Sân này không cho thuê nữa" || $cancel_reason == "Lịch sân này không khả dụng nữa" || $cancel_reason == "Sân này đang được bảo trì, sữa chữa") {
                 $result = $this->court_order->cancel_court_order_by_admin($court_order_id, $canceled_on_date, $cancel_reason);
@@ -105,6 +105,7 @@
                         $court_schedule_start_time = $court_schedule->getCourtScheduleStartTime();
                         $court_schedule_end_time = $court_schedule->getCourtScheduleEndTime();
                         $court_schedule_time_frame = $court_schedule->getCourtScheduleTimeFrame();
+                        $court_id = $court_schedule->getCourtId();
                     }
                 }
 
@@ -120,6 +121,7 @@
 
                 foreach($court_schedules as $court_schedule) {
                     $schedule_id = $court_schedule->getCourtScheduleId();
+                    $schedule_court_id = $court_schedule->getCourtId();
                     $schedule_state = $court_schedule->getCourtScheduleState();
                     $date = $court_schedule->getCourtScheduleDate();
                     $start_time = $court_schedule->getCourtScheduleStartTime();
@@ -129,7 +131,7 @@
                     $time_frame_start = substr($time_frame, 0, 5);
                     $time_frame_end = substr($time_frame, -5);
 
-                    if($court_schedule_date == $date && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
+                    if($court_schedule_date == $date && $schedule_court_id = $court_id && $court_schedule_start_time == $start_time && $court_schedule_end_time == $end_time && $schedule_state != "Đã đặt") {
                         if(isTimeBetween($time_frame_start, $court_schedule_time_frame_start, $court_schedule_time_frame_end) 
                             || isTimeBetween($time_frame_end, $court_schedule_time_frame_start, $court_schedule_time_frame_end)) {
                             $current_date = date("Y-m-d");

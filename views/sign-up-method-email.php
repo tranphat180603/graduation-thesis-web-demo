@@ -60,7 +60,7 @@
                 </div>
                 <div class="warning-email">
                   <img src="../image/sign-up-img/warning.svg" alt="" />
-                  <p id="warning-content">Tên đăng ký chưa đúng định dạng</p>
+                  <p id="warning-content">Email chưa đúng định dạng</p>
                 </div>
               </div>
               <input

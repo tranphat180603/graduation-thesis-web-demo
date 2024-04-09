@@ -273,7 +273,8 @@ form {
 #check,
 #check-acc,
 #check-pass,
-#check-phone {
+#check-phone,
+#check-email {
   width: 20px;
   height: 20px;
   display: none;
@@ -283,7 +284,8 @@ form {
 .warning,
 .warning-acc,
 .warning-pass,
-.warning-phone {
+.warning-phone,
+.warning-email {
   display: flex;
   height: 16px;
   align-items: center;
@@ -295,7 +297,8 @@ form {
 .warning p,
 .warning-acc p,
 .warning-pass p,
-.warning-phone p {
+.warning-phone p,
+.warning-email p {
   display: flex;
   height: 16px;
   color: #ff4141;

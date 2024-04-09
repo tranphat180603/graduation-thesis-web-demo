@@ -59,7 +59,7 @@
                   <img id="check-phone" src="../image/sign-up-img/check.svg" alt="" />
                 </div>
                 <div class="warning-phone">
-                  <img src="../image/sign-up/warning.svg" alt="" />
+                  <img src="../image/sign-up-img/warning.svg" alt="" />
                   <p id="warning-content">Số điện thoại chưa đúng định dạng</p>
                 </div>                
               </div>

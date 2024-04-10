@@ -50,24 +50,13 @@
         return false;
       }
 
-      // Tách giờ và phút từ chuỗi thời gian
-      $court_schedule_start_time_parts = explode(':', $court_schedule_start_time);
-      $court_schedule_end_time_parts = explode(':', $court_schedule_end_time);
-
-      // Chuyển đổi thời gian thành timestamp
-      $start_timestamp = strtotime($court_schedule_start_time);
-      $end_timestamp = strtotime($court_schedule_end_time);
-
-      // Tính khoảng cách giữa hai thời gian
-      $time_difference = $end_timestamp - $start_timestamp;
-
-      // Chuyển đổi khoảng cách thành giờ
-      $time_difference_hours = $time_difference / 3600;
+      $court_schedule_start_time_transformed = strtotime($court_schedule_start_time);
+      $court_schedule_end_time_transformed = strtotime($court_schedule_end_time);
 
       // Kiểm tra xem $court_schedule_start_time có nhỏ hơn $court_schedule_end_time không
-      if ($court_schedule_start_time_parts[0] < $court_schedule_end_time_parts[0]) {
+      if ($court_schedule_start_time_transformed < $court_schedule_end_time_transformed) {
         // Kiểm tra xem khoảng cách có đủ 1 tiếng hay không
-        if ($time_difference_hours >= 1) {
+        if (timeDistance($court_schedule_start_time, $court_schedule_end_time) >= 1) {
           return false;
         } 
       } else {
@@ -79,18 +68,13 @@
       $court_schedules = $this->court_schedule->data_for_check_insert_court_schedule($court_id, $court_schedule_date, $court_schedule_start_time, $court_schedule_end_time);
 
       foreach($court_schedules as $court_schedule) {
-        $start_time = date('H:i', strtotime($court_schedule->getCourtScheduleStartTime()));
-        $end_time = date('H:i', strtotime($court_schedule->getCourtScheduleEndTime()));
-
-        // Tách giờ và phút từ chuỗi thời gian
-        $start_time_parts = explode(':', $start_time);
-        $end_time_parts = explode(':', $end_time);
+        $start_time = strtotime($court_schedule->getCourtScheduleStartTime());
+        $end_time = strtotime($court_schedule->getCourtScheduleEndTime());
 
         //Kiểm tra xem start time với end time đã tồn tại hay chưa
-        if(($court_schedule_start_time_parts[0] < $start_time_parts[0] && 
-            $court_schedule_end_time_parts[0] <= $start_time_parts[0] && $court_schedule_end_time_parts[1] < $start_time_parts[1]) 
-            || ($court_schedule_start_time_parts[0] > $end_time_parts[0]) 
-            || ($court_schedule_start_time_parts[0] == $end_time_parts[0] && $court_schedule_start_time_parts[1] >= $end_time_parts[1])) {
+        if(isTimeBetweenST($court_schedule_start_time_transformed, $start_time, $end_time) 
+            || isTimeBetweenET($court_schedule_end_time_transformed, $start_time, $end_time)) {
+              $checkValue = true;
         } else {
           $checkValue = false;
           break;
@@ -238,6 +222,12 @@
         return false;
       } 
     }
+  }
+
+  function timeDistance($lowerTime, $higherTime) {
+    $lowerTime = strtotime($lowerTime);
+    $higherTime = strtotime($higherTime);
+    return ($higherTime - $lowerTime);
   }
 
   function isTimeBetweenST($checkTime, $startTime, $endTime) {

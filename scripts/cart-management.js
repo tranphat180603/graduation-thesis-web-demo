@@ -1,4 +1,4 @@
-// Hàm kiểm tra URL và đánh dấu lại checkbox
+// 1. Hàm kiểm tra URL và đánh dấu lại checkbox
 function markCheckboxesFromURL() {
   // Lấy tham số từ URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
   markCheckboxesFromURL();
 });
 
-// Hàm cập nhật URL khi tick vào checkbox
+// 2. Hàm cập nhật URL khi tick vào checkbox
 function updateURL(checkbox) {
   var urlParams = new URLSearchParams(window.location.search);
   var cartIds = [];

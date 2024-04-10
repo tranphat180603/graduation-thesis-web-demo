@@ -314,5 +314,86 @@
 
             return $result;
         }
+
+        //14. Tính giá tiền của lịch sân theo khung giờ trong courtprice 
+        public static function getByCourtIdAndDate($court_id, $date)
+        {
+            // Tạo kết nối đến cơ sở dữ liệu
+            $link = "";
+            MakeConnection($link);
+
+            // Khởi tạo mảng court_schedules để lưu trữ thông tin các lịch sân bóng
+            $court_schedules = array();
+
+            // Câu truy vấn SQL
+            $query = "SELECT
+                        c.court_schedule_id,
+                        c.court_schedule_date,
+                        c.court_schedule_time_frame,
+                        c.court_schedule_state,
+                        c.created_on_date,
+                        c.last_modified_date,
+                        cp.court_id,
+                        c.account_id,
+                        GROUP_CONCAT(
+                            CASE
+                                WHEN TIME_TO_SEC(TIMEDIFF(LEAST(c.court_schedule_end_time, cp.court_end_time), GREATEST(c.court_schedule_start_time, cp.court_start_time))) > 0 THEN cp.court_time_frame
+                                ELSE NULL
+                            END SEPARATOR ', '
+                        ) AS related_court_time_frames,
+                        TIMESTAMPDIFF(MINUTE, STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i'), STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i')) / 60 AS court_schedule_hours,
+                        SUM(
+                            CASE
+                                WHEN TIME_TO_SEC(TIMEDIFF(LEAST(c.court_schedule_end_time, cp.court_end_time), GREATEST(c.court_schedule_start_time, cp.court_start_time))) > 0 THEN
+                                    TIMESTAMPDIFF(MINUTE, GREATEST(STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i'), cp.court_start_time), LEAST(STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i'), cp.court_end_time)) / 60 *
+                                    CASE
+                                        WHEN DAYOFWEEK(c.court_schedule_date) IN (1, 7) THEN cp.court_weekend_price
+                                        ELSE cp.court_weekday_price
+                                    END
+                                ELSE 0
+                            END
+                        ) AS court_price
+                    FROM
+                        court_schedule c
+                    INNER JOIN
+                        court_price cp ON c.court_id = cp.court_id
+                    WHERE
+                        cp.court_id = '$court_id'
+                        AND c.court_schedule_date = '$date'
+                        AND c.court_schedule_state = 'Chưa đặt'
+                        AND (
+                            (cp.court_start_time < STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i') AND cp.court_end_time > STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i'))
+                            OR
+                            (cp.court_start_time > STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i') AND cp.court_end_time < STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i'))
+                            OR
+                            (cp.court_start_time < STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i') AND cp.court_end_time > STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i') AND cp.court_end_time < STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i'))
+                            OR
+                            (cp.court_start_time > STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', 1), '%H:%i') AND cp.court_start_time < STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i') AND cp.court_end_time > STR_TO_DATE(SUBSTRING_INDEX(c.court_schedule_time_frame, '-', -1), '%H:%i'))
+                        )
+                    GROUP BY
+                        c.court_schedule_id";
+
+            // Thực hiện truy vấn
+            $result = ExecuteDataQuery($link, $query);
+
+            // Xử lý kết quả truy vấn và trả về mảng court_schedules
+            while ($row = mysqli_fetch_assoc($result)) {
+                $court_schedules[] = array(
+                    'court_schedule_id' => $row['court_schedule_id'],
+                    'court_schedule_date' => $row['court_schedule_date'],
+                    'court_schedule_time_frame' => $row['court_schedule_time_frame'],
+                    'court_schedule_state' => $row['court_schedule_state'],
+                    'created_on_date' => $row['created_on_date'],
+                    'last_modified_date' => $row['last_modified_date'],
+                    'court_id' => $row['court_id'],
+                    'account_id' => $row['account_id'],
+                    'related_court_time_frames' => $row['related_court_time_frames'],
+                    'court_schedule_hours' => $row['court_schedule_hours'],
+                    'court_price' => $row['court_price']
+                );
+            }
+
+            return $court_schedules;
+        }
     }
 ?>

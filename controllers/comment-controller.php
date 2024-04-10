@@ -8,9 +8,40 @@
             $this->comment = new comment();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng comment để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        public function getCommentsByCourtId($court_id)
+        {
+            $court_id = isset($_GET['id']) ? $_GET['id'] : null;
+    
+            // Gọi hàm getCommentsByCourtId từ model và trả về kết quả
+            return $this->comment->getCommentsByCourtId($court_id);
         }
+        public function countCommentsByCourtId($court_id)
+        {
+            $court_id = isset($_GET['id']) ? $_GET['id'] : null;
+    
+            // Gọi hàm getCommentsByCourtId từ model và trả về kết quả
+            return $this->comment->countCommentsByCourtId($court_id);
+        }
+    
+        public function addComment($court_id,  $account_id, $comment_content, $created_on_date = "")
+        {
+            // Gọi hàm insert_comment từ model và trả về kết quả (true/false)
+            return $this->comment->insert_comment($court_id,  $account_id, $comment_content, $created_on_date);
+        }
+    }
+
+    // Kiểm tra nếu là yêu cầu POST từ biểu mẫu
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Khởi tạo controller
+        $comment = new comment();
+    
+        // Lấy dữ liệu từ biểu mẫu
+        $court_id = isset($_POST['court_id']) ? $_POST['court_id'] : null;
+        $account_id = isset($_POST['account_id']) ? $_POST['account_id'] : null;
+        $comment_content = isset($_POST['comment_content']) ? $_POST['comment_content'] : null;
+        $created_on_date = date("Y-m-d H:i:s"); // Lấy thời gian hiện tại
+    
+        // Thêm comment vào cơ sở dữ liệu
+        $result = $comment->insert_comment($court_id, $account_id, $comment_content, $created_on_date);
     }
 ?>

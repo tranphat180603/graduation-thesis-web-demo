@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 06, 2024 at 02:40 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 10, 2024 lúc 07:35 AM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ntpsh`
+-- Cơ sở dữ liệu: `ntpsh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -38,7 +38,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `account_name`, `account_avatar`, `account_hash_password`, `created_on_date`) VALUES
@@ -55,7 +55,7 @@ INSERT INTO `account` (`account_id`, `account_type`, `account_sign_up_name`, `ac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
@@ -70,7 +70,7 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cart`
+-- Đang đổ dữ liệu cho bảng `cart`
 --
 
 INSERT INTO `cart` (`cart_id`, `event_id`, `cart_service_amount`, `cart_rental_amount`, `cart_discount_amount`, `cart_total_payment`, `cart_total_deposit`, `account_id`) VALUES
@@ -86,7 +86,7 @@ INSERT INTO `cart` (`cart_id`, `event_id`, `cart_service_amount`, `cart_rental_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_detail`
+-- Cấu trúc bảng cho bảng `cart_detail`
 --
 
 CREATE TABLE `cart_detail` (
@@ -98,7 +98,7 @@ CREATE TABLE `cart_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cart_detail`
+-- Đang đổ dữ liệu cho bảng `cart_detail`
 --
 
 INSERT INTO `cart_detail` (`cart_id`, `court_schedule_id`, `cart_item_service_amount`, `cart_item_rental_amount`, `created_on_date`) VALUES
@@ -122,8 +122,8 @@ INSERT INTO `cart_detail` (`cart_id`, `court_schedule_id`, `cart_item_service_am
 (2, 78, 100000, 200000, '2024-04-02'),
 (2, 84, 0, 420000, '2024-04-01'),
 (2, 87, 0, 220000, '2024-04-01'),
-(2, 247, 100000, 300000, '2024-04-03'), 
 (2, 244, 0, 150000, '2024-04-03'),
+(2, 247, 100000, 300000, '2024-04-03'),
 (2, 250, 0, 525000, '2024-04-03'),
 (3, 45, 0, 200000, '2024-04-05'),
 (3, 76, 0, 450000, '2024-04-03'),
@@ -131,7 +131,7 @@ INSERT INTO `cart_detail` (`cart_id`, `court_schedule_id`, `cart_item_service_am
 (3, 177, 0, 120000, '2024-04-15'),
 (3, 182, 100000, 300000, '2024-04-20'),
 (3, 230, 0, 150000, '2024-04-02'),
-(3, 231, 250000, 225000, '2024-04-07'), 
+(3, 231, 250000, 225000, '2024-04-07'),
 (3, 234, 0, 450000, '2024-04-09'),
 (4, 139, 250000, 360000, '2024-04-01'),
 (4, 181, 800000, 225000, '2024-04-20'),
@@ -142,42 +142,42 @@ INSERT INTO `cart_detail` (`cart_id`, `court_schedule_id`, `cart_item_service_am
 (4, 214, 150000, 250000, '2024-04-09'),
 (4, 232, 0, 300000, '2024-04-07'),
 (4, 237, 0, 300000, '2024-04-07'),
-(4, 245, 30000, 150000, '2024-04-07'), 
+(4, 245, 30000, 150000, '2024-04-07'),
 (5, 38, 350000, 240000, '2024-04-06'),
 (5, 139, 1000000, 360000, '2024-04-13'),
 (5, 144, 100000, 360000, '2024-04-12'),
 (5, 176, 150000, 240000, '2024-04-14'),
 (5, 185, 50000, 150000, '2024-04-20'),
-(5, 224, 0, 150000, '2024-04-07'),
 (5, 222, 0, 525000, '2024-04-06'),
+(5, 224, 0, 150000, '2024-04-07'),
 (5, 226, 0, 300000, '2024-04-07'),
 (6, 80, 150000, 1575000, '2024-04-01'),
 (6, 81, 200000, 300000, '2024-04-02'),
 (6, 82, 100000, 600000, '2024-04-03'),
 (6, 218, 0, 225000, '2024-04-07'),
 (6, 228, 0, 450000, '2024-04-07'),
-(6, 229, 1100000, 525000, '2024-04-07'), 
+(6, 229, 1100000, 525000, '2024-04-07'),
 (7, 10, 180000, 240000, '2024-04-01'),
 (7, 19, 500000, 240000, '2024-03-29'),
 (7, 39, 0, 275000, '2024-04-03'),
 (7, 52, 260000, 240000, '2024-03-19'),
 (7, 60, 700000, 300000, '2024-03-30'),
 (7, 96, 500000, 320000, '2024-03-31'),
-(7, 242, 150000, 150000, '2024-04-08'), 
 (7, 240, 0, 225000, '2024-04-08'),
+(7, 242, 150000, 150000, '2024-04-08'),
 (7, 249, 0, 450000, '2024-04-05'),
 (8, 174, 400000, 120000, '2024-04-15'),
 (8, 175, 240000, 120000, '2024-04-17'),
 (8, 176, 600000, 120000, '2024-04-17'),
+(8, 180, 800000, 150000, '2024-04-20'),
+(8, 223, 160000, 600000, '2024-04-06'),
 (8, 225, 0, 225000, '2024-04-01'),
-(8, 227, 0, 375000, '2024-04-02'),
-(8, 223, 160000, 600000, '2024-04-06'), 
-(8, 180, 800000, 150000, '2024-04-20');
+(8, 227, 0, 375000, '2024-04-02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_service_detail`
+-- Cấu trúc bảng cho bảng `cart_service_detail`
 --
 
 CREATE TABLE `cart_service_detail` (
@@ -189,17 +189,17 @@ CREATE TABLE `cart_service_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cart_service_detail`
+-- Đang đổ dữ liệu cho bảng `cart_service_detail`
 --
 
 INSERT INTO `cart_service_detail` (`cart_id`, `court_schedule_id`, `service_id`, `cart_item_service_quantity`, `cart_item_total_service_price`) VALUES
-(1, 171, 24, 1, 100000),
-(1, 171, 26, 4, 40000),
 (1, 26, 1, 2, 300000),
 (1, 42, 1, 1, 150000),
 (1, 42, 2, 1, 200000),
 (1, 71, 6, 1, 100000),
 (1, 143, 17, 1, 150000),
+(1, 171, 24, 1, 100000),
+(1, 171, 26, 4, 40000),
 (1, 243, 5, 1, 150000),
 (2, 25, 1, 1, 150000),
 (2, 25, 2, 1, 200000),
@@ -243,13 +243,13 @@ INSERT INTO `cart_service_detail` (`cart_id`, `court_schedule_id`, `service_id`,
 (8, 175, 22, 3, 240000),
 (8, 176, 21, 5, 500000),
 (8, 176, 24, 1, 100000),
-(8, 223, 4, 2, 160000),
-(8, 180, 22, 10, 800000);
+(8, 180, 22, 10, 800000),
+(8, 223, 4, 2, 160000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Cấu trúc bảng cho bảng `comment`
 --
 
 CREATE TABLE `comment` (
@@ -261,7 +261,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `comment`
+-- Đang đổ dữ liệu cho bảng `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `comment_content`, `created_on_date`, `court_id`, `account_id`) VALUES
@@ -299,7 +299,7 @@ INSERT INTO `comment` (`comment_id`, `comment_content`, `created_on_date`, `cour
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court`
+-- Cấu trúc bảng cho bảng `court`
 --
 
 CREATE TABLE `court` (
@@ -313,7 +313,7 @@ CREATE TABLE `court` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court`
+-- Đang đổ dữ liệu cho bảng `court`
 --
 
 INSERT INTO `court` (`court_id`, `court_name`, `court_state`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
@@ -338,7 +338,7 @@ INSERT INTO `court` (`court_id`, `court_name`, `court_state`, `created_on_date`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court_image`
+-- Cấu trúc bảng cho bảng `court_image`
 --
 
 CREATE TABLE `court_image` (
@@ -348,7 +348,7 @@ CREATE TABLE `court_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court_image`
+-- Đang đổ dữ liệu cho bảng `court_image`
 --
 
 INSERT INTO `court_image` (`court_image_id`, `court_image`, `court_id`) VALUES
@@ -407,7 +407,7 @@ INSERT INTO `court_image` (`court_image_id`, `court_image`, `court_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court_order`
+-- Cấu trúc bảng cho bảng `court_order`
 --
 
 CREATE TABLE `court_order` (
@@ -428,10 +428,10 @@ CREATE TABLE `court_order` (
   `ordered_on_date` date NOT NULL,
   `canceled_on_date` date DEFAULT NULL,
   `refunded_on_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court_order`
+-- Đang đổ dữ liệu cho bảng `court_order`
 --
 
 INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `total_service_amount`, `total_rental_amount`, `total_discount_amount`, `order_total_payment`, `order_total_deposit`, `payment_method`, `order_state`, `customer_account_id`, `admin_account_id`, `order_cancel_reason`, `order_cancel_party_account_id`, `ordered_on_date`, `canceled_on_date`, `refunded_on_date`) VALUES
@@ -467,7 +467,7 @@ INSERT INTO `court_order` (`court_order_id`, `court_schedule_id`, `event_id`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court_price`
+-- Cấu trúc bảng cho bảng `court_price`
 --
 
 CREATE TABLE `court_price` (
@@ -482,7 +482,7 @@ CREATE TABLE `court_price` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court_price`
+-- Đang đổ dữ liệu cho bảng `court_price`
 --
 
 INSERT INTO `court_price` (`court_price_id`, `court_start_time`, `court_end_time`, `court_time_frame`, `court_weekday_price`, `court_weekend_price`, `court_price_frame`, `court_id`) VALUES
@@ -545,7 +545,7 @@ INSERT INTO `court_price` (`court_price_id`, `court_start_time`, `court_end_time
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court_schedule`
+-- Cấu trúc bảng cho bảng `court_schedule`
 --
 
 CREATE TABLE `court_schedule` (
@@ -562,13 +562,13 @@ CREATE TABLE `court_schedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court_schedule`
+-- Đang đổ dữ liệu cho bảng `court_schedule`
 --
 
 INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court_schedule_start_time`, `court_schedule_end_time`, `court_schedule_time_frame`, `court_schedule_state`, `created_on_date`, `last_modified_date`, `court_id`, `account_id`) VALUES
 (1, '2024-03-18', '15:00:00', '17:00:00', '15:00-16:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (2, '2024-03-18', '15:00:00', '17:00:00', '15:00-16:30', 'Hết hạn', '2024-02-18', NULL, 1, 1),
-(3, '2024-03-18', '15:00:00', '17:00:00', '15:00-17:00', 'Đã đặt', '2024-02-18', NULL, 1, 1),
+(3, '2024-03-18', '15:00:00', '17:00:00', '15:00-17:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (4, '2024-03-18', '15:00:00', '17:00:00', '15:30-16:30', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (5, '2024-03-18', '15:00:00', '17:00:00', '15:30-17:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
 (6, '2024-03-18', '15:00:00', '17:00:00', '16:00-17:00', 'Hết hạn', '2024-02-18', NULL, 1, 1),
@@ -605,7 +605,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (37, '2024-03-20', '11:00:00', '13:30:00', '12:30-13:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (38, '2024-04-07', '22:00:00', '00:30:00', '22:00-23:00', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (39, '2024-04-07', '22:00:00', '00:30:00', '22:00-23:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
-(40, '2024-04-07', '22:00:00', '00:30:00', '22:00-24:00', 'Đã đặt', '2024-02-18', NULL, 2, 1),
+(40, '2024-04-07', '22:00:00', '00:30:00', '22:00-24:00', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (41, '2024-04-07', '22:00:00', '00:30:00', '22:00-00:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (42, '2024-04-07', '22:00:00', '00:30:00', '22:30-23:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (43, '2024-04-07', '22:00:00', '00:30:00', '22:30-24:00', 'Hết hạn', '2024-02-18', NULL, 2, 1),
@@ -614,7 +614,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (46, '2024-04-07', '22:00:00', '00:30:00', '23:00-00:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (47, '2024-04-07', '22:00:00', '00:30:00', '23:30-00:30', 'Hết hạn', '2024-02-18', NULL, 2, 1),
 (48, '2024-03-22', '16:00:00', '18:00:00', '16:00-17:00', 'Hết hạn', '2024-02-18', NULL, 3, 1),
-(49, '2024-03-22', '16:00:00', '18:00:00', '16:00-17:30', 'Đã đặt', '2024-02-18', NULL, 3, 1),
+(49, '2024-03-22', '16:00:00', '18:00:00', '16:00-17:30', 'Hết hạn', '2024-02-18', NULL, 3, 1),
 (50, '2024-03-22', '16:00:00', '18:00:00', '16:00-18:00', 'Hết hạn', '2024-02-18', NULL, 3, 1),
 (51, '2024-03-22', '16:00:00', '18:00:00', '16:30-17:30', 'Hết hạn', '2024-02-18', NULL, 3, 1),
 (52, '2024-03-22', '16:00:00', '18:00:00', '17:00-18:00', 'Hết hạn', '2024-02-18', NULL, 3, 1),
@@ -629,7 +629,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (61, '2024-04-02', '08:00:00', '11:00:00', '08:30-11:00', 'Hết hạn', '2024-02-18', NULL, 4, 1),
 (62, '2024-04-02', '08:00:00', '11:00:00', '09:00-10:00', 'Hết hạn', '2024-02-18', NULL, 4, 1),
 (63, '2024-04-02', '08:00:00', '11:00:00', '09:00-10:30', 'Hết hạn', '2024-02-18', NULL, 4, 1),
-(64, '2024-04-02', '08:00:00', '11:00:00', '09:00-11:00', 'Đã đặt', '2024-02-18', NULL, 4, 1),
+(64, '2024-04-02', '08:00:00', '11:00:00', '09:00-11:00', 'Hết hạn', '2024-02-18', NULL, 4, 1),
 (65, '2024-04-02', '08:00:00', '11:00:00', '09:30-10:30', 'Hết hạn', '2024-02-18', NULL, 4, 1),
 (66, '2024-04-02', '08:00:00', '11:00:00', '09:30-11:00', 'Hết hạn', '2024-02-18', NULL, 4, 1),
 (67, '2024-04-02', '08:00:00', '11:00:00', '10:00-11:00', 'Hết hạn', '2024-02-18', NULL, 4, 1),
@@ -638,11 +638,11 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (70, '2024-03-28', '03:00:00', '04:30:00', '03:30-04:30', 'Hết hạn', '2024-02-18', NULL, 5, 1),
 (71, '2024-04-05', '05:00:00', '07:00:00', '05:00-06:00', 'Hết hạn', '2024-02-18', NULL, 6, 1),
 (72, '2024-04-05', '05:00:00', '07:00:00', '05:00-06:30', 'Hết hạn', '2024-02-18', NULL, 6, 1),
-(73, '2024-04-05', '05:00:00', '07:00:00', '05:00-07:00', 'Đã đặt', '2024-02-18', NULL, 6, 1),
+(73, '2024-04-05', '05:00:00', '07:00:00', '05:00-07:00', 'Hết hạn', '2024-02-18', NULL, 6, 1),
 (74, '2024-04-05', '05:00:00', '07:00:00', '05:30-06:30', 'Hết hạn', '2024-02-18', NULL, 6, 1),
 (75, '2024-04-05', '05:00:00', '07:00:00', '05:30-07:00', 'Hết hạn', '2024-02-18', NULL, 6, 1),
 (76, '2024-04-05', '05:00:00', '07:00:00', '06:00-07:00', 'Hết hạn', '2024-02-18', NULL, 6, 1),
-(77, '2024-04-06', '13:00:00', '15:30:00', '13:00-14:00', 'Chưa đặt', '2024-02-18', NULL, 7, 1),
+(77, '2024-04-06', '13:00:00', '15:30:00', '13:00-14:00', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (78, '2024-04-06', '13:00:00', '15:30:00', '13:00-14:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (79, '2024-04-06', '13:00:00', '15:30:00', '13:00-15:00', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (80, '2024-04-06', '13:00:00', '15:30:00', '13:00-15:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
@@ -650,7 +650,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (82, '2024-04-06', '13:00:00', '15:30:00', '13:30-14:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (83, '2024-04-06', '13:00:00', '15:30:00', '13:30-15:00', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (84, '2024-04-06', '13:00:00', '15:30:00', '13:30-15:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
-(85, '2024-04-06', '13:00:00', '15:30:00', '14:00-15:00', 'Đã đặt', '2024-02-18', NULL, 7, 1),
+(85, '2024-04-06', '13:00:00', '15:30:00', '14:00-15:00', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (86, '2024-04-06', '13:00:00', '15:30:00', '14:00-15:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (87, '2024-04-06', '13:00:00', '15:30:00', '14:30-15:30', 'Hết hạn', '2024-02-18', NULL, 7, 1),
 (88, '2024-03-18', '21:00:00', '23:00:00', '21:00-22:00', 'Hết hạn', '2024-02-18', NULL, 8, 1),
@@ -676,20 +676,20 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (108, '2024-03-31', '14:00:00', '17:00:00', '15:00-17:00', 'Hết hạn', '2024-02-18', NULL, 9, 1),
 (109, '2024-03-31', '14:00:00', '17:00:00', '15:30-16:30', 'Hết hạn', '2024-02-18', NULL, 9, 1),
 (110, '2024-03-31', '14:00:00', '17:00:00', '15:30-17:00', 'Hết hạn', '2024-02-18', NULL, 9, 1),
-(111, '2024-03-31', '14:00:00', '17:00:00', '16:00-17:00', 'Đã đặt', '2024-02-18', NULL, 9, 1),
+(111, '2024-03-31', '14:00:00', '17:00:00', '16:00-17:00', 'Hết hạn', '2024-02-18', NULL, 9, 1),
 (112, '2024-03-14', '20:00:00', '22:00:00', '20:00-21:00', 'Hết hạn', '2024-02-18', NULL, 10, 1),
 (113, '2024-03-14', '20:00:00', '22:00:00', '20:00-21:30', 'Hết hạn', '2024-02-18', NULL, 10, 1),
 (114, '2024-03-14', '20:00:00', '22:00:00', '20:00-22:00', 'Hết hạn', '2024-02-18', NULL, 10, 1),
 (115, '2024-03-14', '20:00:00', '22:00:00', '20:30-21:30', 'Hết hạn', '2024-02-18', NULL, 10, 1),
 (116, '2024-03-14', '20:00:00', '22:00:00', '20:30-22:00', 'Hết hạn', '2024-02-18', NULL, 10, 1),
-(117, '2024-03-14', '20:00:00', '22:00:00', '21:00-22:00', 'Đã đặt', '2024-02-18', NULL, 10, 1),
+(117, '2024-03-14', '20:00:00', '22:00:00', '21:00-22:00', 'Hết hạn', '2024-02-18', NULL, 10, 1),
 (118, '2024-03-10', '12:00:00', '14:00:00', '12:00-13:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (119, '2024-03-10', '12:00:00', '14:00:00', '12:00-13:30', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (120, '2024-03-10', '12:00:00', '14:00:00', '12:00-14:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (121, '2024-03-10', '12:00:00', '14:00:00', '12:30-13:30', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (122, '2024-03-10', '12:00:00', '14:00:00', '12:30-14:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (123, '2024-03-10', '12:00:00', '14:00:00', '13:00-14:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
-(124, '2024-04-04', '05:00:00', '08:00:00', '05:00-06:00', 'Đã đặt', '2024-02-18', NULL, 11, 1),
+(124, '2024-04-04', '05:00:00', '08:00:00', '05:00-06:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (125, '2024-04-04', '05:00:00', '08:00:00', '05:00-06:30', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (126, '2024-04-04', '05:00:00', '08:00:00', '05:00-07:00', 'Hết hạn', '2024-02-18', NULL, 11, 1),
 (127, '2024-04-04', '05:00:00', '08:00:00', '05:00-07:30', 'Hết hạn', '2024-02-18', NULL, 11, 1),
@@ -712,7 +712,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (144, '2024-04-15', '09:00:00', '11:00:00', '10:00-11:00', 'Đã đặt', '2024-02-18', NULL, 11, 1),
 (145, '2024-03-24', '18:00:00', '20:30:00', '18:00-19:00', 'Hết hạn', '2024-02-18', NULL, 12, 1),
 (146, '2024-03-24', '18:00:00', '20:30:00', '18:00-19:30', 'Hết hạn', '2024-02-18', NULL, 12, 1),
-(147, '2024-03-24', '18:00:00', '20:30:00', '18:00-20:00', 'Đã đặt', '2024-02-18', NULL, 12, 1),
+(147, '2024-03-24', '18:00:00', '20:30:00', '18:00-20:00', 'Hết hạn', '2024-02-18', NULL, 12, 1),
 (148, '2024-03-24', '18:00:00', '20:30:00', '18:00-20:30', 'Hết hạn', '2024-02-18', NULL, 12, 1),
 (149, '2024-03-24', '18:00:00', '20:30:00', '18:30-19:30', 'Hết hạn', '2024-02-18', NULL, 12, 1),
 (150, '2024-03-24', '18:00:00', '20:30:00', '18:30-20:00', 'Hết hạn', '2024-02-18', NULL, 12, 1),
@@ -725,20 +725,20 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (157, '2024-04-01', '17:00:00', '19:00:00', '17:00-19:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (158, '2024-04-01', '17:00:00', '19:00:00', '17:30-18:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (159, '2024-04-01', '17:00:00', '19:00:00', '17:30-19:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
-(160, '2024-04-01', '17:00:00', '19:00:00', '18:00-19:00', 'Đã đặt', '2024-02-18', NULL, 13, 1),
+(160, '2024-04-01', '17:00:00', '19:00:00', '18:00-19:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (161, '2024-04-01', '21:00:00', '23:30:00', '21:00-22:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (162, '2024-04-01', '21:00:00', '23:30:00', '21:00-22:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (163, '2024-04-01', '21:00:00', '23:30:00', '21:00-23:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (164, '2024-04-01', '21:00:00', '23:30:00', '21:00-23:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (165, '2024-04-01', '21:00:00', '23:30:00', '21:30-22:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
-(166, '2024-04-01', '21:00:00', '23:30:00', '21:30-23:00', 'Đã đặt', '2024-02-18', NULL, 13, 1),
+(166, '2024-04-01', '21:00:00', '23:30:00', '21:30-23:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (167, '2024-04-01', '21:00:00', '23:30:00', '21:30-23:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (168, '2024-04-01', '21:00:00', '23:30:00', '22:00-23:00', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (169, '2024-04-01', '21:00:00', '23:30:00', '22:00-23:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
 (170, '2024-04-01', '21:00:00', '23:30:00', '22:30-23:30', 'Hết hạn', '2024-02-18', NULL, 13, 1),
-(171, '2024-04-06', '19:00:00', '20:30:00', '19:00-20:00', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
-(172, '2024-04-06', '19:00:00', '20:30:00', '19:00-20:30', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
-(173, '2024-04-06', '19:00:00', '20:30:00', '19:30-20:30', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
+(171, '2024-04-06', '19:00:00', '20:30:00', '19:00-20:00', 'Hết hạn', '2024-02-18', NULL, 14, 1),
+(172, '2024-04-06', '19:00:00', '20:30:00', '19:00-20:30', 'Hết hạn', '2024-02-18', NULL, 14, 1),
+(173, '2024-04-06', '19:00:00', '20:30:00', '19:30-20:30', 'Hết hạn', '2024-02-18', NULL, 14, 1),
 (174, '2024-04-18', '06:00:00', '08:00:00', '06:00-07:00', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
 (175, '2024-04-18', '06:00:00', '08:00:00', '06:00-07:30', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
 (176, '2024-04-18', '06:00:00', '08:00:00', '06:00-08:00', 'Chưa đặt', '2024-02-18', NULL, 14, 1),
@@ -767,7 +767,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (199, '2024-04-15', '15:00:00', '17:30:00', '16:00-17:00', 'Hết hạn', '2024-02-18', NULL, 16, 1),
 (200, '2024-04-15', '15:00:00', '17:30:00', '16:00-17:30', 'Hết hạn', '2024-02-18', NULL, 16, 1),
 (201, '2024-04-15', '15:00:00', '17:30:00', '16:30-17:30', 'Đã đặt', '2024-02-18', NULL, 16, 1),
-(202, '2024-04-10', '01:00:00', '04:00:00', '01:00-02:00', 'Đã đặt', '2024-02-18', NULL, 17, 1),
+(202, '2024-04-10', '01:00:00', '04:00:00', '01:00-02:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (203, '2024-04-10', '01:00:00', '04:00:00', '01:00-02:30', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (204, '2024-04-10', '01:00:00', '04:00:00', '01:00-03:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (205, '2024-04-10', '01:00:00', '04:00:00', '01:00-03:30', 'Hết hạn', '2024-02-18', NULL, 17, 1),
@@ -776,12 +776,12 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 (208, '2024-04-10', '01:00:00', '04:00:00', '01:30-03:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (209, '2024-04-10', '01:00:00', '04:00:00', '01:30-03:30', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (210, '2024-04-10', '01:00:00', '04:00:00', '01:30-04:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
-(211, '2024-04-10', '01:00:00', '04:00:00', '02:00-03:00', 'Đã đặt', '2024-02-18', NULL, 17, 1),
+(211, '2024-04-10', '01:00:00', '04:00:00', '02:00-03:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (212, '2024-04-10', '01:00:00', '04:00:00', '02:00-03:30', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (213, '2024-04-10', '01:00:00', '04:00:00', '02:00-04:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (214, '2024-04-10', '01:00:00', '04:00:00', '02:30-03:30', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (215, '2024-04-10', '01:00:00', '04:00:00', '02:30-04:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
-(216, '2024-04-10', '01:00:00', '04:00:00', '03:00-04:00', 'Đã đặt', '2024-02-18', NULL, 17, 1),
+(216, '2024-04-10', '01:00:00', '04:00:00', '03:00-04:00', 'Hết hạn', '2024-02-18', NULL, 17, 1),
 (217, '2024-04-25', '07:00:00', '11:00:00', '07:00-08:00', 'Chưa đặt', '2024-02-18', NULL, 1, 1),
 (218, '2024-04-25', '07:00:00', '11:00:00', '07:00-08:30', 'Chưa đặt', '2024-02-18', NULL, 1, 1),
 (219, '2024-04-25', '07:00:00', '11:00:00', '07:00-09:00', 'Chưa đặt', '2024-02-18', NULL, 1, 1),
@@ -954,7 +954,7 @@ INSERT INTO `court_schedule` (`court_schedule_id`, `court_schedule_date`, `court
 -- --------------------------------------------------------
 
 --
--- Table structure for table `court_type`
+-- Cấu trúc bảng cho bảng `court_type`
 --
 
 CREATE TABLE `court_type` (
@@ -968,20 +968,20 @@ CREATE TABLE `court_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `court_type`
+-- Đang đổ dữ liệu cho bảng `court_type`
 --
 
 INSERT INTO `court_type` (`court_type_id`, `court_type_name`, `court_type_icon`, `court_type_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
-(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.png', 'Chưa xóa', '2024-02-18', NULL, 1),
-(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.png', 'Chưa xóa', '2024-02-18', NULL, 1),
-(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.png', 'Chưa xóa', '2024-02-18', NULL, 1),
-(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4.png', 'Chưa xóa', '2024-02-18', NULL, 1),
-(5, 'Tennis', '../upload/sport-court-types-management/court-type-5.png', 'Chưa xóa', '2024-02-18', NULL, 1);
+(1, 'Bóng đá', '../upload/sport-court-types-management/court-type-1.png', 'Chưa xóa', '2024-02-18 00:00:00', '2024-04-10 05:28:34', 1),
+(2, 'Bóng chuyền', '../upload/sport-court-types-management/court-type-2.png', 'Chưa xóa', '2024-02-18 00:00:00', '2024-04-10 05:28:34', 1),
+(3, 'Bóng rổ', '../upload/sport-court-types-management/court-type-3.png', 'Chưa xóa', '2024-02-18 00:00:00', '2024-04-10 05:28:34', 1),
+(4, 'Cầu lông', '../upload/sport-court-types-management/court-type-4.png', 'Chưa xóa', '2024-02-18 00:00:00', '2024-04-10 05:28:34', 1),
+(5, 'Tennis', '../upload/sport-court-types-management/court-type-5.png', 'Chưa xóa', '2024-02-18 00:00:00', '2024-04-10 05:28:34', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Cấu trúc bảng cho bảng `customer`
 --
 
 CREATE TABLE `customer` (
@@ -996,23 +996,23 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `customer`
+-- Đang đổ dữ liệu cho bảng `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_fullname`, `customer_email_address`, `customer_phone_number`, `customer_gender`, `customer_date_of_birth`, `account_id`, `created_on_date`) VALUES
-(1, 'Nguyễn Hoàng Mỹ Duyên', 'nguyenhoangmyduyen213@gmail.com', '0929788891', 'Nữ', '2003-12-22', 2, '2024-02-18'),
-(2, 'Trần Thùy Duyên', 'tranduyen06@gmail.com', '0773450611', 'Nữ', '2003-11-06', 3, '2024-02-18'),
-(3, 'Trương Gia Hào', 'hao2805@gmail.com', '0939588290', 'Nam', '2003-05-28', 4, '2024-02-18'),
-(4, 'Nguyễn Ngọc Hoàng', 'hoangnguyen1511@gmail.com', '0797048368', 'Nam', '2003-11-15', 5, '2024-02-18'),
-(5, 'Phạm Thị Hồng Ngọc', 'pthongngoc@gmail.com', '0336962772', 'Nữ', '2003-10-03', 6, '2024-02-18'),
-(6, 'Trần Nguyễn Ngọc Phát', 'phattran180603@gmail.com', '0986385282', 'Nam', '2003-06-18', 7, '2024-02-18'),
-(7, 'Lê Minh Thùy', 'thuyle@gmail.com', '0886908819', 'Nữ', '2003-11-02', 8, '2024-02-18'),
-(8, 'Trương Minh Tiến', 'tientruongminh@gmail.com', '0919966456', 'Nam', '2003-07-30', 9, '2024-02-18');
+INSERT INTO `customer` (`customer_id`, `customer_fullname`, `customer_email_address`, `customer_phone_number`, `customer_gender`, `account_id`, `customer_date_of_birth`, `created_on_date`) VALUES
+(1, 'Nguyễn Hoàng Mỹ Duyên', 'nguyenhoangmyduyen213@gmail.com', '0929788891', 'Nữ', 2, '2003-12-22', '2024-02-18'),
+(2, 'Trần Thùy Duyên', 'tranduyen06@gmail.com', '0773450611', 'Nữ', 3, '2003-11-06', '2024-02-18'),
+(3, 'Trương Gia Hào', 'hao2805@gmail.com', '0939588290', 'Nam', 4, '2003-05-28', '2024-02-18'),
+(4, 'Nguyễn Ngọc Hoàng', 'hoangnguyen1511@gmail.com', '0797048368', 'Nam', 5, '2003-11-15', '2024-02-18'),
+(5, 'Phạm Thị Hồng Ngọc', 'pthongngoc@gmail.com', '0336962772', 'Nữ', 6, '2003-10-03', '2024-02-18'),
+(6, 'Trần Nguyễn Ngọc Phát', 'phattran180603@gmail.com', '0986385282', 'Nam', 7, '2003-06-18', '2024-02-18'),
+(7, 'Lê Minh Thùy', 'thuyle@gmail.com', '0886908819', 'Nữ', 8, '2003-11-02', '2024-02-18'),
+(8, 'Trương Minh Tiến', 'tientruongminh@gmail.com', '0919966456', 'Nam', 9, '2003-07-30', '2024-02-18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_service_detail`
+-- Cấu trúc bảng cho bảng `order_service_detail`
 --
 
 CREATE TABLE `order_service_detail` (
@@ -1023,7 +1023,7 @@ CREATE TABLE `order_service_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `order_service_detail`
+-- Đang đổ dữ liệu cho bảng `order_service_detail`
 --
 
 INSERT INTO `order_service_detail` (`court_order_id`, `service_id`, `order_item_service_quantity`, `order_item_total_service_price`) VALUES
@@ -1054,7 +1054,7 @@ INSERT INTO `order_service_detail` (`court_order_id`, `service_id`, `order_item_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `respond`
+-- Cấu trúc bảng cho bảng `respond`
 --
 
 CREATE TABLE `respond` (
@@ -1067,7 +1067,7 @@ CREATE TABLE `respond` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `respond`
+-- Đang đổ dữ liệu cho bảng `respond`
 --
 
 INSERT INTO `respond` (`respond_id`, `respond_content`, `created_on_date`, `comment_id`, `respond_respond_id`, `account_id`) VALUES
@@ -1092,7 +1092,7 @@ INSERT INTO `respond` (`respond_id`, `respond_content`, `created_on_date`, `comm
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
+-- Cấu trúc bảng cho bảng `review`
 --
 
 CREATE TABLE `review` (
@@ -1105,7 +1105,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `review`
+-- Đang đổ dữ liệu cho bảng `review`
 --
 
 INSERT INTO `review` (`review_id`, `review_star_rate`, `review_content`, `created_on_date`, `court_schedule_id`, `account_id`) VALUES
@@ -1133,7 +1133,7 @@ INSERT INTO `review` (`review_id`, `review_star_rate`, `review_content`, `create
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Cấu trúc bảng cho bảng `service`
 --
 
 CREATE TABLE `service` (
@@ -1150,7 +1150,7 @@ CREATE TABLE `service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `service`
+-- Đang đổ dữ liệu cho bảng `service`
 --
 
 INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `service_price`, `service_unit`, `service_state`, `created_on_date`, `last_modified_date`, `court_type_id`, `account_id`) VALUES
@@ -1190,7 +1190,7 @@ INSERT INTO `service` (`service_id`, `service_name`, `service_description`, `ser
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sport_hub_event`
+-- Cấu trúc bảng cho bảng `sport_hub_event`
 --
 
 CREATE TABLE `sport_hub_event` (
@@ -1209,7 +1209,7 @@ CREATE TABLE `sport_hub_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sport_hub_event`
+-- Đang đổ dữ liệu cho bảng `sport_hub_event`
 --
 
 INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `event_end_date`, `event_description`, `event_image`, `event_preferential_rate`, `event_preferential_item`, `event_state`, `created_on_date`, `last_modified_date`, `account_id`) VALUES
@@ -1223,7 +1223,7 @@ INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `ev
 -- --------------------------------------------------------
 
 --
--- Table structure for table `visitor`
+-- Cấu trúc bảng cho bảng `visitor`
 --
 
 CREATE TABLE `visitor` (
@@ -1233,7 +1233,7 @@ CREATE TABLE `visitor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `visitor`
+-- Đang đổ dữ liệu cho bảng `visitor`
 --
 
 INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`, `created_on_date`) VALUES
@@ -1264,18 +1264,17 @@ INSERT INTO `visitor` (`visitor_id`, `visitor_IP_address`, `created_on_date`) VA
 (25, '198.18.0.4', '2024-12-06');
 
 --
-
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`);
 
 --
--- Indexes for table `cart`
+-- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
@@ -1283,14 +1282,14 @@ ALTER TABLE `cart`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `cart_detail`
+-- Chỉ mục cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
   ADD PRIMARY KEY (`cart_id`,`court_schedule_id`),
   ADD KEY `court_schedule_id` (`court_schedule_id`);
 
 --
--- Indexes for table `cart_service_detail`
+-- Chỉ mục cho bảng `cart_service_detail`
 --
 ALTER TABLE `cart_service_detail`
   ADD PRIMARY KEY (`cart_id`,`court_schedule_id`,`service_id`),
@@ -1298,7 +1297,7 @@ ALTER TABLE `cart_service_detail`
   ADD KEY `service_id` (`service_id`);
 
 --
--- Indexes for table `comment`
+-- Chỉ mục cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`),
@@ -1306,7 +1305,7 @@ ALTER TABLE `comment`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `court`
+-- Chỉ mục cho bảng `court`
 --
 ALTER TABLE `court`
   ADD PRIMARY KEY (`court_id`),
@@ -1314,14 +1313,14 @@ ALTER TABLE `court`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `court_image`
+-- Chỉ mục cho bảng `court_image`
 --
 ALTER TABLE `court_image`
   ADD PRIMARY KEY (`court_image_id`),
   ADD KEY `court_id` (`court_id`);
 
 --
--- Indexes for table `court_order`
+-- Chỉ mục cho bảng `court_order`
 --
 ALTER TABLE `court_order`
   ADD PRIMARY KEY (`court_order_id`),
@@ -1329,14 +1328,14 @@ ALTER TABLE `court_order`
   ADD KEY `customer_account_id` (`customer_account_id`);
 
 --
--- Indexes for table `court_price`
+-- Chỉ mục cho bảng `court_price`
 --
 ALTER TABLE `court_price`
   ADD PRIMARY KEY (`court_price_id`),
   ADD KEY `court_id` (`court_id`);
 
 --
--- Indexes for table `court_schedule`
+-- Chỉ mục cho bảng `court_schedule`
 --
 ALTER TABLE `court_schedule`
   ADD PRIMARY KEY (`court_schedule_id`),
@@ -1344,28 +1343,28 @@ ALTER TABLE `court_schedule`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `court_type`
+-- Chỉ mục cho bảng `court_type`
 --
 ALTER TABLE `court_type`
   ADD PRIMARY KEY (`court_type_id`),
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `customer`
+-- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`),
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `order_service_detail`
+-- Chỉ mục cho bảng `order_service_detail`
 --
 ALTER TABLE `order_service_detail`
   ADD PRIMARY KEY (`court_order_id`,`service_id`),
   ADD KEY `service_id` (`service_id`);
 
 --
--- Indexes for table `respond`
+-- Chỉ mục cho bảng `respond`
 --
 ALTER TABLE `respond`
   ADD PRIMARY KEY (`respond_id`),
@@ -1374,7 +1373,7 @@ ALTER TABLE `respond`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `review`
+-- Chỉ mục cho bảng `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`review_id`),
@@ -1382,7 +1381,7 @@ ALTER TABLE `review`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `service`
+-- Chỉ mục cho bảng `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`service_id`),
@@ -1390,119 +1389,120 @@ ALTER TABLE `service`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `sport_hub_event`
+-- Chỉ mục cho bảng `sport_hub_event`
 --
 ALTER TABLE `sport_hub_event`
   ADD PRIMARY KEY (`event_id`),
   ADD KEY `account_id` (`account_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
   MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `court`
+-- AUTO_INCREMENT cho bảng `court`
 --
 ALTER TABLE `court`
   MODIFY `court_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `court_image`
+-- AUTO_INCREMENT cho bảng `court_image`
 --
 ALTER TABLE `court_image`
   MODIFY `court_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT for table `court_order`
+-- AUTO_INCREMENT cho bảng `court_order`
 --
 ALTER TABLE `court_order`
   MODIFY `court_order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `court_price`
+-- AUTO_INCREMENT cho bảng `court_price`
 --
 ALTER TABLE `court_price`
   MODIFY `court_price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT for table `court_schedule`
+-- AUTO_INCREMENT cho bảng `court_schedule`
 --
 ALTER TABLE `court_schedule`
   MODIFY `court_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
--- AUTO_INCREMENT for table `court_type`
+-- AUTO_INCREMENT cho bảng `court_type`
 --
 ALTER TABLE `court_type`
   MODIFY `court_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `respond`
+-- AUTO_INCREMENT cho bảng `respond`
 --
 ALTER TABLE `respond`
   MODIFY `respond_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `review`
+-- AUTO_INCREMENT cho bảng `review`
 --
 ALTER TABLE `review`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT cho bảng `service`
 --
 ALTER TABLE `service`
   MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `sport_hub_event`
+-- AUTO_INCREMENT cho bảng `sport_hub_event`
 --
 ALTER TABLE `sport_hub_event`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
--- Constraints for table `cart`
+--
+-- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `sport_hub_event` (`event_id`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `cart_detail`
+-- Các ràng buộc cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
   ADD CONSTRAINT `cart_detail_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`),
   ADD CONSTRAINT `cart_detail_ibfk_2` FOREIGN KEY (`court_schedule_id`) REFERENCES `court_schedule` (`court_schedule_id`);
 
 --
--- Constraints for table `cart_service_detail`
+-- Các ràng buộc cho bảng `cart_service_detail`
 --
 ALTER TABLE `cart_service_detail`
   ADD CONSTRAINT `cart_service_detail_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`),
@@ -1510,66 +1510,66 @@ ALTER TABLE `cart_service_detail`
   ADD CONSTRAINT `cart_service_detail_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`);
 
 --
--- Constraints for table `comment`
+-- Các ràng buộc cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`court_id`) REFERENCES `court` (`court_id`),
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `court`
+-- Các ràng buộc cho bảng `court`
 --
 ALTER TABLE `court`
   ADD CONSTRAINT `court_ibfk_1` FOREIGN KEY (`court_type_id`) REFERENCES `court_type` (`court_type_id`),
   ADD CONSTRAINT `court_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `court_image`
+-- Các ràng buộc cho bảng `court_image`
 --
 ALTER TABLE `court_image`
   ADD CONSTRAINT `court_image_ibfk_1` FOREIGN KEY (`court_id`) REFERENCES `court` (`court_id`);
 
 --
--- Constraints for table `court_order`
+-- Các ràng buộc cho bảng `court_order`
 --
 ALTER TABLE `court_order`
   ADD CONSTRAINT `court_order_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `sport_hub_event` (`event_id`),
   ADD CONSTRAINT `court_order_ibfk_2` FOREIGN KEY (`customer_account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `court_price`
+-- Các ràng buộc cho bảng `court_price`
 --
 ALTER TABLE `court_price`
   ADD CONSTRAINT `court_price_ibfk_1` FOREIGN KEY (`court_id`) REFERENCES `court` (`court_id`);
 
 --
--- Constraints for table `court_schedule`
+-- Các ràng buộc cho bảng `court_schedule`
 --
 ALTER TABLE `court_schedule`
   ADD CONSTRAINT `court_schedule_ibfk_1` FOREIGN KEY (`court_id`) REFERENCES `court` (`court_id`),
   ADD CONSTRAINT `court_schedule_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `court_type`
+-- Các ràng buộc cho bảng `court_type`
 --
 ALTER TABLE `court_type`
   ADD CONSTRAINT `court_type_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `customer`
+-- Các ràng buộc cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `order_service_detail`
+-- Các ràng buộc cho bảng `order_service_detail`
 --
 ALTER TABLE `order_service_detail`
   ADD CONSTRAINT `order_service_detail_ibfk_1` FOREIGN KEY (`court_order_id`) REFERENCES `court_order` (`court_order_id`),
   ADD CONSTRAINT `order_service_detail_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`);
 
 --
--- Constraints for table `respond`
+-- Các ràng buộc cho bảng `respond`
 --
 ALTER TABLE `respond`
   ADD CONSTRAINT `respond_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`),
@@ -1577,21 +1577,21 @@ ALTER TABLE `respond`
   ADD CONSTRAINT `respond_ibfk_3` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `review`
+-- Các ràng buộc cho bảng `review`
 --
 ALTER TABLE `review`
   ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`court_schedule_id`) REFERENCES `court_schedule` (`court_schedule_id`),
   ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `service`
+-- Các ràng buộc cho bảng `service`
 --
 ALTER TABLE `service`
   ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`court_type_id`) REFERENCES `court_type` (`court_type_id`),
   ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `sport_hub_event`
+-- Các ràng buộc cho bảng `sport_hub_event`
 --
 ALTER TABLE `sport_hub_event`
   ADD CONSTRAINT `sport_hub_event_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
@@ -1600,5 +1600,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-

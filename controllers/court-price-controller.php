@@ -8,9 +8,14 @@
             $this->court_price = new court_price();
         }
 
-        public function laugh() {
-            //các hàm để điều hướng từ views đến model của đối tượng court_price để làm việc với database,
-            //cũng như lấy data từ model đổ lên views
+        public function getMinPrice()
+        {
+            return $this->court_price->getMinPrice();
+        }
+    
+        public function getMaxPrice()
+        {
+            return $this->court_price->getMaxPrice();
         }
     }
 ?>

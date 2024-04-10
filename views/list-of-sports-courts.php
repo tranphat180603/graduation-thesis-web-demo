@@ -54,6 +54,81 @@
       }
     ?>
     <!-- BODY -->
+    <div class="home-page">
+      <section class="categories">
+        <div class="court-list">
+          <div class="contact-info">
+            <?php
+            require_once "../controllers/court-controller.php";
+            require_once "../controllers/review-controller.php";
+            require_once "../controllers/court-type-controller.php";
+            require_once "../controllers/court-image-controller.php";
+            require_once "../controllers/court-price-controller.php";
+
+            $courtcontroller = new Court_Controller();
+            $reviewscontroller = new Review_Controller();
+            $courtimagecontroller = new Court_Image_Controller();
+            $courtpricecontroller = new Court_Price_Controller();
+            $courttypecontroller = new Court_Type_Controller();
+
+            $courts = $courtcontroller->GetcourtByType();
+            $courtImages = $courtimagecontroller->getGroupConcatImages();
+            $minprice = $courtpricecontroller->getMinPrice();
+            $maxprice = $courtpricecontroller->getMaxPrice();
+            $courtTypes = $courttypecontroller->view_all_court_type();
+            ?>
+
+            <?php foreach ($courts as $court) :
+              $averagerating = $reviewscontroller->getAverageRatingByCourtSchedule($court->getCourtId());
+              // Lấy giá tối thiểu và tối đa cho court hiện tại
+              $courtImagePaths = [];
+              foreach ($courtImages as $image) {
+                if ($image->getCourtId() === $court->getCourtId()) {
+                  $courtImagePaths = explode(',', $image->getCourtImage());
+                  break;
+                }
+              }
+              // Lấy ảnh đầu tiên từ mảng đường dẫn ảnh
+              $courtImage = isset($courtImagePaths[0]) ? $courtImagePaths[0] : '';
+              foreach ($courtTypes as $type) {
+                if ($type->getCourtTypeId() === $court->getCourtTypeId()) {
+                  $courtTypeImage = $type->getCourtTypeIcon();
+                  break;
+                }
+              }
+            ?>
+              <a href="sport-court-details.php?id=<?= $court->getCourtId() ?>" class="court-card" data-images="<?= implode(',', $courtImagePaths) ?>">
+                <div class="court-image-wrapper">
+                  <img class="court-image" loading="lazy" alt="<?= $courtImage ?>" src="<?= $courtImage ?>" />
+                </div>
+                <div class="court-detail-container">
+                  <div class="court-info">
+                    <div class="court-name-price">
+                      <div class="c-name"><?= $court->getCourtName() ?></div>
+                      <!-- In min và max price -->
+                      <div class="c-price">
+                        <span class="span6">&#8363;</span><?= number_format($minprice[$court->getCourtId()], 0, ',', '.') ?>đ/h - &#8363;<?= number_format($maxprice[$court->getCourtId()], 0, ',', '.') ?>đ/h
+                      </div>
+                    </div>
+                    <button class="rating-court">
+                      <div class="value"><?= $averagerating ?></div>
+                      <img class="rating-court-img" alt="" src="../image/home-img/vuesaxboldstar.svg" />
+                    </button>
+                  </div>
+                  <img class="court-type" loading="lazy" alt="" src="<?= $courtTypeImage ?>" />
+                </div>
+              </a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="load-more-wrapped">
+          <button id="load-more-button" style="display: none">
+            <b class="load-more">Xem thêm</b>
+          </button>
+        </div>
+      </section>
+    </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
     <script type="text/javascript" src="../scripts/list-of-sports-courts.js" language="javascript"></script>

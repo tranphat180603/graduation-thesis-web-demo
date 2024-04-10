@@ -79,5 +79,41 @@
 
             return $data;
         }
+
+        public function getEventData()
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+    
+            // Kết nối và lấy dữ liệu tất cả sự kiện từ database
+            $result = ExecuteDataQuery($link, "SELECT * FROM sport_hub_event");
+            $events = array();
+    
+            while ($row = mysqli_fetch_assoc($result)) {
+    
+                // Tạo đối tượng sự kiện và thêm vào mảng
+                $event = new event(
+                    $row["event_id"],
+                    $row["event_name"],
+                    $row["event_start_date"],
+                    $row["event_end_date"],
+                    $row["event_description"],
+                    $row["event_image"],
+                    $row["event_preferential_rate"],
+                    $row["event_preferential_item"],
+                    $row["event_state"],
+                    $row["created_on_date"],
+                    $row["last_modified_date"],
+                    $row["account_id"]
+                );
+                array_push($events, $event);
+            }
+    
+            // Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+    
+            return $events;
+        }
     }
 ?>

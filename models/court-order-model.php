@@ -270,5 +270,87 @@
 
             return $message;
         }
+
+        // 11. Hàm đếm số lượng đơn đặt sân theo ID khách hàng và trạng thái đơn hàng.
+        public function count_court_order_by_customer_and_state($customer_id, $order_state)
+        {
+            $link = "";
+            MakeConnection($link);
+            if ($order_state == "Tất cả") {
+                $query = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_order WHERE customer_account_id = '$customer_id'");
+            } else {
+                $query = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_order WHERE customer_account_id = '$customer_id' AND order_state = '$order_state'");
+            }
+
+            $result = mysqli_fetch_row($query);
+
+            ReleaseMemory($link, $query);
+
+            return $result[0];
+        }
+
+        // 12. Hàm lấy tổng số đơn đặt sân đã hoàn thành theo ID lịch sân và trả về một mảng chứa dữ liệu với số lượng đơn đặt sân hoàn thành của mỗi sân.
+        public function getTotalCompletedOrdersByScheduleId()
+        {
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT court.court_id, COUNT(court_order_id) AS total_completed_orders 
+                FROM court 
+                LEFT JOIN court_schedule ON court.court_id = court_schedule.court_id
+                LEFT JOIN court_order ON court_schedule.court_schedule_id = court_order.court_schedule_id AND court_order.order_state = 'Hoàn thành'
+                GROUP BY court.court_id
+                ORDER BY total_completed_orders DESC, court.court_id ASC;");
+            $data = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = $row;
+            }
+
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
+
+        // 13. Hàm lấy thông tin đơn đặt sân của một khách hàng dựa trên ID khách hàng và trạng thái đơn hàng và trả về một mảng chứa các đối tượng đơn đặt sân.
+        public function view_court_order_by_customer_id_and_state($customer_account_id, $order_state)
+        {
+            $link = "";
+            MakeConnection($link);
+
+            if ($order_state == "Tất cả") {
+                $result = ExecuteDataQuery($link, "SELECT * FROM court_order WHERE customer_account_id = '$customer_account_id'");
+            } else {
+                $result = ExecuteDataQuery($link, "SELECT * FROM court_order WHERE customer_account_id = '$customer_account_id' AND order_state = '$order_state'");
+            }
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court_order = new court_order(
+                    $rows["court_order_id"],
+                    $rows["court_schedule_id"],
+                    $rows["event_id"],
+                    $rows["total_service_amount"],
+                    $rows["total_rental_amount"],
+                    $rows["total_discount_amount"],
+                    $rows["order_total_payment"],
+                    $rows["order_total_deposit"],
+                    $rows["payment_method"],
+                    $rows["order_state"],
+                    $rows["customer_account_id"],
+                    $rows["admin_account_id"],
+                    $rows["order_cancel_reason"],
+                    $rows["order_cancel_party_account_id"],
+                    $rows["ordered_on_date"],
+                    $rows["canceled_on_date"],
+                    $rows["refunded_on_date"]
+                );
+                array_push($data, $court_order);
+            }
+
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

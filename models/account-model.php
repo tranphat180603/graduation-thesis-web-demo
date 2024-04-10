@@ -78,7 +78,7 @@
             return $row;
         }
 
-        //5. Hàm lấy tên khách hàng từ tên đăng nhập của tài khoản 
+        //3. Hàm lấy tên tài khoản từ tên đăng nhập của tài khoản 
         public function get_account_name($username) {
             //Tạo kết nối đến database
             $link = "";

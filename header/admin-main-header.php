@@ -366,7 +366,7 @@
             padding-bottom: 10px;
             list-style: none;
             display: none;
-            width: 247px;
+            width: 90%;
             top: 40px;
             left: 0px;
             border-radius: 0px 0px 6px 6px;
@@ -853,57 +853,58 @@
     <script>
         // Lọc theo nhiều loại sân checkbox
         function updateSelectedCourts() {
-        var checkboxes = document.querySelectorAll(
-            '.court-type-name input[type="checkbox"]'
-        );
-        var selectedCourtNames = [];
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-            var label = checkbox.nextElementSibling.textContent;
-            selectedCourtNames.push(label);
-            }
-        });
-        var courtsDiv = document.getElementById("selectedCourts");
-        courtsDiv.textContent =
-            selectedCourtNames.length > 0
-            ? selectedCourtNames.join(", ")
-            : "Tất cả loại sân";
+            var checkboxes = document.querySelectorAll(
+                '.court-type-name input[type="checkbox"]'
+            );
+            var selectedCourtNames = [];
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                var label = checkbox.nextElementSibling.textContent;
+                selectedCourtNames.push(label);
+                }
+            });
+            var courtsDiv = document.getElementById("selectedCourts");
+            courtsDiv.textContent =
+                selectedCourtNames.length > 0
+                ? selectedCourtNames.join(", ")
+                : "Tất cả loại sân";
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-        var urlParams = new URLSearchParams(window.location.search);
-        var courtTypeIds = urlParams.get("court_type_id")
-            ? urlParams.get("court_type_id").split(",")
-            : [];
-        var checkboxes = document.querySelectorAll(
-            '.court-type-name input[type="checkbox"]'
-        );
-        checkboxes.forEach(function (checkbox) {
-            if (courtTypeIds.includes(checkbox.value)) {
-            checkbox.checked = true;
-            }
-        });
-        updateSelectedCourts();
+            var urlParams = new URLSearchParams(window.location.search);
+            var courtTypeIds = urlParams.get("court_type_id")
+                ? urlParams.get("court_type_id").split(",")
+                : [];
+            var checkboxes = document.querySelectorAll(
+                '.court-type-name input[type="checkbox"]'
+            );
+            checkboxes.forEach(function (checkbox) {
+                if (courtTypeIds.includes(checkbox.value)) {
+                checkbox.checked = true;
+                }
+            });
+            updateSelectedCourts();
         });
 
         // Nút apply
         function applyFilters() {
-        var checkboxes = document.querySelectorAll(
-            '.court-type-name input[type="checkbox"]'
-        );
-        var selectedCourtTypes = [];
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-            selectedCourtTypes.push(checkbox.value);
+            var checkboxes = document.querySelectorAll(
+                '.court-type-name input[type="checkbox"]'
+            );
+            var selectedCourtTypes = [];
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                selectedCourtTypes.push(checkbox.value);
+                }
+            });
+            if (selectedCourtTypes.length > 0) {
+                var url = "?court_type_id=" + selectedCourtTypes.join(",");
+                window.location.href = url;
+            } else {
+                alert("Please select at least one court type.");
             }
-        });
-        if (selectedCourtTypes.length > 0) {
-            var url = "?court_type_id=" + selectedCourtTypes.join(",");
-            window.location.href = url;
-        } else {
-            alert("Please select at least one court type.");
         }
-        }
+
         //Hàm Dropdown
         $("#courtType_checkboxList > li").hover(
         function () {
@@ -913,47 +914,50 @@
             $(".dropdown_list", this).slideUp();
         }
         );
+
         //Reset mục chọn trong checkbox
         function resetFilters() {
-        var checkboxes = document.querySelectorAll(
-            '.court-type-name input[type="checkbox"]'
-        );
-        checkboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-        });
+            var checkboxes = document.querySelectorAll(
+                '.court-type-name input[type="checkbox"]'
+            );
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
 
-        var courtsDiv = document.getElementById("selectedCourts");
-        courtsDiv.textContent = "Tất cả loại sân";
+            var courtsDiv = document.getElementById("selectedCourts");
+            courtsDiv.textContent = "Tất cả loại sân";
 
-        // Xóa tham số court_type_id khỏi URL
-        var url = new URL(window.location.href);
-        url.searchParams.delete("court_type_id");
-        // Thay đổi URL
-        window.history.replaceState({}, "", url);
+            // Xóa tham số court_type_id khỏi URL
+            var url = new URL(window.location.href);
+            url.searchParams.delete("court_type_id");
+            // Thay đổi URL
+            window.history.replaceState({}, "", url);
+
+            window.location.reload();
         }
 
         //Tìm kiếm thẻ sân
 
         document.addEventListener("DOMContentLoaded", function () {
-        var searchField = document.getElementById("searchInput");
-        var courtCards = document.querySelectorAll(".court-card");
+            var searchField = document.getElementById("searchInput");
+            var courtCards = document.querySelectorAll(".court-card");
 
-        // Hàm lọc các thẻ court-card dựa trên từ khóa tìm kiếm
-        function filterCourts(searchTerm) {
-            searchTerm = searchTerm.toLowerCase();
-            courtCards.forEach(function (card) {
-            var courtName = card.querySelector(".c-name").textContent.toLowerCase();
-            if (courtName.includes(searchTerm)) {
-                card.style.display = ""; // Hiển thị thẻ nếu tên sân chứa từ khóa tìm kiếm
-            } else {
-                card.style.display = "none"; // Ẩn thẻ nếu không chứa từ khóa tìm kiếm
+            // Hàm lọc các thẻ court-card dựa trên từ khóa tìm kiếm
+            function filterCourts(searchTerm) {
+                searchTerm = searchTerm.toLowerCase();
+                courtCards.forEach(function (card) {
+                var courtName = card.querySelector(".c-name").textContent.toLowerCase();
+                if (courtName.includes(searchTerm)) {
+                    card.style.display = ""; // Hiển thị thẻ nếu tên sân chứa từ khóa tìm kiếm
+                } else {
+                    card.style.display = "none"; // Ẩn thẻ nếu không chứa từ khóa tìm kiếm
+                }
+                });
             }
-            });
-        }
 
-        // Lắng nghe sự kiện nhập vào trường tìm kiếm
-        searchField.addEventListener("input", function () {
-            filterCourts(searchField.value); // Gọi hàm lọc kết quả tìm kiếm
-        });
+            // Lắng nghe sự kiện nhập vào trường tìm kiếm
+            searchField.addEventListener("input", function () {
+                filterCourts(searchField.value); // Gọi hàm lọc kết quả tìm kiếm
+            });
         });
     </script>

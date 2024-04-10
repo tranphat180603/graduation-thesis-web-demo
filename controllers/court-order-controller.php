@@ -164,6 +164,45 @@
         public function update_court_order_per_12($court_order_id, $currentDate) {
             return $result = $this->court_order->update_court_order_per_12($court_order_id, $currentDate);
         } 
+
+        public function getTotalCompletedOrdersByScheduleId()
+        {
+            return $this->court_order->getTotalCompletedOrdersByScheduleId();
+        }
+
+        public function count_court_order_by_customer_and_state($customer_account_id, $order_state) {
+            return $result = $this->court_order->count_court_order_by_customer_and_state($customer_account_id, $order_state);
+        }
+        
+        public function view_court_order_by_customer_id_and_state($customer_account_id)
+        {
+            // Get the data of the variable $_GET['court_order_state_id']
+            $order_state_id = isset($_GET['court_order_state_id']) ? $_GET['court_order_state_id'] : '0'; // Mặc định court_order_state_id = '0'
+    
+            switch ($order_state_id) {
+                case 0:
+                    $order_state = "Tất cả";
+                    break;
+                case 1:
+                    $order_state = "Chờ thanh toán";
+                    break;
+                case 2:
+                    $order_state = "Chờ nhận sân";
+                    break;
+                case 3:
+                    $order_state = "Hoàn thành";
+                    break;
+                case 4:
+                    $order_state = "Đã hủy";
+                    break;
+                case 5:
+                    $order_state = "Chờ hoàn tiền";
+                    break;
+            }
+    
+            // Return the result of the court order view by customer id and order state
+            return $result = $this->court_order->view_court_order_by_customer_id_and_state($customer_account_id, $order_state);
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

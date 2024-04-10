@@ -39,5 +39,43 @@
             $this->court_price_frame = $court_price_frame;
             $this->court_id = $court_id;
         }
+
+        // 1. Hàm lấy giá sân thấp nhất theo từng sân và trả về một mảng chứa court_id và giá sân thấp nhất.
+        public function getMinPrice()
+        {
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT court_id, MIN(LEAST(cp.court_weekday_price, cp.court_weekend_price)) AS min_price
+                FROM court_price cp
+                GROUP BY court_id;");
+
+            $minPrices = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $minPrices[$row['court_id']] = $row['min_price'];
+            }
+
+            ReleaseMemory($link, $result);
+
+            return $minPrices;
+        }
+
+        //2. Hàm lấy giá sân cao nhất theo từng sân và trả về một mảng chứa court_id và giá sân cao nhất.
+        public function getMaxPrice()
+        {
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT court_id, MAX(GREATEST(cp.court_weekday_price, cp.court_weekend_price)) AS max_price
+                FROM court_price cp
+                GROUP BY court_id;");
+
+            $maxPrices = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $maxPrices[$row['court_id']] = $row['max_price'];
+            }
+
+            ReleaseMemory($link, $result);
+
+            return $maxPrices;
+        }
     }
 ?>

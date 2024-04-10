@@ -12,5 +12,15 @@
         public function get_first_court_image($court_id) {
             return $result = $this->court_image->get_first_court_image($court_id);
         }
+
+        public function view_all_court_images()
+        {
+            return $result = $this->court_image->view_all_court_images();
+        }
+        
+        public function getGroupConcatImages()
+        {
+            return $result = $this->court_image->getGroupConcatImages();
+        }
     }
 ?>

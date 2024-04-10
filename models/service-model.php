@@ -43,7 +43,7 @@
             $this->account_id = $account_id;
         }
 
-        //1. Hàm lấy dữ liệu tất cả  dịch vụ
+        //1. Hàm lấy dữ liệu tất cả dịch vụ
         public function view_all_service() {
             //Tạo kết nối đến database
             $link = "";
@@ -61,6 +61,37 @@
             //Giải phóng bộ nhớ
             ReleaseMemory($link, $result);
 
+            return $data;
+        }
+
+        public function getAllServices()
+        {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+    
+            $result = ExecuteDataQuery($link, "SELECT * FROM service");
+            $data = array();
+    
+            while ($row = mysqli_fetch_assoc($result)) {
+                $service = new Service(
+                    $row['service_id'],
+                    $row['service_name'],
+                    $row['service_description'],
+                    $row['service_price'],
+                    $row['service_unit'],
+                    $row['service_state'],
+                    $row['created_on_date'],
+                    $row['last_modified_date'],
+                    $row['court_type_id'],
+                    $row['account_id']
+                );
+                array_push($data, $service);
+            }
+    
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+    
             return $data;
         }
     }

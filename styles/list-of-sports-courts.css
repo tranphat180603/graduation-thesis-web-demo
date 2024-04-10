@@ -1,17 +1,360 @@
-/* Định dạng các thẻ chung cho cả giao diện */
-:root {
-  font-family: "Be Vietnam Pro";
+.home-page {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  align-items: flex-start;
+  gap: 1px 0;
+  letter-spacing: normal;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#load-more-button,
+.load-more-wrapped,
+.categories {
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0px;
+.categories {
+  align-self: stretch;
+  width: 100%;
+  background-color: var(--color-whitesmoke);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px 0;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-7xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-be-vietnam-pro);
+  padding: 40px 70px;
 }
 
-a:link,
-a:visited,
-a:focus {
+.contact-info {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 50px;
+  max-width: 100%;
+
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.court-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  gap: var(--gap-xl);
+  max-width: 1300px;
+}
+
+.court-list,
+#load-more-button,
+.load-more {
+  justify-content: center;
+}
+
+.court-card,
+.court-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.court-card {
+  width: 400px;
+  border-radius: var(--br-5xs);
+  background-color: var(--background-primary);
+  box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.court-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.court-card:hover .court-image {
+  transform: scale(1.1);
+}
+.court-image-wrapper {
+  align-self: stretch;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.court-image {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.court-image {
+  transition: transform 0.3s ease-in-out;
+}
+
+.court-detail-container {
+  align-self: stretch;
+  padding: var(--padding-base);
+  gap: 12px 0;
+}
+
+.court-info {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-0);
+  row-gap: 20px;
+}
+.court-name-price {
+  width: 304px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-3xs) 0 0;
+  box-sizing: border-box;
+  gap: 2px 0;
+}
+
+.c-name {
+  align-self: stretch;
+  position: relative;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--Text-Primary, #141716);
+  font-size: 20px;
+}
+
+.c-price {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.span6 {
+  text-decoration: underline;
+}
+
+.rating-court:hover {
+  background-color: var(--color-gainsboro-100);
+}
+.rating-court {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-5xs) var(--padding-5xs) var(--padding-5xs)
+    var(--padding-xs);
+  background-color: var(--background-primary);
+  border-radius: var(--br-5xs);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 4px;
+}
+
+.value {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  font-weight: 500;
+  font-family: var(--font-be-vietnam-pro);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.rating-court-img {
+  height: 16px;
+  width: 16px;
+  position: relative;
+}
+.court-type {
+  width: 24px;
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.load-more-wrapped {
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 var(--padding-xl);
+  max-width: 1300px;
+}
+
+#load-more-button:hover {
+  background-color: #3694c7;
+}
+#load-more-button {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-mini);
+  background-color: var(--color-deepskyblue);
+  width: 198px;
+  border-radius: var(--br-5xs);
+  flex-direction: row;
+  white-space: nowrap;
+  width: 158px;
+  position: relative;
+  font-size: var(--font-size-xl);
+  display: flex;
+  font-family: var(--font-be-vietnam-pro);
+  color: var(--color-white);
+  text-align: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.load-more {
+  width: 158px;
+  position: relative;
+  font-size: var(--font-size-xl);
+  display: flex;
+  font-family: var(--font-be-vietnam-pro);
+  color: var(--color-white);
+  text-align: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 1300px) {
+  .court-list,
+  .load-more-wrapped {
+    max-width: 100%;
+  }
+
+  .categories {
+    /* padding-top: var(--padding-7xl);
+    padding-bottom: var(--padding-7xl); */
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .categories {
+    gap: 30px 0;
+    /* padding-top: var(--padding-xl);
+    padding-bottom: var(--padding-xl); */
+    box-sizing: border-box;
+    padding: 30px 20px;
+  }
+  .court-card {
+    width: 322px;
+    border-radius: var(--br-5xs);
+    background-color: var(--background-primary);
+    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 300px;
+    max-width: 400px;
+  }
+  .contact-info {
+    gap: 30px 46px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .court-card {
+    max-width: 100%;
+  }
+  .c-name {
+    font-size: var(--title-medium-size);
+    line-height: 22px;
+  }
+}
+
+body {
+  margin: 0;
+}
+:root {
+  /* fonts */
+  font-family: "Be Vietnam Pro";
+  --font-be-vietnam-pro: "Be Vietnam Pro";
+  --title-medium: Roboto;
+  box-sizing: border-box;
+
+  /* font sizes */
+  --font-size-sm: 14px;
+  --title-medium-size: 16px;
+  --font-size-xl: 20px;
+  --font-size-7xl: 26px;
+  --font-size-2xl: 21px;
+
+  /* Colors */
+  --color-white: #fff;
+  --background-primary: #fafbfc;
+  --text-secondary: #888;
+  --color-gray-100: #171c1a;
+  --text-primary: #141716;
+  --color-gray-200: #050000;
+  --color-gray-300: rgba(0, 0, 0, 0.5);
+  --color-darkgray-100: rgba(178, 169, 169, 0.8);
+  --color-silver-100: #c4c4c4;
+  --text-third: #c2c2c2;
+  --color-deepskyblue: #4eacdf;
+  --color-whitesmoke: #f1f1f1;
+  --color-gainsboro-100: #e0e0e3;
+  --color-gainsboro-200: #dce0e3;
+  --color-gainsboro-300: #d5dfe7;
+  --color-darkslategray-100: rgba(51, 51, 51, 0.5);
+  --color-lightsteelblue: rgba(156, 184, 201, 0.2);
+
+  /* Gaps */
+  --gap-29xl: 48px;
+  --gap-base: 16px;
+  --gap-xl: 20px;
+  --gap-5xl: 24px;
+  --gap-0: 0px;
+  --gap-11xl: 30px;
+  --gap-xs: 12px;
+  --gap-11xs: 2px;
+
+  /* Paddings */
+  --padding-21xl: 40px;
+  --padding-7xl: 26px;
+  --padding-xl: 20px;
+  --padding-mini: 15px;
+  --padding-base: 16px;
+  --padding-5xs: 8px;
+  --padding-xs: 12px;
+  --padding-3xs: 10px;
+  --padding-4xs-5: 8.5px;
+  --padding-8xs: 5px;
+  --padding-xs-5: 11.5px;
+  --padding-6xs: 7px;
+  --padding-51xl: 70px;
+  --padding-16xl: 35px;
+
+  /* Border radiuses */
+  --br-5xs: 8px;
+  --br-9xs: 4px;
+  --br-11xl: 30px;
+}
+
+a {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
@@ -25,26 +368,4 @@ a:focus {
 
 p {
   margin: 0px;
-}
-
-/*---------------------------------- HEADER -----------------------------------*/
-@media screen and (max-width: 500px) {
-  .sign-up-header {
-    padding: 40px 20px;
-  }
-}
-
-/*----------------------------------- BODY -----------------------------------*/
-
-/*----------------------------------- FOOTER -----------------------------------*/
-/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
-@media screen and (max-width: 500px) {
-  .footer {
-    display: flex;
-    padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #888;
-    background: #fafbfc;
-  }
 }

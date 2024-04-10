@@ -222,6 +222,11 @@
         return false;
       } 
     }
+
+    public function getByCourtIdAndDate($court_id, $date) {
+      $result = $this->court_schedule->getByCourtIdAndDate($court_id, $date);
+      return $result;
+    }
   }
 
   function timeDistance($lowerTime, $higherTime) {

@@ -36,5 +36,48 @@
 
             return $row;
         }
+
+        // 2. Hàm lấy tất cả các ảnh của các sân từ cơ sở dữ liệu.
+        public function view_all_court_images()
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            // Kết nối và lấy dữ liệu tất cả các ảnh của các sân từ database
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_image");
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court_image = new court_image($rows["court_image_id"], $rows["court_image"], $rows["court_id"]);
+                array_push($data, $court_image);
+            }
+
+            // Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
+        
+        // 3. Hàm lấy tất cả các ảnh của các sân và ghép chúng lại thành một chuỗi sử dụng GROUP_CONCAT.
+        public function getGroupConcatImages()
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            // Kết nối và lấy dữ liệu ảnh của tất cả sân và sử dụng GROUP_CONCAT để ghép chúng lại thành một chuỗi
+            $result = ExecuteDataQuery($link, "SELECT court_id, GROUP_CONCAT(court_image) AS court_images FROM court_image GROUP BY court_id");
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court_image = new court_image(null, $rows["court_images"], $rows["court_id"]); // Truyền null cho court_image_id
+                array_push($data, $court_image);
+            }
+            // Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
     }
 ?>

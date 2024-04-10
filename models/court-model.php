@@ -72,5 +72,61 @@
 
             return $row;
         }
+
+        // 3. Hàm lấy dữ liệu sân theo loại sân từ cơ sở dữ liệu và trả về một mảng chứa các đối tượng sân.
+        public function GetcourtByType($courtType)
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            // Thực hiện truy vấn dựa vào courtType
+            if ($courtType == "0") {
+                $result = ExecuteDataQuery($link, "SELECT * FROM court");
+            } else {
+                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id = '$courtType'");
+            }
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $court = new court($rows["court_id"], $rows["court_name"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_type_id"], $rows["account_id"]);
+                array_push($data, $court);
+            }
+
+            // Giải phóng bộ nhớ và trả về dữ liệu
+            ReleaseMemory($link, $result);
+            return $data;
+        }
+ 
+        // 4. Hàm lấy dữ liệu sân dựa trên ID của sân từ cơ sở dữ liệu và trả về một đối tượng sân.
+        public function view_court_by_id($courtId)
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            // Thực hiện truy vấn dựa vào courtId
+            $query = "SELECT * FROM court WHERE court_id = '$courtId'";
+            $result = ExecuteDataQuery($link, $query);
+
+            $court = null;
+
+            // Kiểm tra xem có dữ liệu trả về không
+            if ($row = mysqli_fetch_assoc($result)) {
+                $court = new court(
+                    $row["court_id"],
+                    $row["court_name"],
+                    $row["created_on_date"],
+                    $row["last_modified_date"],
+                    $row["court_type_id"],
+                    $row["account_id"]
+                );
+            }
+
+            // Giải phóng bộ nhớ và trả về đối tượng sân (hoặc null nếu không tìm thấy)
+            ReleaseMemory($link, $result);
+            return $court;
+        }
     }
 ?>

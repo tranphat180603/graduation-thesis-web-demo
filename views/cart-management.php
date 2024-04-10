@@ -745,7 +745,7 @@
             $result = false;
             $result2 = false;
 
-            if($service_id_and_price == "0" || $service_id_and_price == "-1") {
+            if($service_id_and_price == "0") {
               echo "
                 <script>
                   var overlayFrame = document.getElementById('overlay-wrapper');
@@ -881,6 +881,33 @@
                     </script>
                   ";
                 }
+              }
+            }
+          } else {
+            if(isset($_POST['service_id_and_price']) && isset($_POST['service_quantity'])) {
+              $service_quantity = $_POST['service_quantity'];
+              $service_id_and_price = $_POST['service_id_and_price'];
+
+              if($service_id_and_price == "0" || $service_id_and_price == "-1") {
+                echo "
+                  <script>
+                    var overlayFrame = document.getElementById('overlay-wrapper');
+                    overlayFrame.style.display = 'block';
+                  </script>
+                ";
+                include "./notification/warning.php"; 
+                echo "
+                  <script>
+                    var warningQuestion = document.getElementById('warning-question');
+                    warningQuestion.textContent = 'Bạn đã thực hiện thao tác thêm chi tiết giỏ hàng dịch vụ!';
+                          
+                    var warningExplanation = document.getElementById('warning-explanation');
+                    warningExplanation.textContent = 'Chúng tôi rất tiếc khi thông báo rằng chi tiết giỏ hàng dịch vụ của bạn đã không được thêm thành công bởi vì bạn chưa chọn chi tiết giỏ hàng để áp dụng.';
+          
+                    var btn_ok = document.getElementById('war-act-ok');
+                    btn_ok.href = './cart-management.php';
+                  </script>
+                ";
               }
             }
           }

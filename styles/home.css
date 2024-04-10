@@ -883,11 +883,18 @@ body {
   .move-left {
     left: 0;
     border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
   }
 
   .move-right {
     right: 0;
     border-radius: 4px 0px 0px 4px;
+    cursor: pointer;
+  }
+
+  .move-right:hover,
+  .move-left:hover {
+    cursor: pointer;
   }
 
   .event-list {

@@ -79,5 +79,59 @@
 
             return $data;
         }
+
+        // Hàm lấy ra thông tin của court image (51 dòng)
+        public function getAllCourtImageInformations() {
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_image;");
+            $resultToUse = array();
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $courtImage = new court_image(
+                    $rows["court_image_id"],
+                    $rows["court_image"],
+                    $rows["court_id"]
+                );
+                array_push($resultToUse, $courtImage);
+            }
+            ReleaseMemory($link, $result);
+            return $resultToUse;
+        }
+
+        // Hàm lấy thông tin tất cả hình ảnh sân theo court id
+        public function getCourtImageByCourtID($court_id){
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_image WHERE court_id = ".$court_id.";");
+            $resultToUse = array();
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $courtImage = new court_image(
+                    $rows["court_image_id"],
+                    $rows["court_image"],
+                    $rows["court_id"]
+                );
+                array_push($resultToUse, $courtImage);
+            }
+            ReleaseMemory($link, $result);
+            return $resultToUse;
+        }
+        
+        // Hàm lấy thông tin tất cả hình ảnh sân theo court image id
+        public function getCourtImageByID($court_image_id){
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_image WHERE court_image_id = ".$court_image_id.";");
+            $resultToUse = array();
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $courtImage = new court_image(
+                    $rows["court_image_id"],
+                    $rows["court_image"],
+                    $rows["court_id"]
+                );
+                array_push($resultToUse, $courtImage);
+            }
+            ReleaseMemory($link, $result);
+            return $resultToUse;
+        }
     }
 ?>

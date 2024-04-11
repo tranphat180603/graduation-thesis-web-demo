@@ -27,11 +27,41 @@ p {
   margin: 0px;
 }
 
-/*---------------------------------- HEADER -----------------------------------*/
-@media screen and (max-width: 500px) {
-  .sign-up-header {
-    padding: 40px 20px;
-  }
+/* Định dạng cho thanh cuộn ngang và dọc */
+/* width */
+#service-data-table::-webkit-scrollbar,
+.form-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* height */
+#service-body-menu ul::-webkit-scrollbar,
+#service-data-table::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+#service-body-menu ul::-webkit-scrollbar-track,
+#service-data-table::-webkit-scrollbar-track,
+.form-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Handle */
+#service-body-menu ul::-webkit-scrollbar-thumb,
+#service-data-table::-webkit-scrollbar-thumb,
+.form-body::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+#service-body-menu ul::-webkit-scrollbar-thumb:hover,
+#service-data-table::-webkit-scrollbar-thumb:hover,
+.form-body::-webkit-scrollbar-thumb:hover {
+  background: #9c9c9c;
+  border-radius: 4px;
 }
 
 /*----------------------------------- BODY -----------------------------------*/
@@ -57,6 +87,7 @@ p {
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .service-top {
@@ -75,6 +106,12 @@ p {
   line-height: 28px;
 }
 
+.service-top a {
+  height: 28px;
+}
+
+/* --------------------------------------------------------------------- */
+
 /* Định dạng ô nhập liệu tìm kiếm */
 .search {
   display: flex;
@@ -84,7 +121,7 @@ p {
   align-self: stretch;
   border-radius: 8px;
   border: 1px solid #eaeaea;
-  background: #fafbfc;
+  background-color: #fafbfc;
 }
 
 .search img:hover {
@@ -113,6 +150,7 @@ p {
   line-height: 20px;
   border: none;
   outline: none;
+  background-color: #fafbfc;
 }
 
 #search-input::placeholder,
@@ -136,18 +174,649 @@ p {
 }
 
 /* Định dạng thanh điều hướng */
+#service-body-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  row-gap: 15px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
 
-/* Định dạng bảng dữ liệu */
+#service-body-menu ul {
+  display: flex;
+  align-items: flex-start;
+  max-width: 900px;
+  overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
+  margin: 0px;
+  padding: 0px;
+  align-self: stretch;
+  gap: 36px;
+  white-space: nowrap;
+  padding-bottom: 8px;
+}
 
-/*----------------------------------- FOOTER -----------------------------------*/
+.li-court-type {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 5px;
+}
+
+.li-court-type:hover a {
+  color: #a1c0dd;
+}
+
+.li-court-type a {
+  color: #c2c2c2;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* Định dạng 3 nút thao tác */
+#action {
+  display: flex;
+  width: 275px;
+  height: 39px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#action p {
+  color: #fafbfc;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#insert {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #f0bd0a;
+}
+
+#insert:hover {
+  background-color: #bc960c;
+}
+
+#update {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #27ae60;
+}
+
+#update:hover {
+  background-color: #1d7b44;
+}
+
+#delete {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #d00000;
+}
+
+#delete:hover {
+  background-color: #a10404;
+}
+
+/* -----------------------------Định dạng bảng dữ liệu---------------------------------- */
+#service-data-table {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  margin: 0px;
+  padding: 0px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  overflow: scroll;
+  min-height: 450px;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 0.9rem;
+  text-align: left;
+}
+
+thead tr {
+  border-radius: 4px 4px 0px 0px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  text-transform: capitalize;
+  background: #d1d1d1;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr:hover {
+  background-color: rgba(199, 194, 194, 0.4) !important;
+}
+
+tbody td {
+  max-width: 200px;
+  overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
+  text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
+  white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
+}
+
+.btn-view a {
+  max-width: 70px;
+  display: flex;
+  padding: 6px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  border: 2px solid #4eacdf;
+  background: #fafbfc;
+}
+
+.btn-view p {
+  color: #4eacdf;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* Định dạng search data */
+tbody tr {
+  --delay: 0.1s;
+  transition: 0.5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr td,
+tbody tr td input[type="checkbox"],
+tbody tr td p,
+tbody tr td a {
+  transition: 0.2s ease-in-out;
+}
+
+@keyframes slideOutRight {
+  0% {
+  }
+  100% {
+    transition: 0.2s ease-in-out 0.5s;
+    display: none;
+  }
+}
+
+tbody tr.hide td {
+  animation: slideOutRight 1s forwards;
+}
+
+/* *********************** */
+
+thead th span.icon-arrow {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1.4px solid transparent;
+
+  text-align: center;
+  font-size: 1rem;
+
+  margin-left: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow {
+  border: 1.4px solid #007ebd;
+}
+
+thead th:hover {
+  color: #007ebd;
+}
+
+thead th.active span.icon-arrow {
+  background-color: #007ebd;
+  color: #fff;
+}
+
+thead th.asc span.icon-arrow {
+  transform: rotate(180deg);
+}
+
+thead th.active,
+tbody td.active {
+  color: #007ebd;
+}
+
+/* Định dạng checkbox */
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
-  .footer {
-    display: flex;
-    padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #888;
-    background: #fafbfc;
+  .serrvice-body {
+    padding: 30px 20px;
+  }
+
+  .service-body-content {
+    padding: 24px 14px;
+  }
+}
+
+/*----------------------------------- ĐỊNH DANG FORM -----------------------------------*/
+body {
+  position: relative;
+}
+
+#overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #868686;
+  opacity: 0.55;
+  z-index: 10;
+  display: none;
+}
+
+#form-view,
+#form-edit,
+#form-insert {
+  display: flex;
+  width: 597px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+    0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  position: absolute;
+  top: 50px;
+  right: calc(100% / 2 - 300px);
+  z-index: 10;
+}
+
+#form-view,
+#form-edit,
+#form-insert {
+  display: none;
+}
+
+/* FORM HEADER */
+.form-header {
+  display: flex;
+  padding: 16px 20px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px 6px 0px 0px;
+  background: #cfeaf6;
+  box-shadow: 0px -1px 0px 0px #f0f0f0 inset;
+}
+
+.form-header p {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.form-header img:hover {
+  cursor: pointer;
+}
+/* FORM BODY */
+.form-body {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-height: 450px;
+  margin: 12px;
+  margin-right: 20px;
+  overflow-y: scroll;
+  gap: 5px;
+}
+
+.form-body-content {
+  display: flex;
+  padding: 12px;
+  padding: 12px 12px 24px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.form-body .form-body-title {
+  color: rgba(0, 0, 0, 0.85);
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.form-row textarea {
+  width: 100%;
+  border: 0;
+  overflow: hidden;
+}
+
+.form-row p {
+  display: flex;
+  max-width: 130px;
+  padding-right: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.form-row .input {
+  display: flex;
+  color: #c0c0c0;
+  min-width: 150px;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+
+  align-self: stretch;
+  justify-content: space-between;
+  border-radius: 4px;
+  border: 0.75px solid #c0c0c0;
+  outline: auto;
+  background: #fff;
+  padding-right: 16px;
+  flex-wrap: wrap;
+}
+
+.form-row .input:hover,
+.form-row .input:focus,
+.form-row .input:focus-within {
+  outline: 1px solid #285d8f;
+}
+
+.form-row .input input[type="text"] {
+  flex: 1 0 0;
+  font-size: 14px;
+  font-style: normal;
+  font-family: "Be Vietnam Pro";
+  font-weight: 400;
+  line-height: 22px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+
+.form-row .input input[type="text"]::placeholder {
+  color: #c0c0c0;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+#form-view .form-row .input {
+  pointer-events: none;
+}
+
+.form-row select {
+  display: flex;
+  flex: 1 0 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  align-self: stretch;
+  border-radius: 4px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  overflow-y: scroll;
+  max-height: 30px;
+  font-family: "Be Vietnam Pro";
+}
+
+.form-row select option {
+  background-color: #edf5fc;
+}
+
+.form-row input[type="date"] {
+  width: 100%;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  border: none;
+  outline: none;
+}
+
+/* FORM FOOTER */
+.form-footer {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 0px 0px 6px 6px;
+  background: #cfeaf6;
+  box-shadow: 0px 1px 0px 0px #f0f0f0 inset;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-group .form-button {
+  display: flex;
+  padding: 4px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+}
+
+.button-group p {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.button-group #form-update {
+  border: 1px solid #026d4d;
+  background: #026d4d;
+}
+
+.button-group #form-update:hover {
+  border: 1px solid #0f976e;
+  background: #0f976e;
+}
+
+.button-group #form-delete,
+.button-group #form-exit {
+  border: 1px solid #d00000;
+  background: #d00000;
+}
+
+.button-group #form-delete:hover,
+.button-group #form-exit:hover {
+  border: 1px solid #ef1f1f;
+  background: #ef1f1f;
+}
+
+.button-group input[type="submit"] {
+  position: relative;
+  width: 82px;
+  height: 32px;
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+
+  color: #fff;
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.button-group input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: rgb(67, 162, 251);
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 700px */
+@media screen and (max-width: 900px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 597px;
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 650px */
+@media screen and (max-width: 650px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 450px;
+    top: 30px;
+    right: calc(100% / 2 - 225px);
+  }
+}
+/* Định dạng dòng thông báo lỗi khi nhập liệu sai định dạng*/
+.warning {
+  display: flex;
+  height: 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  visibility: hidden;
+}
+
+.warning p {
+  /* display: flex; */
+  height: 16px;
+  color: #ff4141;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0px;
+  /* align-items: center; */
+  max-width: unset;
+  justify-content: unset;
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 500px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 380px;
+    top: 30px;
+    right: calc(100% / 2 - 190px);
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
+@media screen and (max-width: 400px) {
+  #form-view,
+  #form-edit,
+  #form-insert {
+    width: 320px;
+    top: 30px;
+    right: calc(100% / 2 - 160px);
+  }
+
+  .form-header p {
+    font-size: 16px;
+  }
+
+  .form-body .form-body-title {
+    font-size: 14px;
+  }
+
+  .form-row p {
+    font-size: 12px;
+  }
+
+  .form-row .input input[type="text"] {
+    font-size: 12px;
+  }
+
+  .form-row .input input[type="text"]::placeholder {
+    font-size: 12px;
+  }
+
+  .form-row select {
+    font-size: 12px;
+  }
+
+  .form-row input[type="date"] {
+    font-size: 12px;
   }
 }

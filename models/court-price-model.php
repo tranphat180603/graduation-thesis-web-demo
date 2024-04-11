@@ -77,5 +77,62 @@
 
             return $maxPrices;
         }
+
+        // Hàm lấy ra thông tin tất cả giá sân (17 dòng thông tin)
+        public function getAllCourtPriceInformations() {
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_price;");
+            $resultToUse = array();
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $courtPrice = new court_price(
+                    $rows["court_price_id"],
+                    $rows["court_start_time"],
+                    $rows["court_end_time"],
+                    $rows["court_time_frame"],
+                    $rows["court_weekday_price"],
+                    $rows["court_weekend_price"],
+                    $rows["court_price_frame"],
+                    $rows["court_id"]
+                );
+                array_push($resultToUse, $courtPrice);
+            }
+            ReleaseMemory($link, $result);
+            return $resultToUse;
+        }
+       
+        // Hàm lấy thông tin giá sân theo court_id
+        public function getCourtPriceByCourtID($court_id){
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_price WHERE court_id = ".$court_id.";");
+            $resultToUse = array();
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $courtPrice = new court_price(
+                    $rows["court_price_id"],
+                    $rows["court_start_time"],
+                    $rows["court_end_time"],
+                    $rows["court_time_frame"],
+                    $rows["court_weekday_price"],
+                    $rows["court_weekend_price"],
+                    $rows["court_price_frame"],
+                    $rows["court_id"]
+                );
+                array_push($resultToUse, $courtPrice);
+            }
+            ReleaseMemory($link, $result);
+            return $resultToUse;
+        }
+
+        // Hàm lấy thông tin giá sân theo court_price_id
+        public function getCourtPriceById($court_price_id) {
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_price WHERE court_price_id = ".$court_price_id.";");
+            $row = mysqli_fetch_row($result);
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+            return $row;
+        }
     }
 ?>

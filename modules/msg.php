@@ -35,7 +35,7 @@
             echo "
                 <script>
                     var checkImg = document.getElementById('check-email'),
-                        sign_up_phone_input = document.querySelector('.sign-up-email-input'),
+                        sign_up_email_input = document.querySelector('.sign-up-email-input'),
                         warningDiv = document.querySelector('.warning-email'),
                         next_button = document.getElementById('email-next-button'),
 

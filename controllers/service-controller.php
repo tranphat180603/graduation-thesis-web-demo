@@ -82,6 +82,11 @@
               return false;
             }               
         }
+
+        public function getAllServices() {
+            // Gọi hàm getCourtRating từ model và trả về kết quả
+            return $this->service->getAllServices();
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

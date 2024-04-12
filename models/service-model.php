@@ -84,7 +84,7 @@
                     $row['service_description'],
                     $row['service_price'],
                     $row['service_unit'],
-                    $rows["service_state"], 
+                    $row["service_state"], 
                     $row['service_state'],
                     $row['created_on_date'],
                     $row['last_modified_date'],

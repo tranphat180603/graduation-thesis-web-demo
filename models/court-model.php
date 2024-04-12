@@ -121,7 +121,7 @@
                 $court = new court(
                     $row["court_id"],
                     $row["court_name"],
-                    $rows["court_state"], 
+                    $row["court_state"], 
                     $row["created_on_date"],
                     $row["last_modified_date"],
                     $row["court_type_id"],

@@ -32,5 +32,15 @@
             // Gọi hàm addReview từ model và trả về kết quả
             return $this->review->addReview($review_star_rate, $review_content, $created_on_date , $court_schedule_id, $account_id);
         }
+
+        public function checkReviewed($court_order_id, $customer_account_id) {
+            $review_count = $this->review->checkReviewed($court_order_id, $customer_account_id);
+        
+            if ($review_count > 0) {
+                return "Đã đánh giá";
+            } else {
+                return "Chưa đánh giá";
+            }
+        }
     }
 ?>

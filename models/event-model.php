@@ -80,6 +80,30 @@
             return $data;
         }
 
+        //2. Hàm lấy dữ liệu tất cả sự kiện cho bảng sự kiện
+        public function view_all_event_in_DB() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $result = ExecuteDataQuery($link, "SELECT * FROM sport_hub_event WHERE event_state <> 'Đã xóa'");
+
+            $data = array();
+
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $event = new event($rows["event_id"], $rows["event_name"], $rows["event_start_date"], $rows["event_end_date"], 
+                                    $rows["event_description"], $rows["event_image"], $rows["event_preferential_rate"], 
+                                    $rows["event_preferential_item"], $rows["event_state"], $rows["created_on_date"], 
+                                    $rows["last_modified_date"], $rows["account_id"]);
+                array_push($data, $event);
+            }
+
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $data;
+        }
+
         public function getEventData()
         {
             // Tạo kết nối đến database
@@ -114,6 +138,146 @@
             ReleaseMemory($link, $result);
     
             return $events;
+        }
+
+        //4. Hàm hiển thị tổng số lượng sự kiện
+        public function view_all() {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+        
+        
+            //Kết nối và lấy dữ liệu tổng số lượng sự kiện từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM sport_hub_event WHERE event_state <> 'Đã xóa'");       
+            $row = mysqli_fetch_row($result);
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+            return $row;
+        }
+
+        //5. Hàm hiển thị chi tiết sự kiện (view event)
+        public function getEventById($event_id){
+            $link = "";
+            MakeConnection($link);
+            $result = ExecuteDataQuery($link, "SELECT * FROM sport_hub_event WHERE event_id = $event_id");
+            $row = mysqli_fetch_row($result);
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+            return $row;
+            }
+        
+        //6. Hàm thêm sự kiện 
+        public function insertEvent($event)
+        {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+
+            $event_name = $event->getEventName();
+            $event_description = $event->getEventDescription();
+            $event_image = $event->getEventImage();
+            $event_preferential_rate = $event->getEventPreferentialRate();
+            $event_preferential_item = $event->getEventPreferentialItem();
+            $event_state = $event->getEventState();
+            $event_start_date = $event->getEventStartDate();
+            $event_end_date = $event->getEventEndDate();
+            $created_on_date = date('Y-m-d');
+            $last_modified_date = "";
+            $account_id = 1; 
+ 
+           
+            $file_name = $event_image['name']; //Lấy ra name của hình ảnh
+            $file_tmp = $event_image['tmp_name']; //Lưu name tạm thời
+            $event_image = '../upload/event-management/'.$file_name; // truyền name ảnh vào biến court img
+            $sql = "INSERT INTO sport_hub_event (event_name, event_description, event_image, event_preferential_rate, event_preferential_item, event_state, event_start_date, event_end_date, created_on_date, last_modified_date, account_id)
+                VALUES('$event_name', '$event_description', '$event_image', '$event_preferential_rate', '$event_preferential_item','$event_state', '$event_start_date', '$event_end_date', '$created_on_date', '$last_modified_date', '$account_id')";
+                // Xử lý và lưu trữ hình ảnh vào thư mục hoặc cơ sở dữ liệu
+                // Ví dụ:
+            if (mysqli_query($link, $sql) ){      
+                $destination = '../upload/event-management/' . $file_name;
+                move_uploaded_file($file_tmp, $destination);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //7. Hàm chỉnh sửa sự kiện
+        public function updateEvent($event)
+        {
+            //Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+            $event_id = $event->getEventId();
+            $event_name = $event->getEventName();
+            $event_description = $event->getEventDescription();
+            $event_image = $event->getEventImage();
+            $event_preferential_rate = $event->getEventPreferentialRate();
+            $event_preferential_item = $event->getEventPreferentialItem();
+            $event_state = $event->getEventState();
+            $event_start_date = $event->getEventStartDate();
+            $event_end_date = $event->getEventEndDate();
+            $created_on_date = $event->getCreatedOnDate();
+            $last_modified_date = date('Y-m-d');
+            $account_id = 1;
+
+            if($event_image) {
+                $file_name = $event_image['name']; //Lấy ra name của hình ảnh
+                $file_tmp = $event_image['tmp_name']; //Lưu name tạm thời
+                $event_image = '../upload/event-management/'.$file_name; // truyền name ảnh vào biến event img
+                $sql = "UPDATE sport_hub_event SET event_name = '$event_name', event_description = '$event_description', 
+                                                event_image = '$event_image', event_preferential_rate = '$event_preferential_rate', 
+                                                event_preferential_item = '$event_preferential_item', event_state = '$event_state', 
+                                                event_start_date = '$event_start_date', event_end_date = '$event_end_date',
+                                                    created_on_date = '$created_on_date', last_modified_date = '$last_modified_date', 
+                                                    account_id = '$account_id' WHERE event_id = $event_id";
+                if (mysqli_query($link, $sql) ){
+                    $destination = '../upload/event-management/' . $file_name;
+                    move_uploaded_file($file_tmp, $destination);
+                    return true;
+                }
+            } else {
+                $sql = "UPDATE sport_hub_event SET event_name = '$event_name', event_description = '$event_description', 
+                                                event_preferential_rate = '$event_preferential_rate', 
+                                                event_preferential_item = '$event_preferential_item', event_state = '$event_state', 
+                                                event_start_date = '$event_start_date', event_end_date = '$event_end_date',
+                                                    created_on_date = '$created_on_date', last_modified_date = '$last_modified_date', 
+                                                    account_id = '$account_id' WHERE event_id = $event_id";
+                if (mysqli_query($link, $sql) ){
+                   return true;
+                }
+            }
+            
+            return false;
+        }
+
+        //8. Hàm xóa sự kiện
+        public function delete_event($event_id){
+            $link = "";
+            MakeConnection($link);
+            $event_ids = explode(",", $event_id); //tách các event id đã chọn thành 1 mảng ngăn cách bởi dấu ,
+            
+            // kiểm tra số lượng event id đã chọn
+            if(count($event_ids) == 1) {
+                $sql = "UPDATE sport_hub_event SET 
+                        event_state = 'Đã xóa'
+                        WHERE event_id = '$event_id'";
+                if (mysqli_query($link, $sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (count($event_ids) > 1) {
+                foreach($event_ids as $event_id) {
+                    $sql = "UPDATE sport_hub_event SET 
+                            event_state = 'Đã xóa'
+                            WHERE event_id = '$event_id'";
+                    mysqli_query($link, $sql);
+                }
+                return true;
+            }
+            
+            return false;
         }
     }
 ?>

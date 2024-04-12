@@ -184,5 +184,29 @@
                 return false;
             }
         }
+
+        //6. Hàm kiểm tra khách hàng đã đánh giá đơn đặt sân chưa
+        public function checkReviewed($court_order_id, $customer_account_id)
+        {
+            // Tạo kết nối đến cơ sở dữ liệu
+            $link = "";
+            MakeConnection($link);
+
+            // Truy vấn SQL để đếm số lượng đánh giá dựa trên thông tin về đơn đặt sân
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) AS review_count 
+                                            FROM review 
+                                            INNER JOIN court_schedule ON court_schedule.court_schedule_id = review.court_schedule_id
+                                            INNER JOIN court_order ON court_order.court_schedule_id = court_schedule.court_schedule_id
+                                            WHERE court_order.court_order_id = $court_order_id AND court_order.customer_account_id = $customer_account_id");
+
+            // Lấy dữ liệu từ kết quả truy vấn
+            $row = mysqli_fetch_assoc($result);
+            $review_count = $row['review_count'];
+
+            // Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $review_count;
+        }
     }
 ?>

@@ -187,15 +187,15 @@ document.addEventListener("DOMContentLoaded", function () {
         newServiceTag.dataset.id = serviceIDs[selectedIndex]; // Gán ID của dịch vụ từ mảng serviceIDs
         newServiceTag.dataset.price = servicePrices[selectedIndex]; // Gán giá của dịch vụ từ mảng servicePrices
         newServiceTag.innerHTML = `
-                      <div class="trng-ti-2">${selectedService} <span class="quantity">(${quantity})</span></div>
-                      <div class="total-price" style="display: none;">Tổng giá: ${(
-                        servicePrices[selectedIndex] * quantity
-                      ).toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}</div>
-                      <img class="vuesaxboldclose-circle-icon remove-service-icon" alt="" src="../image/sport-court-details-img/vuesaxboldclosecircle.svg">
-                  `;
+                    <div class="trng-ti-2">${selectedService} <span class="quantity">(${quantity})</span></div>
+                    <div class="total-price" style="display: none;">Tổng giá: ${(
+                      servicePrices[selectedIndex] * quantity
+                    ).toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}</div>
+                    <img class="vuesaxboldclose-circle-icon remove-service-icon" alt="" src="../image/sport-court-details-img/vuesaxboldclosecircle.svg">
+                `;
         serviceContainer.appendChild(newServiceTag);
       }
     } else {

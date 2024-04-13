@@ -82,7 +82,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 24px;
+  gap: 12px;
   flex: 1 0 0;
   border-radius: 8px;
   background: #fff;
@@ -472,18 +472,6 @@ p {
   flex-wrap: wrap;
 }
 
-#event-body-menu {
-  display: flex;
-  align-items: flex-start;
-  /* max-width: 900px; */
-  margin: 0px;
-  padding: 0px;
-  align-self: stretch;
-  gap: 36px;
-  white-space: nowrap;
-  padding-bottom: 8px;
-}
-
 .all {
   display: flex;
   align-items: center;
@@ -494,6 +482,16 @@ p {
 
 .all a {
   color: #093a68;
+}
+
+#a-all-0 {
+  color: #285d8f;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #285d8f;
 }
 
 .all:hover {

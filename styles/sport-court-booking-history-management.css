@@ -23,7 +23,7 @@
 }
 
 .list-group,
-.review-section {
+.review-sectio {
   flex-direction: column;
   justify-content: flex-start;
   max-width: 100%;
@@ -1852,20 +1852,23 @@ form {
 /* Định dạng cho thanh cuộn ngang và dọc */
 /* width */
 .court-order-table::-webkit-scrollbar,
-.form-body::-webkit-scrollbar {
+.form-body::-webkit-scrollbar,
+.review::-webkit-scrollbar {
   width: 5px;
 }
 
 /* height */
 #court-order-body-menu ul::-webkit-scrollbar,
-.court-order-table::-webkit-scrollbar {
+.court-order-table::-webkit-scrollbar,
+.review::-webkit-scrollbar {
   height: 5px;
 }
 
 /* Track */
 #court-order-body-menu ul::-webkit-scrollbar-track,
 .court-order-table::-webkit-scrollbar-track,
-.form-body::-webkit-scrollbar-track {
+.form-body::-webkit-scrollbar-track,
+.review::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
@@ -1873,7 +1876,8 @@ form {
 /* Handle */
 #court-order-body-menu ul::-webkit-scrollbar-thumb,
 .court-order-table::-webkit-scrollbar-thumb,
-.form-body::-webkit-scrollbar-thumb {
+.form-body::-webkit-scrollbar-thumb,
+.review::-webkit-scrollbar-thumb {
   background: #d4d4d4;
   border-radius: 4px;
 }
@@ -1881,7 +1885,8 @@ form {
 /* Handle on hover */
 #court-order-body-menu ul::-webkit-scrollbar-thumb:hover,
 .court-order-table::-webkit-scrollbar-thumb:hover,
-.form-body::-webkit-scrollbar-thumb:hover {
+.form-body::-webkit-scrollbar-thumb:hover,
+.review::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
   border-radius: 4px;
 }
@@ -2887,6 +2892,7 @@ booking-details1 {
     display: flex;
     box-sizing: border-box;
     gap: var(--gap-5xl);
+    padding-right: 8px;
     width: 100%;
     overflow-x: hidden;
   }

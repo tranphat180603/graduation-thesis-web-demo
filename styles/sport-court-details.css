@@ -644,7 +644,7 @@ select {
   padding: var(--padding-2xs) var(--padding-sm);
   background-color: #dce9f7;
   height: 42px;
-  width: 215px;
+  width: fit-content;
   border-radius: var(--br-9xs);
   box-sizing: border-box;
   justify-content: space-between;
@@ -670,6 +670,7 @@ select {
   line-height: 20px;
   display: inline-block;
   min-width: 64px;
+  outline: none;
 }
 
 .service-quantity {
@@ -1890,6 +1891,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--background-secondary);
   line-height: 24px;
   border: 0;
+  outline: none;
 }
 
 .vuesaxboldsend-2-icon {

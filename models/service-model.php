@@ -9,6 +9,7 @@
         private $service_unit;
         private $service_state;
         private $created_on_date;
+        private $last_modified_date;
         private $court_type_id;
         private $account_id;
 
@@ -85,7 +86,6 @@
                     $row['service_price'],
                     $row['service_unit'],
                     $row["service_state"], 
-                    $row['service_state'],
                     $row['created_on_date'],
                     $row['last_modified_date'],
                     $row['court_type_id'],
@@ -213,7 +213,7 @@
                 last_modified_date = '$last_modified_date'
                 WHERE service_id = '$service_id'";
 
-            if (mysqli_query($link, $sql)) {
+            if (ExecuteNonDataQuery($link, $sql)) {
                 return true;
             } else {
                 return false;
@@ -238,7 +238,7 @@
             $sql = "INSERT INTO service(service_name, service_description, service_price, service_unit, service_state, created_on_date, last_modified_date, court_type_id, account_id) 
                     VALUES ('$service_name', '$service_description', '$service_price', '$service_unit','$service_state', '$created_on_date', '$last_modified_date', '$court_type_id', '$account_id');";
 
-            if (mysqli_query($link, $sql)) {
+            if (ExecuteNonDataQuery($link, $sql)) {
                 return true;
             } else {
                 return false;
@@ -257,7 +257,7 @@
                 $sql = "UPDATE service SET 
                         service_state = 'Đã xóa'
                         WHERE service_id = '$service_id'";
-                if (mysqli_query($link, $sql)) {
+                if (ExecuteNonDataQuery($link, $sql)) {
                     return true;
                 } else {
                     return false;
@@ -267,7 +267,7 @@
                     $sql = "UPDATE service SET 
                             service_state = 'Đã xóa'
                             WHERE service_id = '$service_id'";
-                    mysqli_query($link, $sql);
+                    ExecuteNonDataQuery($link, $sql);
                 }
                 return true;
             }

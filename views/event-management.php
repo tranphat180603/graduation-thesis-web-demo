@@ -82,7 +82,7 @@
            $controller = new Event_Controller();
            $event_amount = $controller->view_all();
              echo "
-             <a id='a-all-0' href='?event_id=0' style='color:hsl(209, 84%, 22%); font-weight: bold;';>Tất cả&nbsp;(<span>".$event_amount[0]."</span>)</a>";
+             <a id='a-all-0' href='?event_id=0'>Tất cả&nbsp;(<span>".$event_amount[0]."</span>)</a>";
            ?>
            
          </ul>
@@ -132,7 +132,7 @@
                   echo "<td>" . $event->getEventStartDate() . "</td>";
                   echo "<td>" . $event->getEventEndDate() . "</td>";
                   echo "<td>" . $event->getEventDescription() . "</td>";
-                  echo "<td><img class='img-event' style='width:100px' src='" . $event->getEventImage() . "' alt='Hình ảnh'></td>";
+                  echo "<td><img class='img-event' style='width:100px; border-radius: 4px;' src='" . $event->getEventImage() . "' alt='Hình ảnh'></td>";
                   echo "<td>" . $event->getEventPreferentialRate() . " %</td>";
                   echo "<td>" . $event->getEventPreferentialItem() . "</td>";
                   if ($event->getEventState() == "Còn hạn") {
@@ -632,9 +632,6 @@
             $event_start_date = $_POST['event_start_date'];
             $event_end_date = $_POST['event_end_date'];
             echo $event_id;
-            
-            // $event_image = $controller->handle_upload_file('event_image');
-
 
             $event = new Event($event_id,$event_name, $event_start_date, $event_end_date, $event_description, $event_image, $event_preferential_rate, $event_preferential_item ,$event_state, null, null, null); // Assuming $account_id is not provided in the form
             $result = $controller->update_event($event);
@@ -682,30 +679,10 @@
               ";
             
           
-        } else if($_option == "warning_delete_event") {
-          include "../views/notification/warning.php";
-          
-          echo "
-          <script>
-            var warningQuestion = document.getElementById('warning-question');
-            warningQuestion.textContent = 'Bạn thật sự muốn xóa sự kiện!';
-          
-            var warningExplanation = document.getElementById('warning-explanation');
-            warningExplanation.innerHTML ='Chúng tôi rất tiếc khi thông báo rằng <br> bạn chỉ được xóa những sự kiện còn hạn';
-
-
-            var btn_ok = document.getElementById('war-act-ok');
-            btn_ok.href = './event-management.php';
-
-
-          </script>
-        ";
-        
-        }else if($_option=="delete_event"){
+        } else if($_option=="delete_event"){
             if(isset($_GET['event_id'])) {
               $event_id = $_GET['event_id'];
-                $result = $controller->delete_event($event_id);
-
+              $result = $controller->delete_event($event_id);
 
               if($result == true ){
                 include "./notification/action-successful.php";

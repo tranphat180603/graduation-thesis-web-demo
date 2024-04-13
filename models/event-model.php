@@ -193,7 +193,7 @@
                 VALUES('$event_name', '$event_description', '$event_image', '$event_preferential_rate', '$event_preferential_item','$event_state', '$event_start_date', '$event_end_date', '$created_on_date', '$last_modified_date', '$account_id')";
                 // Xử lý và lưu trữ hình ảnh vào thư mục hoặc cơ sở dữ liệu
                 // Ví dụ:
-            if (mysqli_query($link, $sql) ){      
+            if (ExecuteNonDataQuery($link, $sql) ){      
                 $destination = '../upload/event-management/' . $file_name;
                 move_uploaded_file($file_tmp, $destination);
                 return true;
@@ -231,7 +231,7 @@
                                                 event_start_date = '$event_start_date', event_end_date = '$event_end_date',
                                                     created_on_date = '$created_on_date', last_modified_date = '$last_modified_date', 
                                                     account_id = '$account_id' WHERE event_id = $event_id";
-                if (mysqli_query($link, $sql) ){
+                if (ExecuteNonDataQuery($link, $sql) ){
                     $destination = '../upload/event-management/' . $file_name;
                     move_uploaded_file($file_tmp, $destination);
                     return true;
@@ -243,7 +243,7 @@
                                                 event_start_date = '$event_start_date', event_end_date = '$event_end_date',
                                                     created_on_date = '$created_on_date', last_modified_date = '$last_modified_date', 
                                                     account_id = '$account_id' WHERE event_id = $event_id";
-                if (mysqli_query($link, $sql) ){
+                if (ExecuteNonDataQuery($link, $sql) ){
                    return true;
                 }
             }
@@ -262,7 +262,7 @@
                 $sql = "UPDATE sport_hub_event SET 
                         event_state = 'Đã xóa'
                         WHERE event_id = '$event_id'";
-                if (mysqli_query($link, $sql)) {
+                if (ExecuteNonDataQuery($link, $sql)) {
                     return true;
                 } else {
                     return false;
@@ -272,7 +272,7 @@
                     $sql = "UPDATE sport_hub_event SET 
                             event_state = 'Đã xóa'
                             WHERE event_id = '$event_id'";
-                    mysqli_query($link, $sql);
+                    ExecuteNonDataQuery($link, $sql);
                 }
                 return true;
             }

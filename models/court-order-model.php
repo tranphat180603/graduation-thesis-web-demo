@@ -46,7 +46,7 @@
         public function setTotalDiscountAmount($total_discount_amount) { $this->total_discount_amount = $total_discount_amount; }
         public function setOrderTotalPayment($order_total_payment) { $this->order_total_payment = $order_total_payment; }
         public function setOrderTotalDeposit($order_total_deposit) { $this->order_total_deposit = $order_total_deposit; }
-        public function setPaymentMethod() { return $this->payment_method = $payment_method; }
+        public function setPaymentMethod($payment_method) { $this->payment_method = $payment_method; }
         public function setOrderState($order_state) { $this->order_state = $order_state; }
         public function setCustomerAccountId($customer_account_id) { $this->customer_account_id = $customer_account_id; }
         public function setAdminAccountId($admin_account_id) { $this->admin_account_id = $admin_account_id; }
@@ -351,6 +351,25 @@
             ReleaseMemory($link, $result);
 
             return $data;
+        }
+
+        //14. Hàm hủy đơn ở giao diện lịch sử đơn hàng 
+        public function cancelCourtOrderByCustomer($court_order_id, $canceled_on_date, $cancel_reason, $cancel_party_account_id)
+        {
+            // Tạo kết nối đến cơ sở dữ liệu
+            $link = "";
+            MakeConnection($link);
+            // Tạo ra câu SQL
+            $sql = "UPDATE court_order 
+                SET order_state = 'Đã hủy', 
+                    canceled_on_date = '$canceled_on_date', 
+                    order_cancel_reason = '$cancel_reason', 
+                    order_cancel_party_account_id = '$cancel_party_account_id' 
+                WHERE court_order_id = $court_order_id ";
+
+            $result = ExecuteNonDataQuery($link, $sql);
+
+            return $result;
         }
     }
 ?>

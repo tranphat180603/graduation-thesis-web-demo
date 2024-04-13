@@ -358,7 +358,7 @@
                     INNER JOIN
                         court_price cp ON c.court_id = cp.court_id
                     WHERE
-                        cp.court_id = '$court_id'
+                        cp.court_id = $court_id
                         AND c.court_schedule_date = '$date'
                         AND c.court_schedule_state = 'Chưa đặt'
                         AND (

@@ -106,10 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   var dataAggregator = document.querySelector(".data-aggregator1");
   var reviewStatus = dataAggregator.getAttribute("data-review-status");
-
+  // Nếu đã đánh giá thì ẩn trường nhập liệu
   if (reviewStatus === "Đã đánh giá") {
     dataAggregator.style.display = "none";
-    document.querySelector(".close-button").style.display = "none";
   }
 });
 
@@ -236,13 +235,16 @@ function showratingForm() {
   document.getElementById("overlay").style.display = "block";
 }
 
-document
-  .getElementById("review-button")
-  .addEventListener("click", function (event) {
+// Get all elements with the class "review-button"
+var reviewButtons = document.getElementsByClassName("review-button");
+
+// Loop through each button and add event listener
+for (var i = 0; i < reviewButtons.length; i++) {
+  reviewButtons[i].addEventListener("click", function (event) {
     event.stopPropagation();
-    // Hiển thị form
     showratingForm();
   });
+}
 
 // Hàm để ẩn form
 

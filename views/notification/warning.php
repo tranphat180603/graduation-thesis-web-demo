@@ -1,14 +1,14 @@
       <!-- Warning -->
       <div class="warning-container">
         <div class="main-content">
-          <img id="warning-icon" src="../image/sport-court-schedules-management-img/confirm.svg" alt="warning icon">
+          <img id="warning-icon" src="/NTP-Sports-Hub//image/sport-court-schedules-management-img/confirm.svg" alt="warning icon">
           <div class="content">
             <p id="warning-question">Bạn muốn thực hiện thao tác trên ... này?</p>
             <p id="warning-explanation">warning content</p>
           </div>
         </div>
         <div class="action">
-          <a id="war-act-ok" href="./sport-court-schedules-management.php">OK</a>
+          <a id="war-act-ok" href="/NTP-Sports-Hub/views/sport-court-schedules-management.php">OK</a>
         </div>
       </div>
       <style>

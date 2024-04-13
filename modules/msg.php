@@ -101,7 +101,7 @@
 
                     question.textContent = 'Bạn đã thực hiện đăng xuất';
                     explanation.textContent = 'Rất tiếc, thao tác đăng xuất đã thất bại';
-                    OKBtn.href = '../index.php';
+                    OKBtn.href = '/NTP-Sports-Hub/index.php';
                 </script>
             ";        
         } 

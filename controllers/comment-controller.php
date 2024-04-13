@@ -31,7 +31,7 @@
     }
 
     // Kiểm tra nếu là yêu cầu POST từ biểu mẫu
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($court_id) && isset($account_id) && isset($comment_content)) {
         // Khởi tạo controller
         $comment = new comment();
     
@@ -39,9 +39,22 @@
         $court_id = isset($_POST['court_id']) ? $_POST['court_id'] : null;
         $account_id = isset($_POST['account_id']) ? $_POST['account_id'] : null;
         $comment_content = isset($_POST['comment_content']) ? $_POST['comment_content'] : null;
-        $created_on_date = date("Y-m-d H:i:s"); // Lấy thời gian hiện tại
+        $created_on_date = date("Y-m-d"); // Lấy thời gian hiện tại
     
         // Thêm comment vào cơ sở dữ liệu
         $result = $comment->insert_comment($court_id, $account_id, $comment_content, $created_on_date);
     }
+    // if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //     // Khởi tạo controller
+    //     $comment = new comment();
+    
+    //     // Lấy dữ liệu từ biểu mẫu
+    //     $court_id = isset($_POST['court_id']) ? $_POST['court_id'] : null;
+    //     $account_id = isset($_POST['account_id']) ? $_POST['account_id'] : null;
+    //     $comment_content = isset($_POST['comment_content']) ? $_POST['comment_content'] : null;
+    //     $created_on_date = date("Y-m-d"); // Lấy thời gian hiện tại
+    
+    //     // Thêm comment vào cơ sở dữ liệu
+    //     $result = $comment->insert_comment($court_id, $account_id, $comment_content, $created_on_date);
+    // }
 ?>

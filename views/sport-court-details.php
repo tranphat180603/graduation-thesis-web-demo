@@ -222,6 +222,7 @@
                     <div class="service-info">
                       <img class="service-icon" alt="" src="../image/sport-court-details-img/radioactive.svg">
                       <select class="service-dropdown">
+                        <option value="0">Chọn dịch vụ</option>
                         <?php
                         foreach ($services as $service) :
                           if ($service->getCourtTypeId() == $court->getCourtTypeId()) :

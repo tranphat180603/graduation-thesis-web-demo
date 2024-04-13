@@ -203,6 +203,11 @@
             // Return the result of the court order view by customer id and order state
             return $result = $this->court_order->view_court_order_by_customer_id_and_state($customer_account_id, $order_state);
         }
+
+        //13. Hàm hủy đơn đặt sân ở giao diện lịch sử đơn hàng 
+        public function cancelCourtOrderByCustomer($court_order_id, $canceled_on_date, $cancel_reason, $cancel_party_account_id) {
+            return $result = $this->court_order->cancelCourtOrderByCustomer($court_order_id, $canceled_on_date, $cancel_reason, $cancel_party_account_id);
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

@@ -210,7 +210,7 @@
 
                   </div>
 
-                  <img class="list-inner" loading="lazy" alt="" src="../image/sport-courts-booking-history-management-img/line-45.svg" />
+                  <img class="list-child" loading="lazy" alt="" src="../image/sport-courts-booking-history-management-img/line-45.svg" />
                   <?php
                   $order_state = $court_order->getOrderState();
                   switch ($order_state) {
@@ -241,11 +241,9 @@
                           NTP chân thành cảm ơn bạn đã tin tưởng và chọn NTP để thỏa sức đam mê cùng đồng đội
                         </div>
                         <?php
-
-                        $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
-
+                          $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
                         ?>
-                        <button class="review-button" id="review-button">
+                        <button class="review-button" id="review-button-2">
                           <div class="review-label">
                             <?php
                             if ($review_status === "Đã đánh giá") {
@@ -455,6 +453,9 @@
                   <div class="close-button" id="close-button" onclick="toggleInputReview()">
                     <div class="close-text">Đóng lại</div>
                   </div>
+                  <?php
+                    $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
+                  ?>
                   <div class='data-aggregator1' data-review-status="<?php echo $review_status; ?>">
                     <div class="rating-selected-parent">
                       <div class="rating-selected-title">Chọn đánh giá của bạn</div>

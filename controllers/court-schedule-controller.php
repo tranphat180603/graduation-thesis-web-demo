@@ -224,7 +224,8 @@
     }
 
     public function getByCourtIdAndDate($court_id, $date) {
-      $result = $this->court_schedule->getByCourtIdAndDate($court_id, $date);
+      $schedule_date = date("Y-m-d", strtotime($date));
+      $result = $this->court_schedule->getByCourtIdAndDate($court_id, $schedule_date);
       return $result;
     }
   }

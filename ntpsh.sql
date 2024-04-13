@@ -1229,7 +1229,7 @@ INSERT INTO `sport_hub_event` (`event_id`, `event_name`, `event_start_date`, `ev
 CREATE TABLE `visitor` (
   `visitor_id` int(11) NOT NULL,
   `visitor_IP_address` varchar(255) NOT NULL,
-  `created_on_date` date NOT NULL
+  `created_on_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

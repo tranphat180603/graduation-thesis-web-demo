@@ -1,6 +1,10 @@
-const search = document.querySelector(".search input");
+const search = document.querySelector(".search input"),
+  filter = document.getElementById("btn-filter-confirm"),
+  reset = document.getElementById("btn-filter-reset"),
+  table_rows = document.querySelectorAll("tbody tr"),
+  start_date_input = document.getElementById("start-date"),
+  end_date_input = document.getElementById("end-date");
 
-const table_rows = document.querySelectorAll("tbody tr");
 // 1. Tìm kiếm dữ liệu trong bảng HTML
 function searchTable() {
   table_rows.forEach((row, i) => {
@@ -29,7 +33,25 @@ search.addEventListener("input", function () {
   setTimeout(changeNavNumber, 500);
 });
 
-//4. Sắp xếp dữ liệu của bảng HTML
+//4. Hàm xử lý sự kiện cho nút đặt lại trong filter
+reset.addEventListener("click", function () {
+  start_date_input.value = "";
+  end_date_input.value = "";
+
+  table_rows.forEach((row, i) => {
+    row.classList.toggle("hide", false);
+    row.style.setProperty("--delay", i / 25 + "s");
+  });
+
+  document.querySelectorAll("tbody tr:not(.hide)").forEach((visible_row, i) => {
+    visible_row.style.backgroundColor =
+      i % 2 == 0 ? "transparent" : "#0000000b";
+  });
+
+  setTimeout(changeNavNumber, 500);
+});
+
+//5. Sắp xếp dữ liệu của bảng HTML
 const table_headings = document.querySelectorAll(
   "thead th:not(:has(input[type='checkbox']))" // Loại bỏ các thẻ <th> chứa checkbox
 );
@@ -89,7 +111,7 @@ table_headings.forEach((head, i) => {
   };
 });
 
-//5. Hàm cập nhật href của nút sửa và nút xóa khi tick vào checkbox trong bảng HTML
+//6. Hàm cập nhật href của nút sửa và nút xóa khi tick vào checkbox trong bảng HTML
 function updateUrl(checkbox) {
   var checkedIds = [];
   var checkStates = [];
@@ -150,7 +172,7 @@ if (checkedIds.length === 0) {
 
 window.history.replaceState({}, "", `${window.location.pathname}?${params2}`);
 
-//6. Hàm xử lý sự kiện click cho tất cả checkbox trong bảng HTML
+//7. Hàm xử lý sự kiện click cho tất cả checkbox trong bảng HTML
 function updateUrlAndCBState() {
   updateUrl();
   setTimeout(tickCheckbox, 100);

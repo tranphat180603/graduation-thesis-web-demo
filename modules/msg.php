@@ -7,11 +7,14 @@
                     var checkImg = document.getElementById('check'),
                         sign_up_name_input = document.querySelector('.sign-up-name-input'),
                         warningDiv = document.querySelector('.warning'),
-                        next_button = document.getElementById('next-button');
+                        next_button = document.getElementById('next-button'),
+                        warning_content = document.getElementById('warning-content');
 
                     sign_up_name_input.style.border = '1px solid #FF4141';
                     checkImg.style.display = 'none'; 
-                    warningDiv.style.visibility = 'hidden';
+                    warningDiv.style.visibility = 'visible';
+                    warning_content.textContent = 'Tên đăng ký đã tồn tại';
+
                     next_button.style.pointerEvents = 'auto';
                     next_button.style.backgroundColor = '#285d8f'; 
                 </script>
@@ -22,11 +25,14 @@
                     var checkImg = document.getElementById('check-phone'),
                         sign_up_phone_input = document.querySelector('.sign-up-phone-input'),
                         warningDiv = document.querySelector('.warning-phone'),
-                        next_button = document.getElementById('phone-next-button');
+                        next_button = document.getElementById('phone-next-button'),
+                        warning_content = document.getElementById('warning-content');
 
                     sign_up_phone_input.style.border = '1px solid #FF4141';
                     checkImg.style.display = 'none'; 
-                    warningDiv.style.visibility = 'hidden';
+                    warningDiv.style.visibility = 'visible';
+                    warning_content.textContent = 'Số điện thoại đã tồn tại';
+
                     next_button.style.pointerEvents = 'auto';
                     next_button.style.backgroundColor = '#285d8f'; 
                 </script>
@@ -37,11 +43,14 @@
                     var checkImg = document.getElementById('check-email'),
                         sign_up_email_input = document.querySelector('.sign-up-email-input'),
                         warningDiv = document.querySelector('.warning-email'),
-                        next_button = document.getElementById('email-next-button');
+                        next_button = document.getElementById('email-next-button'),
+                        warning_content = document.getElementById('warning-content');
 
                     sign_up_email_input.style.border = '1px solid #FF4141';
                     checkImg.style.display = 'none'; 
-                    warningDiv.style.visibility = 'hidden';
+                    warningDiv.style.visibility = 'visible';
+                    warning_content.textContent = 'Email đã tồn tại';
+
                     next_button.style.pointerEvents = 'auto';
                     next_button.style.backgroundColor = '#285d8f'; 
                 </script>

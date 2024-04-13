@@ -26,6 +26,8 @@ const sign_up_name = document.querySelector("#sign-up-name-input-text"),
   sign_up_name_input = document.querySelector(".sign-up-name-input"),
   sign_up_phone = document.querySelector("#sign-up-phone-input-text"),
   sign_up_phone_input = document.querySelector(".sign-up-phone-input"),
+  sign_up_email = document.querySelector("#sign-up-email-input-text"),
+  sign_up_email_input = document.querySelector(".sign-up-email-input"),
   sign_up_acc_name = document.getElementById("sign-up-acc-name-input-text"),
   sign_up_acc_name_input = document.querySelector(".sign-up-acc-name-input"),
   sign_up_pass = document.getElementById("sign-up-pass-input-text"),
@@ -87,7 +89,33 @@ sign_up_phone.addEventListener("input", function () {
   checkSignUpPhone();
 });
 
-//Hàm kiểm tra định dạng của email (chưa làm)
+//Hàm kiểm tra định dạng của email
+function checkSignUpEmail() {
+  var checkImgEmail = document.getElementById("check-email"),
+    warningDivEmail = document.querySelector(".warning-email"),
+    email_next_button = document.getElementById("email-next-button");
+  const pattern_email = /^\d{10}$/; // Biểu thức chính quy
+
+  if (pattern_email.test(sign_up_email.value)) {
+    // SĐT hợp lệ
+    sign_up_email_input.style.border = "1px solid #34C759";
+    checkImgEmail.style.display = "block";
+    warningDivEmail.style.visibility = "hidden"; // Ẩn cảnh báo nếu có
+    email_next_button.style.pointerEvents = "auto";
+    email_next_button.style.backgroundColor = "#285d8f";
+  } else {
+    // SĐT không hợp lệ
+    sign_up_email_input.style.border = "1px solid #FF4141";
+    checkImgEmail.style.display = "none"; // Ẩn hình ảnh kiểm tra nếu tên không hợp lệ
+    warningDivEmail.style.visibility = "visible"; // Hiển thị cảnh báo
+    email_next_button.style.pointerEvents = "none"; //Không cho ấn nút TIẾP THEO khi không hợp lệ
+    email_next_button.style.backgroundColor = "#5680a7";
+  }
+}
+
+sign_up_email.addEventListener("input", function () {
+  checkSignUpEmail();
+});
 
 //Hàm kiểm tra định dạng của tên tài khoản (không hoạt động)
 function checkSignUpAccName() {

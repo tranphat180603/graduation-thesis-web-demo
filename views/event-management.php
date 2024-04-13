@@ -58,7 +58,7 @@
              <div class="filter-action">
                <a id="btn-filter-reset" href="#">Đặt lại</a>
                <div class="right-part">
-                 <a id="btn-filter-cancel" href="../event-management.php?event_id=0">Hủy</a>
+                 <a id="btn-filter-cancel" href="./event-management.php">Hủy</a>
                  <a id="btn-filter-confirm" href="#">Xác nhận</a>
                </div>
              </div>

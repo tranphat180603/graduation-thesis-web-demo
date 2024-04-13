@@ -95,5 +95,26 @@
 
             return $row;
         }
+
+        public function fetchAccountData($username){
+            $link = "";
+            MakeConnection($link);
+            $accountQuery = "SELECT * FROM account WHERE account_sign_up_name = '$username'";
+            $accountResult = ExecuteDataQuery($link, $accountQuery);
+            if($accountResult){
+                $accountInfo = mysqli_fetch_assoc($accountResult);
+                $account = new account($accountInfo['account_id'], $accountInfo['account_type'], $accountInfo['account_sign_up_name'], $accountInfo['account_name'], $accountInfo['account_avatar'], $accountInfo['account_hash_password'],$accountInfo['created_on_date']);
+                return $account;
+                ReleaseMemory($link, $account);
+            }
+        }
+        
+        public function updateAvatarURL($newURL, $id) {
+            $link = MakeConnection($link);
+                $updateQuery = "UPDATE account SET account_avatar = '$newURL' WHERE account_id = '$id'";
+                $updateResult = ExecuteNonDataQuery($link, $updateQuery);
+                return $updateResult;
+                ReleaseMemory($link, $updateResult);
+        }
     }
 ?>

@@ -208,6 +208,51 @@
         public function cancelCourtOrderByCustomer($court_order_id, $canceled_on_date, $cancel_reason, $cancel_party_account_id) {
             return $result = $this->court_order->cancelCourtOrderByCustomer($court_order_id, $canceled_on_date, $cancel_reason, $cancel_party_account_id);
         }
+
+        public function calculate_top_5_service($year) {
+            try {
+                $data = $this->court_order->view_top_service($year);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+                return null;
+            }
+        }
+
+        public function calculate_revenue_and_court_order($year){
+            try {
+                $data = $this->court_order->get_revenue_and_court_order($year);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+                return null;
+            }
+        }
+
+        public function calculate_revenue_by_court_type($year){
+            try {
+                $data = $this->court_order->get_revenue_by_court_type($year); 
+                return $data;
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+                return null;
+            }
+        }
+        
+        public function count_court_order($year = null){
+            // Assign default value to $year if not provided
+            if ($year === null) {
+                $year = date('Y'); // Get the current year
+            }
+        
+            try {
+                $data = $this->court_order->countCourtOrder($year);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+                return null;
+            }
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn
@@ -257,4 +302,40 @@
             }
         }
     }
+
+    //cho chart
+    $controller = new Court_Order_Controller();
+
+    $year = isset($_GET['year']) ? intval($_GET['year']) : date('Y');
+    
+    // Calculate top 5 service
+    $top_service = $controller->calculate_top_5_service($year);
+    $top_service_labels = [];
+    $top_service_count = [];
+    foreach ($top_service as $entry) {
+        $top_service_labels[] = $entry['event_name'];
+        $top_service_count[] = $entry['event_count'];
+    }
+    
+    // Calculate revenue and court order
+    $revenue = $controller->calculate_revenue_and_court_order($year);
+    $months = [];
+    $revenue_total = [];
+    $court_order_total = [];
+    foreach ($revenue as $entry) {
+        $months[] = $entry['month'];
+        $revenue_total[] = $entry['total_revenue'];
+        $court_order_total[] = $entry['total_court_order'];
+    }
+    
+    // Calculate revenue by court type
+    $revenue_by_court_type = $controller->calculate_revenue_by_court_type($year);
+    
+    // Get the number of court orders for the current year
+    $num_court_order = $controller->count_court_order($year);
+    
+    // Get the number of court orders for the previous year
+    $num_court_order_previous = $controller->count_court_order($year - 1);
+    
+    $num_court_order_diff = $num_court_order[0] - $num_court_order_previous[0];
 ?>

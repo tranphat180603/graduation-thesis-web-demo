@@ -23,5 +23,32 @@
             $this->order_item_service_quantity = $order_item_service_quantity;
             $this->order_item_total_service_price = $order_item_total_service_price;
         }
+
+        public function view_customer_by_service($year) {
+            $link = MakeConnection($link);
+            $query = "SELECT s.service_name, COUNT(osd.court_order_id) as order_count
+                      FROM order_service_detail osd
+                      JOIN service s ON osd.service_id = s.service_id
+                      JOIN court_order co ON osd.court_order_id = co.court_order_id
+                      WHERE YEAR(co.ordered_on_date) = $year
+                      GROUP BY s.service_name";
+            $data = array();
+        
+            $result = ExecuteDataQuery($link, $query);
+            if(!$result) {
+                // Throw an exception if the query fails
+                throw new Exception("Failed to fetch data from the database");
+            }
+        
+            // Fetch associative array rows from the result object
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Push each row (associative array) into the data array
+                array_push($data, $row);
+            }    
+            // Release memory for the connection
+            ReleaseMemory($link, $result);
+        
+            return $data;
+        }
     }
 ?>

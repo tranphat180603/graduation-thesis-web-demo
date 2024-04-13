@@ -43,7 +43,7 @@
             MakeConnection($link);
 
             //Kết nối và lấy dữ liệu tất cả loại sân từ database
-            $result = ExecuteDataQuery($link, "SELECT * FROM court_type");
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_type WHERE court_type_state = 'Chưa xóa'");
             $data = array();
 
             while ($rows = mysqli_fetch_assoc($result)) {
@@ -83,6 +83,98 @@
             ReleaseMemory($link, $result);
 
             return $data;
+        }
+
+        public function view_count_court_type(){
+            $link = "";
+            MakeConnection($link);
+
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
+            $result = ExecuteDataQuery($link, "SELECT COUNT(*) FROM court_type WHERE court_type_state = 'Chưa xoá'");
+
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+
+            return $row;
+        }
+        
+        public function court_type_detail($court_type_id){
+            $link = "";
+            MakeConnection($link);
+            // Lấy dữ liệu
+            $result = ExecuteDataQuery($link, "SELECT * FROM court_type WHERE court_type_id = $court_type_id");
+            $court_type = mysqli_fetch_assoc($result);
+            ReleaseMemory($link, $result);
+            return $court_type;
+        }
+
+        public function update_ct($id, $name, $img){
+            $link = MakeConnection($link);
+            $query = "UPDATE court_type SET court_type_name = '$name', court_type_icon = '$img' WHERE court_type_id = $id";
+            $result = ExecuteNonDataQuery($link, $query);
+            if ($result) {
+                return true;
+            } else {
+                throw new Exception("Error updating customer data: " . mysqli_error($link));
+            }
+        }
+
+        public function insert_ct($name, $img){
+            $link = MakeConnection($link);
+            $query = "INSERT INTO court_type (court_type_name, court_type_icon, court_type_state, account_id) 
+            VALUES ('$name', '$img', 'Chưa xoá', '1')";
+            $result = ExecuteNonDataQuery($link, $query);
+            if ($result) {
+                return true;
+            } else {
+                throw new Exception("Error inserting data: " . mysqli_error($link));
+            }
+        }
+
+        public function delete_ct($court_type_id){
+            $link = MakeConnection($link);
+            $query = "UPDATE court_type SET court_type_state = 'Đã xoá' WHERE court_type_id = $court_type_id";
+            $result = ExecuteNonDataQuery($link, $query);
+            if ($result) {
+                return true;
+            } else {
+                throw new Exception("Error updating data: " . mysqli_error($link));
+            }
+        }
+
+        public function updateCourtTypeURL($newURL, $id) {
+            $link = MakeConnection($link);
+                $updateQuery = "UPDATE court_type SET court_type_icon = '$newURL' WHERE court_type_id = '$id'";
+                $updateResult = ExecuteNonDataQuery($link, $updateQuery);
+                return $updateResult;
+                ReleaseMemory($link, $updateResult);
+        }
+
+        public function showNoti($message){
+            echo '
+            <div class="action-successful">
+                <div class="successful-image">
+                    <img src="../image/sport-court-types-management-img/successful.svg" alt="successful image">
+                </div>
+                <div class="message">
+                    <p id="action-successful-message-title">Thông báo</p>
+                    <p id="action-successful-message">'. $message . ' </p>
+                </div>
+                <div class="action-successful-button-group">
+                    <a id="home-button" href="../index.php">Trở về trang chủ</a>
+                    <a id="admin-management-button" href="../views/sport-court-types-management.php">Trở về quản lý loại sân</a>
+                </div>
+            </div>';
+            echo '
+            <script>
+            var overlays = document.querySelectorAll(".overlay");
+            overlays.forEach(function(overlay) {
+                overlay.style.display = "block";
+            });
+            </script>
+            ';
         }
     }
 ?>

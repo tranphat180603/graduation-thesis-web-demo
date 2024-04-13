@@ -371,5 +371,114 @@
 
             return $result;
         }
+
+        public function view_top_service($year){
+            $link = MakeConnection($link);
+            $query = "SELECT e.event_name, COUNT(*) AS event_count
+                      FROM court_order o
+                      JOIN sport_hub_event e ON o.event_id = e.event_id
+                      WHERE order_state = 'Hoàn thành' 
+                      AND o.event_id IS NOT NULL
+                      AND YEAR(o.ordered_on_date) = $year
+                      GROUP BY e.event_name, o.event_id
+                      ORDER BY event_count DESC
+                      LIMIT 5";
+            $data = array();
+        
+            $result = ExecuteDataQuery($link, $query);
+            if(!$result) {
+                // Throw an exception if the query fails
+                throw new Exception("Failed to fetch data from the database");
+            }
+        
+            // Fetch associative array rows from the result object
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Push each row (associative array) into the data array
+                array_push($data, $row);
+            }    
+            // Release memory for the connection
+            ReleaseMemory($link, $result);
+        
+            return $data;
+        }        
+        
+        public function get_revenue_and_court_order($year){
+            $link = MakeConnection($link);
+            $query = "SELECT 
+                        DATE_FORMAT(ordered_on_date, '%M') AS month,
+                        SUM(order_total_payment) AS total_revenue,
+                        COUNT(*) AS total_court_order
+                      FROM 
+                        court_order
+                      WHERE 
+                        order_state = 'Hoàn thành'
+                        AND YEAR(ordered_on_date) = $year
+                      GROUP BY 
+                        MONTH(ordered_on_date)";
+            $data = array();
+        
+            $result = ExecuteDataQuery($link, $query);
+            if(!$result) {
+                throw new Exception("Failed to fetch data from the database");
+            }
+        
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($data, $row);
+            }    
+            // Release memory for the connection
+            ReleaseMemory($link, $result);
+        
+            return $data;
+        }
+        
+        public function get_revenue_by_court_type($year){
+            $link = MakeConnection($link);
+            $query = "SELECT 
+                        ct.court_type_name AS name,
+                        DATE_FORMAT(co.ordered_on_date, '%M') AS month,
+                        SUM(co.order_total_payment) AS total_revenue
+                      FROM 
+                        court_order co
+                        JOIN 
+                        court_schedule cs ON co.court_schedule_id = cs.court_schedule_id
+                        JOIN 
+                        court c ON cs.court_id = c.court_id
+                        JOIN 
+                        court_type ct ON c.court_type_id = ct.court_type_id
+                      WHERE 
+                        co.order_state = 'Hoàn thành'
+                        AND YEAR(co.ordered_on_date) = $year
+                      GROUP BY 
+                        MONTH(co.ordered_on_date), ct.court_type_name";
+            $data = array();
+        
+            $result = ExecuteDataQuery($link, $query);
+            if(!$result) {
+                throw new Exception("Failed to fetch data from the database");
+            }
+        
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($data, $row);
+            }    
+            // Release memory for the connection
+            ReleaseMemory($link, $result);
+        
+            return $data;
+        }        
+
+        public function countCourtOrder($year){
+            $link = "";
+            MakeConnection($link);
+    
+            //Kết nối và lấy dữ liệu tổng số lượng lịch sân từ database
+            $result = ExecuteDataQuery($link,"SELECT COUNT(*) FROM court_order WHERE YEAR(ordered_on_date) = $year");
+    
+            $row = mysqli_fetch_row($result);
+            
+            //Giải phóng bộ nhớ
+            ReleaseMemory($link, $result);
+    
+            return $row;
+        }
     }
 ?>

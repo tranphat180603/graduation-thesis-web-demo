@@ -208,5 +208,43 @@
 
             return $review_count;
         }
+
+        //hien thi chart review
+        public function get_review_on_chart($year){
+            $link = MakeConnection($link);
+            $query = "SELECT 
+                        c.court_name, 
+                        ci.court_image AS image, 
+                        COUNT(r.review_id) AS review_count, 
+                        ROUND(AVG(r.review_star_rate), 1) AS average_star_rate 
+                      FROM 
+                        court_schedule cs 
+                        INNER JOIN court c ON cs.court_id = c.court_id 
+                        LEFT JOIN review r ON cs.court_schedule_id = r.court_schedule_id 
+                        LEFT JOIN court_image ci ON c.court_id = ci.court_id 
+                      WHERE 
+                        ci.court_image_id = 3 * c.court_id 
+                        AND YEAR(cs.created_on_date) = $year
+                      GROUP BY 
+                        c.court_name 
+                      ORDER BY 
+                        average_star_rate DESC";
+            $data = array();
+        
+            $result = ExecuteDataQuery($link, $query);
+            if(!$result) {
+                throw new Exception("Failed to fetch data from the database");
+            }
+        
+            // Fetch data
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($data,$row);
+            }
+            
+            // Release resources
+            ReleaseMemory($link, $result);
+            
+            return $data;
+        }
     }
 ?>

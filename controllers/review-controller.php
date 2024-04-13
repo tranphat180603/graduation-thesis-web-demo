@@ -42,5 +42,29 @@
                 return "Chưa đánh giá";
             }
         }
+
+        public function review_chart($year) {
+            try {
+                $data = $this->review->get_review_on_chart($year);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+                return null;
+            }
+        }
+    }
+
+    $year = isset($_GET['year']) ? intval($_GET['year']) : date('Y');
+    $controller = new Review_Controller();
+    $review_chart = $controller->review_chart($year);
+    $court_name = [];
+    $review_count = [];
+    $average_star_rate = [];
+    $image = [];
+    foreach($review_chart as $entry){
+        $court_name[] = $entry['court_name'];
+        $review_count[] = $entry['review_count'];
+        $average_star_rate[] = $entry['average_star_rate'];
+        $image [] = $entry['image'];
     }
 ?>

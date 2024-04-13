@@ -27,16 +27,42 @@ p {
   margin: 0px;
 }
 
-/*---------------------------------- HEADER -----------------------------------*/
-@media screen and (max-width: 500px) {
-  .sign-up-header {
-    padding: 40px 20px;
-  }
+/* Định dạng cho thanh cuộn ngang và dọc */
+/* width */
+.court-schedule-table::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* height */
+#schedule-body-menu ul::-webkit-scrollbar,
+.court-schedule-table::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+#schedule-body-menu ul::-webkit-scrollbar-track,
+.court-schedule-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Handle */
+#schedule-body-menu ul::-webkit-scrollbar-thumb,
+.court-schedule-table::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+#schedule-body-menu ul::-webkit-scrollbar-thumb:hover,
+.court-schedule-table::-webkit-scrollbar-thumb:hover {
+  background: #9c9c9c;
+  border-radius: 4px;
 }
 
 /*----------------------------------- BODY -----------------------------------*/
 /* Định dạng tiêu đề */
-.court-type-body {
+.schedule-body {
   display: flex;
   padding: 30px 70px;
   justify-content: center;
@@ -44,8 +70,24 @@ p {
   border-radius: 2px;
   background: #f1f1f1;
 }
-
-.court-type-body-content {
+.overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #868686;
+  opacity: 0.55;
+  z-index: 10;
+  display: none;
+  width: 1440px;
+  height: 1420px;
+  flex-shrink: 0;
+}
+.overlay.active {
+  display: block; /* Show overlay when mini-form is active */
+}
+.schedule-body-content {
   display: flex;
   max-width: 1300px;
   padding: 24px;
@@ -57,22 +99,34 @@ p {
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
 }
 
-.court-type-top {
+.schedule-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
 }
 
-.court-type-top p {
+.schedule-top p {
   color: #000;
   font-family: "Be Vietnam Pro";
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 28px;
+}
+
+.schedule-top img:hover {
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #dee4e2;
+}
+
+.schedule-top a {
+  height: 28px;
 }
 
 /* Định dạng ô nhập liệu tìm kiếm */
@@ -84,7 +138,7 @@ p {
   align-self: stretch;
   border-radius: 8px;
   border: 1px solid #eaeaea;
-  background: #fafbfc;
+  background-color: #fafbfc;
 }
 
 .search img:hover {
@@ -113,6 +167,7 @@ p {
   line-height: 20px;
   border: none;
   outline: none;
+  background-color: #fafbfc;
 }
 
 #search-input::placeholder,
@@ -136,18 +191,704 @@ p {
 }
 
 /* Định dạng thanh điều hướng */
+#schedule-body-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  row-gap: 15px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+#icon {
+  background-color: transparent;
+}
+#schedule-body-menu ul {
+  display: flex;
+  align-items: flex-start;
+  max-width: 900px;
+  overflow-x: scroll; /* Luôn hiển thị thanh cuộn ngang */
+  margin: 0px;
+  padding: 0px;
+  align-self: stretch;
+  gap: 36px;
+  white-space: nowrap;
+  padding-bottom: 8px;
+}
 
-/* Định dạng bảng dữ liệu */
+.li-court-type {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 5px;
+}
 
-/*----------------------------------- FOOTER -----------------------------------*/
+.li-court-type a {
+  color: #c2c2c2;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* Định dạng 3 nút thao tác */
+#action {
+  display: flex;
+  width: 275px;
+  height: 39px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#action p {
+  color: #fafbfc;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+#insert {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #f0bd0a;
+}
+
+#update {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #27ae60;
+}
+
+#delete {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #d00000;
+}
+
+/* -----------------------------Định dạng bảng dữ liệu---------------------------------- */
+.court-schedule-table {
+  position: relative;
+  width: 100%;
+  max-height: 450px;
+  margin: 0px;
+  padding: 0px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  overflow: scroll;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 0.9rem;
+  text-align: left;
+}
+
+thead tr {
+  border-radius: 4px 4px 0px 0px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  text-transform: capitalize;
+  background: #d1d1d1;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr:hover {
+  background-color: rgba(199, 194, 194, 0.4) !important;
+}
+
+tbody td {
+  max-width: 50px; /* Giới hạn chiều rộng tối đa của ô */
+  overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá kích thước của ô */
+  text-overflow: ellipsis; /* Hiển thị dấu ... cho nội dung bị ẩn */
+  white-space: nowrap; /* Ngăn chặn việc xuống hàng khi văn bản dài */
+}
+/* Style the table header cells on smaller screens */
+@media screen and (max-width: 600px) {
+  table th {
+    font-size: 14px;
+  }
+}
+
+/* Hide table headers on smaller screens */
+@media screen and (max-width: 400px) {
+  table th {
+    display: none;
+  }
+
+  /* Ensure table rows are still visible */
+  table td {
+    border-top: 1px solid #dddddd;
+  }
+
+  /* Style table cells to display as blocks */
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
+
+.btn-view a {
+  max-width: 70px;
+  display: flex;
+  padding: 6px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  border: 2px solid #4eacdf;
+  background: #fafbfc;
+}
+
+.btn-view p {
+  color: #4eacdf;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* Định dạng search data */
+tbody tr {
+  --delay: 0.1s;
+  transition: 0.5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr td,
+tbody tr td input[type="checkbox"],
+tbody tr td p,
+tbody tr td a {
+  transition: 0.2s ease-in-out;
+}
+
+@keyframes slideOutRight {
+  0% {
+  }
+  100% {
+    transition: 0.2s ease-in-out 0.5s;
+    display: none;
+  }
+}
+
+tbody tr.hide td {
+  animation: slideOutRight 1s forwards;
+}
+
+/* *********************** */
+
+/* Định dạng cho trạng thái của lịch sân */
+.status {
+  padding: 0.6rem 0;
+  border-radius: 6px;
+  background: #dee4e2;
+  text-align: center;
+  vertical-align: middle;
+
+  color: #7f8283;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.haveNotBooked {
+  background: #dee4e2;
+  color: #7f8283;
+}
+
+.haveBooked {
+  background: #d3fff2;
+  color: #339db5;
+}
+
+.expired {
+  background: #fcd7e2;
+  color: #e7527e;
+}
+
+/* Định dạng sorting */
+
+thead th span.icon-arrow {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1.4px solid transparent;
+
+  text-align: center;
+  font-size: 1rem;
+
+  margin-left: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow {
+  border: 1.4px solid #007ebd;
+}
+
+thead th:hover {
+  color: #007ebd;
+}
+
+thead th.active span.icon-arrow {
+  background-color: #007ebd;
+  color: #fff;
+}
+
+thead th.asc span.icon-arrow {
+  transform: rotate(180deg);
+}
+
+thead th.active,
+tbody td.active {
+  color: #007ebd;
+}
+
+/* Định dạng checkbox */
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 /* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
 @media screen and (max-width: 500px) {
-  .footer {
-    display: flex;
-    padding: 20px 20px 40px;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #888;
-    background: #fafbfc;
+  .schedule-body {
+    padding: 30px 20px;
+  }
+
+  .schedule-body-content {
+    padding: 24px 14px;
+  }
+}
+/*----------------------------------- Định dạng court_type_detail-----------------------------------*/
+.court-type-detail {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
+  width: 597px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  background: var(--Conditional-pop-over, #fff);
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+    0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+
+.court-type-detail.active {
+  display: flex;
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
+}
+
+#header {
+  display: flex;
+  padding: 16px 20px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px 6px 0px 0px;
+  background: #cfeaf6;
+  /* border & divider/divider ↓ */
+  box-shadow: 0px -1px 0px 0px #f0f0f0 inset;
+}
+.detail-p {
+  color: var(--character-title-85, rgba(0, 0, 0, 0.85));
+  text-align: right;
+  font-family: "Be Vietnam Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 137.5% */
+}
+#header-text {
+  color: var(--character-title-85, rgba(0, 0, 0, 0.85));
+  font-family: "Be Vietnam Pro";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 133.333% */
+}
+#form-container {
+  display: flex;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  align-self: stretch;
+}
+#detail-form {
+  display: flex;
+  padding: 0px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 0 0;
+}
+#close {
+  width: 16px;
+  height: 16px;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+#detail-row-icon {
+  display: flex;
+  padding-bottom: 8px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+label {
+  flex: 1 0 0;
+  color: var(--character-title-85, rgba(0, 0, 0, 0.85));
+  text-align: start;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+.label-container {
+  display: flex;
+  max-width: 132px;
+  padding-right: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+#image-frame {
+  display: flex;
+  width: 55px;
+  height: 50px;
+  padding: 0px 3.735px 36.735px 38px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 1;
+}
+#close-circle {
+  display: none;
+  width: 13.265px;
+  height: 13.265px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 24px;
+  background: #fff;
+  margin-left: 60px;
+}
+#court-type-icon-field {
+  display: flex;
+  min-width: 200px;
+  padding: 10px 12px;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 2px;
+  border: 1px solid var(--Neutral-5, #d9d9d9);
+  background: var(--Neutral-1, #fff);
+}
+#court-type-icon-subfield {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+}
+.detail-input {
+  display: flex;
+  min-width: 200px;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 2px;
+  border: 1px solid var(--Neutral-5, #d9d9d9);
+  background: var(--Neutral-1, #fff);
+  pointer-events: none;
+}
+hr {
+  width: 523px;
+  height: 1px;
+}
+#footer-miniform {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 0px 0px 6px 6px;
+  background: #cfeaf6;
+  /* border & divider/divider ↑ */
+  box-shadow: 0px 1px 0px 0px #f0f0f0 inset;
+}
+#editButton {
+  display: flex;
+  padding: 4px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  border: 1px solid #026d4d;
+  background: #026d4d;
+
+  /* drop-shadow/button-primary */
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+  color: var(--character-primary-inverse, #fff);
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+#deleteButton {
+  display: flex;
+  padding: 4px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  border: 1px solid #d00000;
+  background: #d00000;
+
+  /* drop-shadow/button-primary */
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+  color: var(--character-primary-inverse, #fff);
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+#cancelButton {
+  display: none;
+  padding: 4px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  border: 1px solid #d00000;
+  background: #d00000;
+
+  /* drop-shadow/button-primary */
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+  color: var(--character-primary-inverse, #fff);
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+#saveButton {
+  display: none;
+  padding: 4px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  border: 1px solid #1890ff;
+  background: #1890ff;
+
+  /* drop-shadow/button-primary */
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+  color: var(--character-primary-inverse, #fff);
+  text-align: center;
+  font-family: "Be Vietnam Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+
+/*----------------------------------- Form thông báo -----------------------------------*/
+
+.action-successful {
+  display: flex;
+  width: 441px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  position: absolute;
+  top: 200px;
+  right: calc(100% / 2 - 220px);
+  z-index: 10;
+  border-radius: 8px;
+  background: #fafbfc;
+  box-shadow: 0px 4px 12px 8px rgba(0, 0, 0, 0.08);
+}
+
+.successful-image {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  align-self: stretch;
+}
+
+#action-successful-message-title {
+  color: #000;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+#action-successful-message {
+  align-self: stretch;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.action-successful-button-group {
+  display: flex;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+
+#home-button {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+
+  border-radius: 4px;
+  border: 2px solid #285d8f;
+  background: #fafbfc;
+
+  color: #285d8f;
+  text-align: center;
+
+  font-size: 13.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+#home-button:hover {
+  background: #e4ebf1;
+}
+
+#admin-management-button {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 4px;
+  background: #285d8f;
+
+  color: #fafbfc;
+  text-align: center;
+
+  font-size: 13.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+#admin-management-button:hover {
+  background: #1d476f;
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 600px */
+@media screen and (max-width: 600px) {
+  .action-successful {
+    width: 320px;
+    top: 100px;
+    right: calc(100% / 2 - 190px);
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 500px */
+@media screen and (max-width: 500px) {
+  .action-successful {
+    width: 290px;
+    top: 50px;
+    right: calc(100% / 2 - 180px);
+  }
+}
+
+/* Điều chỉnh định dạng khi kích thước màn hình nhỏ hơn 400px */
+@media screen and (max-width: 400px) {
+  .action-successful {
+    width: 260px;
+    top: 50px;
+    right: calc(100% / 2 - 165px);
   }
 }

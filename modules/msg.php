@@ -1,7 +1,7 @@
 <?php
     if(isset($_GET['msg'])) {
         $msg = $_GET['msg'];
-        if($msg == "exist_sign_up_name") { //Không hoạt động
+        if($msg == "exist_sign_up_name") { 
             echo "
                 <script>
                     var checkImg = document.getElementById('check'),
@@ -19,7 +19,7 @@
                     next_button.style.backgroundColor = '#285d8f'; 
                 </script>
             ";
-        } else if($msg == "exist_sign_up_phone") { //Không hoạt động
+        } else if($msg == "exist_sign_up_phone") { 
             echo "
                 <script>
                     var checkImg = document.getElementById('check-phone'),
@@ -37,7 +37,7 @@
                     next_button.style.backgroundColor = '#285d8f'; 
                 </script>
             ";
-        } else if($msg == "exist_sign_up_email") { //Không hoạt động
+        } else if($msg == "exist_sign_up_email") { 
             echo "
                 <script>
                     var checkImg = document.getElementById('check-email'),

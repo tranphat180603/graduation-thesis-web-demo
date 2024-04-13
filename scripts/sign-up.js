@@ -94,17 +94,17 @@ function checkSignUpEmail() {
   var checkImgEmail = document.getElementById("check-email"),
     warningDivEmail = document.querySelector(".warning-email"),
     email_next_button = document.getElementById("email-next-button");
-  const pattern_email = /^\d{10}$/; // Biểu thức chính quy
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy
 
   if (pattern_email.test(sign_up_email.value)) {
-    // SĐT hợp lệ
+    // Email hợp lệ
     sign_up_email_input.style.border = "1px solid #34C759";
     checkImgEmail.style.display = "block";
     warningDivEmail.style.visibility = "hidden"; // Ẩn cảnh báo nếu có
     email_next_button.style.pointerEvents = "auto";
     email_next_button.style.backgroundColor = "#285d8f";
   } else {
-    // SĐT không hợp lệ
+    // Email không hợp lệ
     sign_up_email_input.style.border = "1px solid #FF4141";
     checkImgEmail.style.display = "none"; // Ẩn hình ảnh kiểm tra nếu tên không hợp lệ
     warningDivEmail.style.visibility = "visible"; // Hiển thị cảnh báo

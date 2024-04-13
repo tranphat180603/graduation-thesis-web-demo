@@ -97,6 +97,10 @@
             return false;
             }                 
         }
+
+        public function get_court_image($id) {
+            return $result = $this->court->get_court_image($id);
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

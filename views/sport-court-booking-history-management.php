@@ -220,7 +220,7 @@
                         <div class="awaiting-payment-content">
                           Cảm ơn bạn đã đặt sân thể thao, bạn vui lòng chờ NTP xác nhận thanh toán nhé
                         </div>
-                        <button class="button cancel-button" id="show-cancel-form">
+                        <button class="button cancel-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="cancel-label">Hủy Đơn Đặt Sân</div>
                         </button>
                       </div>
@@ -243,7 +243,7 @@
                         <?php
                           $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
                         ?>
-                        <button class="review-button" id="review-button-2">
+                        <button class="review-button" id="review-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="review-label">
                             <?php
                             if ($review_status === "Đã đánh giá") {
@@ -263,7 +263,7 @@
                         <div class="awaiting-court-content">
                           Cảm ơn bạn đã đặt sân thể thao, NTP chúc bạn có một trải nghiệm thật tuyệt vời bên đồng đội
                         </div>
-                        <button class="button cancel-button" id="show-cancel-form">
+                        <button class="button cancel-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="cancel-label">Hủy Đơn Đặt Sân</div>
                         </button>
                       </div>
@@ -304,95 +304,126 @@
 
   <!-- FOOTER -->
   <?php include "../footer/footer.php"; ?>
-
-  <!-- Form yêu cầu hủy đơn -->
-  <form class="cancellation-form" id="cancellation-form" method="post" style="display:none;">
-    <div class="cancellation-header">
-      <p>Lý Do Hủy</p>
-    </div>
-    <div class="reasons-list">
-
-      <div class="option-wrapper">
-        <input class="styled-radio custom-cursor-on-hover" checked="{true}" type="radio" name="cancellation-reason" id="reason1" value="event-change">
-        <label for="reason1" class="reason-label">Tôi muốn thêm/ thay đổi sự kiện</label>
-      </div>
-      <div class="option-wrapper">
-        <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason2" value="schedule-change">
-        <label for="reason2" class="reason-label">Tôi muốn thay đổi lịch sân</label>
-      </div>
-      <div class="option-wrapper">
-        <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason3" value="better-option">
-        <label for="reason3" class="reason-label">Tôi tìm thấy chỗ đặt sân khác tốt hơn (rẻ hơn, uy tín hơn, chất lượng hơn)</label>
-      </div>
-      <div class="option-wrapper">
-        <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason4" value="no-need">
-        <label for="reason4" class="reason-label">Tôi không còn nhu cầu đặt sân nữa</label>
-      </div>
-      <div class="option-wrapper">
-        <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason5" value="no-suitable-reason">
-        <label for="reason5" class="reason-label">Tôi không tìm thấy lý do hủy phù hợp</label>
-      </div>
-    </div>
-    <div class="button-container">
-      <button type="button" class="exit-button" onclick="hideForm()">
-        <div class="exit-text">Thoát</div>
-      </button>
-      <div class="cancel-order-button" id="cancel-order-button">
-        <img class="cancel-order-icon" alt="" src="../image/sport-courts-booking-history-management-img/vector-1.svg">
-        <div class="cancel-order-text">Huỷ đơn</div>
-      </div>
-    </div>
-  </form>
-
-  <!-- Form xác nhận hủy đơn đặt sân -->
-  <form class="booking-cancellation-confirm" id="confirmation-form" action="" method="post" style="display:none;">
-    <input type="hidden" id="court_order_id" name="court_order_id" value="<?php echo $court_order->getCourtOrderId(); ?>">
-    <input type="hidden" name="canceled_on_date" id="canceled_on_date">
-    <input type="hidden" name="cancel_reason" id="cancel_reason">
-    <input type="hidden" name="cancel_party_account_id" id="cancel_party_account_id" value="<?php echo $account_id; ?> ">
-
-    <input type="hidden" name="option" value="update">
-
-    <div class="booking-cancellation-content">
-      <img class="info-icon" loading="lazy" alt="" src="../image/sport-court-details-img/ExclamationCircle.svg" />
-      <div class="confirmation">
-        <div class="confirmation-title">Bạn thật sự muốn hủy đơn đặt sân này?</div>
-        <div class="confirmation-text">
-          <span>Đơn đặt sân này sẽ được chuyển trạng thái thành</span>
-          <span class="cancel-status">ĐÃ HỦY</span>
-          <span> nếu bạn hủy nó.</span>
-        </div>
-      </div>
-    </div>
-    <div class="button-group-wrapper">
-      <div class="button-group">
-        <div type="button" class="dis-cancel-button" onclick="hideForm()">
-          <div class="dis-cancel-text">Không</div>
-        </div>
-        <button type="submit" class="confirm-cancel-button">
-          <div class="confirm-cancel-text">Có</div>
-        </button>
-      </div>
-    </div>
-  </form>
-
-
   <!-- Form đánh giá sân -->
   <?php
   require_once "../controllers/review-controller.php";
-  $reviewscontroller = new Review_Controller();
+  $reviewsController = new Review_Controller();
   $courts = $court_controller->view_all_court();
   ?>
+
   <?php foreach ($court_orders as $court_order) :
     foreach ($court_schedules as $court_schedule) :
       if ($court_order->getCourtScheduleId() === $court_schedule->getCourtScheduleId()) :
         foreach ($courts as $court) :
           if ($court->getCourtId() === $court_schedule->getCourtId()) :
-            $court_id = $court->getCourtId(); ?>
-            <form class="review-section" id="review-section" method="post" style="display:none;" action="">
+            $court_id = $court->getCourtId();
+  ?>
+            <!-- Form yêu cầu hủy đơn -->
+            <form class="cancellation-form" id="cancellation-form-<?php echo $court_order->getCourtOrderId(); ?>" method="post" style="display:none;">
+              <div class="cancellation-header">
+                <p>Lý Do Hủy</p>
+              </div>
+              <div class="reasons-list">
+
+                <div class="option-wrapper">
+                  <input class="styled-radio custom-cursor-on-hover" checked="true" type="radio" name="cancellation-reason" id="reason1" value="event-change" data-reason="Tôi muốn thêm/ thay đổi sự kiện">
+                  <label for="reason1" class="reason-label">Tôi muốn thêm/ thay đổi sự kiện</label>
+                </div>
+                <div class="option-wrapper">
+                  <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason2" value="schedule-change" data-reason="Tôi muốn thay đổi lịch sân">
+                  <label for="reason2" class="reason-label">Tôi muốn thay đổi lịch sân</label>
+                </div>
+                <div class="option-wrapper">
+                  <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason3" value="better-option" data-reason="Tôi tìm thấy chỗ đặt sân khác tốt hơn (rẻ hơn, uy tín hơn, chất lượng hơn)">
+                  <label for="reason3" class="reason-label">Tôi tìm thấy chỗ đặt sân khác tốt hơn (rẻ hơn, uy tín hơn, chất lượng hơn)</label>
+                </div>
+                <div class="option-wrapper">
+                  <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason4" value="no-need" data-reason="Tôi không còn nhu cầu đặt sân nữa">
+                  <label for="reason4" class="reason-label">Tôi không còn nhu cầu đặt sân nữa</label>
+                </div>
+                <div class="option-wrapper">
+                  <input class="styled-radio custom-cursor-on-hover" type="radio" name="cancellation-reason" id="reason5" value="no-suitable-reason" data-reason="Tôi không tìm thấy lý do hủy phù hợp">
+                  <label for="reason5" class="reason-label">Tôi không tìm thấy lý do hủy phù hợp</label>
+                </div>
+              </div>
+              <div class="button-container">
+                <button type="button" class="exit-button" onclick="hideCancellationForm(<?php echo $court_order->getCourtOrderId(); ?>)">
+                  <div class="exit-text">Thoát</div>
+                </button>
+
+                <div class="cancel-order-button" id="cancel-order-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
+                  <img class="cancel-order-icon" alt="" src="../image/sport-courts-booking-history-management-img/vector-1.svg">
+                  <div class="cancel-order-text">Huỷ đơn</div>
+                </div>
+              </div>
+            </form>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  <?php endforeach; ?>
+
+  <?php foreach ($court_orders as $court_order) :
+    foreach ($court_schedules as $court_schedule) :
+      if ($court_order->getCourtScheduleId() === $court_schedule->getCourtScheduleId()) :
+        foreach ($courts as $court) :
+          if ($court->getCourtId() === $court_schedule->getCourtId()) :
+            $court_id = $court->getCourtId();
+  ?>
+            <!-- Form xác nhận hủy đơn đặt sân -->
+            <form class="booking-cancellation-confirm" id="confirmation-form-<?php echo $court_order->getCourtOrderId(); ?>" action="" method="post" style="display: none;" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
+              <input type="" id="court_order_id" name="court_order_id" value="<?php echo $court_order->getCourtOrderId(); ?>">
+              <input type="" name="canceled_on_date" id="canceled_on_date">
+              <input type="" name="cancel_reason" id="cancel_reason">
+              <input type="" name="cancel_party_account_id" id="cancel_party_account_id" value="<?php echo $account_id; ?> ">
+              <input type="" name="option" value="update">
+
+              <div class="booking-cancellation-content">
+                <img class="info-icon" loading="lazy" alt="" src="../image/sport-court-details-img/ExclamationCircle.svg" />
+                <div class="confirmation">
+                  <div class="confirmation-title">Bạn thật sự muốn hủy đơn đặt sân này?</div>
+                  <div class="confirmation-text">
+                    <span>Đơn đặt sân này sẽ được chuyển trạng thái thành</span>
+                    <span class="cancel-status">ĐÃ HỦY</span>
+                    <span> nếu bạn hủy nó.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="button-group-wrapper">
+                <div class="button-group">
+                  <div type="button" class="dis-cancel-button" onclick="hideConfirmationForm(<?php echo $court_order->getCourtOrderId(); ?>)">
+                    <div class="dis-cancel-text">Không</div>
+                  </div>
+                  <button type="submit" class="confirm-cancel-button">
+                    <div class="confirm-cancel-text">Có</div>
+                  </button>
+                </div>
+              </div>
+            </form>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  <?php endforeach; ?>
+
+  <!-- Form đánh giá sân -->
+  <?php
+  require_once "../controllers/review-controller.php";
+  $reviewsController = new Review_Controller();
+  $courts = $court_controller->view_all_court();
+  ?>
+
+  <?php foreach ($court_orders as $court_order) :
+    foreach ($court_schedules as $court_schedule) :
+      if ($court_order->getCourtScheduleId() === $court_schedule->getCourtScheduleId()) :
+        foreach ($courts as $court) :
+          if ($court->getCourtId() === $court_schedule->getCourtId()) :
+            $court_id = $court->getCourtId();
+  ?>
+            <form class="review-section" id="review-section-<?php echo $court_order->getCourtOrderId(); ?>" method="post" style="display:none;" action="">
               <div class="review-header">
                 <div class="review-title">Đánh giá <?php echo $court->getCourtName();  ?></div>
-                <img class="close-icon" alt="" src=" ../image/sport-courts-booking-history-management-img/close.svg" onclick="hideForm()">
+                <img class="close-icon" alt="" src="../image/sport-courts-booking-history-management-img/close.svg" onclick="hideFormrating('<?php echo $court_order->getCourtOrderId(); ?>')">
               </div>
               <div class="review-section-inner">
                 <div class="review">
@@ -453,20 +484,18 @@
                   <div class="close-button" id="close-button" onclick="toggleInputReview()">
                     <div class="close-text">Đóng lại</div>
                   </div>
-                  <?php
-                    $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
-                  ?>
                   <div class='data-aggregator1' data-review-status="<?php echo $review_status; ?>">
                     <div class="rating-selected-parent">
                       <div class="rating-selected-title">Chọn đánh giá của bạn</div>
                       <div class="layout-organizer star-container">
-                        <img class="star-icon" data-rating="1" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="1 star" onclick="setStarRating(1)">
-                        <img class="star-icon" data-rating="2" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="2 stars" onclick="setStarRating(2)">
-                        <img class="star-icon" data-rating="3" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="3 stars" onclick="setStarRating(3)">
-                        <img class="star-icon" data-rating="4" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="4 stars" onclick="setStarRating(4)">
-                        <img class="star-icon" data-rating="5" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="5 stars" onclick="setStarRating(5)">
+                        <!-- Các hình sao với sự kiện onclick -->
+                        <img class="star-icon" data-rating="1" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="1 star" onclick="setStarRating(1, '<?php echo $court_order->getCourtOrderId(); ?>')">
+                        <img class="star-icon" data-rating="2" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="2 stars" onclick="setStarRating(2, '<?php echo $court_order->getCourtOrderId(); ?>')">
+                        <img class="star-icon" data-rating="3" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="3 stars" onclick="setStarRating(3, '<?php echo $court_order->getCourtOrderId(); ?>')">
+                        <img class="star-icon" data-rating="4" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="4 stars" onclick="setStarRating(4, '<?php echo $court_order->getCourtOrderId(); ?>')">
+                        <img class="star-icon" data-rating="5" src="../image/sport-court-details-img/vuesaxboldstar-gray.svg" alt="5 stars" onclick="setStarRating(5, '<?php echo $court_order->getCourtOrderId(); ?>')">
                       </div>
-                      <div class="review-status">Chọn đánh giá</div>
+                      <div class="review-status review-status-<?php echo $court_order->getCourtOrderId(); ?>">Chọn đánh giá</div>
                       <div class="message-review-status" style="display: none;">Vui lòng điền đầy đủ đánh giá (*) . </div>
                     </div>
 
@@ -474,27 +503,29 @@
                       <img class="image-16-icon" loading="lazy" alt="" src=" <?php echo "/NTP-Sports-Hub" . $customer_avatar_link; ?>">
 
                       <div class="review-enter">
-                        <input type="hidden" id="court_schedule_id" name="court_schedule_id" value="<?php echo $court_schedule->getCourtScheduleId() ?>">
-                        <input type="hidden" id="account_id" name="account_id" value="<?php echo $account_id; ?>">
-                        <input type="hidden" id="review_star_rate" name="review_star_rate">
-                        <input type="hidden" name="option" value="insert">
+                        <input type="" name="court_schedule_id" value="<?php echo $court_schedule->getCourtScheduleId() ?>">
+                        <input type="" name="account_id" value="<?php echo $account_id; ?>">
+                        <input type="" name="review_star_rate" id="review_star_rate_<?php echo $court_order->getCourtOrderId(); ?>">
+
+                        <input type="" name="option" value="insert">
                         <textarea id="review_text" name="review_text" class="review-text-input" oninput="limitTextarea(this, 100)" placeholder="Nhập đánh giá sân (tối thiểu 100 ký tự)" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
-                        <button class="send-review-button" type="button" id="send-review-button" onclick="checkInputsAndSubmit()">
+                        <button class="send-review-button" type="button" id="send-review-button" onclick="checkInputsAndSubmit('review-section-<?php echo $court_order->getCourtOrderId(); ?>')">
                           <div class="send-review-text">Gửi đánh giá</div>
                         </button>
                       </div>
                     </div>
                   </div>
 
+
                   <div class="user-review-container">
                     <?php
-                    // Lấy dữ liệu đánh giá từ cơ sở dữ liệu
                     $reviews = $reviewscontroller->getReviewData($court->getCourtId());
                     $reviewCount = count($reviews);
                     $index = 0;
+
                     foreach ($reviews as $review) {
                       $index++; ?>
-                      <div class="reviewer" <?php if ($index > 3) echo 'style="display: none;"'; ?>>
+                      <div class="reviewer">
                         <?php foreach ($accounts as $account) {
                           if ($account->getAccountId() == $review->getAccountId()) : ?>
                             <?php
@@ -533,15 +564,13 @@
                       </div>
                     <?php } ?>
                     <div class="review-load-more-wrapper">
-                      <?php if ($reviewCount > 3) { ?>
-                        <div class="load-more-reviews-btn">Xem thêm đánh giá</div>
-                      <?php } ?>
+                      <div class="load-more-reviews-btn">Xem thêm đánh giá</div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="exit-rating-wrapper">
-                <div class="exit-rating-button" id="exit-rating-button" onclick="hideForm()">
+                <div class="exit-rating-button" id="exit-rating-button" onclick="hideFormrating('<?php echo $court_order->getCourtOrderId(); ?>')">
                   <div class="exit-rating-text">Thoát</div>
                 </div>
               </div>
@@ -551,6 +580,7 @@
       <?php endif; ?>
     <?php endforeach; ?>
   <?php endforeach; ?>
+
   <?php
   // Kiểm tra nếu biến option đã được gửi từ form và có giá trị là 'insert'
   if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['option']) && $_POST['option'] === 'insert') {

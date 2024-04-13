@@ -352,5 +352,35 @@
                 return false;
             }
         }
+
+        public function get_court_image($id) {
+            $link = "";
+            MakeConnection($link);
+        
+            // Check if $id is set and is not empty
+            if (!isset($id) || empty($id)) {
+                // Handle the case where $id is not provided
+                return false;
+            }
+        
+            $query = "SELECT * FROM court_image WHERE court_image_id = $id";
+        
+            $result = ExecuteDataQuery($link, $query);
+        
+            // Check if the query was successful
+            if (!$result) {
+                // Handle the case where the query failed
+                return false;
+            }
+        
+            // Fetch the row
+            $row = mysqli_fetch_row($result);
+        
+            // Free the result and release memory
+            ReleaseMemory($link, $result);
+        
+            // Return the row
+            return $row;
+        }
     }
 ?>

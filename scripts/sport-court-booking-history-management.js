@@ -1,45 +1,39 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Lấy danh sách các sao
-  const starIcons = document.querySelectorAll(".star-icon");
-  // Lấy phần tử hiển thị trạng thái
-  const reviewStatus = document.querySelector(".review-status");
+//1. Hàm nhận giá trị sao khi khách hàng đánh giá và chuyển src hình ảnh
+function setStarRating(rating, orderId) {
+  // Get all star icons for a specific order
+  const stars = document.querySelectorAll(`.star-icon[data-rating]`);
 
-  // Đặt sự kiện khi nhấn vào các sao
-  starIcons.forEach((star) => {
-    star.addEventListener("click", () => {
-      const rating = star.dataset.rating; // Lấy giá trị data-rating của sao được nhấn
-      // Thay đổi màu của các sao tùy theo số sao được nhấn
-      starIcons.forEach((s) => {
-        if (s.dataset.rating <= rating) {
-          s.src = "../image/sport-court-details-img/vuesaxboldstar.svg"; // Hiển thị sao màu vàng
-        } else {
-          s.src = "../image/sport-court-details-img/vuesaxboldstar-gray.svg"; // Hiển thị sao màu xám
-        }
-      });
-      // Cập nhật trạng thái dựa trên số sao được chọn
-      switch (parseInt(rating)) {
-        case 1:
-          reviewStatus.textContent = "Không thích";
-          break;
-        case 2:
-          reviewStatus.textContent = "Tạm được";
-          break;
-        case 3:
-          reviewStatus.textContent = "Bình thường";
-          break;
-        case 4:
-          reviewStatus.textContent = "Rất tốt";
-          break;
-        case 5:
-          reviewStatus.textContent = "Tuyệt vời";
-          break;
-        default:
-          reviewStatus.textContent = "Không xác định";
-      }
-    });
+  stars.forEach((star, idx) => {
+    const starRating = parseInt(star.getAttribute("data-rating"));
+    if (starRating <= rating) {
+      star.src = "../image/sport-court-details-img/vuesaxboldstar.svg"; // Change to yellow star
+    } else {
+      star.src = "../image/sport-court-details-img/vuesaxboldstar-gray.svg"; // Keep gray star
+    }
   });
-});
 
+  // Cập nhật trạng thái tương ứng với sao
+  const reviewStatus = document.querySelector(`.review-status-${orderId}`);
+  if (reviewStatus) {
+    const statuses = [
+      "Không xác định",
+      "Không thích",
+      "Tạm được",
+      "Bình thường",
+      "Rất tốt",
+      "Tuyệt vời",
+    ];
+    reviewStatus.textContent = statuses[rating - 1] || statuses[0];
+  }
+
+  // Truyền giá trị sao tương ứng vào input
+  const inputElement = document.getElementById("review_star_rate_" + orderId);
+  if (inputElement) {
+    inputElement.value = rating;
+  }
+}
+
+// 2. Hàm chuyển thành đơn vị tiền tệ VND
 function formatCurrency(number) {
   return new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -82,34 +76,40 @@ searchInput.addEventListener("input", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const loadMoreButton = document.querySelector(".load-more-reviews-btn");
-  const reviewers = document.querySelectorAll(".reviewer");
+  // Lặp qua tất cả các form đánh giá
+  document.querySelectorAll(".review-section").forEach(function (form) {
+    const loadMoreButton = form.querySelector(".load-more-reviews-btn");
+    const reviewers = form.querySelectorAll(".reviewer");
 
-  // Ẩn tất cả các đánh giá vượt quá 3 đánh giá ban đầu
-  reviewers.forEach(function (reviewer, index) {
-    if (index >= 3) {
-      reviewer.style.display = "none";
+    // Ẩn tất cả các đánh giá ngoại trừ 3 đánh giá đầu tiên
+    for (let i = 3; i < reviewers.length; i++) {
+      reviewers[i].style.display = "none";
     }
-  });
 
-  // Xử lý sự kiện khi bấm vào nút "Xem thêm đánh giá"
-  loadMoreButton.addEventListener("click", function () {
-    // Hiển thị tất cả các đánh giá
-    reviewers.forEach(function (reviewer) {
-      reviewer.style.display = "flex";
+    // Xử lý sự kiện khi bấm vào nút "Xem thêm đánh giá"
+    loadMoreButton.addEventListener("click", function () {
+      // Hiển thị tất cả các đánh giá
+      reviewers.forEach(function (reviewer) {
+        reviewer.style.display = "flex";
+      });
+      // Ẩn nút "Xem thêm đánh giá"
+      loadMoreButton.style.display = "none";
     });
-    // Ẩn nút "Xem thêm đánh giá"
-    loadMoreButton.style.display = "none";
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var dataAggregator = document.querySelector(".data-aggregator1");
-  var reviewStatus = dataAggregator.getAttribute("data-review-status");
-  // Nếu đã đánh giá thì ẩn trường nhập liệu
-  if (reviewStatus === "Đã đánh giá") {
-    dataAggregator.style.display = "none";
-  }
+  // Lặp qua tất cả các form đánh giá
+  document.querySelectorAll(".review-section").forEach(function (form) {
+    var dataAggregator = form.querySelector(".data-aggregator1");
+    var reviewStatus = dataAggregator.getAttribute("data-review-status");
+
+    // Nếu reviewStatus là "Đã đánh giá", ẩn data-aggregator1 và nút đóng lại
+    if (reviewStatus === "Đã đánh giá") {
+      dataAggregator.style.display = "none";
+      form.querySelector(".close-button").style.display = "none";
+    }
+  });
 });
 
 let isInputReviewVisible = true;
@@ -184,23 +184,19 @@ function showSuccessMessage() {
 }
 showSuccessMessage();
 
-function shakeAndHide(element) {
-  element.classList.add("shake");
-  setTimeout(function () {
-    element.style.display = "none";
-    element.classList.remove("shake");
-  }, 1000); // Thời gian để rung rung trước khi ẩn phần tử
-}
-
 var isFormSubmitted = false;
 
 // Hàm để kiểm tra và thực hiện submit form
-// Hàm để kiểm tra và thực hiện submit form
-function checkInputsAndSubmit() {
-  var courtScheduleId = document.getElementById("court_schedule_id").value;
-  var accountId = document.getElementById("account_id").value;
-  var reviewStarRate = document.getElementById("review_star_rate").value;
-  var reviewText = document.getElementById("review_text").value;
+function checkInputsAndSubmit(formId) {
+  var form = document.getElementById(formId);
+  var courtScheduleId = form.querySelector(
+    "input[name='court_schedule_id']"
+  ).value;
+  var accountId = form.querySelector("input[name='account_id']").value;
+  var reviewStarRate = form.querySelector(
+    "input[name='review_star_rate']"
+  ).value;
+  var reviewText = form.querySelector("textarea[name='review_text']").value;
 
   if (
     !isFormSubmitted &&
@@ -209,67 +205,57 @@ function checkInputsAndSubmit() {
     reviewStarRate &&
     reviewText
   ) {
-    // Nếu tất cả các trường đều có giá trị, tiến hành submit form
-    document.getElementById("review-section").submit();
+    // Nếu tất cả các trường đều có giá trị và form chưa được gửi, thực hiện submit form
+    form.submit();
     // Đặt biến flag thành true để ngăn chặn việc submit lần sau
     isFormSubmitted = true;
   } else {
-    // Nếu có trường nào đó không có giá trị, hiển thị thông báo hoặc thực hiện hành động khác tùy ý
-    var messageReviewStatus = document.querySelector(".message-review-status");
+    // Nếu có trường nào đó không có giá trị hoặc form đã được gửi, hiển thị thông báo cho người dùng
+    var messageReviewStatus = form.querySelector(".message-review-status");
     messageReviewStatus.style.display = "flex";
-    shakeAndHide(messageReviewStatus); // Gọi hàm rung rung và ẩn phần tử
+    // Gọi hàm rung và ẩn thông báo sau một khoảng thời gian
+    shakeAndHide(messageReviewStatus);
   }
 }
 
-function setStarRating(rating) {
-  document.getElementById("review_star_rate").value = rating;
+// Hàm để rung và ẩn phần tử
+function shakeAndHide(element) {
+  // Thêm hiệu ứng rung vào phần tử
+  element.classList.add("shake");
+  // Sau khoảng thời gian nhất định, ẩn phần tử và loại bỏ hiệu ứng rung
+  setTimeout(function () {
+    element.style.display = "none";
+    element.classList.remove("shake");
+  }, 1000); // 1 giây
 }
 
-function showForm() {
-  document.getElementById("cancellation-form").style.display = "block";
-  document.getElementById("overlay").style.display = "block";
+function showReviewForm(courtOrderId) {
+  var reviewSection = document.getElementById("review-section-" + courtOrderId);
+  if (reviewSection) {
+    reviewSection.style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  }
 }
 
-function showratingForm() {
-  document.getElementById("review-section").style.display = "block";
-  document.getElementById("overlay").style.display = "block";
-}
-
-// Get all elements with the class "review-button"
 var reviewButtons = document.getElementsByClassName("review-button");
 
-// Loop through each button and add event listener
 for (var i = 0; i < reviewButtons.length; i++) {
   reviewButtons[i].addEventListener("click", function (event) {
     event.stopPropagation();
-    showratingForm();
+    // Get the court order id from the data attribute
+    var courtOrderId = this.getAttribute("data-court-order-id");
+    showReviewForm(courtOrderId);
   });
 }
-
-// Hàm để ẩn form
-
-function showConfirmationForm() {
-  document.getElementById("cancellation-form").style.display = "none";
-  document.getElementById("confirmation-form").style.display = "block";
-  // Lấy thông tin từ form hủy đơn
-  var canceledOnDate = new Date().toISOString().slice(0, 10); // Lấy ngày hiện tại
-  var cancelReason = document.querySelector(
-    'input[name="cancellation-reason"]:checked'
-  ).nextElementSibling.textContent;
-
-  // Gán thông tin vào form xác nhận
-  document.getElementById("canceled_on_date").value = canceledOnDate;
-  document.getElementById("cancel_reason").value = cancelReason;
+function hideFormrating(courtOrderId) {
+  // Tìm form dựa trên courtOrderId và ẩn nó đi
+  var formId = "review-section-" + courtOrderId;
+  var form = document.getElementById(formId);
+  if (form) {
+    form.style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
 }
-
-// Thêm sự kiện click cho button mở form
-document
-  .getElementById("show-cancel-form")
-  .addEventListener("click", function (event) {
-    event.stopPropagation();
-    // Hiển thị form
-    showForm();
-  });
 
 document
   .getElementById("cancel-order-button")
@@ -286,4 +272,119 @@ function hideForm() {
   document.getElementById("review-section").style.display = "none";
 
   document.getElementById("overlay").style.display = "none";
+}
+// Hàm để hiển thị form hủy đơn
+function showCancellationForm(courtOrderId) {
+  // Tạo id của form hủy đơn dựa trên courtOrderId
+  var formId = "cancellation-form-" + courtOrderId;
+  var cancellationForm = document.getElementById(formId);
+  if (cancellationForm) {
+    cancellationForm.style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  }
+}
+
+// Lấy tất cả các nút "Hủy Đơn Đặt Sân"
+var cancelButtons = document.getElementsByClassName("cancel-button");
+
+// Lặp qua từng nút và thêm sự kiện click
+for (var i = 0; i < cancelButtons.length; i++) {
+  cancelButtons[i].addEventListener("click", function (event) {
+    event.stopPropagation();
+    // Lấy court_order_id từ data attribute của nút
+    var courtOrderId = this.getAttribute("data-court-order-id");
+    showCancellationForm(courtOrderId);
+  });
+}
+
+function hideForm() {
+  // Ẩn form và overlay (nền đen)
+  document.querySelector(".cancellation-form").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
+
+// Lấy tất cả các nút "Huỷ Đơn Đặt Sân"
+var cancelButtons = document.querySelectorAll(".cancel-order-button");
+
+// Lặp qua từng nút và thêm sự kiện click
+cancelButtons.forEach(function (cancelButton) {
+  cancelButton.addEventListener("click", function () {
+    // Lấy court order id từ thuộc tính data
+    var courtOrderId = this.getAttribute("data-court-order-id");
+    // Hiển thị form xác nhận hủy đơn tương ứng
+    showConfirmationForm(courtOrderId);
+  });
+});
+
+// Hàm để hiển thị form xác nhận hủy đơn và truyền giá trị lý do hủy từ form hủy đơn vào
+function showConfirmationForm(courtOrderId) {
+  // Tắt form hủy đơn trước khi hiển thị form xác nhận
+  hideCancellationForm(courtOrderId);
+
+  // Tìm form hủy đơn dựa trên court order id
+  var cancellationForm = document.getElementById(
+    "cancellation-form-" + courtOrderId
+  );
+  if (cancellationForm) {
+    // Lấy giá trị lý do hủy từ form hủy đơn
+    var cancellationReason = getCancellationReason(cancellationForm);
+    // Tìm form xác nhận hủy đơn dựa trên court order id
+    var confirmationForm = document.getElementById(
+      "confirmation-form-" + courtOrderId
+    );
+    if (confirmationForm) {
+      // Hiển thị form xác nhận hủy đơn
+      confirmationForm.style.display = "block";
+      // Truyền giá trị lý do hủy vào form xác nhận hủy đơn
+      var cancelReasonInput = confirmationForm.querySelector("#cancel_reason");
+      if (cancelReasonInput) {
+        cancelReasonInput.value = cancellationReason;
+      }
+      // Hiển thị overlay (nếu có)
+      document.getElementById("overlay").style.display = "block";
+    }
+  }
+}
+// Hàm để lấy giá trị lý do hủy từ form hủy đơn
+function getCancellationReason(cancellationForm) {
+  // Tìm tất cả các input radio trong form hủy đơn có name là "cancellation-reason"
+  var reasonInputs = cancellationForm.querySelectorAll(
+    'input[name="cancellation-reason"]'
+  );
+  // Duyệt qua từng input radio để kiểm tra xem input nào được chọn và lấy giá trị của data-reason
+  for (var i = 0; i < reasonInputs.length; i++) {
+    if (reasonInputs[i].checked) {
+      return reasonInputs[i].getAttribute("data-reason");
+    }
+  }
+  // Nếu không có input nào được chọn, trả về null
+  return null;
+}
+
+// Hàm để tắt form hủy đơn
+function hideCancellationForm(courtOrderId) {
+  // Tìm form hủy đơn dựa trên court order id
+  var cancellationForm = document.getElementById(
+    "cancellation-form-" + courtOrderId
+  );
+  if (cancellationForm) {
+    // Ẩn form hủy đơn
+    cancellationForm.style.display = "none";
+    // Ẩn overlay (nếu có)
+    document.getElementById("overlay").style.display = "none";
+  }
+}
+
+// Hàm để tắt form xác nhận hủy đơn
+function hideConfirmationForm(courtOrderId) {
+  // Tìm form xác nhận hủy đơn dựa trên court order id
+  var confirmationForm = document.getElementById(
+    "confirmation-form-" + courtOrderId
+  );
+  if (confirmationForm) {
+    // Ẩn form xác nhận hủy đơn
+    confirmationForm.style.display = "none";
+    // Ẩn overlay (nếu có)
+    document.getElementById("overlay").style.display = "none";
+  }
 }

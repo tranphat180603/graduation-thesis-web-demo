@@ -67,7 +67,7 @@
     if($_POST['sign-up-email-input-text']) {
         $sign_up_email = $_POST['sign-up-email-input-text'];
 
-        if(existEmail($link, $sign_up_phone)) {
+        if(existEmail($link, $sign_up_email)) {
             ReleaseMemory($link, true);
             header("Location: /NTP-Sports-Hub/views/sign-up-method-email.php?sign_up_email=".$sign_up_email."&msg=exist_sign_up_email");
         } else {

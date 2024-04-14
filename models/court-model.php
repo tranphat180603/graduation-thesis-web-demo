@@ -76,32 +76,6 @@
 
             return $row;
         }
-
-        // 3. Hàm lấy dữ liệu sân theo loại sân từ cơ sở dữ liệu và trả về một mảng chứa các đối tượng sân.
-        public function getCourtByType($courtType)
-        {
-            // Tạo kết nối đến database
-            $link = "";
-            MakeConnection($link);
-
-            // Thực hiện truy vấn dựa vào courtType
-            if ($courtType == "0") {
-                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_state <> 'Đã xóa'");
-            } else {
-                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id = $courtType AND court_state <> 'Đã xóa'");
-            }
-
-            $data = array();
-
-            while ($rows = mysqli_fetch_assoc($result)) {
-                $court = new court($rows["court_id"], $rows["court_name"], $rows["court_state"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_type_id"], $rows["account_id"]);
-                array_push($data, $court);
-            }
-
-            // Giải phóng bộ nhớ và trả về dữ liệu
-            ReleaseMemory($link, $result);
-            return $data;
-        }
  
         // 4. Hàm lấy dữ liệu sân dựa trên ID của sân từ cơ sở dữ liệu và trả về một đối tượng sân.
         public function view_court_by_id($courtId)
@@ -205,6 +179,39 @@
             ReleaseMemory($link, $result);
 
             return $resultToUse;
+        }
+
+        // 3. Hàm lấy dữ liệu sân theo loại sân từ cơ sở dữ liệu và trả về một mảng chứa các đối tượng sân.
+        public function getCourtByType($courtTypes)
+        {
+            // Tạo kết nối đến database
+            $link = "";
+            MakeConnection($link);
+        
+            // Xử lý chuỗi court types để tránh SQL injection
+            $courtTypes = implode(",", array_map('intval', explode(",", $courtTypes)));
+        
+            // Thực hiện truy vấn dựa vào courtTypes
+            $query = "SELECT * FROM court WHERE court_type_id IN ($courtTypes) AND court_state <> 'Đã xóa'";
+            $result = ExecuteDataQuery($link, $query);
+        
+            $data = array();
+        
+            // Kiểm tra xem truy vấn có thành công hay không trước khi sử dụng kết quả
+            if ($result) {
+                while ($rows = mysqli_fetch_assoc($result)) {
+                    $court = new court($rows["court_id"], $rows["court_name"], $rows["court_state"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_type_id"], $rows["account_id"]);
+                    array_push($data, $court);
+                }
+            } else {
+                // Xử lý lỗi nếu truy vấn không thành công
+                // Ví dụ: log lỗi, thông báo người dùng, hoặc xử lý một cách phù hợp khác
+                echo "Error executing SQL query: ";
+            }
+        
+            // Giải phóng bộ nhớ và trả về dữ liệu
+            ReleaseMemory($link, $result);
+            return $data;
         }
 
         // Hàm lấy thông tin sân theo court id

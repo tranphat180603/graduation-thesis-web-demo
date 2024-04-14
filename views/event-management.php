@@ -471,7 +471,7 @@
             <div class="input">
               <select name='event_preferential_rate'>
                 <option value='0'>Chọn tỷ lệ ưu đãi</option>
-                <option value='5'>0%</option>
+                <option value='0'>0%</option>
                 <option value='5'>5%</option>
                 <option value='10'>10%</option>
               </select>
@@ -489,8 +489,8 @@
           <p>Trạng thái :</p>
             <div class="input" >
               <select name='event_state' required>
-                <option value='còn hạn'>Còn hạn</option>
-                <option value='hết hạn'>Hết hạn</option>
+                <option value='Còn hạn'>Còn hạn</option>
+                <option value='Hết hạn'>Hết hạn</option>
               </select>
             </div>         
           </div>

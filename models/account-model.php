@@ -113,8 +113,8 @@
             $link = MakeConnection($link);
                 $updateQuery = "UPDATE account SET account_avatar = '$newURL' WHERE account_id = '$id'";
                 $updateResult = ExecuteNonDataQuery($link, $updateQuery);
-                return $updateResult;
                 ReleaseMemory($link, $updateResult);
+                return $updateResult;
         }
     }
 ?>

@@ -202,6 +202,8 @@ position: relative;
   flex-wrap: wrap;
 }
 #icon {
+  width: 55px;
+  height: 50px;
   background-color: transparent;
 }
 #schedule-body-menu ul {
@@ -610,11 +612,10 @@ label {
   flex: 1 0 0;
   align-self: stretch;
 }
-#image-frame {
+.image-frame {
   display: flex;
   width: 55px;
   height: 50px;
-  padding: 0px 3.735px 36.735px 38px;
   justify-content: flex-end;
   align-items: center;
   flex-shrink: 1;

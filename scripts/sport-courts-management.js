@@ -202,3 +202,31 @@ function updateUrlAndCBState() {
   updateUrl();
   setTimeout(tickCheckbox, 100);
 }
+//12. Hàm xử lý sự kiện click vào thay đổi ảnh
+var changedInputs = []; // Object lưu trữ các imageIds và files đã thay đổi
+
+function updateImage(input, image_id) {
+  if (input.files.length > 0) {
+    var reader = new FileReader();
+    // Kiểm tra xem input có chứa file được chọn không
+    console.log("Image ID: " + image_id);
+    if (!changedInputs.includes(image_id)) {
+      changedInputs.push(image_id); // Lưu trữ image_id của input có file được chọn
+    }
+    console.log(changedInputs);
+    reader.onload = function (e) {
+      var previewImage = document.getElementById("preview_image_" + image_id);
+      console.log(previewImage);
+      previewImage.src = e.target.result; // Thay đổi src của hình ảnh thành file vừa chọn
+    };
+
+    reader.readAsDataURL(input.files[0]); //
+  } else {
+    var index = changedInputs.indexOf(image_id);
+    if (index !== -1) {
+      changedInputs.splice(index, 1); // Xóa image_id ra khỏi mảng changedInputs nếu không có file được chọn
+    }
+  }
+  var imageIdsInput = document.getElementById("image_ids_input");
+  imageIdsInput.value = changedInputs.join(","); // Cập nhật giá trị của trường input name="image_ids[]", chuyển mảng mới nhập thành dạng chuỗi
+}

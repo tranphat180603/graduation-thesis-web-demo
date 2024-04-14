@@ -88,7 +88,7 @@
             if ($courtType == "0") {
                 $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_state <> 'Đã xóa'");
             } else {
-                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id = $courtType AND court_state <> 'Đã xóa'");
+                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id in ($courtType) AND  court_state <> 'Đã xóa'");
             }
 
             $data = array();
@@ -121,7 +121,7 @@
                 $court = new court(
                     $row["court_id"],
                     $row["court_name"],
-                    $row["court_state"], 
+                    $rows["court_state"], 
                     $row["created_on_date"],
                     $row["last_modified_date"],
                     $row["court_type_id"],
@@ -207,39 +207,6 @@
             return $resultToUse;
         }
 
-        // // 3. Hàm lấy dữ liệu sân theo loại sân từ cơ sở dữ liệu và trả về một mảng chứa các đối tượng sân.
-        // public function getCourtByType($courtTypes)
-        // {
-        //     // Tạo kết nối đến database
-        //     $link = "";
-        //     MakeConnection($link);
-        
-        //     // Xử lý chuỗi court types để tránh SQL injection
-        //     $courtTypes = implode(",", array_map('intval', explode(",", $courtTypes)));
-        
-        //     // Thực hiện truy vấn dựa vào courtTypes
-        //     $query = "SELECT * FROM court WHERE court_type_id IN ($courtTypes) AND court_state <> 'Đã xóa'";
-        //     $result = ExecuteDataQuery($link, $query);
-        
-        //     $data = array();
-        
-        //     // Kiểm tra xem truy vấn có thành công hay không trước khi sử dụng kết quả
-        //     if ($result) {
-        //         while ($rows = mysqli_fetch_assoc($result)) {
-        //             $court = new court($rows["court_id"], $rows["court_name"], $rows["court_state"], $rows["created_on_date"], $rows["last_modified_date"], $rows["court_type_id"], $rows["account_id"]);
-        //             array_push($data, $court);
-        //         }
-        //     } else {
-        //         // Xử lý lỗi nếu truy vấn không thành công
-        //         // Ví dụ: log lỗi, thông báo người dùng, hoặc xử lý một cách phù hợp khác
-        //         echo "Error executing SQL query: ";
-        //     }
-        
-        //     // Giải phóng bộ nhớ và trả về dữ liệu
-        //     ReleaseMemory($link, $result);
-        //     return $data;
-        // }
-
         // Hàm lấy thông tin sân theo court id
         public function getCourtById($court_id) {
             $link = "";
@@ -255,8 +222,8 @@
             return $row;
         }     
 
-        // Hàm cập nhật thông tin sân
-        public function updateCourt($court, $court_price, $court_images){
+        // Hàm cập nhật thông tin sân khi không thay đổi hình
+        public function updateCourt($court, $court_price){
             $link = "";
             MakeConnection($link);
             $court_id = $court->getCourtId();
@@ -293,24 +260,76 @@
             
                     WHERE court_price_id = $court_price_id;";
 
-            $total_count = count($court_images['name']);
-            for( $i=0 ; $i < $total_count ; $i++ ) {
-                $file_name = $court_images['name'][$i];
-                $file_tmp = $court_images['tmp_name'][$i];
-                $court_image = '../upload/sport-courts-management/'.$file_name;
+            
+            mysqli_query($link, $sql);
+
+
+            if (mysqli_query($link, $sql1)){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Hàm cập nhật thông tin sân khi có thay đổi hình
+        public function updateCourt2($court, $court_price, $court_image){
+            $link = "";
+            MakeConnection($link);
+            $court_id = $court->getCourtId();
+            $court_name = $court->getCourtName();
+            $last_modified_date = date('Y-m-d');
+            $court_type_id = $court->getCourtTypeId();
+            $account_id = 1;
+
+            $court_price_id = $court_price->getCourtPriceID();
+            $court_time_frame = $court_price->getCourtTimeFrame();
+            $time_parts = explode("-", $court_time_frame);
+
+            $court_start_time = $time_parts[0]; // Thời gian bắt đầu
+            $court_end_time = $time_parts[1]; // Thời gian kết thúc
+            
+            $court_weekday_price = $court_price->getCourtWeekdayPrice();
+            $court_weekend_price = $court_price->getCourtWeekendPrice();
+            $court_price_frame = number_format($court_weekday_price, 0, ',', '.') . '-' . number_format($court_weekend_price, 0, ',', '.');        
+
+            $sql = "UPDATE court SET 
+            court_name = '$court_name', 
+            last_modified_date = '$last_modified_date', 
+            court_type_id = '$court_type_id'
+            
+            WHERE court_id = $court_id;"; //
+
+            $sql1 = "UPDATE court_price SET
+                court_start_time = '$court_start_time', 
+                court_end_time = '$court_end_time', 
+                court_time_frame = '$court_time_frame', 
+                court_weekday_price = '$court_weekday_price',
+                court_weekend_price = '$court_weekend_price',
+                court_price_frame = '$court_price_frame'
+            
+                    WHERE court_price_id = $court_price_id;";
+
+
+            //Kiểm tra court image
+            if($court_image) {
+                $court_image_id = $court_image->getCourtImageId();
+                $court_images = $court_image->getCourtImage();
+                $file_name = $court_images['name'];
+                $file_tmp = $court_images['tmp_name'];
+                $court_image_path = '../upload/sport-courts-management/'.$file_name;
                 $sql2 ="UPDATE court_image SET
-                            court_image = '$court_image'
-                            WHERE court_id = $court_id; ";   
+                            court_image = '$court_image_path'
+                            WHERE court_image_id = $court_image_id; ";   
                 if (mysqli_query($link, $sql2) ){
                         // Xử lý và lưu trữ hình ảnh vào thư mục hoặc cơ sở dữ liệu
                         // Ví dụ:
                         $destination = '../upload/sport-courts-management/'.$file_name;
                         move_uploaded_file($file_tmp, $destination);
                 }
-            } 
+            }
             
             mysqli_query($link, $sql);
-
+            
 
             if (mysqli_query($link, $sql1)){
                 return true;
@@ -355,9 +374,9 @@
             // Xử lý tệp hình ảnh được tải lên
             $total_count = count($court_images['name']);
             for($i=0 ; $i < $total_count ; $i++) {
-                $file_name = $court_images['name'][$i];
-                $file_tmp = $court_images['tmp_name'][$i];
-                $court_image = '../upload/sport-courts-management/'.$file_name;
+                $file_name = $court_images['name'][$i]; //Lấy ra name của hình ảnh
+                $file_tmp = $court_images['tmp_name'][$i]; //Lưu name tạm thời
+                $court_image = '../upload/sport-courts-management/'.$file_name; // truyền name ảnh vào biến court img
                 $sql2 ="INSERT INTO court_image(court_image, court_id) VALUES ('$court_image', '$court_id');";        
                 if (mysqli_query($link, $sql2) ){
                     // Xử lý và lưu trữ hình ảnh vào thư mục hoặc cơ sở dữ liệu
@@ -386,34 +405,14 @@
             }
         }
 
-        public function get_court_image($id) {
+        public function getCourtImage($id){
             $link = "";
             MakeConnection($link);
-        
-            // Check if $id is set and is not empty
-            if (!isset($id) || empty($id)) {
-                // Handle the case where $id is not provided
-                return false;
-            }
-        
-            $query = "SELECT * FROM court_image WHERE court_image_id = $id";
-        
-            $result = ExecuteDataQuery($link, $query);
-        
-            // Check if the query was successful
-            if (!$result) {
-                // Handle the case where the query failed
-                return false;
-            }
-        
-            // Fetch the row
-            $row = mysqli_fetch_row($result);
-        
-            // Free the result and release memory
+            // Lấy dữ liệu
+            $result = ExecuteDataQuery($link, "SELECT court_image FROM court_image WHERE court_image_id = $id");
+            $court_type = mysqli_fetch_assoc($result);
             ReleaseMemory($link, $result);
-        
-            // Return the row
-            return $row;
+            return $court_type;
         }
     }
 ?>

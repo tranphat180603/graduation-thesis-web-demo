@@ -1,3 +1,4 @@
+
 <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-model.php");
 
@@ -73,8 +74,21 @@
         }    
 
         //Hàm cập nhật thông tin khi đã chỉnh sửa
-        public function update_court($court, $court_price, $court_images) {
-            $queryResult = $this ->court -> updateCourt($court,$court_price, $court_images);
+        public function update_court($court, $court_price) {
+            $queryResult = $this ->court -> updateCourt($court,$court_price);
+            // Kiểm tra giá trị của biến $queryResult sau khi duyệt mảng
+            if ($queryResult) {
+                // echo 'The court has been inserted successfully';
+                return true;    
+            } else {
+                // echo 'The court has been inserted fail';
+                return false;
+            }                 
+        }
+
+        //Hàm cập nhật thông tin khi đã chỉnh sửa
+        public function update_court2($court, $court_price, $court_image) {
+            $queryResult = $this ->court -> updateCourt2($court,$court_price, $court_image);
             // Kiểm tra giá trị của biến $queryResult sau khi duyệt mảng
             if ($queryResult) {
                 // echo 'The court has been inserted successfully';
@@ -97,9 +111,8 @@
             return false;
             }                 
         }
-
-        public function get_court_image($id) {
-            return $result = $this->court->get_court_image($id);
+        public function get_court_image($id){
+            return $this->court->getCourtImage($id);
         }
     }
 

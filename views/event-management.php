@@ -195,7 +195,7 @@
             <div class="input" style="pointer-events: none;">
             <?php
               if($event_detail){
-                echo "<textarea name='event_name' placeholder='Không nhập' style='font-family: \"Be Vietnam Pro\";'> ".$event_detail[4]."</textarea>";
+                echo "<textarea name='event_description' placeholder='Không nhập' style='font-family: \"Be Vietnam Pro\";'> ".$event_detail[4]."</textarea>";
               }
             ?>
             </div>
@@ -319,7 +319,7 @@
             <div class="input">
             <?php
               if($event_detail){
-                echo "<textarea name='event_name' placeholder='Không nhập' style='font-family: \"Be Vietnam Pro\";'> ".$event_detail[4]."</textarea>";              
+                echo "<textarea name='event_description' placeholder='Không nhập' style='font-family: \"Be Vietnam Pro\";'> ".$event_detail[4]."</textarea>";
               }
             ?>
             </div>

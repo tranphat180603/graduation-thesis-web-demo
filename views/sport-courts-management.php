@@ -1,3 +1,4 @@
+
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -93,11 +94,11 @@
               <img src="../image/sport-courts-management-img/insert.svg" alt="insert icon">
               <p>Thêm</p>
             </a>
-            <a id="update" href="?option=view_update_court">
+            <a id="update" href="#">
               <img src="../image/sport-courts-management-img/update.svg" alt="update icon">
               <p>Sửa</p>
             </a>
-            <a id="delete" href="?option=delete_court">
+            <a id="delete" href="#">
               <img src="../image/sport-courts-management-img/delete.svg" alt="delete icon">
               <p>Xóa</p>
             </a>
@@ -524,8 +525,20 @@
               <div class="form-row">
                 <p> Hình ảnh sân :</p>
                 <div class="input" >
-                
-                    <input type="file"  name="court_image[]" accept="image/*" multiple>
+                    <?php
+                        if($court){
+                          $court_images = $court_image_controller->view_court_image_by_court_id($court[0]);
+
+                          foreach ($court_images as $court_image) {
+                            echo '<label for="image_' . $court_image->getCourtImageId() . '">';
+                            echo '<img id="preview_image_' . $court_image->getCourtImageId() . '" src="' . $court_image->getCourtImage() . '" alt="court_image" style="width:45px; height:45px; border-radius: 4px;">';
+                            echo '<input type="file" name="image_' . $court_image->getCourtImageId() . '" id="image_' . $court_image->getCourtImageId() . '" style="display: none" onchange="updateImage(this, ' . $court_image->getCourtImageId() . ')">';
+                            echo '</label>';
+                          }
+                        }
+                    ?>    
+                    
+                    <input type="hidden"  name="image_ids" id="image_ids_input" value="">
                 </div>
               </div>
               
@@ -754,7 +767,7 @@
             $court_weekday_price = $_POST['court_weekday_price'];
             $court_weekend_price = $_POST['court_weekend_price'];
             $court_price_id = $_POST['court_price_id'];
-
+            $imageIds = explode(",", $_POST['image_ids']);
              // Assuming you have a court object
             $court = new court();
             $court->setCourtId($court_id);
@@ -770,10 +783,29 @@
             $court_price->setCourtWeekdayPrice($court_weekday_price);
             $court_price->setCourtWeekendPrice($court_weekend_price);
 
+            
+
             // Lấy thông tin về tệp hình ảnh được tải lên
-            $court_images = $_FILES['court_image'];
-          
-            $result = $court_controller->update_court($court, $court_price, $court_images);
+            if ($_POST['image_ids']) {
+             
+              foreach ($imageIds as $imageId) {
+            
+                // Kiểm tra xem file tương ứng với imageId này có được upload không
+                if (isset($_FILES['image_' . $imageId]) && $_FILES['image_' . $imageId]['error'] == UPLOAD_ERR_OK) {
+                  $court_image = new court_image();
+                  $court_image->setCourtImageId($imageId);
+                  $court_image->setCourtImage($_FILES['image_' . $imageId]);
+                  $result = $court_controller->update_court2($court, $court_price, $court_image);
+        
+                } else {
+                    // Log lỗi nếu không có file được upload hoặc có lỗi xảy ra trong quá trình upload
+                    echo "Failed to update image ID $imageId<br>";
+                }
+            }
+            } else {
+
+              $result = $court_controller->update_court($court, $court_price);
+            }
 
              // Kiểm tra giá trị của biến $result
              if ($result == true) {

@@ -50,8 +50,20 @@
     $cart_service_detail = new Cart_Service_Detail_Controller();
     $customerData = $customerController -> getcustomerdata($_SESSION['username']);
     
-    $customerID = $customerData->getCustomerId();
+    $accountID = $customerData->getAccountId();
     $court_image_data = isset($_POST['court_id']) ? $court_controller->get_court_image($_POST['court_id']) : null;
+  
+
+    if ($court_image_data !== false && $court_image_data !== null) {
+      // Check if the query returned a result
+      $court_image = $court_image_data['court_image']; 
+  } else {
+      // If no image found, set default value
+      $court_image = ''; 
+  }
+  
+    
+
     $court_type_name = "";
     if (isset($_POST['court_type'])) {
       $court_type_data = $court_type_controller->view_court_type_by_id($_POST['court_type']);
@@ -63,26 +75,37 @@
           }
       }
   }
-
-    if ($court_image_data !== false && isset($court_image_data[1])) {
-      $court_image = $court_image_data[1]; // Assuming the image path is at index 1
-    } else {
-        // Handle the case where the image data is not available or invalid
-        $court_image = ''; // or provide a default image path
-    }
-
+  function removeCurrencyAndThousandSeparator($formattedNumber) {
+    $numberWithoutCurrency = str_replace('đ', '', $formattedNumber);
+    return str_replace('.', '', $numberWithoutCurrency);
+}
     if (isset($_POST['form_identifier']) && $_POST['form_identifier'] === 'your_unique_value') {
-      $court_order_controller->insertCourtOrd($_POST['court_schedule_id'],1,$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],"Ví điện tử Momo","Chờ thanh toán", $customerID);
-    }
+      $total_service_amount = isset($_POST['total_service_amount']) ? removeCurrencyAndThousandSeparator($_POST['total_service_amount']) : null;
 
-
+      // Extract numeric part from the value of total_rental_amount
+      $total_rental_amount = isset($_POST['total_rental_amount']) ? removeCurrencyAndThousandSeparator($_POST['total_rental_amount']) : null;
+      
+      // Extract numeric part from the value of discount_amount
+      $discount_amount = isset($_POST['discount_amount']) ? removeCurrencyAndThousandSeparator($_POST['discount_amount']) : null;
+      
+      // Extract numeric part from the value of total_payment_amount
+      $total_payment_amount = isset($_POST['total_payment_amount']) ? removeCurrencyAndThousandSeparator($_POST['total_payment_amount']) : null;
+      
+      // Extract numeric part from the value of deposit_amount
+      $deposit_amount = isset($_POST['deposit_amount']) ? removeCurrencyAndThousandSeparator($_POST['deposit_amount']) : null;
+      
+      
+      $court_order_controller->insertCourtOrd($_POST['court_schedule_id'],$_POST['event_id'],$total_service_amount,$total_rental_amount,$discount_amount ,$total_payment_amount,$deposit_amount ,$_POST['payment-method'],"Chờ thanh toán", $accountID);
+      }
     ?>
     <!-- HEADER -->
     <?php include "../header/customer-payment-header.php"; ?>
     <!-- BODY -->
-    <form action="book-sports-courts.php" method ="post">
+    <form action="book-sports-courts.php" method ="post" name="form1">
     <input type="hidden" name="form_identifier" value="your_unique_value">
     <input type="text" style="display: none;" id = "court_schedule_id" name = "court_schedule_id" value="<?php echo isset($_POST['court_schedule_id']) ? $_POST['court_schedule_id'] : ''; ?>">
+    <input style="display:flex" type="text" id="payment-method" name="payment-method">
+
     <div class = "book-sports-courts">
       <div class = "upper-body">
           <table class = "upper-body-content">
@@ -133,6 +156,7 @@
                 </tbody>
             <?php elseif(isset($_POST['cart_id']) && isset($_POST['court_schedule_id'])): ?>
                 <tbody>
+                <input style="display:text" type="text" name="event_id" value="<?php echo isset($_POST["event_id1"]) ? $_POST["event_id1"] : '1'; ?>">
                     <?php
                     echo '<tr>';
                     echo '<td id="td1">';
@@ -208,7 +232,7 @@
           </a>
         </div>
         <div class = "receipt-container">
-        <form class="receipt-frame"  method="post">
+        <form action="book-sports-courts.php" class="receipt-frame"  method="post" name="form2">
         <div class="receipt-content-line">
         <p>Tổng Tiền Dịch Vụ:</p>
         <input style="border:none; background:#eafafd" type="text" id="total_service_amount" name="total_service_amount" value="<?php
@@ -245,7 +269,6 @@
         }
 ?>" >
 
-
 </div>
 <div class="receipt-content-line">
     <p>Tổng Tiền Cọc:</p>
@@ -267,6 +290,7 @@
         echo '';
     }
 ?>">
+
 
 </div>
 <div class="receipt-content-line">
@@ -349,6 +373,7 @@
           <img src="../image/book-sport-court-img/tick-circle.svg" alt="">
           <a href="../views/book-sports-courts.php">
             <p class = "btn-text" id = "momo-submit" >Hoàn thành</p>
+            <input style="display:none" type="text" id = "momo-method" name = "momo-method" value = "Ví điện tử momo">
           </a>
         </div>
       </div>
@@ -407,6 +432,7 @@
           <img src="../image/book-sport-court-img/tick-circle.svg" alt="">
           <a href="../views/book-sports-courts.php">
             <p id = "bank-submit" class = "btn-text" >Hoàn thành</p>
+            <input style="display:none" type="text" id = "bank-method" name = "bank-method" value = "Ngân hàng">
           </a>
         </div>
       </div>

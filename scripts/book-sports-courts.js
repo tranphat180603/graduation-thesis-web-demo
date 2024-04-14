@@ -98,21 +98,32 @@ var bankSubmitBtn = document.getElementById('bank-submit');
 var momoSubmitBtn = document.getElementById('momo-submit');
 
 // Get the form element
-var form = document.querySelector('form');
+var form1 = document.querySelector('form[name="form1"]');
+var form2 = document.querySelector('form[name="form2"]');
+
 
 // Add click event listener to the bank-submit button
 bankSubmitBtn.addEventListener('click', function(event) {
     // Prevent the default form submission behavior
     event.preventDefault();
+    // Set the value of payment-method input to bank-method
+    document.getElementById('payment-method').value = document.getElementById('bank-method').value;
     // Submit the form
-    form.submit();
+    form1.submit();
+    form2.submit();
+
 });
 
 // Add click event listener to the momo-submit button
 momoSubmitBtn.addEventListener('click', function(event) {
     // Prevent the default form submission behavior
     event.preventDefault();
+    // Set the value of payment-method input to momo-method
+    document.getElementById('payment-method').value = document.getElementById('momo-method').value;
     // Submit the form
-    form.submit();
+    form1.submit();
+    form2.submit();
+
 });
+
 

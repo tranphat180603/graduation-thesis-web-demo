@@ -481,17 +481,24 @@
             return $row;
         }
 
-        public function insertCourtOrder($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id, $admin_account_id = 0, $order_cancel_reason = "", $order_cancel_party_account_id = 0, $ordered_on_date = "", $canceled_on_date = "", $refunded_on_date = "") {
+        public function insertCourtOrder($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id, $admin_account_id = 1, $order_cancel_reason = "", $order_cancel_party_account_id = 0, $canceled_on_date = "", $refunded_on_date = "") {
             $link = MakeConnection($link);
+            
+            // Get today's date and time
+            $ordered_on_date = date('Y-m-d');
+            
             $query = "INSERT INTO court_order (court_schedule_id, event_id, total_service_amount, total_rental_amount, total_discount_amount, order_total_payment, order_total_deposit, payment_method, order_state, customer_account_id, admin_account_id, order_cancel_reason, order_cancel_party_account_id, ordered_on_date, canceled_on_date, refunded_on_date) 
                       VALUES ('$court_schedule_id', '$event_id', '$total_service_amount', '$total_rental_amount', '$total_discount_amount', '$order_total_payment', '$order_total_deposit', '$payment_method', '$order_state', '$customer_account_id', '$admin_account_id', '$order_cancel_reason', '$order_cancel_party_account_id', '$ordered_on_date', '$canceled_on_date', '$refunded_on_date')";
+            
             $result = ExecuteNonDataQuery($link, $query);
+            
             if ($result) {
                 return true;
             } else {
                 throw new Exception("Error inserting data: " . mysqli_error($link));
             }
         }
+        
         public function getCourtfromCourtSchedule($court_schedule_id){
             $link = "";
             MakeConnection($link);

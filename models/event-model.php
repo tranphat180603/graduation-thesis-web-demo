@@ -221,7 +221,7 @@
             $last_modified_date = date('Y-m-d');
             $account_id = 1;
 
-            if($event_image) {
+            if($event_image['name']) {
                 $file_name = $event_image['name']; //Lấy ra name của hình ảnh
                 $file_tmp = $event_image['tmp_name']; //Lưu name tạm thời
                 $event_image = '../upload/event-management/'.$file_name; // truyền name ảnh vào biến event img

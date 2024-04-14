@@ -254,6 +254,8 @@
             }
         }
         public function insertCourtOrd($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id){
+            // echo $order_total_payment;
+            // echo $order_total_deposit;
             try {
                 $result = $this->court_order->insertCourtOrder($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id);
                 if ($result) {

@@ -67,17 +67,15 @@
                 exit(); // Ensure to stop further execution
             }
         } 
-        public function handleImageUpload($id, $current_image) {
+        public function handleImageUpload($id) {
             if (isset($_FILES["image-input"])) {
                 
                 $file_name = $_FILES["image-input"]["name"];
                 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION); // Get the file extension
                 $target_dir = "../upload/sport-court-types-management/";
                 
-                // Generate the new file name with the account ID
-                $new_file_name = "court-type-" . $id . "." . $file_extension;
                 
-                $target_file = $target_dir . $new_file_name; // Concatenate the file name with the directory
+                $target_file = $target_dir . $file_name; // Concatenate the file name with the directory
                 $temp = $_FILES["image-input"]["tmp_name"];
             
                 // Update the avatar URL in the database
@@ -85,19 +83,13 @@
             
                 // Check if the file has been moved successfully
                 if (move_uploaded_file($temp, $target_file)) {
-                    echo "Update hình ảnh thành công";
                     header("Location: ../views/sport-court-types-management.php");
-                } else {
-                    echo "Có lỗi xảy ra khi upload file";
-                    echo $current_image;
-                    // If the current avatar exists, delete it
-                    if (!empty($current_image)) {
-                        unlink($current_image);
-                    }
                 }
             } else {
                 echo "Lỗi";
             }
+            header("Location: ../views/sport-court-types-management.php");
+
         }
         public function showNoti($mess){
             return $this->court_type->showNoti($mess);

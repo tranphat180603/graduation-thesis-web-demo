@@ -183,7 +183,7 @@
          // Check if the saveImg button was clicked and handle file upload
          if (isset($_POST['saveImg'])) {
              // File has been uploaded, handle the upload
-             $controller->handleImageUpload($_POST['court_type_id'],  $_POST['image-URL']);
+             $controller->handleImageUpload($_POST['court_type_id']);
          }
      }
     ?>
@@ -282,7 +282,7 @@
             </a>
           </div> <!-- Close div header -->
           <div id="form-container">
-            <form id="detail-form" action="../views/sport-court-types-management.php" method="post" enctype="multipart/form-data">
+            <form id="detail-form" action="" method="post" enctype="multipart/form-data">
               <p class="detail-p">Thông tin chung</p><br>
               <div class="detail-row">
                 <div class = "label-container">

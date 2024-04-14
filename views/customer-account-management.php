@@ -55,7 +55,7 @@
 
         //handle thay đổi ảnh
         if(isset($_POST["submitImage"])) {
-            $account_controller->handleImageUpload($_SESSION['username'], $account->getAccountAvatar()); 
+            $account_controller->handleImageUpload($customer_account_id); 
         }
     ?>
     <!-- HEADER -->
@@ -153,7 +153,7 @@
            </div>
           </form>
          </div>
-         <form id = "image-input" class = "image-box" action="../controllers/account-controller.php" method="post" enctype="multipart/form-data" >
+         <form id = "image-input" class = "image-box" action="" method="post" enctype="multipart/form-data" >
             <div class = "image-frame">
             <img id="avatar" src="<?php echo '/NTP-Sports-Hub'. $customer_avatar_link?>" >
             </div>

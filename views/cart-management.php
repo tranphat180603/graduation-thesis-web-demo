@@ -333,6 +333,9 @@
         </div>
         <hr>
         <form id="book_court_form" action="./book-sports-courts.php" method="post" enctype="multipart/form-data">
+        <?php if(isset($_POST['event_id'])): ?>
+            <input type="text" style="display:none" name="event_id1" value="<?php echo $_POST['event_id'] ?>">
+        <?php endif; ?>
           <div id="payment_details">
             <div class="payment_details_top">
               <div class="service_total_amount">
@@ -389,6 +392,7 @@
 
                   if(isset($_POST["event_id"])) {
                     $event_id = $_POST["event_id"];
+                    
 
                     foreach($events as $event) {
                       if($event->getEventId() == $event_id) {

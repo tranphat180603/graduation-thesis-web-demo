@@ -23,7 +23,7 @@ a:focus {
   text-decoration: none;
 }
 
-#court-img {
+.court-img {
   width: 109px;
   height: 80px;
   flex-shrink: 0;

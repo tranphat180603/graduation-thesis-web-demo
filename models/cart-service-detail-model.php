@@ -108,5 +108,41 @@
 
             return $message;
         }
+        public function getservices($cart_id, $court_schedule_id){
+            $link = "";
+            MakeConnection($link);
+            
+            // Query to get service name and quantity associated with the provided cart_id and court_schedule_id
+            $query = "SELECT service.service_name, cart_service_detail.cart_item_service_quantity
+                      FROM cart_service_detail
+                      JOIN service ON cart_service_detail.service_id = service.service_id 
+                      WHERE cart_service_detail.cart_id = $cart_id AND cart_service_detail.court_schedule_id = $court_schedule_id";
+            
+            // Execute the query
+            $result = ExecuteDataQuery($link, $query);
+            
+            // Initialize an empty array to store service details
+            $selected_services = array();
+            
+            // Fetch all selected services along with their quantities
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Store service name and quantity in an associative array
+                $service_details = array(
+                    'service_name' => $row['service_name'],
+                    'quantity' => $row['cart_item_service_quantity']
+                );
+                // Add the service details to the selected services array
+                $selected_services[] = $service_details;
+            }
+            
+            // Free memory and close connection
+            ReleaseMemory($link, $result);
+            
+            // Return the array of selected service details
+            return $selected_services;
+        }
+        
+        
+        
     }
 ?>

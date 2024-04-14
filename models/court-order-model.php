@@ -492,6 +492,50 @@
                 throw new Exception("Error inserting data: " . mysqli_error($link));
             }
         }
+        public function getCourtfromCourtSchedule($court_schedule_id){
+            $link = "";
+            MakeConnection($link);
+            
+            // Query to get the court name, image, schedule date, time frame, and court type from court_schedule
+            $query = "SELECT court.court_name, court_image.court_image, court_schedule.court_schedule_date, court_schedule.court_schedule_time_frame, court_type.court_type_name
+                      FROM court 
+                      JOIN court_schedule ON court.court_id = court_schedule.court_id 
+                      LEFT JOIN court_image ON court.court_id = court_image.court_image_id 
+                      LEFT JOIN court_type ON court.court_type_id = court_type.court_type_id 
+                      WHERE court_schedule.court_schedule_id = $court_schedule_id";
+            
+            // Execute the query
+            $result = ExecuteDataQuery($link, $query);
+            
+            if($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $court_name = $row['court_name'];
+                $court_image = $row['court_image'];
+                $court_schedule_date = $row['court_schedule_date'];
+                $court_schedule_time_frame = $row['court_schedule_time_frame'];
+                $court_type_name = $row['court_type_name'];
+                
+                // Free memory and close connection
+                ReleaseMemory($link, $result);
+                
+                return array(
+                    'court_name' => $court_name, 
+                    'court_image' => $court_image,
+                    'court_schedule_date' => $court_schedule_date,
+                    'court_schedule_time_frame' => $court_schedule_time_frame,
+                    'court_type_name' => $court_type_name
+                );
+            } else {
+                // Handle case where no court data is found
+                return "Court data not found";
+            }
+        }
+        
+        
+        
+        
+        
+        
         
         
     }

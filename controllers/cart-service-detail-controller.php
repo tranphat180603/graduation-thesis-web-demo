@@ -27,5 +27,9 @@
         public function insert_service_detail($cart_id, $court_schedule_id, $service_id, $service_quantity, $total_service_price) {                  
             return $result = $this->cart_service_detail->insert_service_detail($cart_id, $court_schedule_id, $service_id, $service_quantity, $total_service_price); 
         }
+        public function get_services($cart_id, $court_schedule_id){
+            return $this->cart_service_detail->getservices($cart_id, $court_schedule_id);
+        }
+        
     }
 ?>

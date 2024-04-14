@@ -266,6 +266,9 @@
                 echo "123Error: " . $e->getMessage();
             }
         }
+        public function getCourtNamefromCourtSchedule($id){
+            return $this->court_order->getCourtfromCourtSchedule($id);
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn
@@ -318,6 +321,7 @@
 
     //cho chart
     $controller = new Court_Order_Controller();
+
 
     $year = isset($_GET['year']) ? intval($_GET['year']) : date('Y');
     

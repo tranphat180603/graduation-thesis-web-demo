@@ -40,13 +40,16 @@
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-order-controller.php");
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/cart-service-detail-controller.php");
 
 
     $court_controller = new Court_Controller();
     $court_type_controller = new Court_Type_Controller();
     $court_order_controller = new Court_Order_Controller();
     $customerController = new Customer_Controller();
+    $cart_service_detail = new Cart_Service_Detail_Controller();
     $customerData = $customerController -> getcustomerdata($_SESSION['username']);
+    
     $customerID = $customerData->getCustomerId();
     $court_image_data = isset($_POST['court_id']) ? $court_controller->get_court_image($_POST['court_id']) : null;
     $court_type_name = "";
@@ -60,6 +63,7 @@
           }
       }
   }
+
     if ($court_image_data !== false && isset($court_image_data[1])) {
       $court_image = $court_image_data[1]; // Assuming the image path is at index 1
     } else {
@@ -70,6 +74,8 @@
     if (isset($_POST['form_identifier']) && $_POST['form_identifier'] === 'your_unique_value') {
       $court_order_controller->insertCourtOrd($_POST['court_schedule_id'],1,$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],"Ví điện tử Momo","Chờ thanh toán", $customerID);
     }
+
+
     ?>
     <!-- HEADER -->
     <?php include "../header/customer-payment-header.php"; ?>
@@ -96,7 +102,7 @@
                     <?php
                     echo '<tr>';
                     echo '<td id="td1">';
-                    echo '<img id = "court-img" src="' . $court_image . '" alt="hinhanhsan">';
+                    echo '<img class = "court-img" src="' . $court_image . '" alt="hinhanhsan">';
                     echo $_POST['court_name'];
                     echo '</td>';
                     echo '<td id="td2">';
@@ -130,31 +136,58 @@
                     <?php
                     echo '<tr>';
                     echo '<td id="td1">';
-                    echo '<img src="' . $court_image . '" alt="hinhanhsan">';
+                    $court_data = $court_order_controller->getCourtNamefromCourtSchedule($_POST['court_schedule_id']);
+
+                    if (is_array($court_data)) {
+                        // Output court image
+                        echo '<img class = "court-img" src="' . $court_data['court_image'] . '" alt="hinhanhsan">';
+                    
+                        // Output court name
+                        echo $court_data['court_name'];
+                    } else {
+                        // Handle case where no court data is found
+                        echo "Court data not found";
+                    }
                     echo '</td>';
                     echo '<td id="td2">';
-                    // Handle different values for court_type if needed
-                    echo isset($_POST['court_type']) ? $_POST['court_type'] : '';
+                    // Output court type
+                    echo isset($court_data['court_type_name']) ? $court_data['court_type_name'] : '';
                     echo '</td>';
+                    
                     echo '<td id="td3">';
-                    // Handle different values for court-schedule-date if needed
-                    echo isset($_POST['court-schedule-date']) ? $_POST['court-schedule-date'] : '';
+                    // Output court schedule date
+                    echo isset($court_data['court_schedule_date']) ? $court_data['court_schedule_date'] : '';
                     echo '</td>';
+                    
                     echo '<td id="td4">';
-                    // Handle different values for court_schedule_time_frame if needed
-                    echo isset($_POST['court_schedule_time_frame']) ? $_POST['court_schedule_time_frame'] : '';
+                    // Output court schedule time frame
+                    echo isset($court_data['court_schedule_time_frame']) ? $court_data['court_schedule_time_frame'] : '';
                     echo '</td>';
+                    
                     echo '<td id="td5">';
-                    // Handle different values for selected_services if needed
-                    echo isset($_POST['selected_services']) ? $_POST['selected_services'] : '';
+                    $selected_services = $cart_service_detail->get_services($_POST['cart_id'], $_POST['court_schedule_id']);
+
+
+                    if (is_array($selected_services) && !empty($selected_services)) {
+                      // Iterate over each service
+                      foreach ($selected_services as $service) {
+                          // Output the service name and its quantity
+                          echo $service['service_name'] . ': ' . $service['quantity'];
+                      }
+                    }
+
                     echo '</td>';
                     echo '<td id="td6">';
                     // Handle different values for total_service_amount if needed
-                    echo isset($_POST['total_service_amount']) ? $_POST['total_service_amount'] : '';
+                    if(isset($_POST['service_total_amount'])) {
+                      echo  $_POST['service_total_amount'];
+                  }
                     echo '</td>';
                     echo '<td id="td7">';
                     // Handle different values for total_rental_amount if needed
-                    echo isset($_POST['total_rental_amount']) ? $_POST['total_rental_amount'] : '';
+                    if(isset($_POST['total_payment_amount'])) {
+                      echo  $_POST['total_payment_amount'];
+                    }
                     echo '</td>';
                     echo '</tr>';
                     ?>

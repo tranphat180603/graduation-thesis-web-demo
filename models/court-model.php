@@ -88,7 +88,7 @@
             if ($courtType == "0") {
                 $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_state <> 'Đã xóa'");
             } else {
-                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id = $courtType AND  court_state <> 'Đã xóa'");
+                $result = ExecuteDataQuery($link, "SELECT * FROM court WHERE court_type_id = $courtType AND court_state <> 'Đã xóa'");
             }
 
             $data = array();

@@ -70,11 +70,11 @@
             return $this->model->view_all_court_schedule();
         }
 
-        public function GetcourtByType()
+        public function getCourtByType()
         {
             //Lấy dữ liệu của biến $_GET['court_type_id']
             $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
-            return $this->model->GetcourtByType($courtType);
+            return $this->model->getCourtByType($courtType);
         }
         
         public function view_all_court_images()

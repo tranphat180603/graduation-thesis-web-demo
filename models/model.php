@@ -77,9 +77,9 @@
             return $this->court_schedule->view_all_court_schedule();
         }
     
-        public function GetcourtByType(){
+        public function getCourtByType(){
             $courtType = isset($_GET['court_type_id']) ? $_GET['court_type_id'] : '0'; // Mặc định court_type_id = '0'
-            return $this->court->GetcourtByType($courtType);
+            return $this->court->getCourtByType($courtType);
         }
 
          public function view_all_court_images()

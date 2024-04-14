@@ -186,7 +186,7 @@
           ?>
           <div class="contact-info">
             <?php
-            $courts = $controller->GetcourtByType();
+            $courts = $controller->getCourtByType();
             $courtTypes = $controller->view_all_court_type();
             $courtImages = $controller->getGroupConcatImages();
             $minPrices = $controller->getMinPrice();

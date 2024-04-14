@@ -344,28 +344,28 @@
             <p>Tỷ lệ ưu đãi</p>
             <div class="input">
               <select name='event_preferential_rate'>
-                <option value='0'>Chọn tỷ lệ ưu đãi</option>
-                <option value='0'>0%</option>
-                <option value='5'>5%</option>
-                <option value='10'>10%</option>
-                <option value='15'>15%</option>
-                <option value='20'>20%</option>
-                <option value='25'>25%</option>
-                <option value='30'>30%</option>
-                <option value='35'>35%</option>
-                <option value='40'>40%</option>
-                <option value='45'>45%</option>
-                <option value='50'>50%</option>
-                <option value='55'>55%</option>
-                <option value='60'>60%</option>
-                <option value='65'>65%</option>
-                <option value='70'>70%</option>
-                <option value='75'>75%</option>
-                <option value='80'>80%</option>
-                <option value='85'>85%</option>
-                <option value='90'>90%</option>
-                <option value='95'>95%</option>
-                <option value='100'>100%</option>
+                <option value='-1' <?php if($event_detail[6] == -1) { echo "selected"; } ?>>Chọn tỷ lệ ưu đãi</option>
+                <option value='0' <?php if($event_detail[6] == 0) { echo "selected"; } ?>>0%</option>
+                <option value='5' <?php if($event_detail[6] == 5) { echo "selected"; } ?>>5%</option>
+                <option value='10' <?php if($event_detail[6] == 10) { echo "selected"; } ?>>10%</option>
+                <option value='15' <?php if($event_detail[6] == 15) { echo "selected"; } ?>>15%</option>
+                <option value='20' <?php if($event_detail[6] == 20) { echo "selected"; } ?>>20%</option>
+                <option value='25' <?php if($event_detail[6] == 25) { echo "selected"; } ?>>25%</option>
+                <option value='30' <?php if($event_detail[6] == 30) { echo "selected"; } ?>>30%</option>
+                <option value='35' <?php if($event_detail[6] == 35) { echo "selected"; } ?>>35%</option>
+                <option value='40' <?php if($event_detail[6] == 40) { echo "selected"; } ?>>40%</option>
+                <option value='45' <?php if($event_detail[6] == 45) { echo "selected"; } ?>>45%</option>
+                <option value='50' <?php if($event_detail[6] == 50) { echo "selected"; } ?>>50%</option>
+                <option value='55' <?php if($event_detail[6] == 55) { echo "selected"; } ?>>55%</option>
+                <option value='60' <?php if($event_detail[6] == 60) { echo "selected"; } ?>>60%</option>
+                <option value='65' <?php if($event_detail[6] == 65) { echo "selected"; } ?>>65%</option>
+                <option value='70' <?php if($event_detail[6] == 70) { echo "selected"; } ?>>70%</option>
+                <option value='75' <?php if($event_detail[6] == 75) { echo "selected"; } ?>>75%</option>
+                <option value='80' <?php if($event_detail[6] == 80) { echo "selected"; } ?>>80%</option>
+                <option value='85' <?php if($event_detail[6] == 85) { echo "selected"; } ?>>85%</option>
+                <option value='90' <?php if($event_detail[6] == 90) { echo "selected"; } ?>>90%</option>
+                <option value='95' <?php if($event_detail[6] == 95) { echo "selected"; } ?>>95%</option>
+                <option value='100' <?php if($event_detail[6] == 100) { echo "selected"; } ?>>100%</option>
               </select>
             </div>
           </div>
@@ -374,7 +374,7 @@
             <div class="input" >
             <?php
                 if($event_detail){    
-                echo "<input type='text' name='event_preferential_item' value='".$event_detail[7]."'>";
+                  echo "<input type='text' name='event_preferential_item' value='".$event_detail[7]."'>";
                 }
             ?>
             </div>
@@ -385,9 +385,9 @@
             <p>Trạng thái :</p>
             <div class="input" >
               <select name='event_state'>
-                <option value='0'>Chọn trạng thái</option>
-                <option value='Còn hạn'>Còn hạn</option>
-                <option value='Hết hạn'>Hết hạn</option>
+                <option value='0' <?php if($event_detail[8] == "0") { echo "selected"; } ?>>Chọn trạng thái</option>
+                <option value='Còn hạn' <?php if($event_detail[8] == "Còn hạn") { echo "selected"; } ?>>Còn hạn</option>
+                <option value='Hết hạn' <?php if($event_detail[8] == "Hết hạn") { echo "selected"; } ?>>Hết hạn</option>
               </select>
             </div>
             
@@ -487,7 +487,7 @@
             <p>Tỷ lệ ưu đãi</p>
             <div class="input">
               <select name='event_preferential_rate'>
-                <option value='0'>Chọn tỷ lệ ưu đãi</option>
+                <option value='-1'>Chọn tỷ lệ ưu đãi</option>
                 <option value='0'>0%</option>
                 <option value='5'>5%</option>
                 <option value='10'>10%</option>

@@ -142,7 +142,8 @@ function updateUrl(checkbox) {
       "&option=view_update_event";
   }
 
-  btn_delete.href = "?event_id=" + checkedIds + "&option=confirm_delete_event";
+  btn_delete.href =
+    "?event_id=" + checkedIds[0] + "&option=confirm_delete_event";
 }
 
 //Thực hiện xóa tham số event_id khỏi url khi check box all không được tick

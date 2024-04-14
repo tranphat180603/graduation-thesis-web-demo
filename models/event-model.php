@@ -176,7 +176,11 @@
             $event_name = $event->getEventName();
             $event_description = $event->getEventDescription();
             $event_image = $event->getEventImage();
-            $event_preferential_rate = $event->getEventPreferentialRate();
+            if($event->getEventPreferentialRate() >= 0) {
+                $event_preferential_rate = $event->getEventPreferentialRate();
+            } else {
+                $event_preferential_rate = "";
+            }
             $event_preferential_item = $event->getEventPreferentialItem();
             $event_state = $event->getEventState();
             $event_start_date = $event->getEventStartDate();

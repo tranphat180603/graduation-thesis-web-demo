@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+
+
+<?php session_start();
+// ini_set('display_errors', 0);
+//   ini_set('display_startup_errors', 0);
+?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -28,11 +33,33 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
-  <div id = "overlay">  </div>
+  <div class = container>
+  <div id = "overlay"> </div>
     <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-order-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
+
+
     $court_controller = new Court_Controller();
-    $court_image_data = $court_controller->get_court_image($_POST['court_id']);
+    $court_type_controller = new Court_Type_Controller();
+    $court_order_controller = new Court_Order_Controller();
+    $customerController = new Customer_Controller();
+    $customerData = $customerController -> getcustomerdata($_SESSION['username']);
+    $customerID = $customerData->getCustomerId();
+    $court_image_data = isset($_POST['court_id']) ? $court_controller->get_court_image($_POST['court_id']) : null;
+    $court_type_name = "";
+    if (isset($_POST['court_type'])) {
+      $court_type_data = $court_type_controller->view_court_type_by_id($_POST['court_type']);
+ 
+      if (!empty($court_type_data) && is_array($court_type_data)) {
+          foreach ($court_type_data as $court_type) {
+              $court_type_name = $court_type->getCourtTypeName();
+              // Do something with $court_type_name
+          }
+      }
+  }
     if ($court_image_data !== false && isset($court_image_data[1])) {
       $court_image = $court_image_data[1]; // Assuming the image path is at index 1
     } else {
@@ -40,10 +67,16 @@
         $court_image = ''; // or provide a default image path
     }
 
+    if (isset($_POST['form_identifier']) && $_POST['form_identifier'] === 'your_unique_value') {
+      $court_order_controller->insertCourtOrd($_POST['court_schedule_id'],1,$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],$_POST['court_schedule_id'],"Ví điện tử Momo","Chờ thanh toán", $customerID);
+    }
     ?>
     <!-- HEADER -->
     <?php include "../header/customer-payment-header.php"; ?>
     <!-- BODY -->
+    <form action="book-sports-courts.php" method ="post">
+    <input type="hidden" name="form_identifier" value="your_unique_value">
+    <input type="text" style="display: none;" id = "court_schedule_id" name = "court_schedule_id" value="<?php echo isset($_POST['court_schedule_id']) ? $_POST['court_schedule_id'] : ''; ?>">
     <div class = "book-sports-courts">
       <div class = "upper-body">
           <table class = "upper-body-content">
@@ -67,7 +100,7 @@
                     echo $_POST['court_name'];
                     echo '</td>';
                     echo '<td id="td2">';
-                    echo isset($_POST['court_type']) ? $_POST['court_type'] : '';
+                    echo $court_type_name;
                     echo '</td>';
                     echo '<td id="td3">';
                     echo isset($_POST['court-schedule-date']) ? $_POST['court_schedule_time_frame'] : '';
@@ -79,9 +112,9 @@
                     if(isset($_POST['selected_services'])) {
                       $services = json_decode($_POST['selected_services'], true);
                       foreach ($services as $item) {
-                          echo $item['service'] . '<br>';
+                        echo $item['service'] . ': ' . $item['quantity'] . '<br>';
                       }
-                  }            
+                  }
                     echo '</td>';
                     echo '<td id="td6">';
                     echo isset($_POST['total_service_amount']) ? $_POST['total_service_amount'] : '';
@@ -142,42 +175,94 @@
           </a>
         </div>
         <div class = "receipt-container">
-        <form class="receipt-frame" action="your_action_file.php" method="post">
-    <div class="receipt-content-line">
+        <form class="receipt-frame"  method="post">
+        <div class="receipt-content-line">
         <p>Tổng Tiền Dịch Vụ:</p>
-        <input type="text" id="total_service_amount" name="total_service_amount" value="<?php echo isset($_POST['total_service_amount']) ? "&#8363;" . $_POST['total_service_amount'] : ''; ?>" readonly>
-    </div>
-    <div class="receipt-content-line">
+        <input style="border:none; background:#eafafd" type="text" id="total_service_amount" name="total_service_amount" value="<?php
+        if(isset($_POST['total_service_amount'])) {
+            echo "&#8363;" . $_POST['total_service_amount'];
+        } elseif(isset($_POST['service_total_amount'])) {
+            echo  $_POST['service_total_amount'];
+        } else {
+            echo '';
+        }
+        ?>" >
+</div>
+<div class="receipt-content-line">
         <p>Tổng Tiền Thuê:</p>
-        <input type="text" id="total_rental_amount" name="total_rental_amount" value="<?php echo isset($_POST['total_rental_amount']) ? "&#8363;" . $_POST['total_rental_amount'] : ''; ?>" readonly>
-    </div>
-    <div class="receipt-content-line">
+        <input  style="border:none; background:#eafafd" type="text" id="total_rental_amount" name="total_rental_amount" value="<?php
+        if(isset($_POST['total_rental_amount'])) {
+            echo "&#8363;" . $_POST['total_rental_amount'];
+        } elseif(isset($_POST['rental_total_amount'])) {
+            echo $_POST['rental_total_amount'];
+        } else {
+            echo '';
+        }
+?>" >
+</div>
+<div class="receipt-content-line">
         <p>Tổng Tiền Giảm Giá:</p>
-        <input type="text" id="discount_amount" name="discount_amount" value="<?php echo "&#8363;" . "0" ?>" readonly>
-    </div>
-    <div class="receipt-content-line">
-        <p>Tổng Tiền Cọc:</p>
-        <input type="text" id="deposit_amount" name="deposit_amount" value="<?php echo "&#8363;" . ($_POST['total_service_amount'] + $_POST['total_rental_amount']) * 20/100   ?>" readonly>
-    </div>
-    <div class="receipt-content-line">
-        <p>Tổng Tiền Thanh Toán:</p>
-        <input type="text" id="total_payment_amount" name="total_payment_amount" value="<?php echo "&#8363;" . $_POST['total_service_amount'] + $_POST['total_rental_amount'] ?>" readonly>
-    </div>
+        <input  style="border:none; background:#eafafd"  type="text" id="discount_amount" name="discount_amount" value="<?php
+        if (isset($_POST['court_schedule_id']) && isset($_POST['selected_services'])) {
+          echo "&#8363;" . "0";
+        } elseif(isset($_POST['discount_amount'])) {
+            echo $_POST['discount_amount'];
+        } else {
+            echo '';
+        }
+?>" >
+
+
+</div>
+<div class="receipt-content-line">
+    <p>Tổng Tiền Cọc:</p>
+    <input  style="border:none; background:#eafafd" type="text" id="deposit_amount" name="deposit_amount" value="<?php
+        if(isset($_POST['total_service_amount']) && isset($_POST['total_rental_amount'])) {
+            echo "&#8363;" . ($_POST['total_service_amount'] + $_POST['total_rental_amount']) * 20/100;
+        } elseif(isset($_POST['deposit_amount'])) {
+            echo  $_POST['deposit_amount'];
+        } else {
+            echo '';
+        } ?>" >
+
+<input type="hidden" id="deposit_amount2" name="deposit_amount2" value="<?php
+    if(isset($_POST['total_service_amount']) && isset($_POST['total_rental_amount'])) {
+        echo "&#8363;" . ($_POST['total_service_amount'] + $_POST['total_rental_amount']) * 20/100;
+    } elseif(isset($_POST['deposit_amount'])) {
+        echo  $_POST['deposit_amount'];
+    } else {
+        echo '';
+    }
+?>">
+
+</div>
+<div class="receipt-content-line">
+    <p>Tổng Tiền Thanh toán:</p>
+    <input  style="border:none; background:#eafafd" type="text" id="total_payment_amount" name="total_payment_amount" value="<?php
+        if(isset($_POST['total_service_amount']) && isset($_POST['total_rental_amount'])) {
+          echo "&#8363;" . ($_POST['total_service_amount'] + $_POST['total_rental_amount']);
+        } elseif(isset($_POST['total_payment_amount'])) {
+            echo  $_POST['total_payment_amount'];
+        } else {
+            echo '';
+        } ?>" >
+</div>
           <hr id = "hr2">
           <div class = "receipt-footer">
-            <div class = "note">
-              <input id ="note-checkbox" type="checkbox">
-              <p id = "note-text">Nhấn đặt ngay đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản của Khu liên hợp thể thao NTP</p>
-            </div>
-              <a href="" id = "book-btn"> <p class = "btn-text">Đặt ngay</p></a>
-          </div>
+           <div class = "note">
+             <input id ="note-checkbox" type="checkbox">
+             <p id = "note-text">Nhấn đặt ngay đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản của Khu liên hợp thể thao NTP</p>
+           </div>
+             <a href="" id = "book-btn"> <p class = "btn-text">Đặt ngay</p></a>
+         </div>
           </form>
         </div>
       </div>
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
-    <div class = "mini-form" id = "momo-form"> 
+    </div>
+    <div class = "mini-form" id = "momo-form">
       <div class = "mini-header">
         <div class = "mini-logo">
           <img src="../image/book-sport-court-img/momo-logo.png" alt="">
@@ -198,31 +283,31 @@
             <div class = "mini-body-content-row-label">
               <label for="deposit">Số tiền cọc: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content1" name="content" rows="1"></textarea>
+            <textarea class="mini-body-content-row-input" id="content1" name="content" rows="1" readonly></textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="number">Số điện thoại: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"><0937048368></textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1" readonly><0937048368></textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="name">Tên tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"><Nguyễn Thị Ngọc Trang></textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly><Nguyễn Thị Ngọc Trang></textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="content">Nội dung chuyển khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4">[<Họ và tên>]_[<Số điện thoại>]_[Thanh toán tiền cọc đặt sân <Tên Sân>]_[<Ngày nhận sân>]_[<Khung giờ nhận sân>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Họ và tên>]_[<Số điện thoại>]_[Thanh toán tiền cọc đặt sân <Tên Sân>]_[<Ngày nhận sân>]_[<Khung giờ nhận sân>]</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="example">Ví dụ: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4">[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
           </div>
         </div>
       </div>
@@ -230,7 +315,7 @@
         <div class = "done-btn">
           <img src="../image/book-sport-court-img/tick-circle.svg" alt="">
           <a href="../views/book-sports-courts.php">
-            <p class = "btn-text" >Hoàn thành</p>
+            <p class = "btn-text" id = "momo-submit" >Hoàn thành</p>
           </a>
         </div>
       </div>
@@ -256,31 +341,31 @@
             <div class = "mini-body-content-row-label">
               <label for="deposit">Số tiền cọc: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content2" name="content" rows="1"></textarea>
+            <textarea class="mini-body-content-row-input" id="content2" name="content" rows="1"readonly></textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="number">Số tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1">0797048368</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>0797048368</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="name">Tên tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1">Khu liên hợp thể thao Nguyễn Tri Phương</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>Khu liên hợp thể thao Nguyễn Tri Phương</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="content">Nội dung chuyển khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4">[<Họ và tên>]_[<Số điện thoại>]_[Thanh toán tiền cọc đặt sân <Tên Sân>]_[<Ngày nhận sân>]_[<Khung giờ nhận sân>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Họ và tên>]_[<Số điện thoại>]_[Thanh toán tiền cọc đặt sân <Tên Sân>]_[<Ngày nhận sân>]_[<Khung giờ nhận sân>]</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="example">Ví dụ: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4">[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
           </div>
         </div>
       </div>
@@ -288,12 +373,18 @@
         <div style="background: #1B00D9;" class = "done-btn">
           <img src="../image/book-sport-court-img/tick-circle.svg" alt="">
           <a href="../views/book-sports-courts.php">
-            <p class = "btn-text" >Hoàn thành</p>
+            <p id = "bank-submit" class = "btn-text" >Hoàn thành</p>
           </a>
         </div>
       </div>
     </div>
+    <input  type="submit" style="display:none">
+    </form>
     <script type="text/javascript" src="../scripts/book-sports-courts.js" language="javascript"></script>
   </body>
 </html>
+
+
+
+
 

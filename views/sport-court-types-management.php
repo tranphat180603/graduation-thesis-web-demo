@@ -27,13 +27,16 @@
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
-    <div class = "overlay"></div>
+
+  <div class="container">
     <!-- HEADER -->
     <?php
     include "../header/admin-managerial-header.php"; 
     ?>
     <!-- BODY -->
     <?php
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
      $controller = new Court_Type_Controller();
      $court_types = $controller->view_all_court_type();
      $total_court_types = $controller->view_count();
@@ -182,27 +185,8 @@
              $controller->handleImageUpload($_POST['court_type_id'],  $_POST['image-URL']);
          }
      }
-     
-     //show form thông báo
-     if(isset($_GET['noti'])) {
-         // Check if the value of the 'noti' parameter is 'success'
-         if($_GET['noti'] === 'updatesuccess') {
-             // Display success notification
-             $controller->showNoti('Bạn đã chỉnh sửa loại sân thành công!');
-         } elseif($_GET['noti'] === 'updatefail') {
-             // Display failure notification
-             $controller->showNoti('Bạn đã chỉnh sửa loại sân thất bại!');
-         } elseif($_GET['noti'] === 'insertsuccess') {
-           $controller->showNoti('Bạn đã thêm loại sân thành công!');
-         } elseif($_GET['noti'] === 'insertfail') {
-           $controller->showNoti('Bạn đã thêm loại sân thất bại!');
-         } elseif($_GET['noti'] === 'deletesuccess') {
-           $controller->showNoti('Bạn đã xoá loại sân thành công!');
-         } elseif($_GET['noti'] === 'deletefail') {
-           $controller->showNoti('Bạn đã xoá loại sân thất bại!');
-         }
-     }
     ?>
+    <div class = "overlay"></div>
     <div class="schedule-body">
       <div class="schedule-body-content">
         <div class="schedule-top">
@@ -286,6 +270,9 @@
         </div>
       </div>
     </div>
+      <!-- FOOTER -->
+      <?php include "../footer/footer.php"; ?>
+      </div>
     <div class="court-type-detail">
           <div id="header">
             <p id="header-text">Thông tin loại sân</p>
@@ -294,20 +281,20 @@
             </a>
           </div> <!-- Close div header -->
           <div id="form-container">
-            <form id="detail-form" action="../controllers/court-type-controller.php" method="post" enctype="multipart/form-data">
+            <form id="detail-form" action="../views/sport-court-types-management.php" method="post" enctype="multipart/form-data">
               <p class="detail-p">Thông tin chung</p><br>
               <div class="detail-row">
                 <div class = "label-container">
                   <label for="court_type_id">Mã loại sân:</label>
                 </div>
-                <input  class="detail-input" type="text" name="court_type_id" value="<?php echo $court_type_detail['court_type_id'] ?>" placeholder="Mã loại sân sẽ được tạo tự động"><br>
+                <input class="detail-input" type="text" name="court_type_id" value="<?php echo isset($court_type_detail['court_type_id']) ? $court_type_detail['court_type_id'] : ''; ?>" placeholder="Mã loại sân sẽ được tạo tự động"><br>
               </div> <!-- Close detail-row div -->
 
               <div class="detail-row">
                 <div class = "label-container">
                   <label for="court_type_name">Tên loại sân:</label>
                 </div>
-                <input class="detail-input" type="text" id="court_type_name" name="court_type_name" value="<?php echo $court_type_detail['court_type_name'] ?>"><br>
+                <input class="detail-input" type="text" id="court_type_name" name="court_type_name" value="<?php echo isset($court_type_detail['court_type_name']) ? $court_type_detail['court_type_name'] : ''; ?>"><br>
               </div> <!-- Close detail-row div -->
 
               <div id="detail-row-icon">
@@ -321,7 +308,8 @@
                   <div id ="court-type-icon-subfield">
                     <div>
                       <img id = "close-circle" src="../image/sport-court-types-management-img/close-circle.svg" alt="">
-                      <img class = "image-frame" id="court_type_icon" name="court_type_icon" src="<?php echo ($court_type_detail['court_type_icon'] !== "" && $court_type_detail['court_type_icon'] !== NULL ) ? $court_type_detail['court_type_icon'] : '../upload/sport-court-types-management/default-img.svg'; ?>"><br>
+                      
+                      <img class="image-frame" id="court_type_icon" name="court_type_icon" src="<?php echo isset($court_type_detail['court_type_icon']) && !empty($court_type_detail['court_type_icon']) ? $court_type_detail['court_type_icon'] : '../upload/sport-court-types-management/default-img.svg'; ?>"><br>
                     </div>
                   </div>
                 </div> <!-- Close court-type-icon-field div -->
@@ -331,14 +319,14 @@
                 <div class = "label-container">
                   <label for="created_on_date">Ngày thêm:</label>
                 </div>
-                <input class="detail-input" type="text" id="created_on_date" name="created_on_date" value="<?php echo $court_type_detail['created_on_date'] ?>" placeholder="Được tạo tự động"><br>
+                <input class="detail-input" type="text" id="created_on_date" name="created_on_date" value="<?php echo isset($court_type_detail['created_on_date']) ? $court_type_detail['created_on_date'] : ''; ?>" placeholder="Được tạo tự động"><br>
               </div> <!-- Close detail-row div -->
 
               <div class="detail-row">
                 <div class = "label-container">
                   <label for="last_modified">Ngày cập nhật:</label>
                 </div>
-                <input class="detail-input" type="text" id="last_modified" name="last_modified" value="<?php echo $court_type_detail['last_modified']?>"placeholder="Cập nhật tự động" ><br>
+                <input class="detail-input" type="text" id="last_modified" name="last_modified" value="<?php echo isset($court_type_detail['last_modified_date']) ? $court_type_detail['last_modified_date'] : ''; ?>" placeholder="Cập nhật tự động" ><br>
               </div> <!-- Close detail-row div -->
               <div id="footer-miniform">
                 <a id="editButton" onclick="toggleButtons('editButton')">
@@ -357,8 +345,7 @@
             </form>
           </div> <!-- Close form-container -->
         </div> <!-- Close div court_type_detail -->
-    <!-- FOOTER -->
-    <?php include "../footer/footer.php"; ?>
+
     <script type="text/javascript" src="../scripts/sport-court-types-management.js" language="javascript"></script>
   </body>
 </html>

@@ -30,7 +30,6 @@ p {
 /*----------------------------------- BODY -----------------------------------*/
 .statistical-report {
   display: flex;
-  max-width: 1440px;
   padding: 30px 70px;
   flex-direction: column;
   align-items: center;
@@ -225,7 +224,6 @@ p {
 }
 .chartFrame {
   display: flex;
-  max-width: 1400px;
   align-items: flex-start;
   align-content: flex-start;
   gap: 24px;
@@ -235,7 +233,7 @@ p {
 .chart1 {
   display: flex;
   /* min-width: 500px; */
-  min-width: 500px;
+  min-width: 550px;
   width: 100%;
   padding: 24px;
   flex-direction: column;
@@ -248,7 +246,7 @@ p {
 }
 .chart2 {
   display: flex;
-  min-width: 600px;
+  min-width: 700px;
   width: 100%;
   padding: 24px;
   flex-direction: column;

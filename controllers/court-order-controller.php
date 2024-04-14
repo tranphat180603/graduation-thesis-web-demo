@@ -253,6 +253,19 @@
                 return null;
             }
         }
+        public function insertCourtOrd($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id){
+            try {
+                $result = $this->court_order->insertCourtOrder($court_schedule_id, $event_id, $total_service_amount, $total_rental_amount, $total_discount_amount, $order_total_payment, $order_total_deposit, $payment_method, $order_state, $customer_account_id);
+                if ($result) {
+                    header("Location: ../views/sport-court-booking-history-management.php");
+                }
+                else{
+                    echo "123";
+                }
+            } catch (Exception $e) {
+                echo "123Error: " . $e->getMessage();
+            }
+        }
     }
 
     //Thay đổi CSS của thẻ li đang được chọn

@@ -37,6 +37,7 @@
   <div id = "overlay"> </div>
     <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-schedule-controller.php");
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-order-controller.php");
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
@@ -44,6 +45,7 @@
 
 
     $court_controller = new Court_Controller();
+    $court_schedule_controller = new Court_Schedule_Controller();
     $court_type_controller = new Court_Type_Controller();
     $court_order_controller = new Court_Order_Controller();
     $customerController = new Customer_Controller();
@@ -94,8 +96,9 @@
       // Extract numeric part from the value of deposit_amount
       $deposit_amount = isset($_POST['deposit_amount']) ? removeCurrencyAndThousandSeparator($_POST['deposit_amount']) : null;
       
-      
       $court_order_controller->insertCourtOrd($_POST['court_schedule_id'],$_POST['event_id'],$total_service_amount,$total_rental_amount,$discount_amount ,$total_payment_amount,$deposit_amount ,$_POST['payment-method'],"Chờ thanh toán", $accountID);
+
+      $court_schedule_controller->update_court_schedule_when_ordered($_POST['court_schedule_id'], "");
       }
     ?>
     <!-- HEADER -->
@@ -156,7 +159,7 @@
                 </tbody>
             <?php elseif(isset($_POST['cart_id']) && isset($_POST['court_schedule_id'])): ?>
                 <tbody>
-                <input style="display:text" type="text" name="event_id" value="<?php echo isset($_POST["event_id1"]) ? $_POST["event_id1"] : '1'; ?>">
+                <input style="display:none" type="text" name="event_id" value="<?php echo isset($_POST["event_id1"]) ? $_POST["event_id1"] : '1'; ?>">
                     <?php
                     echo '<tr>';
                     echo '<td id="td1">';
@@ -442,8 +445,3 @@
     <script type="text/javascript" src="../scripts/book-sports-courts.js" language="javascript"></script>
   </body>
 </html>
-
-
-
-
-

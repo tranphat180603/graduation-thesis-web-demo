@@ -8,7 +8,7 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+      <title>Sân thể thao Lộc Phát</title>
       <link rel="stylesheet" type="text/css" href="../styles/statistical-report.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,11 +39,11 @@
       <?php include "../header/admin-managerial-header.php"; ?>
       <!-- BODY -->
       <?php 
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/order-service-detail-controller.php");
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-order-controller.php");
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/review-controller.php");
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/visitor-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/order-service-detail-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-order-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/review-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/customer-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/visitor-controller.php");
 
       ?>
       <div class = "statistical-report">
@@ -182,7 +182,7 @@
               </script>
             </div>
           </div>
-          <div class="chart4">
+          <div class="chart4" style ="display:None">
             <div id="chartContainer">
               <div class="chartTitle">Tổng số lượng đánh giá sân thể thao</div>
               <div class="contentContainer">

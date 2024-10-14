@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="./styles/home.css" />
     <script type="text/javascript" src="./scripts/home.js" language="javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -33,16 +33,16 @@
   </head>
   <body>
     <?php
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/controller.php");
       $controller = new Controller();
 
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
       $account_controller = new Account_Controller();
     ?>
     <!-- HEADER -->
     <?php 
       if(!isset($_SESSION['username'])) {
-        include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/guest-main-header.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/guest-main-header.php";
       } else {
         $username = $_SESSION['username'];
 
@@ -52,9 +52,9 @@
           if($account->getAccountSignUpName() == $username) {
             $account_type = $account->getAccountType();
             if($account_type == 'Quản lý') {
-              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/admin-main-header.php";
+              include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/admin-main-header.php";
             } else if($account_type == 'Khách hàng') {
-              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/customer-main-header.php";
+              include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/customer-main-header.php";
             }
           }
         }
@@ -254,7 +254,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "./footer/footer.php"; ?>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/msg.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/modules/msg.php"; ?>
     <script type="text/javascript" src="./scripts/home.js" language="javascript"></script>
   </body>
 </html>

@@ -1,15 +1,15 @@
 
 
 <?php session_start();
-// ini_set('display_errors', 0);
-//   ini_set('display_startup_errors', 0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/book-sports-courts.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,12 +36,12 @@
   <div class = container>
   <div id = "overlay"> </div>
     <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-schedule-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-order-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/cart-service-detail-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-schedule-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-type-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-order-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/customer-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/cart-service-detail-controller.php");
 
 
     $court_controller = new Court_Controller();
@@ -311,7 +311,7 @@
           <div class = "receipt-footer">
            <div class = "note">
              <input id ="note-checkbox" type="checkbox">
-             <p id = "note-text">Nhấn đặt ngay đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản của Khu liên hợp thể thao NTP</p>
+             <p id = "note-text">Nhấn đặt ngay đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản của Sân thể thao Lộc Phát</p>
            </div>
              <a href="" id = "book-btn"> <p class = "btn-text">Đặt ngay</p></a>
          </div>
@@ -355,7 +355,7 @@
             <div class = "mini-body-content-row-label">
               <label for="name">Tên tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly><Nguyễn Thị Ngọc Trang></textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly><Trần Nguyễn Ngọc Phát></textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
@@ -367,7 +367,7 @@
             <div class = "mini-body-content-row-label">
               <label for="example">Ví dụ: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Trần Nguyễn Ngọc Phát>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
           </div>
         </div>
       </div>
@@ -408,13 +408,13 @@
             <div class = "mini-body-content-row-label">
               <label for="number">Số tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>0797048368</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>123xxx789</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
               <label for="name">Tên tài khoản: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>Khu liên hợp thể thao Nguyễn Tri Phương</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="1"readonly>Sân thể thao Lộc Phát</textarea>
           </div>
           <div class = "mini-body-content-row">
             <div class = "mini-body-content-row-label">
@@ -426,7 +426,7 @@
             <div class = "mini-body-content-row-label">
               <label for="example">Ví dụ: </label>
             </div>
-            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Nguyễn Hoàng Mỹ Duyên>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
+            <textarea class="mini-body-content-row-input" id="content" name="content" rows="4"readonly>[<Trần Nguyễn Ngọc Phát>]_[<0929788890>]_[<Thanh toán tiền cọc đặt sân Bóng đá số 1>]_[<14/02/2024>]_[<15:00-17:00>]</textarea>
           </div>
         </div>
       </div>

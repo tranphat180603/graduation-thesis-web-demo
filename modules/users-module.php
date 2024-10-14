@@ -1,7 +1,7 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/connect.php");
 
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
 
     function signUpBySUName($link, $account_sign_up_name, $account_name, $account_hash_password) {
         $account_controller = new Account_Controller();

@@ -342,7 +342,7 @@ input[type="submit"] {
   height: 50px;
   padding: 10px;
   border-radius: 6px;
-  background-color: #285d8f;
+  background-color: #A52A2A;
   border: none;
 
   color: #fff;
@@ -355,7 +355,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   cursor: pointer;
-  background-color: #5680a7;
+  background-color: #A52A2A;
 }
 
 /* Định dạng cho vùng HOẶC */

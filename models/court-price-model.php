@@ -1,5 +1,5 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/connect.php");
 
     class court_price {
         private $court_price_id;

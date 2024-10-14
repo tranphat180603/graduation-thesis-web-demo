@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/list-of-sports-courts.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,13 +29,13 @@
   </head>
   <body>
     <?php
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
       $account_controller = new Account_Controller();
     ?>
     <!-- HEADER -->
     <?php 
       if(!isset($_SESSION['username'])) {
-        include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/guest-sub-header.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/guest-sub-header.php";
       } else {
         $username = $_SESSION['username'];
 
@@ -45,9 +45,9 @@
           if($account->getAccountSignUpName() == $username) {
             $account_type = $account->getAccountType();
             if($account_type == 'Quản lý') {
-              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/admin-sub-header.php";
+              include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/admin-sub-header.php";
             } else if($account_type == 'Khách hàng') {
-              include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/header/customer-sub-header.php";
+              include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/header/customer-sub-header.php";
             }
           }
         }

@@ -1,5 +1,7 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-type-model.php");
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/court-type-model.php");
 
     class Court_Type_Controller {
         public $court_type;
@@ -48,7 +50,7 @@
                     header("Location: ../views/sport-court-types-management.php?noti=insertfail");
                 }
             } catch (Exception $e) {
-                echo "123Error: " . $e->getMessage();
+                // echo "123Error: " . $e->getMessage();
             }
         }
         public function delete_court_type($ids){

@@ -1,5 +1,5 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/order-service-detail-model.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/order-service-detail-model.php");
 
     class Order_Service_Detail_Controller {
         public $order_service_detail;

@@ -13,10 +13,10 @@
 
         if(existSignUpName($link, $sign_up_name)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?sign_up_name=".$sign_up_name."&msg=exist_sign_up_name");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php?sign_up_name=".$sign_up_name."&msg=exist_sign_up_name");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_name=".$sign_up_name."");
+            header("Location: /LP-Sport-Center/views/sign-up-acc-name.php?sign_up_name=".$sign_up_name."");
         }
     }
 
@@ -28,10 +28,10 @@
 
         if(signUpBySUName($link, $sign_up_name, $sign_up_acc_name, $sign_up_pass)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?msg=sign_up_successful");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php?msg=sign_up_successful");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?msg=sign_up_fail");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php?msg=sign_up_fail");
         }
     }
 
@@ -41,10 +41,10 @@
 
         if(existPhoneNumber($link, $sign_up_phone)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-phone.php?sign_up_phone=".$sign_up_phone."&msg=exist_sign_up_phone");
+            header("Location: /LP-Sport-Center/views/sign-up-method-phone.php?sign_up_phone=".$sign_up_phone."&msg=exist_sign_up_phone");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_phone=".$sign_up_phone."");
+            header("Location: /LP-Sport-Center/views/sign-up-acc-name.php?sign_up_phone=".$sign_up_phone."");
         }
     }
 
@@ -56,10 +56,10 @@
 
         if(signUpByPhone($link, $sign_up_phone, $sign_up_acc_name, $sign_up_pass)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php&msg=sign_up_successful");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php&msg=sign_up_successful");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?msg=sign_up_fail");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php?msg=sign_up_fail");
         }
     }
 
@@ -69,10 +69,10 @@
 
         if(existEmail($link, $sign_up_email)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-email.php?sign_up_email=".$sign_up_email."&msg=exist_sign_up_email");
+            header("Location: /LP-Sport-Center/views/sign-up-method-email.php?sign_up_email=".$sign_up_email."&msg=exist_sign_up_email");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-acc-name.php?sign_up_email=".$sign_up_email."");
+            header("Location: /LP-Sport-Center/views/sign-up-acc-name.php?sign_up_email=".$sign_up_email."");
         }
     }
 
@@ -84,10 +84,10 @@
 
         if(signUpByEmail($link, $sign_up_email, $sign_up_acc_name, $sign_up_pass)) {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php&msg=sign_up_successful");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php&msg=sign_up_successful");
         } else {
             ReleaseMemory($link, true);
-            header("Location: /NTP-Sports-Hub/views/sign-up-method-suname.php?msg=sign_up_fail");
+            header("Location: /LP-Sport-Center/views/sign-up-method-suname.php?msg=sign_up_fail");
         }
     }
 ?>

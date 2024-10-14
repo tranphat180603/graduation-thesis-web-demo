@@ -254,35 +254,35 @@
         }
     </style>
     <?php
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-type-controller.php");
       $court_type_controller = new Court_Type_Controller();
 
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-controller.php");
       $court_controller = new Court_Controller();
     ?>
     <div class="header">
       <div class="header-top">
         <div class="header-top-content">
           <div class="header-top-left">
-            <a href="/NTP-Sports-Hub/index.php">
-                <img src="/NTP-Sports-Hub/image/header-img/ntpsh.svg" alt="Khu liên hợp thể thao avatar">
+            <a href="/LP-Sport-Center/index.php">
+                <img src="/LP-Sport-Center/image/header-img/ntpsh.svg" alt="Sân thể thao Lộc Phát avatar">
             </a>
-            <a href="/NTP-Sports-Hub/index.php">
-                <p>Khu liên hợp thể thao <span>Nguyễn Tri Phương</span></p>
+            <a href="/LP-Sport-Center/index.php">
+                <p>Sân thể thao <span>Lộc Phát</span></p>
             </a>
           </div>
           <div class="header-top-right">
-            <a id="btn-sign-up" href="/NTP-Sports-Hub/views/sign-up-method-suname.php">
+            <a id="btn-sign-up" href="/LP-Sport-Center/views/sign-up-method-suname.php">
                 <p>Đăng ký</p>
             </a>
-            <a id="btn-sign-in" href="/NTP-Sports-Hub/views/sign-in.php">
+            <a id="btn-sign-in" href="/LP-Sport-Center/views/sign-in.php">
                 <p>Đăng nhập</p>
             </a>
           </div>
         </div>
       </div>
       <div class="header-middle">
-        <p>Trải nghiệm đặt sân thể thao trực tuyến cùng NTP Sports Hub</p>
+        <p>Sân thể thao Lộc Phát</p>
       </div>
       <div class="header-bottom">
         <div class="menu">
@@ -293,7 +293,7 @@
                     foreach($court_types as $court_type) {
                     echo "
                         <li class='header-li-court-type' id='header-li-court-type-".$court_type->getCourtTypeId()."'>
-                        <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/NTP-Sports-Hub/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
+                        <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/LP-Sport-Center/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
                     ";
                         
                     $court_amount = $court_controller->view_court_by_court_type($court_type->getCourtTypeId());

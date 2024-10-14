@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/customer-account-management.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,8 +30,8 @@
   <body>
   <?php
     session_start();
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/customer-controller.php");
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/customer-controller.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
     $account_controller = new Account_Controller();
     $customerController = new Customer_Controller();
   ?>
@@ -155,11 +155,11 @@
          </div>
          <form id = "image-input" class = "image-box" action="" method="post" enctype="multipart/form-data" >
             <div class = "image-frame">
-            <img id="avatar" src="<?php echo '/NTP-Sports-Hub'. $customer_avatar_link?>" >
+            <img id="avatar" src="<?php echo '/LP-Sport-Center'. $customer_avatar_link?>" >
             </div>
                 <button type="button" id = "get-avatar-btn" href="" onclick = "document.getElementById('avatar-input').click()">
                   <input type="submit" id = "submitImage" name = "submitImage" style="display:none">
-                  <img src="/NTP-Sports-Hub/image/account-management-img/pointer.svg" alt="choose avatar">
+                  <img src="/LP-Sport-Center/image/account-management-img/pointer.svg" alt="choose avatar">
                   <label for="avatar-input">Chọn ảnh</label>
                   <input style="display:none" type="file" id="avatar-input" name="avatar-input" accept="image/*" onchange="document.getElementById('submitImage').click()">
                 </button>

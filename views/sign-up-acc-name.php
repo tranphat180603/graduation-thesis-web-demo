@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/sign-up.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,7 +72,7 @@
                       &nbsp; &nbsp; &bull; &nbsp; Tên tài khoản không được chứa các ký tự đặc biệt " và '
                     </li>
                     <li>
-                      &nbsp; &nbsp; &bull; &nbsp; Ví dụ tên tài khoản: Nguyễn Ngọc Hoàng
+                      &nbsp; &nbsp; &bull; &nbsp; Ví dụ tên tài khoản: Trần Nguyễn Ngọc Phát
                     </li>
                   </ul>
                 </div>

@@ -286,21 +286,21 @@
         }
     </style>
     <?php
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-type-controller.php");
       $court_type_controller = new Court_Type_Controller();
 
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-controller.php");
       $court_controller = new Court_Controller();
     ?>
     <div class="header">
       <div class="header-top">
         <div class="header-top-content">
           <div class="header-top-left">
-            <a href="/NTP-Sports-Hub/index.php">
-                <img src="/NTP-Sports-Hub/image/header-img/ntpsh.svg" alt="Khu liên hợp thể thao avatar">
+            <a href="/LP-Sport-Center/index.php">
+                <img src="/LP-Sport-Center/image/header-img/ntpsh.svg" alt="Sân thể thao Lộc Phát avatar">
             </a>
-            <a href="/NTP-Sports-Hub/index.php">
-                <p>Khu liên hợp thể thao <span>Nguyễn Tri Phương</span></p>
+            <a href="/LP-Sport-Center/index.php">
+                <p>Sân thể thao <span>Lộc Phát</span></p>
             </a>
           </div>
           <div class="header-top-right">
@@ -309,7 +309,7 @@
               <input type="checkbox" id="admin">
               <div class="admin-navigation">
                 <div class="admin-nav-options">
-                  <a href="/NTP-Sports-Hub/modules/sign-out-module.php">
+                  <a href="/LP-Sport-Center/modules/sign-out-module.php">
                     <p>Đăng xuất</p>
                   </a>
                 </div>
@@ -318,7 +318,7 @@
                 id="admin-avatar" 
                 src="
                   <?php
-                    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+                    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
                     $account_controller = new Account_Controller();
 
                     if(isset($_SESSION['username'])) {
@@ -327,7 +327,7 @@
                       foreach($accounts as $account) {
                         if($account->getAccountSignUpName() == $username) {
                           $customer_avatar_link = $account->getAccountAvatar();
-                          echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                          echo "/LP-Sport-Center" . $customer_avatar_link;
                         }
                       }
                     }
@@ -361,25 +361,25 @@
             <ul>
                 <li class="management">Quản Lý:</li>
                 <li class="management-option" id="mana-li-1">
-                    <a href="/NTP-Sports-Hub/views/sport-court-types-management.php" id="mana-a-1">Loại Sân</a>
+                    <a href="/LP-Sport-Center/views/sport-court-types-management.php" id="mana-a-1">Loại Sân</a>
                 </li>
                 <li class="management-option" id="mana-li-2">
-                    <a href="/NTP-Sports-Hub/views/sport-courts-management.php" id="mana-a-2">Sân</a>
+                    <a href="/LP-Sport-Center/views/sport-courts-management.php" id="mana-a-2">Sân</a>
                 </li>
                 <li class="management-option" id="mana-li-3">
-                    <a href="/NTP-Sports-Hub/views/sport-court-schedules-management.php" id="mana-a-3">Lịch Sân</a>
+                    <a href="/LP-Sport-Center/views/sport-court-schedules-management.php" id="mana-a-3">Lịch Sân</a>
                 </li>
                 <li class="management-option" id="mana-li-4">
-                    <a href="/NTP-Sports-Hub/views/event-management.php" id="mana-a-4">Sự Kiện</a>
+                    <a href="/LP-Sport-Center/views/event-management.php" id="mana-a-4">Sự Kiện</a>
                 </li>
                 <li class="management-option" id="mana-li-5">
-                    <a href="/NTP-Sports-Hub/views/service-management.php" id="mana-a-5">Dịch Vụ</a>
+                    <a href="/LP-Sport-Center/views/service-management.php" id="mana-a-5">Dịch Vụ</a>
                 </li>
                 <li class="management-option" id="mana-li-6">
-                    <a href="/NTP-Sports-Hub/views/sport-court-orders-management.php" id="mana-a-6">Đơn Đặt Sân</a>
+                    <a href="/LP-Sport-Center/views/sport-court-orders-management.php" id="mana-a-6">Đơn Đặt Sân</a>
                 </li>
                 <li class="management-option" id="mana-li-7">
-                    <a href="/NTP-Sports-Hub/views/statistical-report.php" id="mana-a-7">Thống Kê</a>
+                    <a href="/LP-Sport-Center/views/statistical-report.php" id="mana-a-7">Thống Kê</a>
                 </li>
             </ul>
         </div>

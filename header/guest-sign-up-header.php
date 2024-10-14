@@ -39,10 +39,10 @@
 
     <div class="sign-up-header">
       <div class="sign-up-header-content">
-        <a href="/NTP-Sports-Hub/index.php">
+        <a href="/LP-Sport-Center/index.php">
           <img
-            src="/NTP-Sports-Hub/image/header-img/sign-upAin-header-logo.svg"
-            alt="Khu liên hợp thể thao Nguyễn Tri Phương"
+            src="/LP-Sport-Center/image/header-img/sign-upAin-header-logo.svg"
+            alt="Sân thể thao Lộc Phát"
           />
         </a>
         <p>Đăng Ký</p>

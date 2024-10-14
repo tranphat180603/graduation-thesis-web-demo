@@ -1,10 +1,14 @@
-<?php session_start(); ?>
+
+<?php session_start(); 
+header('Location: ../index.php');
+exit();
+?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/sport-court-types-management.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +31,7 @@
     <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png"/>
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body>
+  <body style style="display: none;">
 
   <div class="container">
     <!-- HEADER -->
@@ -54,7 +58,7 @@
              case 'delete':
                  if (isset($_GET['court_type_id'])) {
                      $court_type_id = $_GET['court_type_id'];
-                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/schedule-delete-confirmation.php");
+                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/views/notification/schedule-delete-confirmation.php");
                      echo '
                      <script>
                          var question = document.getElementById(\'delete-confirm-question\');
@@ -100,7 +104,7 @@
                      }
                      $url = rtrim($url, '&'); // Remove the trailing '&'
                      
-                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/schedule-delete-confirmation.php");
+                     require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/views/notification/schedule-delete-confirmation.php");
                      echo '
                      <script>
                          var question = document.getElementById(\'delete-confirm-question\');
@@ -140,7 +144,7 @@
                      
                      // Check if there is only one element in the array
                      if (count($check_delete_ids) !== 1) {
-                         require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/warning.php");
+                         require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/views/notification/warning.php");
                          echo '
                          <script>
                            var warningQuestion = document.getElementById(\'warning-question\');

@@ -238,34 +238,30 @@
       <div class="footer-sub">
         <div class="footer-top">
           <div class="footer-top-top">
-            <img id="NTP-logo-img"
-              src="/NTP-Sports-Hub/image/footer-img/footer-logo.svg"
-              alt="Khu liên hợp thể thao NTP"
+            <img id="LP-logo-img"
+              src="/LP-Sport-Center/image/footer-img/footer-logo.svg"
+              alt="Sân thể thao Lộc Phát"
             />
-            <p>
-              Khu liên hợp thể thao
-              <span>Nguyễn Tri Phương</span>
+            <p>Sân thể thao <span>Lộc Phát</span>
             </p>
           </div>
           <div class="footer-top-bottom">
             <div class="footer-general-info">
               <p>
-                Chúng tôi nỗ lực xây dựng một cộng đồng thể thao vững mạnh, góp
-                phần nâng cao thể chất và tinh thần của người Việt Nam.
+                Vui vẻ, trẻ, khỏe!
               </p>
               <div class="footer-general-info-contact">
                 <div class="phone-number">
                   <img id="phone-img"
-                    src="/NTP-Sports-Hub/image/footer-img/call.svg"
+                    src="/LP-Sport-Center/image/footer-img/call.svg"
                     alt="Số điện thoại"
                   />
-                  <p>Liên hệ: 090 379 93 86</p>
+                  <p>Liên hệ: 123xxx789</p>
                 </div>
                 <div class="address">
-                  <img id="address-img" src="/NTP-Sports-Hub/image/footer-img/location.svg" alt="Địa chỉ" />
+                  <img id="address-img" src="/LP-Sport-Center/image/footer-img/location.svg" alt="Địa chỉ" />
                   <p>
-                    Địa điểm: 477 Đ. Nguyễn Tri Phương, KP. Bình Đường 4, P. An
-                    Bình, TP. Dĩ An, Bình Dương
+                    Địa điểm: Trái Đất
                   </p>
                 </div>
               </div>
@@ -289,19 +285,19 @@
             <div class="footer-contact-info">
               <p>Kết nối với chúng tôi</p>
               <div class="facebook">
-                <img id="facebook-img" src="/NTP-Sports-Hub/image/footer-img/facebook.svg" alt="Facebook" />
+                <img id="facebook-img" src="/LP-Sport-Center/image/footer-img/facebook.svg" alt="Facebook" />
                 <a
-                  href="https://www.facebook.com/sbnguyentriphuong"
+                  href="https://www.facebook.com/"
                   target="_blank"
-                  >sbnguyentriphuong</a
+                  >LocPhat</a
                 >
               </div>
               <div class="email">
-                <img id="email-img" src="/NTP-Sports-Hub/image/footer-img/mail-opened.svg" alt="Email" />
+                <img id="email-img" src="/LP-Sport-Center/image/footer-img/mail-opened.svg" alt="Email" />
                 <a
                   style="word-break: break-all"
-                  href="mailto:sbnguyentriphuong@gmail.com"
-                  >sbnguyentriphuong@gmail.com</a
+                  href="mailto:sporthub-locphat@gmail.com"
+                  >sporthub-locphat@gmail.com</a
                 >
               </div>
             </div>
@@ -309,7 +305,7 @@
         </div>
         <div class="footer-bottom">
           <hr/>
-          <p>Copyright © 2024. All Rights Reserved by NTP Sports Hub.</p>
+          <p>Copyright © 2024. All Rights Reserved by Loc Phat.</p>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/sign-up.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,7 +79,7 @@
                     </li>
                     <li>
                       &nbsp; &nbsp; &bull; &nbsp; Ví dụ tên đăng ký hợp lệ:
-                      harryngochoang03
+                      phatdeptrai123
                     </li>
                   </ul>
                 </div>
@@ -126,7 +126,7 @@
     </div>
     <!-- FOOTER -->
     <?php include "../footer/footer.php"; ?>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/modules/msg.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/modules/msg.php"; ?>
     <script type="text/javascript"src="../scripts/sign-up.js" language="javascript"></script>
   </body>
 </html>

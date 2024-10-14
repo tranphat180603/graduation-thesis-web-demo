@@ -1,7 +1,9 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-order-model.php");
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/court-order-model.php");
 
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/court-schedule-model.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/court-schedule-model.php");
 
     class Court_Order_Controller {
         public $court_order;
@@ -265,7 +267,7 @@
                     echo "123";
                 }
             } catch (Exception $e) {
-                echo "123Error: " . $e->getMessage();
+                // echo "123Error: " . $e->getMessage();
             }
         }
         public function getCourtNamefromCourtSchedule($id){

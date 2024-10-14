@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+  <title>Sân thể thao Lộc Phát</title>
   <link rel="stylesheet" type="text/css" href="../styles/sport-court-booking-history-management.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,7 +75,6 @@
       $court_image_controller = new Court_Image_Controller();
       require_once "../controllers/review-controller.php";
 
-      $reviewscontroller = new Review_Controller();
 
       ?>
 
@@ -218,7 +217,7 @@
                   ?>
                       <div class="message awaiting-payment-container">
                         <div class="awaiting-payment-content">
-                          Cảm ơn bạn đã đặt sân thể thao, bạn vui lòng chờ NTP xác nhận thanh toán nhé
+                          Cảm ơn bạn đã đặt sân thể thao, bạn vui lòng chờ LP xác nhận thanh toán nhé
                         </div>
                         <button class="button cancel-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="cancel-label">Hủy Đơn Đặt Sân</div>
@@ -238,10 +237,9 @@
                     ?>
                       <div class="message complete-container">
                         <div class="complete-content">
-                          NTP chân thành cảm ơn bạn đã tin tưởng và chọn NTP để thỏa sức đam mê cùng đồng đội
+                          LP chân thành cảm ơn bạn đã tin tưởng và chọn LP để thỏa sức đam mê cùng đồng đội
                         </div>
                         <?php
-                          $review_status = $reviewscontroller->checkReviewed($court_order->getCourtOrderId(), $account_id);
                         ?>
                         <button class="review-button" id="review-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="review-label">
@@ -261,7 +259,7 @@
                     ?>
                       <div class="message awaiting-court-container">
                         <div class="awaiting-court-content">
-                          Cảm ơn bạn đã đặt sân thể thao, NTP chúc bạn có một trải nghiệm thật tuyệt vời bên đồng đội
+                          Cảm ơn bạn đã đặt sân thể thao, LP chúc bạn có một trải nghiệm thật tuyệt vời bên đồng đội
                         </div>
                         <button class="button cancel-button" data-court-order-id="<?php echo $court_order->getCourtOrderId(); ?>">
                           <div class="cancel-label">Hủy Đơn Đặt Sân</div>
@@ -272,7 +270,7 @@
                     case 'Chờ hoàn tiền':
                     ?>
                       <div class="message cancellation-info">
-                        <div class="cancellation-reason">Đã hủy bởi Khu liên hợp thể thao NTP</div>
+                        <div class="cancellation-reason">Đã hủy bởi Sân thể thao Lộc Phát</div>
                         <div class="cancellation-content">Lý do hủy: <?php echo $court_order->getOrderCancelReason(); ?></div>
                       </div>
                   <?php
@@ -431,11 +429,7 @@
                     <div class="review-content">
                       <div class="rating-parent">
                         <?php
-                        $averagerating = $reviewscontroller->getAverageRatingByCourtSchedule($court->getCourtId());
-                        $fullStars = floor($averagerating);
-                        $halfStar = $averagerating - $fullStars >= 0.5;
                         ?>
-                        <b class="rating-value"><?php echo $averagerating ?></b>
                         <div class="star-icons-parent">
                           <?php
                           for ($i = 1; $i <= $fullStars; $i++) : ?>
@@ -500,7 +494,7 @@
                     </div>
 
                     <div class="review-enter-wrapper">
-                      <img class="image-16-icon" loading="lazy" alt="" src=" <?php echo "/NTP-Sports-Hub" . $customer_avatar_link; ?>">
+                      <img class="image-16-icon" loading="lazy" alt="" src=" <?php echo "/LP-Sport-Center" . $customer_avatar_link; ?>">
 
                       <div class="review-enter">
                         <input type="" name="court_schedule_id" value="<?php echo $court_schedule->getCourtScheduleId() ?>">

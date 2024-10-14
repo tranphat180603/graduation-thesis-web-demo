@@ -2,13 +2,15 @@
   session_start(); 
   ini_set('display_errors', 0);
   ini_set('display_startup_errors', 0);
+  header('Location: ../index.php');
+  exit();
 ?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khu liên hợp thể thao Nguyễn Tri Phương</title>
+    <title>Sân thể thao Lộc Phát</title>
     <link rel="stylesheet" type="text/css" href="../styles/sport-court-orders-management.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -286,7 +288,7 @@
                             <img src='";
                     foreach ($accounts as $account) {
                       if ($account->getAccountId() == $court_order->getCustomerAccountId()) {
-                        echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                        echo "/LP-Sport-Center" . $account->getAccountAvatar();
                       }
                     }
                     echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -472,7 +474,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                    echo "/LP-Sport-Center" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -676,7 +678,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                    echo "/LP-Sport-Center" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -880,7 +882,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                    echo "/LP-Sport-Center" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -1080,7 +1082,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                    echo "/LP-Sport-Center" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -1135,7 +1137,7 @@
             <div class="input">
               <?php 
                 if ($court_order[13] == 1) {
-                  echo "<input type='text' name='cancel_party' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
+                  echo "<input type='text' name='cancel_party' placeholder='Không nhập' value='Sân thể thao Lộc Phát'>";
                 } else {
                   echo "<input type='text' name='cancel_party' placeholder='Không nhập' value='Khách hàng'>";
                 }
@@ -1316,7 +1318,7 @@
                 echo "<img src='";
                 foreach ($accounts as $account) {
                   if ($account->getAccountId() == $court_order[10]) {
-                    echo "/NTP-Sports-Hub" . $account->getAccountAvatar();
+                    echo "/LP-Sport-Center" . $account->getAccountAvatar();
                   }
                 }
                 echo "' alt='customer avatar' style='border-radius: 50%; width: 28px; height: 28px;'>";
@@ -1371,7 +1373,7 @@
             <div class="input">
               <?php 
                 if ($court_order[13] == 1) {
-                  echo "<input type='text' name='canceled_party' placeholder='Không nhập' value='Khu liên hợp thể thao NTP'>";
+                  echo "<input type='text' name='canceled_party' placeholder='Không nhập' value='Sân thể thao Lộc Phát'>";
                 } else {
                   echo "<input type='text' name='canceled_party' placeholder='Không nhập' value='Khách hàng'>";
                 }

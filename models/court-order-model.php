@@ -1,5 +1,5 @@
 <?php
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/models/connect.php");
+    require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/models/connect.php");
 
     class court_order {
         private $court_order_id;
@@ -221,7 +221,7 @@
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', canceled_on_date = '$canceled_on_date', order_cancel_reason = '$cancel_reason', order_cancel_party_account_id = 'Khu liên hợp thể thao NTP' WHERE court_order_id = $court_order_id";
+            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', canceled_on_date = '$canceled_on_date', order_cancel_reason = '$cancel_reason', order_cancel_party_account_id = 'Sân thể thao Lộc Phát' WHERE court_order_id = $court_order_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 
@@ -259,7 +259,7 @@
             MakeConnection($link);
 
             //Tạo ra câu SQL
-            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', order_cancel_reason = 'Khu liên hợp NTP chưa xác nhận thanh toán kịp', canceled_on_date = '$canceled_on_date' WHERE court_order_id = $court_order_id";
+            $sql = "UPDATE court_order SET order_state = 'Chờ hoàn tiền', order_cancel_reason = 'LP-Sport-Center chưa xác nhận thanh toán kịp', canceled_on_date = '$canceled_on_date' WHERE court_order_id = $court_order_id";
 
             $result = ExecuteNonDataQuery($link, $sql);
 

@@ -563,30 +563,30 @@
         }
     </style>
     <?php
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-type-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-type-controller.php");
       $court_type_controller = new Court_Type_Controller();
 
-      require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/court-controller.php");
+      require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/court-controller.php");
       $court_controller = new Court_Controller();
     ?>
     <div class="header">
       <div class="header-top">
         <div class="header-top-content">
           <div class="header-top-left">
-            <a href="/NTP-Sports-Hub/index.php">
-                <img src="/NTP-Sports-Hub/image/header-img/ntpsh.svg" alt="Khu liên hợp thể thao avatar">
+            <a href="/LP-Sport-Center/index.php">
+                <img src="/LP-Sport-Center/image/header-img/ntpsh.svg" alt="Sân thể thao Lộc Phát avatar">
             </a>
-            <a href="/NTP-Sports-Hub/index.php">
-                <p>Khu liên hợp thể thao <span>Nguyễn Tri Phương</span></p>
+            <a href="/LP-Sport-Center/index.php">
+                <p>Sân thể thao <span>Lộc Phát</span></p>
             </a>
           </div>
           <div class="header-top-right">
-            <a href="/NTP-Sports-Hub/views/cart-management.php">
+            <a href="/LP-Sport-Center/views/cart-management.php">
                 <div class="cart">
-                <img id="cart-icon" src="/NTP-Sports-Hub/image/header-img/cart.svg" alt="Giỏ hàng icon">
+                <img id="cart-icon" src="/LP-Sport-Center/image/header-img/cart.svg" alt="Giỏ hàng icon">
                 <div id="cart-amount">
                     <?php
-                        require_once ($_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/controllers/account-controller.php");
+                        require_once ($_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/controllers/account-controller.php");
                         $account_controller = new Account_Controller();
 
                         if(isset($_SESSION['username'])) {
@@ -603,13 +603,13 @@
               <input type="checkbox" id="customer">
               <div class="customer-navigation">
                 <div class="customer-nav-options">
-                  <a href="/NTP-Sports-Hub/views/customer-account-management.php">
+                  <a href="/LP-Sport-Center/views/customer-account-management.php">
                     <p>Tài khoản của tôi</p>
                   </a>
-                  <a href="/NTP-Sports-Hub/views/sport-court-booking-history-management.php">
+                  <a href="/LP-Sport-Center/views/sport-court-booking-history-management.php">
                     <p>Đơn đặt sân</p>
                   </a>
-                  <a href="/NTP-Sports-Hub/modules/sign-out-module.php">
+                  <a href="/LP-Sport-Center/modules/sign-out-module.php">
                     <p>Đăng xuất</p>
                   </a>
                 </div>
@@ -625,9 +625,9 @@
                         if($account->getAccountSignUpName() == $username) {
                           $customer_avatar_link = $account->getAccountAvatar();
                           if($customer_avatar_link == "") {
-                            echo "/NTP-Sports-Hub/image/account-management-img/avatar-user.png";
+                            echo "/LP-Sport-Center/image/account-management-img/avatar-user.png";
                           } else {
-                            echo "/NTP-Sports-Hub" . $customer_avatar_link;
+                            echo "/LP-Sport-Center" . $customer_avatar_link;
                           }
                         }
                       }
@@ -651,19 +651,19 @@
       </div>
       <div class="header-middle">
         <div class="header-middle-container">
-            <p>Trải nghiệm đặt sân thể thao trực tuyến cùng NTP Sports Hub</p>
+            <p>Sân thể thao Lộc Phát</p>
             <div class="header-search">
                 <div class="instance-container">
                 <div class="search-container">
-                    <img class="searchVector" alt="" src="/NTP-Sports-Hub/image/header-img/search.svg" />
+                    <img class="searchVector" alt="" src="/LP-Sport-Center/image/header-img/search.svg" />
                     <input id="searchInput" class="input" placeholder="Tìm kiếm" type="search" onkeydown="searchOnEnter(event)" />
                 </div>
                 </div>
                 <ul id="courtType_checkboxList">
                 <li class="checkboxList">
-                    <img class="court-vector" alt="" src="/NTP-Sports-Hub/image/header-img/filter.svg" />
+                    <img class="court-vector" alt="" src="/LP-Sport-Center/image/header-img/filter.svg" />
                     <div class="selectedCourts"><p id="selectedCourts">Tất cả loại sân</p></div>
-                    <img class="dropdown-vector" alt="" src="/NTP-Sports-Hub/image/header-img/dropdown.svg" />
+                    <img class="dropdown-vector" alt="" src="/LP-Sport-Center/image/header-img/dropdown.svg" />
                     <ul class='dropdown_list'>
                         <?php
                             $court_types = $court_type_controller->view_all_court_type();
@@ -701,7 +701,7 @@
                     foreach($court_types as $court_type) {
                     echo "
                         <li class='header-li-court-type' id='header-li-court-type-".$court_type->getCourtTypeId()."'>
-                        <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/NTP-Sports-Hub/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
+                        <a id='header-a-court-type-".$court_type->getCourtTypeId()."' href='/LP-Sport-Center/views/list-of-sports-courts.php?court_type_id=".$court_type->getCourtTypeId()."'>".$court_type->getCourtTypeName()."
                     ";
                         
                     $court_amount = $court_controller->view_court_by_court_type($court_type->getCourtTypeId());

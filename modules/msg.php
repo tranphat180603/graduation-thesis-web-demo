@@ -63,7 +63,7 @@
                 </script>
             "; 
 
-            include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/action-successful.php";
+            include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/views/notification/action-successful.php";
 
             echo "
                 <script>
@@ -100,7 +100,7 @@
                 </script>
             "; 
 
-            include $_SERVER['DOCUMENT_ROOT'] . "/NTP-Sports-Hub/views/notification/warning.php";
+            include $_SERVER['DOCUMENT_ROOT'] . "/LP-Sport-Center/views/notification/warning.php";
 
             echo "
                 <script>
@@ -110,7 +110,7 @@
 
                     question.textContent = 'Bạn đã thực hiện đăng xuất';
                     explanation.textContent = 'Rất tiếc, thao tác đăng xuất đã thất bại';
-                    OKBtn.href = '/NTP-Sports-Hub/index.php';
+                    OKBtn.href = '/LP-Sport-Center/index.php';
                 </script>
             ";        
         } 
